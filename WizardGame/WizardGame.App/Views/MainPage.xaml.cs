@@ -66,8 +66,9 @@ namespace WizardGame.App.Views
 
         void OnUnloaded(object sender, RoutedEventArgs e)
         {   // Best practice: Prevent simple memory leak
-            this.canvas.RemoveFromVisualTree();
-            this.canvas = null;
+            canvas.RemoveFromVisualTree();
+            canvas = null;
+            canvas.
         }
 
         private void OnCreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
@@ -81,7 +82,7 @@ namespace WizardGame.App.Views
 
             EntityManager.gameEntities.Add(new Player());
 
-            CardEnemy.Spawner(1200, 500, 128);
+            CardEnemy.Spawner(1200, 500, 64);
 
             //mapSpriteSheets.Add(
             //    "dev",
