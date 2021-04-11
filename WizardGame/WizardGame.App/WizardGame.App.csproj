@@ -131,8 +131,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Classes\CanvasDebugger.cs" />
+    <Compile Include="Classes\Entities\CardEnemy.cs" />
+    <Compile Include="Classes\Entities\Entity.cs" />
+    <Compile Include="Classes\Entities\Player.cs" />
+    <Compile Include="Classes\Entities\Target.cs" />
+    <Compile Include="Classes\EntityManager.cs" />
+    <Compile Include="Classes\KeyBoard.cs" />
+    <Compile Include="Classes\Layer.cs" />
+    <Compile Include="Classes\MapMaker\Map.cs" />
+    <Compile Include="Classes\MapMaker\MapEditor.cs" />
+    <Compile Include="Classes\MapMaker\MapLayout.cs" />
+    <Compile Include="Classes\SpriteSheet.cs" />
     <Compile Include="Helpers\Observable.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Interfaces\IDrawable.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
@@ -182,6 +195,11 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Sprites\Dev\spr_dev.jpg" />
+    <Content Include="Assets\Sprites\Dev\spr_point.jpg" />
+    <Content Include="Assets\Sprites\Entities\CardEnemy\spr_cards.png" />
+    <Content Include="Assets\Sprites\Entities\Player\spr_player_idle.png" />
+    <Content Include="Assets\Sprites\Entities\Player\spr_player.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -207,6 +225,7 @@
       <Name>WizardGame.App.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
