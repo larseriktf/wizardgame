@@ -77,19 +77,17 @@ namespace WizardGame.App.Views
         async Task LoadResourcesAsync(CanvasAnimatedControl sender)
         {   // Loads images and spritesheets
 
-            EntityManager.gameEntities.Add(new Player());
+            EntityManager.gameEntities.Add(new Player()
+            {
+                X = 400,
+                Y = 400
+            });
 
             //CardEnemy.Spawner(1200, 500, 64);
 
-            EntityManager.gameEntities.Add(new Solid()
-            {
-                X = 1000,
-                Y = 500
-            });
-
             // Add Maps
-            MapEditor.MakeMaps(sender.Device);
-            MapEditor.LoadMap(0);
+            MapEditor.MakeMaps();
+            MapEditor.LoadMap(0, sender.Device);
 
             // Add stuff
             Layer layer1 = new Layer("layer1");

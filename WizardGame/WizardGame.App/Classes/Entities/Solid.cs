@@ -13,8 +13,8 @@ namespace WizardGame.App.Classes.Entities
     {
         public Solid()
         {
-            Width = 256;
-            Height = 256;
+            Width = 128;
+            Height = 128;
         }
 
         public void DrawSelf(CanvasDrawingSession ds)

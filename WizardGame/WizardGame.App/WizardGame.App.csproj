@@ -140,6 +140,7 @@
     <Compile Include="Classes\EntityManager.cs" />
     <Compile Include="Classes\KeyBoard.cs" />
     <Compile Include="Classes\Layer.cs" />
+    <Compile Include="Classes\MapMaker\CollisionLayout.cs" />
     <Compile Include="Classes\MapMaker\Map.cs" />
     <Compile Include="Classes\MapMaker\MapEditor.cs" />
     <Compile Include="Classes\MapMaker\MapLayout.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Sprites\Dev\spr_dev.jpg" />
     <Content Include="Assets\Sprites\Dev\spr_point.jpg" />
     <Content Include="Assets\Sprites\Entities\Bunny\spr_bunny.png" />
@@ -208,7 +210,6 @@
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>

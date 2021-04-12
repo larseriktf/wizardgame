@@ -11,10 +11,12 @@ namespace WizardGame.App.Classes
 {
     public class Map
     {
-        public List<MapLayout> MapLayouts { get; set; }
+        public CollisionLayout CollisionLayout { get; set; }
+        public MapLayout[] MapLayouts { get; set; }
 
-        public Map(List<MapLayout> mapLayouts)
+        public Map(CollisionLayout collisionLayout, params MapLayout[] mapLayouts)
         {
+            CollisionLayout = collisionLayout;
             MapLayouts = mapLayouts;
         }
     }

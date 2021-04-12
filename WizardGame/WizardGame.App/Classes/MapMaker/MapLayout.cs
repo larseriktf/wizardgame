@@ -16,11 +16,10 @@ namespace WizardGame.App.Classes.MapMaker
         public SpriteSheet Sprite { get; set; } = null;
         public string BitMapUri { get; set; }
 
-        public MapLayout(string bitMapUri, int[][] layout, CanvasDevice device)
+        public MapLayout(string bitMapUri, int[][] layout)
         {
             BitMapUri = bitMapUri;
             Layout = layout;
-            LoadImageResourceAsync(device);
         }
 
         public async void LoadImageResourceAsync(CanvasDevice device)
@@ -34,15 +33,15 @@ namespace WizardGame.App.Classes.MapMaker
             {
                 using (var spriteBatch = ds.CreateSpriteBatch())
                 {
-                    for (int x = 0; x < Layout.Length; x++)
+                    for (int y = 0; y < Layout.Length; y++)
                     {
-                        for (int y = 0; y < Layout[x].Length; y++)
+                        for (int x = 0; x < Layout[y].Length; x++)
                         {
                             if (Layout[y][x] == 1)
                             {
                                 Sprite.DrawSpriteExt(
                                 spriteBatch,
-                                new Vector2(x * 128, y * 128),
+                                new Vector2(x * 128 + 64, y * 128 + 64),
                                 new Vector2(0, 0),
                                 new Vector4(1, 1, 1, 1),
                                 0,
