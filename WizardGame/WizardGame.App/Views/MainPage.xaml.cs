@@ -87,21 +87,9 @@ namespace WizardGame.App.Views
                 Y = 500
             });
 
-
             // Add Maps
-
-
-            //mapSpriteSheets.Add(
-            //    "dev",
-            //    await SpriteSheet.LoadSpriteSheetAsync(sender.Device, "ms-appx:///Assets/Sprites/Dev/spr_dev.jpg", new Vector2(128, 128)));
-
-            //// Get maps
-            //maps = MapEditor.GetMaps(mapSpriteSheets);
-
-            //// @TODO: Make this more flexible, so it allowes all maps to be added / Or just current playing map to be added
-            //Layer layer0 = new Layer("layer0");
-            //layer0.GameObjects.Add(maps[0].MapLayouts[0]);
-            //EntityManager.Layers.Add(layer0);
+            MapEditor.MakeMaps(sender.Device);
+            MapEditor.LoadMap(0);
 
             // Add stuff
             Layer layer1 = new Layer("layer1");
