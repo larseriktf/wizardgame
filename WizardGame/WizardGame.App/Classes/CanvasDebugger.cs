@@ -46,39 +46,8 @@ namespace WizardGame.App.Classes
             }
         }
 
-
-        public static Entity objA { get; set; } = null;
-        public static Entity objB { get; set; } = null;
-        private static int length = 128;
         public static void TestDrawing(CanvasDrawingSession ds)
         {
-            if (objA != null && objB != null)
-            {
-
-                // Card velocity vector
-                //ds.DrawLine(
-                //    objA.XPos,
-                //    objA.YPos,
-                //    objA.XPos + ((float)Math.Cos(CardEnemy.Angle) * length),
-                //    objA.YPos + ((float)Math.Sin(CardEnemy.Angle) * length),
-                //    Colors.Blue);
-
-                // Lagging vector
-                //ds.DrawLine(
-                //    objA.XPos,
-                //    objA.YPos,
-                //    objA.XPos + ((float)Math.Cos(CardEnemy.LagAngle) * length),
-                //    objA.YPos + ((float)Math.Sin(CardEnemy.LagAngle) * length),
-                //    Colors.Green);
-
-                // Vector towards target
-                //ds.DrawLine(
-                //    objA.XPos,
-                //    objA.YPos,
-                //    objA.XPos + ((float)Math.Cos(CardEnemy.TargetAngle) * length),
-                //    objA.YPos + ((float)Math.Sin(CardEnemy.TargetAngle) * length),
-                //    Colors.Red);
-            }
 
 
         }

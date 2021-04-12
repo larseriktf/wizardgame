@@ -15,6 +15,7 @@ namespace WizardGame.App.Classes.Entities
     public class CardEnemy : Entity, IDrawable
     {
         public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Entities/CardEnemy/spr_cards.png";
+        public SpriteSheet Sprite { get; set; } = null;
         public readonly int spriteWidth = 24;
         public readonly int spriteHeight = 24;
 
@@ -57,16 +58,16 @@ namespace WizardGame.App.Classes.Entities
 
             EntityManager.gameEntities.Add(new Target()
             {
-                XPos = x,
-                YPos = y
+                X = x,
+                Y = y
             });
 
             for (int i = 0; i < amount; i++)
             {
                 EntityManager.gameEntities.Add(new CardEnemy()
                 {
-                    XPos = x + (float)random.NextDouble() * (max - min) + min,
-                    YPos = y + (float)random.NextDouble() * (max - min) + min
+                    X = x + (float)random.NextDouble() * (max - min) + min,
+                    Y = y + (float)random.NextDouble() * (max - min) + min
                 });
             }
         }
@@ -114,7 +115,7 @@ namespace WizardGame.App.Classes.Entities
                 {
                     Sprite.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(XPos, YPos),
+                    new Vector2(X, Y),
                     new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
                     (float)(angle + 0.5 * PI),
@@ -164,16 +165,6 @@ namespace WizardGame.App.Classes.Entities
         {
             int minLength = 100;
             int maxLength = 150;
-
-            //// Temporary, for debugging
-            //if (KeyBoard.ToggleTarget)
-            //{
-            //    state = 1;
-            //}
-            //else
-            //{
-            //    state = 0;
-            //}
 
             Player player = (Player)EntityManager.GetNearestEntity(this, typeof(Player));
 
@@ -251,21 +242,8 @@ namespace WizardGame.App.Classes.Entities
 
             angle += turningSpeed * amplifier + Sin(wiggle) * wiggleMultiplier;
 
-            // Debug
-            //Angle = angle;
-            //TargetAngle = targetAngle;
-            //LagAngle = lagAngle;
-
-            //CanvasDebugger.objA = this;
-            //CanvasDebugger.objB = target;
-            //CanvasDebugger.Debug(this, "Angle: " + angle
-            //                    + "\nNextAngle: " + TargetAngle
-            //                    + "\nDistance: " + dist
-            //                    + "\nAmplifier: " + amplifier
-            //                    + "\nWiggleroom: " + Sin(wiggle));
-
-            XPos += (float)(speed * Cos(angle));
-            YPos += (float)(speed * Sin(angle));
+            X += (float)(speed * Cos(angle));
+            Y += (float)(speed * Sin(angle));
         }
     }
 }

@@ -89,10 +89,25 @@ namespace WizardGame.App.Classes
             return listOfObjects;
         }
 
+        public static List<Solid> GetAllSolidEntities()
+        {
+            List<Solid> listOfSolids = new List<Solid>();
+
+            foreach (Entity entity in gameEntities)
+            {
+                if (entity.GetType().IsSubclassOf(typeof(Solid)))
+                {
+                    listOfSolids.Add((Solid)entity);
+                }
+            }
+
+            return listOfSolids;
+        }
+
         public static double GetAngleBetweenEntitiesInRadians(Entity objA, Entity objB)
         {
             // Vector between objA and objB
-            Vector2 a = new Vector2(objB.XPos - objA.XPos, objB.YPos - objA.YPos);
+            Vector2 a = new Vector2(objB.X - objA.X, objB.Y - objA.Y);
 
             // Horizontal right vector
             Vector2 b = new Vector2(1, 0);
@@ -117,11 +132,47 @@ namespace WizardGame.App.Classes
 
         public static double GetDistanceBetweenEntities(Entity objA, Entity objB)
         {
-            double x = objB.XPos - objA.XPos;
-            double y = objB.YPos - objA.YPos;
+            double x = objB.X - objA.X;
+            double y = objB.Y - objA.Y;
 
             double distance = Sqrt(Pow(x, 2) + Pow(y, 2));
             return distance;
         }
+
+
+
+        public static bool CheckCollision(float x, float y, int width, int height, Type className)
+        {
+            List<Entity> entities = GetEntities(className);
+
+            foreach (Entity entity in entities)
+            {   // Run four checks to see if it collides
+                if ((x + width / 2) >= entity.X
+                 && (x - width / 2) <= (entity.X + entity.Width)
+                 && (y + height / 2) >= entity.Y
+                 && (y - height / 2) <= (entity.Y + entity.Height))
+                {   // Collision detected!
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //public static bool CheckCollisionBBox(Entity obj, Type className)
+        //{
+        //    List<Entity> entities = GetEntities(className);
+
+        //    foreach (Entity entity in entities)
+        //    {   // Run four checks to see if it collides
+        //        if ((obj.XPos + obj.Width - (obj.Width / 2)) >= entity.XPos
+        //         && obj.XPos - (obj.Width / 2) <= (entity.XPos + entity.Width)
+        //         && (obj.YPos + obj.Width - (obj.Height / 2)) >= entity.YPos
+        //         && obj.YPos - (obj.Height / 2) <= (entity.YPos + entity.Height))
+        //        {   // Collision detected!
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
     }
 }

@@ -14,7 +14,7 @@ namespace WizardGame.App.Classes.MapMaker
     {
         public int[][] Layout { get; set; } // multidimensional array
 
-        public string BitMapUri => throw new NotImplementedException();
+        public SpriteSheet Sprite { get; set; } = null;
 
         public MapLayout(SpriteSheet spriteSheet, int[][] layout)
         {

@@ -135,6 +135,7 @@
     <Compile Include="Classes\Entities\CardEnemy.cs" />
     <Compile Include="Classes\Entities\Entity.cs" />
     <Compile Include="Classes\Entities\Player.cs" />
+    <Compile Include="Classes\Entities\Solid.cs" />
     <Compile Include="Classes\Entities\Target.cs" />
     <Compile Include="Classes\EntityManager.cs" />
     <Compile Include="Classes\KeyBoard.cs" />
@@ -197,6 +198,7 @@
   <ItemGroup>
     <Content Include="Assets\Sprites\Dev\spr_dev.jpg" />
     <Content Include="Assets\Sprites\Dev\spr_point.jpg" />
+    <Content Include="Assets\Sprites\Entities\Bunny\spr_bunny.png" />
     <Content Include="Assets\Sprites\Entities\CardEnemy\spr_cards.png" />
     <Content Include="Assets\Sprites\Entities\Player\spr_player_idle.png" />
     <Content Include="Assets\Sprites\Entities\Player\spr_player.png" />

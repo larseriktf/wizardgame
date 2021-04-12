@@ -11,7 +11,7 @@
     Unloaded="OnUnloaded"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Width="800">
+    <Grid Width="auto">
         <canvas:CanvasAnimatedControl x:Name="canvas"
                                       CreateResources="OnCreateResources"
                                       Draw="OnDraw" 

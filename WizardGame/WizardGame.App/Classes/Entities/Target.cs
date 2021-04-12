@@ -30,15 +30,15 @@ namespace WizardGame.App.Classes.Entities
         {
             if (originalX == 0 && originalX == 0)
             {
-                originalX = XPos;
-                originalY = YPos;
+                originalX = X;
+                originalY = Y;
             }
 
             Shake(60, 0.01f, 0.015f);
 
             if (BitMap != null)
             {
-                ds.DrawImage(BitMap, XPos - 4, YPos - 4);
+                ds.DrawImage(BitMap, X - 4, Y - 4);
             }
         }
 
@@ -64,8 +64,8 @@ namespace WizardGame.App.Classes.Entities
             float x = (f2.Y * f1.Z - f1.Y * f2.Z) / delta;
             float y = (f1.X * f2.Z - f2.X * f1.Z) / delta;
 
-            XPos = x;
-            YPos = y;
+            X = x;
+            Y = y;
         }
     }
 }
