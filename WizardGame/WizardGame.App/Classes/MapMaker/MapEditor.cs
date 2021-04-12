@@ -11,15 +11,9 @@ namespace WizardGame.App.Classes
     public static class MapEditor
     {
         public static List<Map> Maps { get; set; } = new List<Map>();
+        public static Dictionary<string, string> BitMapUris { get; set; } = new Dictionary<string, string>();
 
-        public static List<Map> GetMaps(Dictionary<string, SpriteSheet> SpriteSheets)
-        {
-            MakeMaps(SpriteSheets);
-
-            return Maps;
-        }
-
-        public static void MakeMaps(Dictionary<string, SpriteSheet> SpriteSheets)
+        public static void MakeMaps(Dictionary<string, string> BitMapUris)
         {
             // Map 1
             int[][] testMapArr =
@@ -42,7 +36,7 @@ namespace WizardGame.App.Classes
                 new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}
             };
 
-            MapLayout firstLayout = new MapLayout(SpriteSheets["dev"], testMapArr);
+            MapLayout firstLayout = new MapLayout(BitMapUris["dev"], testMapArr);
             Map firstMap = new Map(new List<MapLayout> { firstLayout });
 
             // Add all maps

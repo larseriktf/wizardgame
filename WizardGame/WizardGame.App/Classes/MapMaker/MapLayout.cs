@@ -10,16 +10,22 @@ using WizardGame.App.Interfaces;
 
 namespace WizardGame.App.Classes.MapMaker
 {
-    public class MapLayout : Entity
+    public class MapLayout : Entity, IDrawable
     {
         public int[][] Layout { get; set; } // multidimensional array
-
         public SpriteSheet Sprite { get; set; } = null;
+        public string BitMapUri { get; set; }
 
-        public MapLayout(SpriteSheet spriteSheet, int[][] layout)
+        public MapLayout(string bitMapUri, int[][] layout, CanvasDevice device)
         {
-            Sprite = spriteSheet;
+            BitMapUri = bitMapUri;
             Layout = layout;
+            LoadImageResourceAsync(device);
+        }
+
+        public async void LoadImageResourceAsync(CanvasDevice device)
+        {
+            Sprite = await SpriteSheet.LoadSpriteSheetAsync(device, BitMapUri, new Vector2(128, 128));
         }
 
         public void DrawSelf(CanvasDrawingSession ds)

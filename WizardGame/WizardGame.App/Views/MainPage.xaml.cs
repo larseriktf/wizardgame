@@ -36,8 +36,6 @@ namespace WizardGame.App.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private List<Map> maps;
-        Dictionary<string, SpriteSheet> mapSpriteSheets = new Dictionary<string, SpriteSheet>();
         readonly DispatcherTimer gameTimer = new DispatcherTimer();
 
         public MainPage()
@@ -88,6 +86,9 @@ namespace WizardGame.App.Views
                 X = 1000,
                 Y = 500
             });
+
+
+            // Add Maps
 
 
             //mapSpriteSheets.Add(
