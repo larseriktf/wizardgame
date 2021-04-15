@@ -83,6 +83,11 @@ namespace WizardGame.App.Views
                 X = 400,
                 Y = 400
             });
+            EntityManager.gameEntities.Add(new Bunny()
+            {
+                X = 1000,
+                Y = 200
+            });
 
             //CardEnemy.Spawner(1200, 500, 64);
 

@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using WizardGame.App.Classes.Entities;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Interfaces;
 
 namespace WizardGame.App.Classes.MapMaker
 {
-    public class CollisionLayout : Entity
+    public class CollisionLayout : Entity, ILayout
     {
         public int[][] Layout { get; set; }
 
@@ -17,7 +18,7 @@ namespace WizardGame.App.Classes.MapMaker
             Layout = layout;
         }
 
-        public void Generate()
+        public void GenerateLayout()
         {
             for (int y = 0; y < Layout.Length; y++)
             {

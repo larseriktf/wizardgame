@@ -53,7 +53,7 @@ namespace WizardGame.App.Classes
         {
             Map map = Maps[mapIndex];
 
-            map.CollisionLayout.Generate();
+            map.CollisionLayout.GenerateLayout();
 
             Layer mapLayer = new Layer("layer0");
 
