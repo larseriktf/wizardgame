@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using WizardGame.App.Classes.Entities;
+using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Interfaces;
 using static System.Math;
 

@@ -132,11 +132,12 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Classes\CanvasDebugger.cs" />
-    <Compile Include="Classes\Entities\CardEnemy.cs" />
+    <Compile Include="Classes\Entities\Characters\Bunny.cs" />
+    <Compile Include="Classes\Entities\Characters\CardEnemy.cs" />
     <Compile Include="Classes\Entities\Entity.cs" />
-    <Compile Include="Classes\Entities\Player.cs" />
-    <Compile Include="Classes\Entities\Solid.cs" />
-    <Compile Include="Classes\Entities\Target.cs" />
+    <Compile Include="Classes\Entities\Characters\Player.cs" />
+    <Compile Include="Classes\Entities\Dev\Solid.cs" />
+    <Compile Include="Classes\Entities\Dev\Target.cs" />
     <Compile Include="Classes\EntityManager.cs" />
     <Compile Include="Classes\KeyBoard.cs" />
     <Compile Include="Classes\Layer.cs" />
@@ -228,7 +229,9 @@
       <Name>WizardGame.App.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Classes\Entities\Spell\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

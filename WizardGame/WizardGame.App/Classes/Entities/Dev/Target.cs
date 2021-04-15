@@ -9,7 +9,7 @@ using Windows.UI;
 using WizardGame.App.Interfaces;
 using static System.Math;
 
-namespace WizardGame.App.Classes.Entities
+namespace WizardGame.App.Classes.Entities.Dev
 {
     public class Target : Entity, IDrawable
     {

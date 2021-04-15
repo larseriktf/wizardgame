@@ -25,6 +25,7 @@ using WizardGame.App.Classes;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using WizardGame.App.Classes.Entities;
 using WizardGame.App.Interfaces;
+using WizardGame.App.Classes.Entities.Characters;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409

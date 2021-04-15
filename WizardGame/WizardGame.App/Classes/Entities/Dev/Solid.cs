@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Windows.UI;
 using WizardGame.App.Interfaces;
 
-namespace WizardGame.App.Classes.Entities
+namespace WizardGame.App.Classes.Entities.Dev
 {
     public class Solid : Entity, IDrawable
     {

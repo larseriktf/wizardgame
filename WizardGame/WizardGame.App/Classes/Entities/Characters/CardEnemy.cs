@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using Windows.UI.Xaml;
+using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Interfaces;
 using static System.Math;
 
-namespace WizardGame.App.Classes.Entities
+namespace WizardGame.App.Classes.Entities.Characters
 {
     public class CardEnemy : Entity, IDrawable
     {

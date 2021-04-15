@@ -7,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
 using WizardGame.App.Classes.Entities;
+using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Interfaces;
 using static System.Math;
 
-namespace WizardGame.App.Classes
+namespace WizardGame.App.Classes.Entities.Characters
 {
     public class Player : Entity, IDrawable
     {

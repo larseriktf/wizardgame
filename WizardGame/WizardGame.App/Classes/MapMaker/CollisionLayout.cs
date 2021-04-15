@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WizardGame.App.Classes.Entities;
+using WizardGame.App.Classes.Entities.Dev;
 
 namespace WizardGame.App.Classes.MapMaker
 {
