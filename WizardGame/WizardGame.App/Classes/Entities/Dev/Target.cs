@@ -26,7 +26,7 @@ namespace WizardGame.App.Classes.Entities.Dev
             BitMap = await CanvasBitmap.LoadAsync(device, new Uri(BitMapUri));
         }
 
-        public void DrawSelf(CanvasDrawingSession ds)
+        public void Draw(CanvasDrawingSession ds)
         {
             if (originalX == 0 && originalX == 0)
             {

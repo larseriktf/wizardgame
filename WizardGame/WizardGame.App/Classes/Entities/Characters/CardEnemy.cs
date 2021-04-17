@@ -73,7 +73,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             }
         }
 
-        public void DrawSelf(CanvasDrawingSession ds)
+        public void Draw(CanvasDrawingSession ds)
         {
 
             DetectStateChange();

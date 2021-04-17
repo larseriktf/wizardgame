@@ -16,19 +16,19 @@ namespace WizardGame.App.Classes
         public static void MakeMaps()
         {
             // Map 1
-            int[][] testMapArr =
-            {
-                new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                new int[] {1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1},
-                new int[] {1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1},
-                new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                new int[] {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
-                new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+            //int[][] testMapArr =
+            //{
+            //    new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+            //    new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+            //    new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 
-            };
+            //};
 
             int[][] testMapCollisions =
             {
@@ -36,17 +36,22 @@ namespace WizardGame.App.Classes
                 new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                 new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
                 new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                new int[] {1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1},
-                new int[] {1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1},
                 new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-                new int[] {1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
+                new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+                new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
             };
 
-            
-            MapLayout firstLayout = new MapLayout("ms-appx:///Assets/Sprites/Dev/spr_dev.jpg", testMapArr);
-            CollisionLayout collisionLayout = new CollisionLayout(testMapCollisions);
-            Maps.Add(new Map(collisionLayout, firstLayout));
+            Maps.Add(new Map()
+            {
+                //MapLayouts = new MapLayout[]
+                //{
+                //    new MapLayout("ms-appx:///Assets/Sprites/Dev/spr_dev.jpg", testMapArr)
+                //},
+                CollisionLayout = new CollisionLayout(testMapCollisions),
+                LevelBackground = new LevelBackground("ms-appx:///Assets/Sprites/Levels/abandonedRoom.png")
+            });
         }
 
         public static void LoadMap(int mapIndex, CanvasDevice device)
@@ -59,9 +64,10 @@ namespace WizardGame.App.Classes
 
             foreach (MapLayout layout in map.MapLayouts)
             {
-                layout.LoadImageResourceAsync(device);
                 mapLayer.GameObjects.Add(layout);
             }
+
+            mapLayer.GameObjects.Add(map.LevelBackground);
 
             EntityManager.Layers.Add(mapLayer);
         }

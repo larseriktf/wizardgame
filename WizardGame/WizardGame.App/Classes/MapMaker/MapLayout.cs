@@ -10,7 +10,7 @@ using WizardGame.App.Interfaces;
 
 namespace WizardGame.App.Classes.MapMaker
 {
-    public class MapLayout : Entity, IDrawable
+    public class MapLayout : Entity, IDrawable, ILayout
     {
         public int[][] Layout { get; set; } // multidimensional array
         public SpriteSheet Sprite { get; set; } = null;
@@ -27,7 +27,7 @@ namespace WizardGame.App.Classes.MapMaker
             Sprite = await SpriteSheet.LoadSpriteSheetAsync(device, BitMapUri, new Vector2(128, 128));
         }
 
-        public void DrawSelf(CanvasDrawingSession ds)
+        public void Draw(CanvasDrawingSession ds)
         {
             if (Sprite != null)
             {

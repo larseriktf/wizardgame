@@ -142,6 +142,7 @@
     <Compile Include="Classes\KeyBoard.cs" />
     <Compile Include="Classes\Layer.cs" />
     <Compile Include="Classes\MapMaker\CollisionLayout.cs" />
+    <Compile Include="Classes\MapMaker\LevelBackground.cs" />
     <Compile Include="Classes\MapMaker\Map.cs" />
     <Compile Include="Classes\MapMaker\MapEditor.cs" />
     <Compile Include="Classes\MapMaker\MapLayout.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Sprites\Levels\abandonedRoom.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Sprites\Dev\spr_dev.jpg" />
     <Content Include="Assets\Sprites\Dev\spr_point.jpg" />
@@ -231,7 +233,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\Entities\Spell\" />
+    <Folder Include="Classes\Entities\Spells\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

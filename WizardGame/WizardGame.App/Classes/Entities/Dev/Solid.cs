@@ -17,9 +17,9 @@ namespace WizardGame.App.Classes.Entities.Dev
             Height = 128;
         }
 
-        public void DrawSelf(CanvasDrawingSession ds)
+        public void Draw(CanvasDrawingSession ds)
         {
-            ds.DrawRectangle(X, Y, Width, Height, Colors.Blue);
+            //ds.DrawRectangle(X, Y, Width, Height, Colors.Blue);
         }
 
         public void LoadImageResourceAsync(CanvasDevice device)

@@ -45,7 +45,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             Sprite = await SpriteSheet.LoadSpriteSheetAsync(device, BitMapUri, new Vector2(spriteWidth, spriteHeight));
         }
 
-        public void DrawSelf(CanvasDrawingSession ds)
+        public void Draw(CanvasDrawingSession ds)
         {
             UpdateMovement();
 
