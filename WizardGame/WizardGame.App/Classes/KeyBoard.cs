@@ -12,20 +12,19 @@ namespace WizardGame.App.Classes
 
     public static class KeyBoard
     {
-        public static bool KeyLeft { get; set; }
-        public static bool KeyRight { get; set; }
-        public static bool KeyUp { get; set; }
-        public static bool KeyDown { get; set; }
-        public static bool KeyIncrementVector { get; set; }
-        public static bool KeyDecrementVector { get; set; }
+        public static Key KeyLeft { get; set; } = new Key();
+        public static Key KeyRight { get; set; } = new Key();
+        public static Key KeyUp { get; set; } = new Key();
+        public static Key KeyDown { get; set; } = new Key();
+        public static Key KeyIncrementVector { get; set; } = new Key();
+        public static Key KeyDecrementVector { get; set; } = new Key();
         public static Windows.Foundation.Point PointerPosition { get; set; }
-        public static bool MouseOnePressed { get; set; }
-        public static bool ToggleTarget { get; set; }
-
-        public static bool ArrowLeft { get; set; }
-        public static bool ArrowRight { get; set; }
-        public static bool ArrowUp { get; set; }
-        public static bool ArrowDown { get; set; }
+        public static Key MouseOnePressed { get; set; } = new Key();
+        public static Key ToggleTarget { get; set; } = new Key();
+        public static Key ArrowLeft { get; set; } = new Key();
+        public static Key ArrowRight { get; set; } = new Key();
+        public static Key ArrowUp { get; set; } = new Key();
+        public static Key ArrowDown { get; set; } = new Key();
 
 
         
@@ -33,31 +32,29 @@ namespace WizardGame.App.Classes
         public static void UpdateKeys()
         {
             // Movement Keys
-            KeyLeft = Window.Current.CoreWindow.GetKeyState(VirtualKey.A).HasFlag(CoreVirtualKeyStates.Down);
-            KeyRight = Window.Current.CoreWindow.GetKeyState(VirtualKey.D).HasFlag(CoreVirtualKeyStates.Down);
-            KeyUp = Window.Current.CoreWindow.GetKeyState(VirtualKey.W).HasFlag(CoreVirtualKeyStates.Down);
-            KeyDown = Window.Current.CoreWindow.GetKeyState(VirtualKey.S).HasFlag(CoreVirtualKeyStates.Down);
+            KeyLeft.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.A).HasFlag(CoreVirtualKeyStates.Down);
+            KeyRight.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.D).HasFlag(CoreVirtualKeyStates.Down);
+            KeyUp.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.W).HasFlag(CoreVirtualKeyStates.Down);
+            KeyDown.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.S).HasFlag(CoreVirtualKeyStates.Down);
 
             // Arrow Keys
-            ArrowLeft = Window.Current.CoreWindow.GetKeyState(VirtualKey.Left).HasFlag(CoreVirtualKeyStates.Down);
-            ArrowRight = Window.Current.CoreWindow.GetKeyState(VirtualKey.Right).HasFlag(CoreVirtualKeyStates.Down);
-            ArrowUp = Window.Current.CoreWindow.GetKeyState(VirtualKey.Up).HasFlag(CoreVirtualKeyStates.Down);
-            ArrowDown = Window.Current.CoreWindow.GetKeyState(VirtualKey.Down).HasFlag(CoreVirtualKeyStates.Down);
+            ArrowLeft.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.Left).HasFlag(CoreVirtualKeyStates.Down);
+            ArrowRight.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.Right).HasFlag(CoreVirtualKeyStates.Down);
+            ArrowUp.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.Up).HasFlag(CoreVirtualKeyStates.Down);
+            ArrowDown.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.Down).HasFlag(CoreVirtualKeyStates.Down);
 
             // Other Keys
-            KeyIncrementVector = Window.Current.CoreWindow.GetKeyState(VirtualKey.P).HasFlag(CoreVirtualKeyStates.Down);
-            KeyDecrementVector = Window.Current.CoreWindow.GetKeyState(VirtualKey.O).HasFlag(CoreVirtualKeyStates.Down);
+            KeyIncrementVector.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.P).HasFlag(CoreVirtualKeyStates.Down);
+            KeyDecrementVector.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.O).HasFlag(CoreVirtualKeyStates.Down);
 
-            ToggleTarget = Window.Current.CoreWindow.GetKeyState(VirtualKey.K).HasFlag(CoreVirtualKeyStates.Locked);
+            ToggleTarget.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.K).HasFlag(CoreVirtualKeyStates.Locked);
 
             // Mouse
             PointerPosition = Window.Current.CoreWindow.PointerPosition;
 
         }
 
-        public static bool state = false;
-
-        public static bool CheckPressedOnce(bool pressed)
+        public static bool CheckTapped(ref bool state, bool pressed)
         {
             if (pressed != state)
             {
@@ -68,6 +65,48 @@ namespace WizardGame.App.Classes
                 }
             }
             return false;
+        }
+        public static bool Tapped(bool value, bool pressed)
+        {
+            if (value == true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public class Key
+        {
+            private bool down = false;
+            public bool Down
+            {
+                get
+                {
+                    return down;
+                }
+                set
+                {
+                    // Changed
+                    if (down != value)
+                    {
+                        tapped = value;
+                    }
+                    else
+                    {
+                        tapped = false;
+                    }
+
+                    down = value;
+                }
+            }
+            private bool tapped = false;
+            public bool Tapped
+            {
+                get
+                {
+                    return tapped;
+                }
+            }
         }
     }
 }

@@ -66,8 +66,8 @@ namespace WizardGame.App.Classes.Entities.Characters
         private void UpdateMovement()
         {
             // Calculate movement
-            float moveHorizontal = Convert.ToInt32(KeyBoard.KeyRight) - Convert.ToInt32(KeyBoard.KeyLeft);
-            float moveVertical = Convert.ToInt32(KeyBoard.KeyDown) - Convert.ToInt32(KeyBoard.KeyUp);
+            float moveHorizontal = Convert.ToInt32(KeyBoard.KeyRight.Down) - Convert.ToInt32(KeyBoard.KeyLeft.Down);
+            float moveVertical = Convert.ToInt32(KeyBoard.KeyDown.Down) - Convert.ToInt32(KeyBoard.KeyUp.Down);
 
             hsp = moveHorizontal * MoveSpeed;
             vsp = moveVertical * MoveSpeed;
@@ -101,9 +101,8 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         private void RegisterSpells()
         {
-            ;
-
-            CanvasDebugger.Debug(this, "IsPressed: " + KeyBoard.CheckPressedOnce(KeyBoard.ArrowUp).ToString());
+            CanvasDebugger.Debug(this, "ArrowDown: " + KeyBoard.ArrowDown.Tapped);
+            
         }
     }
 }
