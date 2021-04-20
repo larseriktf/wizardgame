@@ -79,18 +79,30 @@ namespace WizardGame.App.Views
 
         async Task LoadResourcesAsync(CanvasAnimatedControl sender)
         {   // Loads images and spritesheets
+            // @TODO: Make this nicer ;)
+            //EntityManager.Initialize();
 
-            EntityManager.Entities.Add(new Player()
+            //EntityManager.Entities.Add(new Player()
+            //{
+            //    X = 400,
+            //    Y = 400
+            //});
+            //EntityManager.Entities.Add(new Bunny()
+            //{
+            //    X = 1000,
+            //    Y = 200
+            //});
+            EntityManager.AddEntity("layer1", new Player()
             {
                 X = 400,
                 Y = 400
             });
-            EntityManager.Entities.Add(new Bunny()
+            EntityManager.AddEntity("layer1", new Bunny()
             {
                 X = 1000,
                 Y = 200
             });
-            //EntityManager.gameEntities.Add(new IceSpell());
+            //EntityManager.Entities.Add(new IceSpell());
 
             //CardEnemy.Spawner(1200, 500, 64);
 
@@ -99,18 +111,23 @@ namespace WizardGame.App.Views
             MapEditor.LoadMap(0, sender.Device);
 
 
-            foreach (Entity entity in EntityManager.Entities)
-            {
-                EntityManager.Layers["layer1"].Add(entity);
-            }
+            //foreach (Entity entity in EntityManager.Entities)
+            //{
+            //    EntityManager.Layers["layer1"].Add(entity);
+            //}
 
             // Pre-Load sprites and spritesheets
-            foreach (string layerName in EntityManager.Layers.Keys)
+            //foreach (string layerName in EntityManager.Layers.Keys)
+            //{
+            //    foreach (IDrawable gameObject in EntityManager.Layers[layerName])
+            //    {
+            //        gameObject.LoadImageResourceAsync(sender.Device);
+            //    }
+            //}
+
+            foreach (IDrawable entity in EntityManager.Entities)
             {
-                foreach (IDrawable gameObject in EntityManager.Layers[layerName])
-                {
-                    gameObject.LoadImageResourceAsync(sender.Device);
-                }
+                entity.LoadImageResourceAsync(sender.Device);
             }
         }
 
@@ -121,12 +138,17 @@ namespace WizardGame.App.Views
             var ds = args.DrawingSession;
 
             // Draw gameObjects
-            foreach (string layerName in EntityManager.Layers.Keys)
+            //foreach (string layerName in EntityManager.Layers.Keys)
+            //{
+            //    foreach (IDrawable gameObject in EntityManager.Layers[layerName])
+            //    {
+            //        gameObject.Draw(ds);
+            //    }
+            //}
+
+            foreach (IDrawable entity in EntityManager.Entities)
             {
-                foreach (IDrawable gameObject in EntityManager.Layers[layerName])
-                {
-                    gameObject.Draw(ds);
-                }
+                entity.Draw(ds);
             }
 
             CanvasDebugger.DrawMessages(ds);

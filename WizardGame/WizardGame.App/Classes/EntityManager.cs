@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -15,14 +17,56 @@ namespace WizardGame.App.Classes
     {
 
         //public static List<Layer> Layers { get; set; } = new List<Layer>();
-        public static Dictionary<string, List<Entity>> Layers { get; set; } = new Dictionary<string, List<Entity>>()
+        //public static Dictionary<string, List<Entity>> Layers { get; set; } = new Dictionary<string, List<Entity>>()
+        //{
+        //    {"layer0", new List<Entity>() },
+        //    {"layer1", new List<Entity>() },
+        //    {"layer2", new List<Entity>() }
+        //};
+
+        public static List<string> Layers { get; } = new List<string>()
         {
-            {"layer0", new List<Entity>() },
-            {"layer1", new List<Entity>() },
-            {"layer2", new List<Entity>() }
+            "layer0",
+            "layer1",
+            "layer2"
         };
 
-        public static List<Entity> Entities = new List<Entity>();
+        private static readonly List<Entity> entities = new List<Entity>();
+        public static List<Entity> Entities
+        {
+            get
+            {
+                return entities;
+            }
+        }
+
+        //public static void Initialize()
+        //{
+        //    entities.CollectionChanged += HandleChange;
+        //}
+
+        //public static void HandleChange(object sender, NotifyCollectionChangedEventArgs e)
+        //{
+
+        //}
+
+        public static void AddEntity(string layer, Entity entity)
+        {
+            entity.Layer = layer;
+
+            // Finding Index to insert at
+            int index = 0;
+
+            for (int i = 0; i < entities.Count; i++)
+            {
+                if (entities[i].Layer.Equals(layer))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            entities.Insert(index, entity);
+        }
 
         public static bool EntityExists(Type className)
         {   // Runs through list of entities and checks if they are of type className
