@@ -105,7 +105,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             CanvasDebugger.Debug(this, "Tapped: " + KeyBoard.ArrowUp.Tapped);
             if (KeyBoard.ArrowUp.Tapped)
             {
-                EntityManager.gameEntities.Add(new IceSpell());
+                EntityManager.Layers["layer2"].Add(new IceSpell());
             }
         }
     }

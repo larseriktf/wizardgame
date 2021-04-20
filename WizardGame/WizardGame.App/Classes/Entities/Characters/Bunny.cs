@@ -52,7 +52,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             //////
             // @TODO: Remove this later, this is just for testing purposes
             sb.Clear();
-            foreach (Entity entity in EntityManager.gameEntities)
+            foreach (Entity entity in EntityManager.Entities)
             {
                 if (!entity.GetType().Equals(typeof(Solid)))
                 {

@@ -60,16 +60,12 @@ namespace WizardGame.App.Classes
 
             map.CollisionLayout.GenerateLayout();
 
-            Layer mapLayer = new Layer("layer0");
-
             foreach (MapLayout layout in map.MapLayouts)
             {
-                mapLayer.GameObjects.Add(layout);
+                EntityManager.Layers["layer0"].Add(layout);
             }
 
-            mapLayer.GameObjects.Add(map.LevelBackground);
-
-            EntityManager.Layers.Add(mapLayer);
+            EntityManager.Layers["layer0"].Add(map.LevelBackground);
         }
     }
 }

@@ -57,7 +57,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             int min = -16;
             int max = 16;
 
-            EntityManager.gameEntities.Add(new Target()
+            EntityManager.Entities.Add(new Target()
             {
                 X = x,
                 Y = y
@@ -65,7 +65,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             for (int i = 0; i < amount; i++)
             {
-                EntityManager.gameEntities.Add(new CardEnemy()
+                EntityManager.Entities.Add(new CardEnemy()
                 {
                     X = x + (float)random.NextDouble() * (max - min) + min,
                     Y = y + (float)random.NextDouble() * (max - min) + min

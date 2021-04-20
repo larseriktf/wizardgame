@@ -26,7 +26,7 @@ namespace WizardGame.App.Classes.MapMaker
                 {
                     if (Layout[y][x] == 1)
                     {
-                        EntityManager.gameEntities.Add(
+                        EntityManager.Entities.Add(
                             new Solid()
                             {
                                 X = x * 128,

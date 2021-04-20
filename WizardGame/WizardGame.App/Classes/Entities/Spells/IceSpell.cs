@@ -31,7 +31,6 @@ namespace WizardGame.App.Classes.Entities.Spells
         }
         public void Draw(CanvasDrawingSession ds)
         {
-            ds.DrawText("Hello!", X, Y, Colors.Green);
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
                 if (Sprite != null)
@@ -48,7 +47,6 @@ namespace WizardGame.App.Classes.Entities.Spells
                 else
                 {
                     LoadImageResourceAsync(ds.Device);
-
                 }
             }
 
