@@ -52,19 +52,25 @@ namespace WizardGame.App.Classes
 
         public static void AddEntity(string layer, Entity entity)
         {
+            // Asign layer to entity
             entity.Layer = layer;
 
-            // Finding Index to insert at
+            // Insert entity at the correct index (group by layer)
+            int myLevel = Layers.IndexOf(layer);
             int index = 0;
 
             for (int i = 0; i < entities.Count; i++)
             {
-                if (entities[i].Layer.Equals(layer))
+                int theirLevel = Layers.IndexOf(entities[i].Layer);
+
+                index = i;
+
+                if (myLevel < theirLevel)
                 {
-                    index = i;
                     break;
                 }
             }
+
             entities.Insert(index, entity);
         }
 
