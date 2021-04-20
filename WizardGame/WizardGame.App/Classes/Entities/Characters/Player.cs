@@ -17,7 +17,7 @@ namespace WizardGame.App.Classes.Entities.Characters
     {
         public int MoveSpeed { get; set; } = 10;
 
-        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Entities/Player/spr_player.png";
+        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Characters/Player/spr_player.png";
         public SpriteSheet Sprite { get; set; } = null;
         public readonly int spriteWidth = 96;
         public readonly int spriteHeight = 96;
@@ -39,6 +39,7 @@ namespace WizardGame.App.Classes.Entities.Characters
         public void Draw(CanvasDrawingSession ds)
         {
             UpdateMovement();
+            RegisterSpells();
 
             if (Sign(hsp) != 0)
             {
@@ -50,17 +51,15 @@ namespace WizardGame.App.Classes.Entities.Characters
                 if (Sprite != null)
                 {
                     Sprite.DrawSpriteExt(
-                    spriteBatch,
-                    new Vector2(X, Y),
-                    new Vector2(ImageX, ImageY),
-                    new Vector4(Red, Green, Blue, Alpha),
-                    0,
-                    new Vector2(XScale, YScale),
-                    0);
+                        spriteBatch,
+                        new Vector2(X, Y),
+                        new Vector2(ImageX, ImageY),
+                        new Vector4(Red, Green, Blue, Alpha),
+                        0,
+                        new Vector2(XScale, YScale),
+                        0);
                 }
             }
-
-            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Yellow);
         }
 
 
@@ -98,6 +97,13 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             // Update Y 
             Y += vsp;
+        }
+
+        private void RegisterSpells()
+        {
+            ;
+
+            CanvasDebugger.Debug(this, "IsPressed: " + KeyBoard.CheckPressedOnce(KeyBoard.ArrowUp).ToString());
         }
     }
 }

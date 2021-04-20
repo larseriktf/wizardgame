@@ -138,6 +138,7 @@
     <Compile Include="Classes\Entities\Characters\Player.cs" />
     <Compile Include="Classes\Entities\Dev\Solid.cs" />
     <Compile Include="Classes\Entities\Dev\Target.cs" />
+    <Compile Include="Classes\Entities\Spells\IceSpell.cs" />
     <Compile Include="Classes\EntityManager.cs" />
     <Compile Include="Classes\KeyBoard.cs" />
     <Compile Include="Classes\Layer.cs" />
@@ -201,13 +202,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Sprites\Levels\abandonedRoom.png" />
+    <Content Include="Assets\Sprites\ParticleEffects\spr_ice_shards.png" />
+    <Content Include="Assets\Sprites\Spells\spr_spell_ice.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Sprites\Dev\spr_dev.jpg" />
     <Content Include="Assets\Sprites\Dev\spr_point.jpg" />
-    <Content Include="Assets\Sprites\Entities\Bunny\spr_bunny.png" />
-    <Content Include="Assets\Sprites\Entities\CardEnemy\spr_cards.png" />
-    <Content Include="Assets\Sprites\Entities\Player\spr_player_idle.png" />
-    <Content Include="Assets\Sprites\Entities\Player\spr_player.png" />
+    <Content Include="Assets\Sprites\Characters\Bunny\spr_bunny.png" />
+    <Content Include="Assets\Sprites\Characters\CardEnemy\spr_cards.png" />
+    <Content Include="Assets\Sprites\Characters\Player\spr_player_idle.png" />
+    <Content Include="Assets\Sprites\Characters\Player\spr_player.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -232,9 +235,7 @@
       <Name>WizardGame.App.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Classes\Entities\Spells\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -17,7 +17,7 @@ namespace WizardGame.App.Classes.Entities.Characters
     {
         public int MoveSpeed { get; set; } = 3;
 
-        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Entities/Bunny/spr_bunny.png";
+        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Characters/Bunny/spr_bunny.png";
         public SpriteSheet Sprite { get; set; } = null;
         public readonly int spriteWidth = 96;
         public readonly int spriteHeight = 96;
@@ -61,13 +61,13 @@ namespace WizardGame.App.Classes.Entities.Characters
                 if (Sprite != null)
                 {
                     Sprite.DrawSpriteExt(
-                    spriteBatch,
-                    new Vector2(X, Y),
-                    new Vector2(ImageX, ImageY),
-                    new Vector4(Red, Green, Blue, Alpha),
-                    0,
-                    new Vector2(XScale, YScale),
-                    0);
+                        spriteBatch,
+                        new Vector2(X, Y),
+                        new Vector2(ImageX, ImageY),
+                        new Vector4(Red, Green, Blue, Alpha),
+                        0,
+                        new Vector2(XScale, YScale),
+                        0);
                 }
             }
 

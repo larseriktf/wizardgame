@@ -15,7 +15,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 {
     public class CardEnemy : Entity, IDrawable
     {
-        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Entities/CardEnemy/spr_cards.png";
+        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Characters/CardEnemy/spr_cards.png";
         public SpriteSheet Sprite { get; set; } = null;
         public readonly int spriteWidth = 24;
         public readonly int spriteHeight = 24;
