@@ -26,6 +26,8 @@ using Microsoft.Graphics.Canvas.UI.Xaml;
 using WizardGame.App.Classes.Entities;
 using WizardGame.App.Interfaces;
 using WizardGame.App.Classes.Entities.Characters;
+using System.Text;
+using WizardGame.App.Classes.Entities.Spells;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -83,11 +85,12 @@ namespace WizardGame.App.Views
                 X = 400,
                 Y = 400
             });
-            //EntityManager.gameEntities.Add(new Bunny()
-            //{
-            //    X = 1000,
-            //    Y = 200
-            //});
+            EntityManager.gameEntities.Add(new Bunny()
+            {
+                X = 1000,
+                Y = 200
+            });
+            //EntityManager.gameEntities.Add(new IceSpell());
 
             //CardEnemy.Spawner(1200, 500, 64);
 

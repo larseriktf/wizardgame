@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.UI;
 using WizardGame.App.Classes.Entities;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Entities.Spells;
 using WizardGame.App.Interfaces;
 using static System.Math;
 
@@ -101,8 +102,11 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         private void RegisterSpells()
         {
-            CanvasDebugger.Debug(this, "ArrowDown: " + KeyBoard.ArrowDown.Tapped);
-            
+            CanvasDebugger.Debug(this, "Tapped: " + KeyBoard.ArrowUp.Tapped);
+            if (KeyBoard.ArrowUp.Tapped)
+            {
+                EntityManager.gameEntities.Add(new IceSpell());
+            }
         }
     }
 }

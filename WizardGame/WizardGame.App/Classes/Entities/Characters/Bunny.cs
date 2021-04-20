@@ -45,8 +45,23 @@ namespace WizardGame.App.Classes.Entities.Characters
             Sprite = await SpriteSheet.LoadSpriteSheetAsync(device, BitMapUri, new Vector2(spriteWidth, spriteHeight));
         }
 
+        StringBuilder sb = new StringBuilder();
+
         public void Draw(CanvasDrawingSession ds)
         {
+            //////
+            // @TODO: Remove this later, this is just for testing purposes
+            sb.Clear();
+            foreach (Entity entity in EntityManager.gameEntities)
+            {
+                if (!entity.GetType().Equals(typeof(Solid)))
+                {
+                    sb.Append(entity.GetType() + "\n");
+                }
+            }
+            CanvasDebugger.Debug(this, "Entities:\n" + sb.ToString());
+            //////
+
             UpdateMovement();
 
             if (Sign(hsp) != 0)

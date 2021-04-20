@@ -139,6 +139,7 @@
     <Compile Include="Classes\Entities\Dev\Solid.cs" />
     <Compile Include="Classes\Entities\Dev\Target.cs" />
     <Compile Include="Classes\Entities\Spells\IceSpell.cs" />
+    <Compile Include="Classes\Entities\Spells\Spell.cs" />
     <Compile Include="Classes\EntityManager.cs" />
     <Compile Include="Classes\KeyBoard.cs" />
     <Compile Include="Classes\Layer.cs" />
