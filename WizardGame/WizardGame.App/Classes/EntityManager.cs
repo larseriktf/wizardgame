@@ -15,15 +15,6 @@ namespace WizardGame.App.Classes
 {
     public static class EntityManager
     {
-
-        //public static List<Layer> Layers { get; set; } = new List<Layer>();
-        //public static Dictionary<string, List<Entity>> Layers { get; set; } = new Dictionary<string, List<Entity>>()
-        //{
-        //    {"layer0", new List<Entity>() },
-        //    {"layer1", new List<Entity>() },
-        //    {"layer2", new List<Entity>() }
-        //};
-
         public static List<string> Layers { get; } = new List<string>()
         {
             "layer0",
@@ -39,16 +30,6 @@ namespace WizardGame.App.Classes
                 return entities;
             }
         }
-
-        //public static void Initialize()
-        //{
-        //    entities.CollectionChanged += HandleChange;
-        //}
-
-        //public static void HandleChange(object sender, NotifyCollectionChangedEventArgs e)
-        //{
-
-        //}
 
         public static void AddEntity(string layer, Entity entity)
         {

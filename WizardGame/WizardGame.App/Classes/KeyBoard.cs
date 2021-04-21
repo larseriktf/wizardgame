@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
@@ -32,63 +33,41 @@ namespace WizardGame.App.Classes
         public static void UpdateKeys()
         {
             // Movement Keys
-            KeyLeft.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.A).HasFlag(CoreVirtualKeyStates.Down);
-            KeyRight.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.D).HasFlag(CoreVirtualKeyStates.Down);
-            KeyUp.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.W).HasFlag(CoreVirtualKeyStates.Down);
-            KeyDown.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.S).HasFlag(CoreVirtualKeyStates.Down);
+            KeyLeft.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.A).HasFlag(CoreVirtualKeyStates.Down);
+            KeyRight.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.D).HasFlag(CoreVirtualKeyStates.Down);
+            KeyUp.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.W).HasFlag(CoreVirtualKeyStates.Down);
+            KeyDown.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.S).HasFlag(CoreVirtualKeyStates.Down);
 
             // Arrow Keys
-            ArrowLeft.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.Left).HasFlag(CoreVirtualKeyStates.Down);
-            ArrowRight.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.Right).HasFlag(CoreVirtualKeyStates.Down);
-            ArrowUp.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.Up).HasFlag(CoreVirtualKeyStates.Down);
-            ArrowDown.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.Down).HasFlag(CoreVirtualKeyStates.Down);
+            ArrowLeft.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.Left).HasFlag(CoreVirtualKeyStates.Down);
+            ArrowRight.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.Right).HasFlag(CoreVirtualKeyStates.Down);
+            ArrowUp.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.Up).HasFlag(CoreVirtualKeyStates.Down);
+            ArrowDown.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.Down).HasFlag(CoreVirtualKeyStates.Down);
 
             // Other Keys
-            KeyIncrementVector.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.P).HasFlag(CoreVirtualKeyStates.Down);
-            KeyDecrementVector.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.O).HasFlag(CoreVirtualKeyStates.Down);
+            KeyIncrementVector.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.P).HasFlag(CoreVirtualKeyStates.Down);
+            KeyDecrementVector.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.O).HasFlag(CoreVirtualKeyStates.Down);
 
-            ToggleTarget.Down = Window.Current.CoreWindow.GetKeyState(VirtualKey.K).HasFlag(CoreVirtualKeyStates.Locked);
+            ToggleTarget.Pressed = Window.Current.CoreWindow.GetKeyState(VirtualKey.K).HasFlag(CoreVirtualKeyStates.Locked);
 
             // Mouse
             PointerPosition = Window.Current.CoreWindow.PointerPosition;
 
         }
 
-        public static bool CheckTapped(ref bool state, bool pressed)
-        {
-            if (pressed != state)
-            {
-                state = pressed;
-                if (state == true)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-        public static bool Tapped(bool value, bool pressed)
-        {
-            if (value == true)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public class Key
         {
-            private bool down = false;
-            public bool Down
+            private bool pressed = false;
+            public bool Pressed
             {
                 get
                 {
-                    return down;
+                    return pressed;
                 }
                 set
-                {
-                    // Changed
-                    if (down != value)
-                    {
+                {   // Key has updated
+                    if (pressed != value)
+                    {   // If value has changed
                         tapped = value;
                     }
                     else
@@ -96,7 +75,7 @@ namespace WizardGame.App.Classes
                         tapped = false;
                     }
 
-                    down = value;
+                    pressed = value;
                 }
             }
             private bool tapped = false;
@@ -106,6 +85,33 @@ namespace WizardGame.App.Classes
                 {
                     return tapped;
                 }
+            }
+
+            // Ensure Tapped variables
+            private readonly Timer delayTimer;
+            private bool isReady = true;
+            public bool IsReady
+            {
+                get
+                {
+                    return isReady;
+                }
+            }
+
+            public Key()
+            {
+                delayTimer = new Timer();
+                delayTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
+                {   // Every tick update "delayed" boolean
+                    isReady = true;
+                };
+                delayTimer.Start();
+            }
+
+            public void ResetDelay()
+            {
+                isReady = false;
+                delayTimer.Interval = 20;
             }
         }
     }

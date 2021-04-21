@@ -79,19 +79,7 @@ namespace WizardGame.App.Views
 
         async Task LoadResourcesAsync(CanvasAnimatedControl sender)
         {   // Loads images and spritesheets
-            // @TODO: Make this nicer ;)
-            //EntityManager.Initialize();
 
-            //EntityManager.Entities.Add(new Player()
-            //{
-            //    X = 400,
-            //    Y = 400
-            //});
-            //EntityManager.Entities.Add(new Bunny()
-            //{
-            //    X = 1000,
-            //    Y = 200
-            //});
             EntityManager.AddEntity("layer1", new Player()
             {
                 X = 400,
@@ -110,21 +98,7 @@ namespace WizardGame.App.Views
             MapEditor.MakeMaps();
             MapEditor.LoadMap(0, sender.Device);
 
-
-            //foreach (Entity entity in EntityManager.Entities)
-            //{
-            //    EntityManager.Layers["layer1"].Add(entity);
-            //}
-
-            // Pre-Load sprites and spritesheets
-            //foreach (string layerName in EntityManager.Layers.Keys)
-            //{
-            //    foreach (IDrawable gameObject in EntityManager.Layers[layerName])
-            //    {
-            //        gameObject.LoadImageResourceAsync(sender.Device);
-            //    }
-            //}
-
+            // Pre-load image resources
             foreach (IDrawable entity in EntityManager.Entities)
             {
                 entity.LoadImageResourceAsync(sender.Device);
@@ -136,15 +110,6 @@ namespace WizardGame.App.Views
         private void OnDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
             var ds = args.DrawingSession;
-
-            // Draw gameObjects
-            //foreach (string layerName in EntityManager.Layers.Keys)
-            //{
-            //    foreach (IDrawable gameObject in EntityManager.Layers[layerName])
-            //    {
-            //        gameObject.Draw(ds);
-            //    }
-            //}
 
             foreach (IDrawable entity in EntityManager.Entities.ToList())
             {

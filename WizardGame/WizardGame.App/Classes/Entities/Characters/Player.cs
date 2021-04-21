@@ -5,12 +5,15 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using Windows.UI;
 using WizardGame.App.Classes.Entities;
 using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Classes.Entities.Spells;
 using WizardGame.App.Interfaces;
 using static System.Math;
+using static WizardGame.App.Classes.KeyBoard;
+using static WizardGame.App.Classes.EntityManager;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
@@ -67,16 +70,16 @@ namespace WizardGame.App.Classes.Entities.Characters
         private void UpdateMovement()
         {
             // Calculate movement
-            float moveHorizontal = Convert.ToInt32(KeyBoard.KeyRight.Down) - Convert.ToInt32(KeyBoard.KeyLeft.Down);
-            float moveVertical = Convert.ToInt32(KeyBoard.KeyDown.Down) - Convert.ToInt32(KeyBoard.KeyUp.Down);
+            float moveHorizontal = Convert.ToInt32(KeyRight.Pressed) - Convert.ToInt32(KeyLeft.Pressed);
+            float moveVertical = Convert.ToInt32(KeyDown.Pressed) - Convert.ToInt32(KeyUp.Pressed);
 
             hsp = moveHorizontal * MoveSpeed;
             vsp = moveVertical * MoveSpeed;
 
             // Horizontal Collision
-            if (EntityManager.CheckCollision(X + hsp, Y, Width, Height, typeof(Solid)))
+            if (CheckCollision(X + hsp, Y, Width, Height, typeof(Solid)))
             {
-                while (!EntityManager.CheckCollision(X + Sign(hsp), Y, Width, Height, typeof(Solid)))
+                while (!CheckCollision(X + Sign(hsp), Y, Width, Height, typeof(Solid)))
                 {   // Move as close as possible to the entity
                     X += Sign(hsp);
                 }
@@ -87,9 +90,9 @@ namespace WizardGame.App.Classes.Entities.Characters
             X += hsp;
 
             // Horizontal Collision
-            if (EntityManager.CheckCollision(X, Y + vsp, Width, Height, typeof(Solid)))
+            if (CheckCollision(X, Y + vsp, Width, Height, typeof(Solid)))
             {
-                while (!EntityManager.CheckCollision(X, Y + Sign(vsp), Width, Height, typeof(Solid)))
+                while (!CheckCollision(X, Y + Sign(vsp), Width, Height, typeof(Solid)))
                 {   // Move as close as possible to the entity
                     Y += Sign(vsp);
                 }
@@ -102,11 +105,14 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         private void RegisterSpells()
         {
-            CanvasDebugger.Debug(this, "Tapped: " + KeyBoard.ArrowUp.Tapped);
-            if (KeyBoard.ArrowUp.Tapped)
+            if (ArrowUp.IsReady)
             {
-                //EntityManager.Layers["layer2"].Add(new IceSpell());
-                EntityManager.AddEntity("layer2", new IceSpell());
+                CanvasDebugger.Debug(this, "Tapped: " + ArrowUp.Tapped);
+                if (ArrowUp.Tapped)
+                {
+                    AddEntity("layer2", new IceSpell());
+                    ArrowUp.ResetDelay();
+                }
             }
         }
     }
