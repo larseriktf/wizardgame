@@ -90,13 +90,6 @@ namespace WizardGame.App.Classes
             // Ensure Tapped variables
             private readonly Timer delayTimer;
             private bool isReady = true;
-            public bool IsReady
-            {
-                get
-                {
-                    return isReady;
-                }
-            }
 
             public Key()
             {
@@ -112,6 +105,18 @@ namespace WizardGame.App.Classes
             {
                 isReady = false;
                 delayTimer.Interval = 20;
+            }
+
+            public void EnsureTapped(Action method)
+            {
+                if (isReady)
+                {
+                    if (tapped)
+                    {
+                        method();
+                        ResetDelay();
+                    }
+                }
             }
         }
     }

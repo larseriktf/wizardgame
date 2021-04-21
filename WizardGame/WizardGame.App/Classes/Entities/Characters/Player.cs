@@ -105,15 +105,10 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         private void RegisterSpells()
         {
-            if (ArrowUp.IsReady)
+            ArrowUp.EnsureTapped(() =>
             {
-                CanvasDebugger.Debug(this, "Tapped: " + ArrowUp.Tapped);
-                if (ArrowUp.Tapped)
-                {
-                    AddEntity("layer2", new IceSpell());
-                    ArrowUp.ResetDelay();
-                }
-            }
+                AddEntity("layer2", new IceSpell());
+            });
         }
     }
 }
