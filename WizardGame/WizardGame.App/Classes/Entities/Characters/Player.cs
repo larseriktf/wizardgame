@@ -18,15 +18,12 @@ using WizardGame.App.Classes.Graphics;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
-    public class Player : Entity, IDrawable
+    public class Player : Collidable, IDrawable
     {
         public int MoveSpeed { get; set; } = 10;
         private readonly SpriteSheet spriteSheet;
         public readonly int spriteWidth = 96;
         public readonly int spriteHeight = 96;
-
-        private float vsp;
-        private float hsp;
 
         public Player()
         {
@@ -68,38 +65,19 @@ namespace WizardGame.App.Classes.Entities.Characters
             hsp = moveHorizontal * MoveSpeed;
             vsp = moveVertical * MoveSpeed;
 
-            // Horizontal Collision
-            if (CheckCollision(X + hsp, Y, Width, Height, typeof(Solid)))
-            {
-                while (!CheckCollision(X + Sign(hsp), Y, Width, Height, typeof(Solid)))
-                {   // Move as close as possible to the entity
-                    X += Sign(hsp);
-                }
-                hsp = 0;
-            }
+            UpdateCollisions();
 
-            // Update X
-            X += hsp;
-
-            // Horizontal Collision
-            if (CheckCollision(X, Y + vsp, Width, Height, typeof(Solid)))
-            {
-                while (!CheckCollision(X, Y + Sign(vsp), Width, Height, typeof(Solid)))
-                {   // Move as close as possible to the entity
-                    Y += Sign(vsp);
-                }
-                vsp = 0;
-            }
-
-            // Update Y 
-            Y += vsp;
         }
 
         private void RegisterSpells()
         {
             ArrowUp.EnsureTapped(() =>
             {
-                AddEntity("layer2", new IceSpell());
+                AddEntity("layer2", new IceSpell()
+                {
+                    X = X,
+                    Y = Y
+                });
             });
         }
     }

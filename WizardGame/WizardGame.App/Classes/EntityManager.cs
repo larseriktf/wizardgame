@@ -55,6 +55,14 @@ namespace WizardGame.App.Classes
             entities.Insert(index, entity);
         }
 
+        public static void RemoveEntity(Entity obj)
+        {
+            if (entities.Contains(obj))
+            {
+                entities.Remove(obj);
+            }
+        }
+
         public static bool EntityExists(Type className)
         {   // Runs through list of entities and checks if they are of type className
             foreach (Entity entity in Entities)

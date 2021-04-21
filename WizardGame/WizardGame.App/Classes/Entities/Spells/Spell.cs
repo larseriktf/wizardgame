@@ -9,5 +9,6 @@ namespace WizardGame.App.Classes.Entities.Spells
     public abstract class Spell : Entity
     {
         public double Angle { get; set; } = 0;
+        public double Speed { get; set; } = 0;
     }
 }

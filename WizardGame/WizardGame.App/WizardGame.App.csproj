@@ -134,6 +134,7 @@
     <Compile Include="Classes\CanvasDebugger.cs" />
     <Compile Include="Classes\Entities\Characters\Bunny.cs" />
     <Compile Include="Classes\Entities\Characters\CardEnemy.cs" />
+    <Compile Include="Classes\Entities\Collidable.cs" />
     <Compile Include="Classes\Entities\Entity.cs" />
     <Compile Include="Classes\Entities\Characters\Player.cs" />
     <Compile Include="Classes\Entities\Dev\Solid.cs" />

@@ -14,13 +14,11 @@ using static System.Math;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
-    public class Bunny : Entity, IDrawable
+    public class Bunny : Collidable, IDrawable
     {
         public int MoveSpeed { get; set; } = 3;
 
         private readonly SpriteSheet spriteSheet;
-        private float vsp;
-        private float hsp;
         private readonly float gravity = 0.5f;
         Timer animTimer;
 
@@ -89,31 +87,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             hsp = moveDir * MoveSpeed;
             vsp += gravity;
 
-            // Horizontal Collision
-            if (EntityManager.CheckCollision(X + hsp, Y, Width, Height, typeof(Solid)))
-            {
-                while (!EntityManager.CheckCollision(X + Sign(hsp), Y, Width, Height, typeof(Solid)))
-                {   // Move as close as possible to the entity
-                    X += Sign(hsp);
-                }
-                hsp = 0;
-            }
-
-            // Update X
-            X += hsp;
-
-            // Horizontal Collision
-            if (EntityManager.CheckCollision(X, Y + vsp, Width, Height, typeof(Solid)))
-            {
-                while (!EntityManager.CheckCollision(X, Y + Sign(vsp), Width, Height, typeof(Solid)))
-                {   // Move as close as possible to the entity
-                    Y += Sign(vsp);
-                }
-                vsp = 0;
-            }
-
-            // Update Y 
-            Y += vsp;
+            UpdateCollisions();
         }
     }
 }
