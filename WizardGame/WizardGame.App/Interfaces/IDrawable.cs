@@ -9,7 +9,6 @@ namespace WizardGame.App.Interfaces
 {
     public interface IDrawable
     {
-        void LoadImageResourceAsync(CanvasDevice device);
         void Draw(CanvasDrawingSession ds);
     }
 }

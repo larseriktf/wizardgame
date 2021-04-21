@@ -28,6 +28,7 @@ using WizardGame.App.Interfaces;
 using WizardGame.App.Classes.Entities.Characters;
 using System.Text;
 using WizardGame.App.Classes.Entities.Spells;
+using WizardGame.App.Classes.Graphics;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -79,6 +80,7 @@ namespace WizardGame.App.Views
 
         async Task LoadResourcesAsync(CanvasAnimatedControl sender)
         {   // Loads images and spritesheets
+            ImageLoader.LoadImageResourceAsync(sender.Device);
 
             EntityManager.AddEntity("layer1", new Player()
             {
