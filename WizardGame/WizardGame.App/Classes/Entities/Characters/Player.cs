@@ -21,7 +21,7 @@ namespace WizardGame.App.Classes.Entities.Characters
     public class Player : Entity, IDrawable
     {
         public int MoveSpeed { get; set; } = 10;
-        private SpriteSheet sprite = null;
+        private readonly SpriteSheet spriteSheet;
         public readonly int spriteWidth = 96;
         public readonly int spriteHeight = 96;
 
@@ -30,6 +30,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         public Player()
         {
+            spriteSheet = ImageLoader.GetSpriteSheet("sheet_player");
             Width = 50;
             Height = 50;
         }
@@ -46,21 +47,14 @@ namespace WizardGame.App.Classes.Entities.Characters
             
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
-                if (sprite != null)
-                {
-                    sprite.DrawSpriteExt(
-                        spriteBatch,
-                        new Vector2(X, Y),
-                        new Vector2(ImageX, ImageY),
-                        new Vector4(Red, Green, Blue, Alpha),
-                        0,
-                        new Vector2(XScale, YScale),
-                        0);
-                }
-                else
-                {
-                    sprite = ImageLoader.GetSpriteSheet("playerSheet");
-                }
+                spriteSheet.DrawSpriteExt(
+                    spriteBatch,
+                    new Vector2(X, Y),
+                    new Vector2(ImageX, ImageY),
+                    new Vector4(Red, Green, Blue, Alpha),
+                    0,
+                    new Vector2(XScale, YScale),
+                    0);
             }
         }
 

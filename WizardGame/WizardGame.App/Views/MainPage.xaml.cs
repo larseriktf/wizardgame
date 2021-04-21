@@ -94,7 +94,7 @@ namespace WizardGame.App.Views
                 Y = 200
             });
 
-            // Add Maps
+            // Generate and load maps
             MapEditor.MakeMaps();
             MapEditor.LoadMap(0, sender.Device);
         }

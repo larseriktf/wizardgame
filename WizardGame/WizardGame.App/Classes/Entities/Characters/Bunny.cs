@@ -18,7 +18,7 @@ namespace WizardGame.App.Classes.Entities.Characters
     {
         public int MoveSpeed { get; set; } = 3;
 
-        private SpriteSheet sprite = null;
+        private readonly SpriteSheet spriteSheet;
         private float vsp;
         private float hsp;
         private readonly float gravity = 0.5f;
@@ -26,6 +26,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         public Bunny()
         {
+            spriteSheet = ImageLoader.GetSpriteSheet("sheet_bunny");
             Width = 96;
             Height = 96;
 
@@ -37,23 +38,8 @@ namespace WizardGame.App.Classes.Entities.Characters
             animTimer.Start();
         }
 
-        StringBuilder sb = new StringBuilder();
-
         public void Draw(CanvasDrawingSession ds)
         {
-            //////
-            // @TODO: Remove this later, this is just for testing purposes
-            sb.Clear();
-            foreach (Entity entity in EntityManager.Entities)
-            {
-                if (!entity.GetType().Equals(typeof(Solid)))
-                {
-                    sb.Append(entity.GetType() + "\n");
-                }
-            }
-            CanvasDebugger.Debug(this, "Entities:\n" + sb.ToString());
-            //////
-
             UpdateMovement();
 
             if (Sign(hsp) != 0)
@@ -65,21 +51,14 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
-                if (sprite != null)
-                {
-                    sprite.DrawSpriteExt(
-                        spriteBatch,
-                        new Vector2(X, Y),
-                        new Vector2(ImageX, ImageY),
-                        new Vector4(Red, Green, Blue, Alpha),
-                        0,
-                        new Vector2(XScale, YScale),
-                        0);
-                }
-                else
-                {
-                    sprite = ImageLoader.GetSpriteSheet("bunnySheet");
-                }
+                spriteSheet.DrawSpriteExt(
+                    spriteBatch,
+                    new Vector2(X, Y),
+                    new Vector2(ImageX, ImageY),
+                    new Vector4(Red, Green, Blue, Alpha),
+                    0,
+                    new Vector2(XScale, YScale),
+                    0);
             }
 
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);

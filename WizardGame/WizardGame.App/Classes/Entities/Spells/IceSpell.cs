@@ -13,10 +13,11 @@ namespace WizardGame.App.Classes.Entities.Spells
 {
     public class IceSpell : Spell, IDrawable
     {
-        private SpriteSheet sprite = null;
+        private readonly SpriteSheet spriteSheet;
 
         public IceSpell()
         {
+            ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
             X = 600;
             Y = 500;
             Width = 96;
@@ -27,21 +28,14 @@ namespace WizardGame.App.Classes.Entities.Spells
         {
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
-                if (sprite != null)
-                {
-                    sprite.DrawSpriteExt(
-                        spriteBatch,
-                        new Vector2(X, Y),
-                        new Vector2(ImageX, ImageY),
-                        new Vector4(Red, Green, Blue, Alpha),
-                        0,
-                        new Vector2(XScale, YScale),
-                        0);
-                }
-                else
-                {
-                    ImageLoader.SpriteSheets.TryGetValue("iceSpellSheet", out sprite);
-                }
+                spriteSheet.DrawSpriteExt(
+                    spriteBatch,
+                    new Vector2(X, Y),
+                    new Vector2(ImageX, ImageY),
+                    new Vector4(Red, Green, Blue, Alpha),
+                    0,
+                    new Vector2(XScale, YScale),
+                    0);
             }
 
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Yellow);

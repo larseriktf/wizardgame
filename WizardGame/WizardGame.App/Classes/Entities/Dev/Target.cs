@@ -21,6 +21,11 @@ namespace WizardGame.App.Classes.Entities.Dev
         private float valueY = 0;
         private float valueX = 0;
 
+        public Target()
+        {
+            bitmap = ImageLoader.GetBitMap("bitmap_target");
+        }
+
         public void Draw(CanvasDrawingSession ds)
         {
             if (originalX == 0 && originalX == 0)
@@ -31,14 +36,7 @@ namespace WizardGame.App.Classes.Entities.Dev
 
             Shake(60, 0.01f, 0.015f);
 
-            if (bitmap != null)
-            {
-                ds.DrawImage(bitmap, X - 4, Y - 4);
-            }
-            else
-            {
-                bitmap = ImageLoader.GetBitMap("targetBitmap");
-            }
+            ds.DrawImage(bitmap, X - 4, Y - 4);
         }
 
         private void Shake(float threshold, float incrementX, float incrementY)

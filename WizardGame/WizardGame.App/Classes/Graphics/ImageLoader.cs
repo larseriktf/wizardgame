@@ -13,38 +13,51 @@ namespace WizardGame.App.Classes.Graphics
     {
         public static Dictionary<string, SpriteSheet> SpriteSheets { get; set; } = new Dictionary<string, SpriteSheet>();
         public static Dictionary<string, CanvasBitmap> Bitmaps { get; set; } = new Dictionary<string, CanvasBitmap>();
+        private readonly static string defaultPath = "ms-appx:///Assets/Sprites";
 
         public static async Task LoadImageResourceAsync(CanvasDevice device)
         {
             // Load SpriteSheets
-            SpriteSheets.Add("playerSheet", await LoadSpriteSheetAsync(
-                device,
-                "ms-appx:///Assets/Sprites/Characters/Player/spr_player.png",
-                new Vector2(96, 96)));
+            SpriteSheets.Add(
+                "sheet_player",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/Characters/Player/spr_player.png",
+                    new Vector2(96, 96)));
 
-            SpriteSheets.Add("cardSheet", await LoadSpriteSheetAsync(
-                device,
-                "ms-appx:///Assets/Sprites/Characters/CardEnemy/spr_cards.png",
-                new Vector2(24, 24)));
+            SpriteSheets.Add(
+                "sheet_cardenemy",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/Characters/CardEnemy/spr_cards.png",
+                    new Vector2(24, 24)));
 
-            SpriteSheets.Add("bunnySheet", await LoadSpriteSheetAsync(
-                device,
-                "ms-appx:///Assets/Sprites/Characters/Bunny/spr_bunny.png",
-                new Vector2(96, 96)));
+            SpriteSheets.Add(
+                "sheet_bunny",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/Characters/Bunny/spr_bunny.png",
+                    new Vector2(96, 96)));
 
-            SpriteSheets.Add("iceSpellSheet", await LoadSpriteSheetAsync(
-                device,
-                "ms-appx:///Assets/Sprites/Spells/spr_spell_ice.png",
-                new Vector2(96, 48)));
+            SpriteSheets.Add(
+                "sheet_ice_spell",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/Spells/spr_spell_ice.png",
+                    new Vector2(96, 48)));
 
             // Load BitMaps
-            Bitmaps.Add("level1", await CanvasBitmap.LoadAsync(
-                device,
-                new Uri("ms-appx:///Assets/Sprites/Levels/abandonedRoom.png")));
+            Bitmaps.Add(
+                "bitmap_level1",
+                await CanvasBitmap.LoadAsync(
+                    device,
+                    new Uri(defaultPath + "/Levels/abandonedRoom.png")));
 
-            Bitmaps.Add("targetBitmap", await CanvasBitmap.LoadAsync(
-                device,
-                new Uri("ms-appx:///Assets/Sprites/Levels/abandonedRoom.png")));
+            Bitmaps.Add(
+                "bitmap_target",
+                await CanvasBitmap.LoadAsync(
+                    device,
+                    new Uri(defaultPath + "/Levels/abandonedRoom.png")));
         }
 
         public static SpriteSheet GetSpriteSheet(string key)
