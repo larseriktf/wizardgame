@@ -55,12 +55,14 @@ namespace WizardGame.App.Classes
             entities.Insert(index, entity);
         }
 
-        public static void RemoveEntity(Entity obj)
+        public static Entity RemoveEntity(Entity obj)
         {
             if (entities.Contains(obj))
             {
                 entities.Remove(obj);
+                return obj;
             }
+            return null;
         }
 
         public static bool EntityExists(Type className)
@@ -135,20 +137,21 @@ namespace WizardGame.App.Classes
             return listOfObjects;
         }
 
-        public static List<Solid> GetAllSolidEntities()
-        {
-            List<Solid> listOfSolids = new List<Solid>();
+        // @TODO: Remove maybe?
+        //public static List<Solid> GetAllSolidEntities()
+        //{
+        //    List<Solid> listOfSolids = new List<Solid>();
 
-            foreach (Entity entity in Entities)
-            {
-                if (entity.GetType().IsSubclassOf(typeof(Solid)))
-                {
-                    listOfSolids.Add((Solid)entity);
-                }
-            }
+        //    foreach (Entity entity in Entities)
+        //    {
+        //        if (entity.GetType().IsSubclassOf(typeof(Solid)))
+        //        {
+        //            listOfSolids.Add((Solid)entity);
+        //        }
+        //    }
 
-            return listOfSolids;
-        }
+        //    return listOfSolids;
+        //}
 
         public static double GetAngleBetweenEntitiesInRadians(Entity objA, Entity objB)
         {
@@ -185,8 +188,6 @@ namespace WizardGame.App.Classes
             return distance;
         }
 
-
-
         public static bool CheckCollision(float x, float y, int width, int height, Type className)
         {
             List<Entity> entities = GetEntities(className);
@@ -204,21 +205,24 @@ namespace WizardGame.App.Classes
             return false;
         }
 
-        //public static bool CheckCollisionBBox(Entity obj, Type className)
-        //{
-        //    List<Entity> entities = GetEntities(className);
+        public static Entity GetCollisionObject(float x, float y, int width, int height, Type className)
+        {
+            List<Entity> entities = GetEntities(className);
 
-        //    foreach (Entity entity in entities)
-        //    {   // Run four checks to see if it collides
-        //        if ((obj.XPos + obj.Width - (obj.Width / 2)) >= entity.XPos
-        //         && obj.XPos - (obj.Width / 2) <= (entity.XPos + entity.Width)
-        //         && (obj.YPos + obj.Width - (obj.Height / 2)) >= entity.YPos
-        //         && obj.YPos - (obj.Height / 2) <= (entity.YPos + entity.Height))
-        //        {   // Collision detected!
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
+            foreach (Entity entity in entities)
+            {   // Run four checks to see if it collides
+                if ((x + width / 2) >= entity.X
+                 && (x - width / 2) <= (entity.X + entity.Width)
+                 && (y + height / 2) >= entity.Y
+                 && (y - height / 2) <= (entity.Y + entity.Height))
+                {   // Collision detected! Return object
+                    return entity;
+                }
+            }
+
+            return null;
+        }
+
+
     }
 }

@@ -14,7 +14,7 @@ using static System.Math;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
-    public class Bunny : Collidable, IDrawable
+    public class Bunny : Character, IDrawable
     {
         public int MoveSpeed { get; set; } = 3;
 
@@ -27,6 +27,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_bunny");
             Width = 96;
             Height = 96;
+            HP = 8;
 
             animTimer = new Timer(40);
             animTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
@@ -39,6 +40,11 @@ namespace WizardGame.App.Classes.Entities.Characters
         public void Draw(CanvasDrawingSession ds)
         {
             UpdateMovement();
+
+            if (HP <= 0)
+            {
+                EntityManager.RemoveEntity(this);
+            }
 
             if (Sign(hsp) != 0)
             {
@@ -60,6 +66,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             }
 
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
+            ds.DrawText("HP: " + HP, X, Y, Colors.Red);
         }
 
         private void PlayAnimation()
