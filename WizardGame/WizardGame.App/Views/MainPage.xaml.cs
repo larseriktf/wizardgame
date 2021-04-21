@@ -146,7 +146,7 @@ namespace WizardGame.App.Views
             //    }
             //}
 
-            foreach (IDrawable entity in EntityManager.Entities)
+            foreach (IDrawable entity in EntityManager.Entities.ToList())
             {
                 entity.Draw(ds);
             }
