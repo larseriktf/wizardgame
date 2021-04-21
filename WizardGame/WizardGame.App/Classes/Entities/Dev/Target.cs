@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
 
@@ -13,18 +14,12 @@ namespace WizardGame.App.Classes.Entities.Dev
 {
     public class Target : Entity, IDrawable
     {
-        public CanvasBitmap BitMap;
-        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Dev/spr_point.jpg";
+        private CanvasBitmap bitmap;
 
         private float originalX = 0;
         private float originalY = 0;
         private float valueY = 0;
         private float valueX = 0;
-
-        public async void LoadImageResourceAsync(CanvasDevice device)
-        {
-            BitMap = await CanvasBitmap.LoadAsync(device, new Uri(BitMapUri));
-        }
 
         public void Draw(CanvasDrawingSession ds)
         {
@@ -36,9 +31,13 @@ namespace WizardGame.App.Classes.Entities.Dev
 
             Shake(60, 0.01f, 0.015f);
 
-            if (BitMap != null)
+            if (bitmap != null)
             {
-                ds.DrawImage(BitMap, X - 4, Y - 4);
+                ds.DrawImage(bitmap, X - 4, Y - 4);
+            }
+            else
+            {
+                bitmap = ImageLoader.GetBitMap("targetBitmap");
             }
         }
 

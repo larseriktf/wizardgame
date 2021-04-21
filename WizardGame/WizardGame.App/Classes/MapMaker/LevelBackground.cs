@@ -11,24 +11,19 @@ namespace WizardGame.App.Classes.MapMaker
 {
     public class LevelBackground : Entity, IDrawable
     {
-        public CanvasBitmap BitMap;
         public string BitMapUri { get; }
+        private readonly CanvasBitmap bitmap;
 
-        public LevelBackground(string bitMapUri)
+        public LevelBackground(CanvasBitmap bitmap)
         {
-            BitMapUri = bitMapUri;
-        }
-
-        public async void LoadImageResourceAsync(CanvasDevice device)
-        {
-            BitMap = await CanvasBitmap.LoadAsync(device, new Uri(BitMapUri));
+            this.bitmap = bitmap;
         }
 
         public void Draw(CanvasDrawingSession ds)
         {
-            if (BitMap != null)
+            if (bitmap != null)
             {
-                ds.DrawImage(BitMap, X, Y);
+                ds.DrawImage(bitmap, X, Y);
             }
         }
     }

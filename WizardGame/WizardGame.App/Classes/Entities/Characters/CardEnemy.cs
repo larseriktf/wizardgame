@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using Windows.UI.Xaml;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
 
@@ -15,10 +16,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 {
     public class CardEnemy : Entity, IDrawable
     {
-        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Characters/CardEnemy/spr_cards.png";
-        public SpriteSheet Sprite { get; set; } = null;
-        public readonly int spriteWidth = 24;
-        public readonly int spriteHeight = 24;
+        private SpriteSheet sprite = null;
 
         private static readonly Random random = new Random();
 
@@ -46,11 +44,6 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         Timer animTimer = null;
         Entity target;
-
-        public async void LoadImageResourceAsync(CanvasDevice device)
-        {
-            Sprite = await SpriteSheet.LoadSpriteSheetAsync(device, BitMapUri, new Vector2(spriteWidth, spriteHeight));
-        }
 
         public static void Spawner(float x, float y, int amount)
         {
@@ -112,9 +105,9 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
-                if (Sprite != null)
+                if (sprite != null)
                 {
-                    Sprite.DrawSpriteExt(
+                    sprite.DrawSpriteExt(
                     spriteBatch,
                     new Vector2(X, Y),
                     new Vector2(ImageX, ImageY),
@@ -122,6 +115,10 @@ namespace WizardGame.App.Classes.Entities.Characters
                     (float)(angle + 0.5 * PI),
                     new Vector2(XScale, YScale),
                     0);
+                }
+                else
+                {
+                    sprite = ImageLoader.GetSpriteSheet("cardSheet");
                 }
             }
         }

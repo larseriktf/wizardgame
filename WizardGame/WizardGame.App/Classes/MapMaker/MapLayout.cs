@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using WizardGame.App.Classes.Entities;
+using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 
 namespace WizardGame.App.Classes.MapMaker
@@ -13,7 +14,7 @@ namespace WizardGame.App.Classes.MapMaker
     public class MapLayout : Entity, IDrawable, ILayout
     {
         public int[][] Layout { get; set; } // multidimensional array
-        public SpriteSheet Sprite { get; set; } = null;
+        private SpriteSheet sprite = null;
         public string BitMapUri { get; set; }
 
         public MapLayout(string bitMapUri, int[][] layout)
@@ -22,14 +23,9 @@ namespace WizardGame.App.Classes.MapMaker
             Layout = layout;
         }
 
-        public async void LoadImageResourceAsync(CanvasDevice device)
-        {
-            Sprite = await SpriteSheet.LoadSpriteSheetAsync(device, BitMapUri, new Vector2(128, 128));
-        }
-
         public void Draw(CanvasDrawingSession ds)
         {
-            if (Sprite != null)
+            if (sprite != null)
             {
                 using (var spriteBatch = ds.CreateSpriteBatch())
                 {
@@ -39,7 +35,7 @@ namespace WizardGame.App.Classes.MapMaker
                         {
                             if (Layout[y][x] == 1)
                             {
-                                Sprite.DrawSpriteExt(
+                                sprite.DrawSpriteExt(
                                 spriteBatch,
                                 new Vector2(x * 128 + 64, y * 128 + 64),
                                 new Vector2(0, 0),
@@ -51,6 +47,10 @@ namespace WizardGame.App.Classes.MapMaker
                         }
                     }
                 }
+            }
+            else
+            {
+
             }
         }
     }

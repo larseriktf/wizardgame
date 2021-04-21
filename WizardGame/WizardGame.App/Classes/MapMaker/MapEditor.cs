@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Classes.MapMaker;
 
 namespace WizardGame.App.Classes
@@ -16,21 +17,8 @@ namespace WizardGame.App.Classes
         public static void MakeMaps()
         {
             // Map 1
-            //int[][] testMapArr =
-            //{
-            //    new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            //    new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-            //    new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-            //    new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 
-            //};
-
-            int[][] testMapCollisions =
+            int[][] collisions =
             {
                 new int[] {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                 new int[] {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
@@ -45,12 +33,8 @@ namespace WizardGame.App.Classes
 
             Maps.Add(new Map()
             {
-                //MapLayouts = new MapLayout[]
-                //{
-                //    new MapLayout("ms-appx:///Assets/Sprites/Dev/spr_dev.jpg", testMapArr)
-                //},
-                CollisionLayout = new CollisionLayout(testMapCollisions),
-                LevelBackground = new LevelBackground("ms-appx:///Assets/Sprites/Levels/abandonedRoom.png")
+                CollisionLayout = new CollisionLayout(collisions),
+                LevelBackground = new LevelBackground(ImageLoader.GetBitMap("level1"))
             });
         }
 

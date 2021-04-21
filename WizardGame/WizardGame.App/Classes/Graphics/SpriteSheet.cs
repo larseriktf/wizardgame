@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using System;
 
-namespace WizardGame.App.Classes
+namespace WizardGame.App.Classes.Graphics
 {
     public class SpriteSheet
     {

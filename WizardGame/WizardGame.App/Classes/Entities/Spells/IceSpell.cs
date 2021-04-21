@@ -6,16 +6,14 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 
 namespace WizardGame.App.Classes.Entities.Spells
 {
     public class IceSpell : Spell, IDrawable
     {
-        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Spells/spr_spell_ice.png";
-        public SpriteSheet Sprite { get; set; } = null;
-        public readonly int spriteWidth = 96;
-        public readonly int spriteHeight = 48;
+        private SpriteSheet sprite = null;
 
         public IceSpell()
         {
@@ -25,17 +23,13 @@ namespace WizardGame.App.Classes.Entities.Spells
             Height = 48;
         }
 
-        public async void LoadImageResourceAsync(CanvasDevice device)
-        {
-            Sprite = await SpriteSheet.LoadSpriteSheetAsync(device, BitMapUri, new Vector2(spriteWidth, spriteHeight));
-        }
         public void Draw(CanvasDrawingSession ds)
         {
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
-                if (Sprite != null)
+                if (sprite != null)
                 {
-                    Sprite.DrawSpriteExt(
+                    sprite.DrawSpriteExt(
                         spriteBatch,
                         new Vector2(X, Y),
                         new Vector2(ImageX, ImageY),
@@ -46,7 +40,7 @@ namespace WizardGame.App.Classes.Entities.Spells
                 }
                 else
                 {
-                    LoadImageResourceAsync(ds.Device);
+                    ImageLoader.SpriteSheets.TryGetValue("iceSpellSheet", out sprite);
                 }
             }
 

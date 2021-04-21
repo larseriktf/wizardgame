@@ -21,10 +21,5 @@ namespace WizardGame.App.Classes.Entities.Dev
         {
             //ds.DrawRectangle(X, Y, Width, Height, Colors.Blue);
         }
-
-        public void LoadImageResourceAsync(CanvasDevice device)
-        {
-            
-        }
     }
 }

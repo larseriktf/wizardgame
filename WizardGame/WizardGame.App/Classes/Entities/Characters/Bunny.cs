@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using Windows.UI;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
 
@@ -17,11 +18,7 @@ namespace WizardGame.App.Classes.Entities.Characters
     {
         public int MoveSpeed { get; set; } = 3;
 
-        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Characters/Bunny/spr_bunny.png";
-        public SpriteSheet Sprite { get; set; } = null;
-        public readonly int spriteWidth = 96;
-        public readonly int spriteHeight = 96;
-
+        private SpriteSheet sprite = null;
         private float vsp;
         private float hsp;
         private readonly float gravity = 0.5f;
@@ -38,11 +35,6 @@ namespace WizardGame.App.Classes.Entities.Characters
                 PlayAnimation();
             };
             animTimer.Start();
-        }
-
-        public async void LoadImageResourceAsync(CanvasDevice device)
-        {
-            Sprite = await SpriteSheet.LoadSpriteSheetAsync(device, BitMapUri, new Vector2(spriteWidth, spriteHeight));
         }
 
         StringBuilder sb = new StringBuilder();
@@ -73,9 +65,9 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
-                if (Sprite != null)
+                if (sprite != null)
                 {
-                    Sprite.DrawSpriteExt(
+                    sprite.DrawSpriteExt(
                         spriteBatch,
                         new Vector2(X, Y),
                         new Vector2(ImageX, ImageY),
@@ -83,6 +75,10 @@ namespace WizardGame.App.Classes.Entities.Characters
                         0,
                         new Vector2(XScale, YScale),
                         0);
+                }
+                else
+                {
+                    sprite = ImageLoader.GetSpriteSheet("bunnySheet");
                 }
             }
 

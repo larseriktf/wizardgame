@@ -80,7 +80,8 @@ namespace WizardGame.App.Views
 
         async Task LoadResourcesAsync(CanvasAnimatedControl sender)
         {   // Loads images and spritesheets
-            ImageLoader.LoadImageResourceAsync(sender.Device);
+            // Pre-load image resources
+            await ImageLoader.LoadImageResourceAsync(sender.Device);
 
             EntityManager.AddEntity("layer1", new Player()
             {
@@ -92,19 +93,10 @@ namespace WizardGame.App.Views
                 X = 1000,
                 Y = 200
             });
-            //EntityManager.Entities.Add(new IceSpell());
-
-            //CardEnemy.Spawner(1200, 500, 64);
 
             // Add Maps
             MapEditor.MakeMaps();
             MapEditor.LoadMap(0, sender.Device);
-
-            // Pre-load image resources
-            foreach (IDrawable entity in EntityManager.Entities)
-            {
-                entity.LoadImageResourceAsync(sender.Device);
-            }
         }
 
 

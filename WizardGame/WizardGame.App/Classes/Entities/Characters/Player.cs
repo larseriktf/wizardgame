@@ -59,7 +59,7 @@ namespace WizardGame.App.Classes.Entities.Characters
                 }
                 else
                 {
-                    ImageLoader.SpriteSheets.TryGetValue("playerSheet", out sprite);
+                    sprite = ImageLoader.GetSpriteSheet("playerSheet");
                 }
             }
         }
