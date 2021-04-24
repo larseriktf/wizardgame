@@ -12,6 +12,7 @@ using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
 using static WizardGame.App.Classes.EntityManager;
+using static WizardGame.App.Classes.Input.KeyBoard;
 
 namespace WizardGame.App.Classes.Entities.Spells
 {
@@ -34,6 +35,7 @@ namespace WizardGame.App.Classes.Entities.Spells
         {
             UpdateMovement();
 
+
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
                 spriteSheet.DrawSpriteExt(
@@ -41,7 +43,7 @@ namespace WizardGame.App.Classes.Entities.Spells
                     new Vector2(X, Y),
                     new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
-                    0,
+                    (float)Angle,
                     new Vector2(XScale, YScale),
                     0);
             }
@@ -49,8 +51,15 @@ namespace WizardGame.App.Classes.Entities.Spells
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Yellow);
         }
 
+        
+
         private void UpdateMovement()
         {
+            // Calculate movement
+            Angle += (Convert.ToInt32(Interact1.Pressed) - Convert.ToInt32(Interact2.Pressed)) * 0.1;
+
+            ControlAngle(ref Angle);
+
             hsp = (float)(Speed * Cos(Angle));
             vsp = (float)(Speed * Sin(Angle));
 
@@ -59,6 +68,19 @@ namespace WizardGame.App.Classes.Entities.Spells
 
             HandleCollisions();
         }
+
+        private void ControlAngle(ref double angle)
+        {   // Contain Angle within its bounds
+            if (angle >= 2 * PI)
+            {
+                angle -= 2 * PI;
+            }
+            else if (angle < 0)
+            {
+                angle += 2 * PI;
+            }
+        }
+
 
         private void HandleCollisions()
         {

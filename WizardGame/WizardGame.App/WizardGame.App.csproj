@@ -144,7 +144,8 @@
     <Compile Include="Classes\Entities\Spells\Spell.cs" />
     <Compile Include="Classes\EntityManager.cs" />
     <Compile Include="Classes\Graphics\ImageLoader.cs" />
-    <Compile Include="Classes\KeyBoard.cs" />
+    <Compile Include="Classes\Input\Key.cs" />
+    <Compile Include="Classes\Input\KeyBoard.cs" />
     <Compile Include="Classes\MapMaker\CollisionLayout.cs" />
     <Compile Include="Classes\MapMaker\LevelBackground.cs" />
     <Compile Include="Classes\MapMaker\Map.cs" />
