@@ -66,27 +66,19 @@ namespace WizardGame.App.Classes.Entities.Spells
 
         private void HandleCollisions()
         {
-            string msg = "";
+            string msg = "Collision: ";
             foreach (Type T in collidables)
             {
                 if (CheckCollision(X, Y, Width, Height, T))
                 {
-                    if (T.IsAssignableFrom(typeof(Character)))
-                    {   // If etype is a character
+                    if (typeof(Character).IsAssignableFrom(T) || T.Equals(typeof(Character)))
+                    {   // If type is a character
                         // Do damage to enemy character
-                        //var enemy = (T)GetCollisionObject(X, Y, Width, Height, T);
-                        //enemy.HP -= Damage;
+                        Bunny enemy = (Bunny)GetCollisionObject<Bunny>(X, Y, Width, Height, T);
+                        enemy.HP -= Damage;
 
                         msg = "Collision: " + T;
-                    }
 
-                    if (T.IsSubclassOf(typeof(Character)))
-                    {   // If etype is a character
-                        // Do damage to enemy character
-                        //var enemy = (T)GetCollisionObject(X, Y, Width, Height, T);
-                        //enemy.HP -= Damage;
-
-                        msg = "Collision: " + T;
                     }
 
                     RemoveEntity(this);
@@ -97,35 +89,35 @@ namespace WizardGame.App.Classes.Entities.Spells
         }
 
 
-        private void CheckWallCollisions()
-        {
-            // Check both horizontal and vertical collisions to wall
-            if (CheckCollision(X + hsp, Y, Width, Height, typeof(Solid))
-             || CheckCollision(X, Y + vsp, Width, Height, typeof(Solid)))
-            {
-                // Remove itself
-                RemoveEntity(this);
-            }
-        }
+        //private void CheckWallCollisions()
+        //{
+        //    // Check both horizontal and vertical collisions to wall
+        //    if (CheckCollision(X + hsp, Y, Width, Height, typeof(Solid))
+        //     || CheckCollision(X, Y + vsp, Width, Height, typeof(Solid)))
+        //    {
+        //        // Remove itself
+        //        RemoveEntity(this);
+        //    }
+        //}
 
-        private void CheckCharacterCollisions()
-        {
-            string msg = "";
+        //private void CheckCharacterCollisions()
+        //{
+        //    string msg = "";
 
-            // Check both horizontal and vertical collisions to character
-            if (CheckCollision(X, Y, Width, Height, typeof(Bunny)))
-            {
-                msg = "Collision!";
+        //    // Check both horizontal and vertical collisions to character
+        //    if (CheckCollision(X, Y, Width, Height, typeof(Bunny)))
+        //    {
+        //        msg = "Collision!";
 
-                // Do damage to enemy character
-                Bunny enemy = (Bunny)GetCollisionObject(X, Y, Width, Height, typeof(Bunny));
-                enemy.HP -= Damage;
+        //        // Do damage to enemy character
+        //        Bunny enemy = (Bunny)GetCollisionObject(X, Y, Width, Height, typeof(Bunny));
+        //        enemy.HP -= Damage;
 
-                // Remove itself
-                RemoveEntity(this);
-            }
+        //        // Remove itself
+        //        RemoveEntity(this);
+        //    }
 
-            CanvasDebugger.Debug(this, msg);
-        }
+        //    CanvasDebugger.Debug(this, msg);
+        //}
     }
 }

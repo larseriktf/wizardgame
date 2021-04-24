@@ -137,21 +137,19 @@ namespace WizardGame.App.Classes
             return listOfObjects;
         }
 
-        // @TODO: Remove maybe?
-        //public static List<Solid> GetAllSolidEntities()
-        //{
-        //    List<Solid> listOfSolids = new List<Solid>();
-
-        //    foreach (Entity entity in Entities)
-        //    {
-        //        if (entity.GetType().IsSubclassOf(typeof(Solid)))
-        //        {
-        //            listOfSolids.Add((Solid)entity);
-        //        }
-        //    }
-
-        //    return listOfSolids;
-        //}
+        public static List<Entity> GetParentAndChildEntities(Type className)
+        {
+            List<Entity> listOfObjects = new List<Entity>();
+            foreach (Entity entity in Entities)
+            {
+                if (entity.GetType().Equals(className)
+                 || entity.GetType().IsAssignableFrom(className))
+                {
+                    listOfObjects.Add(entity);
+                }
+            }
+            return listOfObjects;
+        }
 
         public static double GetAngleBetweenEntitiesInRadians(Entity objA, Entity objB)
         {
@@ -205,9 +203,12 @@ namespace WizardGame.App.Classes
             return false;
         }
 
-        public static Entity GetCollisionObject(float x, float y, int width, int height, Type className)
+        public static Object GetCollisionObject<T>(float x, float y, int width, int height, Type className)
         {
-            List<Entity> entities = GetEntities(className);
+            Object collided = null;
+
+            // Get list of entities at are either of className, or a child member of className
+            List<Entity> entities = GetParentAndChildEntities(className);
 
             foreach (Entity entity in entities)
             {   // Run four checks to see if it collides
@@ -216,11 +217,11 @@ namespace WizardGame.App.Classes
                  && (y + height / 2) >= entity.Y
                  && (y - height / 2) <= (entity.Y + entity.Height))
                 {   // Collision detected! Return object
-                    return entity;
+                    collided = Convert.ChangeType(entity, typeof(T));
                 }
             }
 
-            return null;
+            return collided;
         }
 
 
