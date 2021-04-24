@@ -14,7 +14,7 @@ using static System.Math;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
-    public class CardEnemy : Entity, IDrawable
+    public class CardEnemy : Character, IDrawable
     {
         private readonly SpriteSheet spriteSheet;
 
@@ -31,7 +31,6 @@ namespace WizardGame.App.Classes.Entities.Characters
         private double amplifier = 0;
 
         private double threshold = 0;
-        private int state = 0; // 0: Guarding, 1: Chasing, 2: Dead
 
         private readonly double wiggleRate = random.NextDouble() * 0.1;
         private readonly double wiggleMultiplier = random.NextDouble() * 0.025;
@@ -125,16 +124,16 @@ namespace WizardGame.App.Classes.Entities.Characters
         {
             int prevState = 0;
 
-            if (state != prevState)
+            if (State != prevState)
             {
                 PlayAnimation();
-                prevState = state;
+                prevState = State;
             }
         }
 
         private void PlayAnimation()
         {
-            if (state == 0)
+            if (State == 0)
             {
                 ImageY++;
 
@@ -147,7 +146,7 @@ namespace WizardGame.App.Classes.Entities.Characters
                     animTimer.Interval = 50;
                 }
             }
-            else if (state == 1)
+            else if (State == 1)
             {
                 if (ImageY != 2)
                 {   // Back side or mid transition
@@ -166,15 +165,15 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             if (EntityManager.GetDistanceBetweenEntities(this, player) < 500)
             {
-                state = 1; // Chase
+                State = 1; // Chase
             }
             else
             {
-                state = 0; // Guard
+                State = 0; // Guard
             }
 
 
-            if (state == 0)
+            if (State == 0)
             {   // Guarding state
                 target = EntityManager.GetNearestEntity(this, typeof(Target));
                 targetAngle = EntityManager.GetAngleBetweenEntitiesInRadians(this, target);
@@ -212,7 +211,7 @@ namespace WizardGame.App.Classes.Entities.Characters
                 amplifier = 2.25;
 
             }
-            else if (state == 1)
+            else if (State == 1)
             {   // Chasing state
                 target = EntityManager.GetNearestEntity(this, typeof(Player));
                 targetAngle = EntityManager.GetAngleBetweenEntitiesInRadians(this, target);

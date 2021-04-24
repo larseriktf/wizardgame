@@ -12,7 +12,7 @@ using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Classes.Entities.Spells;
 using WizardGame.App.Interfaces;
 using static System.Math;
-using static WizardGame.App.Classes.KeyBoard;
+using static WizardGame.App.Classes.Input.KeyBoard;
 using static WizardGame.App.Classes.EntityManager;
 using WizardGame.App.Classes.Graphics;
 
@@ -59,8 +59,8 @@ namespace WizardGame.App.Classes.Entities.Characters
         private void UpdateMovement()
         {
             // Calculate movement
-            float moveHorizontal = Convert.ToInt32(KeyRight.Pressed) - Convert.ToInt32(KeyLeft.Pressed);
-            float moveVertical = Convert.ToInt32(KeyDown.Pressed) - Convert.ToInt32(KeyUp.Pressed);
+            float moveHorizontal = Convert.ToInt32(MoveRight.Pressed) - Convert.ToInt32(MoveLeft.Pressed);
+            float moveVertical = Convert.ToInt32(MoveDown.Pressed) - Convert.ToInt32(MoveUp.Pressed);
 
             hsp = moveHorizontal * MoveSpeed;
             vsp = moveVertical * MoveSpeed;
@@ -71,7 +71,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         private void RegisterSpells()
         {
-            ArrowUp.EnsureTapped(() =>
+            Action2.EnsureTapped(() =>
             {
                 AddEntity("layer2", new IceSpell()
                 {

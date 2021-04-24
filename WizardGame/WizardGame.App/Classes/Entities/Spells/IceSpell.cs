@@ -24,14 +24,10 @@ namespace WizardGame.App.Classes.Entities.Spells
         public IceSpell()
         {
             ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
-            collidables.AddRange(new Type[] {
-                typeof(Solid),
-                typeof(Bunny),
-                typeof(CardEnemy)
-            });
             Width = 96;
             Height = 48;
-            Speed = 5;
+            Speed = 0;
+            ImageX = State;
         }
 
         public void Draw(CanvasDrawingSession ds)
