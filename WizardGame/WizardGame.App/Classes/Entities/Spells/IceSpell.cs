@@ -66,58 +66,20 @@ namespace WizardGame.App.Classes.Entities.Spells
 
         private void HandleCollisions()
         {
-            string msg = "Collision: ";
-            foreach (Type T in collidables)
+            if (CheckCollision(X, Y, Width, Height, typeof(Character)))
             {
-                if (CheckCollision(X, Y, Width, Height, T))
-                {
-                    if (typeof(Character).IsAssignableFrom(T) || T.Equals(typeof(Character)))
-                    {   // If type is a character
-                        // Do damage to enemy character
-                        Bunny enemy = (Bunny)GetCollisionObject<Bunny>(X, Y, Width, Height, T);
-                        enemy.HP -= Damage;
+                // If collided with character
+                // Do damage to enemy character
+                Character enemy = (Character)GetCollisionObject(X, Y, Width, Height, typeof(Character));
+                enemy.HP -= Damage;
 
-                        msg = "Collision: " + T;
-
-                    }
-
-                    RemoveEntity(this);
-                }
+                RemoveEntity(this);
             }
-
-            CanvasDebugger.Debug(this, msg);
+            else if (CheckCollision(X, Y, Width, Height, typeof(Character)))
+            {
+                // If collided with wall
+                RemoveEntity(this);
+            }
         }
-
-
-        //private void CheckWallCollisions()
-        //{
-        //    // Check both horizontal and vertical collisions to wall
-        //    if (CheckCollision(X + hsp, Y, Width, Height, typeof(Solid))
-        //     || CheckCollision(X, Y + vsp, Width, Height, typeof(Solid)))
-        //    {
-        //        // Remove itself
-        //        RemoveEntity(this);
-        //    }
-        //}
-
-        //private void CheckCharacterCollisions()
-        //{
-        //    string msg = "";
-
-        //    // Check both horizontal and vertical collisions to character
-        //    if (CheckCollision(X, Y, Width, Height, typeof(Bunny)))
-        //    {
-        //        msg = "Collision!";
-
-        //        // Do damage to enemy character
-        //        Bunny enemy = (Bunny)GetCollisionObject(X, Y, Width, Height, typeof(Bunny));
-        //        enemy.HP -= Damage;
-
-        //        // Remove itself
-        //        RemoveEntity(this);
-        //    }
-
-        //    CanvasDebugger.Debug(this, msg);
-        //}
     }
 }

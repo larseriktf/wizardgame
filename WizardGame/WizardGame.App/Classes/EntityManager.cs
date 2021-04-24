@@ -143,7 +143,7 @@ namespace WizardGame.App.Classes
             foreach (Entity entity in Entities)
             {
                 if (entity.GetType().Equals(className)
-                 || entity.GetType().IsAssignableFrom(className))
+                 || className.IsAssignableFrom(entity.GetType()))
                 {
                     listOfObjects.Add(entity);
                 }
@@ -188,7 +188,7 @@ namespace WizardGame.App.Classes
 
         public static bool CheckCollision(float x, float y, int width, int height, Type className)
         {
-            List<Entity> entities = GetEntities(className);
+            List<Entity> entities = GetParentAndChildEntities(className);
 
             foreach (Entity entity in entities)
             {   // Run four checks to see if it collides
@@ -203,9 +203,8 @@ namespace WizardGame.App.Classes
             return false;
         }
 
-        public static Object GetCollisionObject<T>(float x, float y, int width, int height, Type className)
+        public static Entity GetCollisionObject(float x, float y, int width, int height, Type className)
         {
-            Object collided = null;
 
             // Get list of entities at are either of className, or a child member of className
             List<Entity> entities = GetParentAndChildEntities(className);
@@ -217,11 +216,11 @@ namespace WizardGame.App.Classes
                  && (y + height / 2) >= entity.Y
                  && (y - height / 2) <= (entity.Y + entity.Height))
                 {   // Collision detected! Return object
-                    collided = Convert.ChangeType(entity, typeof(T));
+                    return entity;
                 }
             }
 
-            return collided;
+            return null;
         }
 
 
