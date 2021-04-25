@@ -67,7 +67,7 @@ namespace WizardGame.App.Classes
 
         public static bool EntityExists(Type className)
         {   // Runs through list of entities and checks if they are of type className
-            foreach (Entity entity in Entities)
+            foreach (Entity entity in entities.ToList())
             {
                 if (entity.GetType().Equals(className))
                 {
@@ -80,7 +80,7 @@ namespace WizardGame.App.Classes
         public static bool SingleEntityExists(Type className)
         {
             int occurrences = 0;
-            foreach (Entity entity in Entities)
+            foreach (Entity entity in entities.ToList())
             {
                 if (entity.GetType().Equals(className))
                 {
@@ -93,7 +93,7 @@ namespace WizardGame.App.Classes
 
         public static Entity GetSingleEntity(Type className)
         {
-            foreach (Entity entity in Entities)
+            foreach (Entity entity in entities.ToList())
             {
                 if (entity.GetType().Equals(className))
                 {
@@ -127,7 +127,7 @@ namespace WizardGame.App.Classes
         public static List<Entity> GetEntities(Type className)
         {
             List<Entity> listOfObjects = new List<Entity>();
-            foreach (Entity entity in Entities)
+            foreach (Entity entity in entities.ToList())
             {
                 if (entity.GetType().Equals(className))
                 {
@@ -140,7 +140,7 @@ namespace WizardGame.App.Classes
         public static List<Entity> GetParentAndChildEntities(Type className)
         {
             List<Entity> listOfObjects = new List<Entity>();
-            foreach (Entity entity in Entities)
+            foreach (Entity entity in entities.ToList())
             {
                 if (entity.GetType().Equals(className)
                  || className.IsAssignableFrom(entity.GetType()))
