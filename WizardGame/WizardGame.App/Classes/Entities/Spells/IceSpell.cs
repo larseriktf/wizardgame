@@ -26,7 +26,6 @@ namespace WizardGame.App.Classes.Entities.Spells
             ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
             Width = 96;
             Height = 48;
-            speed = 0;
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -84,8 +83,6 @@ namespace WizardGame.App.Classes.Entities.Spells
         private void UpdateMovement()
         {
             // Calculate movement
-            angle += (Convert.ToInt32(Interact1.Pressed) - Convert.ToInt32(Interact2.Pressed)) * 0.1;
-
             ControlAngle(ref angle);
 
             hsp = (float)(speed * Cos(angle));
@@ -123,10 +120,10 @@ namespace WizardGame.App.Classes.Entities.Spells
                     state++;
                 }
             }
-            else if (CheckCollision(X, Y, Width, Height, typeof(Character)))
+            else if (CheckCollision(X, Y, Width, Height, typeof(Solid)))
             {
                 // If collided with wall
-                RemoveEntity(this);
+                state = 3;
             }
         }
     }

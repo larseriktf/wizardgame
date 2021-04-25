@@ -46,6 +46,13 @@ namespace WizardGame.App.Classes.Graphics
                     defaultPath + "/Spells/spr_spell_ice.png",
                     new Vector2(96, 48)));
 
+            SpriteSheets.Add(
+                "sheet_ice_particle",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/ParticleEffects/spr_ice_shards.png",
+                    new Vector2(24, 24)));
+
             // Load BitMaps
             Bitmaps.Add(
                 "bitmap_level1",

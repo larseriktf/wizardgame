@@ -15,6 +15,7 @@ using static System.Math;
 using static WizardGame.App.Classes.Input.KeyBoard;
 using static WizardGame.App.Classes.EntityManager;
 using WizardGame.App.Classes.Graphics;
+using WizardGame.App.Classes.Entities.ParticleEffects;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
@@ -74,6 +75,15 @@ namespace WizardGame.App.Classes.Entities.Characters
             Action2.EnsureTapped(() =>
             {
                 AddEntity("layer2", new IceSpell()
+                {
+                    X = X,
+                    Y = Y,
+                    Angle = (XScale == 1) ? 0 : PI
+                });
+            });
+            Action3.EnsureTapped(() =>
+            {
+                AddEntity("layer2", new IceParticle()
                 {
                     X = X,
                     Y = Y
