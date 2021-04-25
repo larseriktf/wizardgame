@@ -161,9 +161,9 @@ namespace WizardGame.App.Classes.Entities.Characters
             int minLength = 100;
             int maxLength = 150;
 
-            Player player = (Player)EntityManager.GetNearestEntity(this, typeof(Player));
+            Player player = (Player)EntityManager.NearestEntity(this, typeof(Player));
 
-            if (EntityManager.GetDistanceBetweenEntities(this, player) < 500)
+            if (EntityManager.DistanceBetweenEntities(this, player) < 500)
             {
                 state = 1; // Chase
             }
@@ -175,10 +175,10 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             if (state == 0)
             {   // Guarding state
-                target = EntityManager.GetNearestEntity(this, typeof(Target));
-                targetAngle = EntityManager.GetAngleBetweenEntitiesInRadians(this, target);
+                target = EntityManager.NearestEntity(this, typeof(Target));
+                targetAngle = EntityManager.AngleBetweenEntitiesInRadians(this, target);
 
-                dist = EntityManager.GetDistanceBetweenEntities(this, target);
+                dist = EntityManager.DistanceBetweenEntities(this, target);
 
                 lagAngle = angle;
 
@@ -213,8 +213,8 @@ namespace WizardGame.App.Classes.Entities.Characters
             }
             else if (state == 1)
             {   // Chasing state
-                target = EntityManager.GetNearestEntity(this, typeof(Player));
-                targetAngle = EntityManager.GetAngleBetweenEntitiesInRadians(this, target);
+                target = EntityManager.NearestEntity(this, typeof(Player));
+                targetAngle = EntityManager.AngleBetweenEntitiesInRadians(this, target);
 
                 decidedAngle = angle;
                 amplifier = 2.0;
@@ -230,7 +230,7 @@ namespace WizardGame.App.Classes.Entities.Characters
                 angle += 2 * PI;
             }
 
-            turningSpeed = 0.05 * (EntityManager.GetCrossProductOfTwoVectors(
+            turningSpeed = 0.05 * (EntityManager.CrossProductOfTwoVectors(
                                     new Vector2((float)Cos(decidedAngle), (float)Sin(decidedAngle)),
                                     new Vector2((float)Cos(targetAngle), (float)Sin(targetAngle))));
             wiggle += wiggleRate;

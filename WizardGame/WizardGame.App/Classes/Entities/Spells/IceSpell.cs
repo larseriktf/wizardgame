@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.UI;
 using WizardGame.App.Classes.Entities.Characters;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
@@ -20,6 +21,7 @@ namespace WizardGame.App.Classes.Entities.Spells
     {
         private readonly SpriteSheet spriteSheet;
         private int angleMod = 1;
+        private readonly Random random = new Random();
 
         public IceSpell()
         {
@@ -117,12 +119,14 @@ namespace WizardGame.App.Classes.Entities.Spells
                 if (enemy.Invincibility == false)
                 {
                     enemy.HP -= damage;
+                    IceParticle.Spawner(X, Y, random.Next(4, 7));
                     state++;
                 }
             }
             else if (CheckCollision(X, Y, Width, Height, typeof(Solid)))
             {
                 // If collided with wall
+                IceParticle.Spawner(X, Y, random.Next(3, 5));
                 state = 3;
             }
         }

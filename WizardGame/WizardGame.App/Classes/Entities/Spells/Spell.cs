@@ -21,7 +21,7 @@ namespace WizardGame.App.Classes.Entities.Spells
             }
         }
 
-        protected double speed = 8;
+        protected double speed = 12;
         protected int damage = 1;
     }
 }

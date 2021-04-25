@@ -16,17 +16,18 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
     public class IceParticle : Particle, IDrawable
     {
         private readonly SpriteSheet spriteSheet;
-        private readonly Random rnd = new Random();
-        private double speed = 0;
-        private double angle = 0;
+        private readonly Random random = new Random();
+        private readonly float grv = 0.2f;
+        private float hspeed = 0;
+        private float vspeed = 0;
         public IceParticle()
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_ice_particle");
             Width = 5;
             Height = 5;
-            ImageX = rnd.Next(0, 3);
-            speed = rnd.NextDouble() * 6;
-            angle = rnd.NextDouble() * 2 * PI;
+            ImageX = random.Next(0, 3);
+            hspeed = (float)random.NextDouble() * 4 * (random.Next(0, 2) == 1 ? 1 : -1);
+            vspeed = (float)random.NextDouble() * 4 * (random.Next(0, 2) == 1 ? 1 : -1);
 
             fadeOutTimer = new Timer(fadeOutStartTime);
             fadeOutTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
@@ -38,13 +39,15 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
 
         public void Draw(CanvasDrawingSession ds)
         {
-            ControlAngle(ref angle);
+            vspeed += grv;
 
-            hsp = (float)(speed * Cos(angle));
-            vsp = (float)(speed * Sin(angle));
+            hsp = hspeed;
+            vsp = vspeed;
 
             X += hsp;
             Y += vsp;
+
+            UpdateCollisions();
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
@@ -59,15 +62,15 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             }
         }
 
-        private void ControlAngle(ref double angle)
-        {   // Contain Angle within its bounds
-            if (angle >= 2 * PI)
+        public static void Spawner(float x, float y, int amount)
+        {
+            for (int i = 0; i < amount; i++)
             {
-                angle -= 2 * PI;
-            }
-            else if (angle < 0)
-            {
-                angle += 2 * PI;
+                EntityManager.Entities.Add(new IceParticle()
+                {
+                    X = x,
+                    Y = y
+                });
             }
         }
     }
