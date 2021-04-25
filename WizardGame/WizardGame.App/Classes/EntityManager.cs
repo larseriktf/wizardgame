@@ -130,19 +130,14 @@ namespace WizardGame.App.Classes
             List<Entity> listOfObjects = new List<Entity>();
             foreach (Entity entity in entities.ToList())
             {
-                try
-                {
+                if (entity != null)
+                {   // Has to check if entity is not null, or else it might throw exception
                     if (entity.GetType().Equals(className)
                      || className.IsAssignableFrom(entity.GetType()))
                     {
                         listOfObjects.Add(entity);
                     }
                 }
-                catch (NullReferenceException e)
-                {
-                    Console.WriteLine(e.StackTrace);
-                }
-                
             }
             return listOfObjects;
         }

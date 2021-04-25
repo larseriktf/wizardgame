@@ -44,9 +44,6 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             hsp = hspeed;
             vsp = vspeed;
 
-            X += hsp;
-            Y += vsp;
-
             UpdateCollisions();
 
             using (var spriteBatch = ds.CreateSpriteBatch())

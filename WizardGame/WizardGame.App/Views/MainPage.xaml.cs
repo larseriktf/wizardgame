@@ -45,26 +45,21 @@ namespace WizardGame.App.Views
 
         public MainPage()
         {
-            gameTimer.Tick += GameTimerEvent;
-            gameTimer.Interval = TimeSpan.FromMilliseconds(16);
-            gameTimer.Start();
-
             InitializeComponent();
         }
 
-        private void GameTimerEvent(object sender, object e)
+        private void Step(object sender, object e)
         {   // Every tick
-            TrackKeyboard();
-        }
-
-        private void TrackKeyboard()
-        {
             KeyBoard.UpdateKeys();
+
+
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-
+            gameTimer.Tick += Step;
+            gameTimer.Interval = TimeSpan.FromMilliseconds(16);
+            gameTimer.Start();
         }
 
         void OnUnloaded(object sender, RoutedEventArgs e)
@@ -89,11 +84,11 @@ namespace WizardGame.App.Views
                 X = 400,
                 Y = 400
             });
-            EntityManager.AddEntity("layer1", new Bunny()
-            {
-                X = 1000,
-                Y = 200
-            });
+            //EntityManager.AddEntity("layer1", new Bunny()
+            //{
+            //    X = 1000,
+            //    Y = 200
+            //});
 
             // Generate and load maps
             MapEditor.MakeMaps();
@@ -104,6 +99,7 @@ namespace WizardGame.App.Views
 
         private void OnDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
+
             var ds = args.DrawingSession;
 
             foreach (IDrawable entity in EntityManager.Entities.ToList())

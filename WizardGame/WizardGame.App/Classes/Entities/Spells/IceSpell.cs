@@ -28,6 +28,7 @@ namespace WizardGame.App.Classes.Entities.Spells
             ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
             Width = 96;
             Height = 48;
+            speed = 20;
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -119,14 +120,14 @@ namespace WizardGame.App.Classes.Entities.Spells
                 if (enemy.Invincibility == false)
                 {
                     enemy.HP -= damage;
-                    IceParticle.Spawner(X, Y, random.Next(4, 7));
+                    //IceParticle.Spawner(X, Y, random.Next(4, 7));
                     state++;
                 }
             }
             else if (CheckCollision(X, Y, Width, Height, typeof(Solid)))
             {
                 // If collided with wall
-                IceParticle.Spawner(X, Y, random.Next(3, 5));
+                //IceParticle.Spawner(X, Y, random.Next(3, 5));
                 state = 3;
             }
         }
