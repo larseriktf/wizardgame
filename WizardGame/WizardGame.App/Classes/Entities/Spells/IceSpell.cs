@@ -19,22 +19,33 @@ namespace WizardGame.App.Classes.Entities.Spells
     public class IceSpell : Spell, IDrawable
     {
         private readonly SpriteSheet spriteSheet;
-
-        public int MyProperty { get; set; }
+        private int angleMod = 1;
 
         public IceSpell()
         {
             ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
             Width = 96;
             Height = 48;
-            Speed = 0;
-            ImageX = State;
+            speed = 0;
         }
 
         public void Draw(CanvasDrawingSession ds)
         {
             UpdateMovement();
+            HandleState();
 
+            if (angle < 3 * PI / 2 && angle >= PI / 2)
+            {
+                YScale = -1;
+                angleMod = -1;
+            }
+            else
+            {
+                YScale = 1;
+                angleMod = 1;
+            }
+
+            ImageX = state;
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
@@ -43,7 +54,7 @@ namespace WizardGame.App.Classes.Entities.Spells
                     new Vector2(X, Y),
                     new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
-                    (float)Angle,
+                    (float)angle * angleMod,
                     new Vector2(XScale, YScale),
                     0);
             }
@@ -51,17 +62,34 @@ namespace WizardGame.App.Classes.Entities.Spells
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Yellow);
         }
 
-        
+        private void HandleState()
+        {
+            switch (state)
+            {
+                case 0:
+                    damage = 6;
+                    break;
+                case 1:
+                    damage = 4;
+                    break;
+                case 2:
+                    damage = 2;
+                    break;
+                default:
+                    RemoveEntity(this);
+                    break;
+            }
+        }
 
         private void UpdateMovement()
         {
             // Calculate movement
-            Angle += (Convert.ToInt32(Interact1.Pressed) - Convert.ToInt32(Interact2.Pressed)) * 0.1;
+            angle += (Convert.ToInt32(Interact1.Pressed) - Convert.ToInt32(Interact2.Pressed)) * 0.1;
 
-            ControlAngle(ref Angle);
+            ControlAngle(ref angle);
 
-            hsp = (float)(Speed * Cos(Angle));
-            vsp = (float)(Speed * Sin(Angle));
+            hsp = (float)(speed * Cos(angle));
+            vsp = (float)(speed * Sin(angle));
 
             X += hsp;
             Y += vsp;
@@ -89,9 +117,11 @@ namespace WizardGame.App.Classes.Entities.Spells
                 // If collided with character
                 // Do damage to enemy character
                 Character enemy = (Character)GetCollisionObject(X, Y, Width, Height, typeof(Character));
-                enemy.HP -= Damage;
-
-                RemoveEntity(this);
+                if (enemy.Invincibility == false)
+                {
+                    enemy.HP -= damage;
+                    state++;
+                }
             }
             else if (CheckCollision(X, Y, Width, Height, typeof(Character)))
             {

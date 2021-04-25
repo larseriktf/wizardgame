@@ -14,7 +14,7 @@ namespace WizardGame.App.Classes.Entities
         protected float vsp;
         protected float hsp;
         protected List<Type> collidables = new List<Type>();
-        protected int State = 0;
+        protected int state = 0;
 
         protected void UpdateCollisions()
         {

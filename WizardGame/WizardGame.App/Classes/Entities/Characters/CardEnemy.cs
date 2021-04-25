@@ -124,16 +124,16 @@ namespace WizardGame.App.Classes.Entities.Characters
         {
             int prevState = 0;
 
-            if (State != prevState)
+            if (state != prevState)
             {
                 PlayAnimation();
-                prevState = State;
+                prevState = state;
             }
         }
 
         private void PlayAnimation()
         {
-            if (State == 0)
+            if (state == 0)
             {
                 ImageY++;
 
@@ -146,7 +146,7 @@ namespace WizardGame.App.Classes.Entities.Characters
                     animTimer.Interval = 50;
                 }
             }
-            else if (State == 1)
+            else if (state == 1)
             {
                 if (ImageY != 2)
                 {   // Back side or mid transition
@@ -165,15 +165,15 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             if (EntityManager.GetDistanceBetweenEntities(this, player) < 500)
             {
-                State = 1; // Chase
+                state = 1; // Chase
             }
             else
             {
-                State = 0; // Guard
+                state = 0; // Guard
             }
 
 
-            if (State == 0)
+            if (state == 0)
             {   // Guarding state
                 target = EntityManager.GetNearestEntity(this, typeof(Target));
                 targetAngle = EntityManager.GetAngleBetweenEntitiesInRadians(this, target);
@@ -211,7 +211,7 @@ namespace WizardGame.App.Classes.Entities.Characters
                 amplifier = 2.25;
 
             }
-            else if (State == 1)
+            else if (state == 1)
             {   // Chasing state
                 target = EntityManager.GetNearestEntity(this, typeof(Player));
                 targetAngle = EntityManager.GetAngleBetweenEntitiesInRadians(this, target);

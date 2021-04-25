@@ -8,8 +8,8 @@ namespace WizardGame.App.Classes.Entities.Spells
 {
     public abstract class Spell : Collidable
     {
-        public double Angle { get; set; } = 0;
-        public double Speed { get; set; } = 0;
-        public int Damage { get; set; } = 1;
+        protected double angle = 0;
+        protected double speed = 0;
+        protected int damage = 1;
     }
 }
