@@ -84,11 +84,11 @@ namespace WizardGame.App.Views
                 X = 400,
                 Y = 400
             });
-            //EntityManager.AddEntity("layer1", new Bunny()
-            //{
-            //    X = 1000,
-            //    Y = 200
-            //});
+            EntityManager.AddEntity("layer1", new Bunny()
+            {
+                X = 1000,
+                Y = 200
+            });
 
             // Generate and load maps
             MapEditor.MakeMaps();

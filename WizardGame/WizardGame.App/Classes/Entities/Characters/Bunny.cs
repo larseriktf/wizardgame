@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 using System.Timers;
 using Windows.UI;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Entities.Spells;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
 using static WizardGame.App.Classes.EntityManager;
+using static WizardGame.App.Classes.RandomProvider;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
@@ -55,6 +57,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             if (HP <= 0)
             {
+                DustCloud.Spawner(X, Y, Rnd.Next(4, 7));
                 RemoveEntity(this);
             }
 
@@ -83,7 +86,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         private void HandleCollisions()
         {
-            if (CheckCollision(X, Y, Width, Height, typeof(Spell)) && HP != maxHP)
+            if (CheckCollision(X, Y, Width, Height, typeof(Spell)) && HP != maxHP && invincibilityTimer.Interval <= 0)
             {
                 Invincibility = true;
                 invincibilityTimer.Interval = 1000;

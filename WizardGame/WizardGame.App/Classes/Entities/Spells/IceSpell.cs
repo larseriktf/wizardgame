@@ -13,7 +13,7 @@ using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
 using static WizardGame.App.Classes.EntityManager;
-using static WizardGame.App.Classes.Input.KeyBoard;
+using static WizardGame.App.Classes.RandomProvider;
 
 namespace WizardGame.App.Classes.Entities.Spells
 {
@@ -21,7 +21,6 @@ namespace WizardGame.App.Classes.Entities.Spells
     {
         private readonly SpriteSheet spriteSheet;
         private int angleMod = 1;
-        private readonly Random random = new Random();
 
         public IceSpell()
         {
@@ -120,14 +119,14 @@ namespace WizardGame.App.Classes.Entities.Spells
                 if (enemy.Invincibility == false)
                 {
                     enemy.HP -= damage;
-                    IceParticle.Spawner(X, Y, random.Next(4, 7));
+                    IceShard.Spawner(X, Y, Rnd.Next(4, 7));
                     state++;
                 }
             }
             else if (CheckCollision(X, Y, Width, Height, typeof(Solid)))
             {
                 // If collided with wall
-                IceParticle.Spawner(X, Y, random.Next(3, 5));
+                IceShard.Spawner(X, Y, Rnd.Next(3, 5));
                 state = 3;
             }
         }

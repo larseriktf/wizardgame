@@ -14,6 +14,7 @@ using WizardGame.App.Interfaces;
 using static System.Math;
 using static WizardGame.App.Classes.Input.KeyBoard;
 using static WizardGame.App.Classes.EntityManager;
+using static WizardGame.App.Classes.RandomProvider;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Classes.Entities.ParticleEffects;
 
@@ -72,6 +73,14 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         private void RegisterSpells()
         {
+            Action1.EnsureTapped(() =>
+            {
+                AddEntity("layer2", new Bunny()
+                {
+                    X = X,
+                    Y = Y
+                });
+            });
             Action2.EnsureTapped(() =>
             {
                 AddEntity("layer2", new IceSpell()
@@ -83,11 +92,15 @@ namespace WizardGame.App.Classes.Entities.Characters
             });
             Action3.EnsureTapped(() =>
             {
-                AddEntity("layer2", new IceParticle()
+                AddEntity("layer2", new IceShard()
                 {
                     X = X,
                     Y = Y
                 });
+            });
+            Action4.EnsureTapped(() =>
+            {
+                DustCloud.Spawner(X, Y, Rnd.Next(4, 6));
             });
         }
     }
