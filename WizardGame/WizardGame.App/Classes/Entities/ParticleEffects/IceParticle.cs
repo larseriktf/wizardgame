@@ -16,10 +16,10 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
     public class IceParticle : Particle, IDrawable
     {
         private readonly SpriteSheet spriteSheet;
-        private readonly Random random = new Random();
-        private readonly float grv = 0.2f;
+        private readonly float grv = 0.3f;
         private float hspeed = 0;
         private float vspeed = 0;
+        private int state = 0;
         public IceParticle()
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_ice_particle");
@@ -32,13 +32,15 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             fadeOutTimer = new Timer(fadeOutStartTime);
             fadeOutTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
             {
-                RemoveEntity(this);
+                state++;
             };
             fadeOutTimer.Start();
         }
 
         public void Draw(CanvasDrawingSession ds)
         {
+            HandleState();
+
             vspeed += grv;
 
             hsp = hspeed;
@@ -57,6 +59,19 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
                     new Vector2(XScale, YScale),
                     0);
             }
+        }
+
+        private void HandleState()
+        {
+            switch (state)
+            {
+                case 0:
+                    break;
+                default:
+                    RemoveEntity(this);
+                    break;
+            }
+
         }
 
         public static void Spawner(float x, float y, int amount)

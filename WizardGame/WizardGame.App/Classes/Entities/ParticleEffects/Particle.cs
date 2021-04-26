@@ -10,8 +10,9 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
 {
     public abstract class Particle : Collidable
     {
+        protected readonly Random random = new Random();
         protected int fadeTime = 1000;
-        protected int fadeOutStartTime = 4000;
+        protected int fadeOutStartTime = new Random().Next(800, 1200);
         protected Timer fadeOutTimer;
     }
 }
