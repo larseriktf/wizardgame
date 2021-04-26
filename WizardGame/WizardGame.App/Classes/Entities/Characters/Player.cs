@@ -87,15 +87,16 @@ namespace WizardGame.App.Classes.Entities.Characters
                 {
                     X = X,
                     Y = Y,
-                    Angle = (XScale == 1) ? 0 : PI
+                    Direction = (XScale == 1) ? 0 : PI
                 });
             });
             Action3.EnsureTapped(() =>
             {
-                AddEntity("layer2", new IceShard()
+                AddEntity("layer2", new PlantSpell()
                 {
                     X = X,
-                    Y = Y
+                    Y = Y,
+                    Direction = Sign(XScale)
                 });
             });
             Action4.EnsureTapped(() =>

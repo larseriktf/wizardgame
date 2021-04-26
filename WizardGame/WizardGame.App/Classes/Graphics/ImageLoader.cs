@@ -47,6 +47,13 @@ namespace WizardGame.App.Classes.Graphics
                     new Vector2(96, 48)));
 
             SpriteSheets.Add(
+                "sheet_plant_spell",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/Spells/spr_spell_plant.png",
+                    new Vector2(64, 64)));
+
+            SpriteSheets.Add(
                 "sheet_ice_particle",
                 await LoadSpriteSheetAsync(
                     device,
@@ -59,6 +66,13 @@ namespace WizardGame.App.Classes.Graphics
                     device,
                     defaultPath + "/ParticleEffects/spr_dust_cloud.png",
                     new Vector2(128, 128)));
+
+            SpriteSheets.Add(
+                "sheet_onomatopoeia_particle",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/ParticleEffects/spr_onomatopoeia.png",
+                    new Vector2(512, 128)));
 
             // Load BitMaps
             Bitmaps.Add(

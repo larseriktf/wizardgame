@@ -17,16 +17,18 @@ using static WizardGame.App.Classes.RandomProvider;
 
 namespace WizardGame.App.Classes.Entities.Spells
 {
-    public class IceSpell : Spell, IDrawable
+    public class PlantSpell : Spell, IDrawable
     {
-        private int angleMod = 1;
+        private readonly float grv = 0.3f;
+        private float rotation = 0;
+        private float rotationIncrease = (float)(Rnd.NextDouble() * (0.3 - (-0.3)) + (-0.3));
 
-        public IceSpell()
+        public PlantSpell()
         {
-            ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
-            Width = 96;
+            ImageLoader.SpriteSheets.TryGetValue("sheet_plant_spell", out spriteSheet);
+            Width = 48;
             Height = 48;
-            speed = 20;
+            vsp = -8;
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -34,18 +36,12 @@ namespace WizardGame.App.Classes.Entities.Spells
             UpdateMovement();
             HandleState();
 
-            if (direction < 3 * PI / 2 && direction >= PI / 2)
+            if (Sign(hsp) != 0)
             {
-                YScale = -1;
-                angleMod = -1;
-            }
-            else
-            {
-                YScale = 1;
-                angleMod = 1;
+                XScale = Sign(hsp);
             }
 
-            ImageX = state;
+            rotation += rotationIncrease;
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
@@ -54,7 +50,7 @@ namespace WizardGame.App.Classes.Entities.Spells
                     new Vector2(X, Y),
                     new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
-                    (float)direction * angleMod,
+                    rotation,
                     new Vector2(XScale, YScale),
                     0);
             }
@@ -67,32 +63,11 @@ namespace WizardGame.App.Classes.Entities.Spells
             switch (state)
             {
                 case 0:
-                    damage = 6;
-                    break;
-                case 1:
-                    damage = 4;
-                    break;
-                case 2:
-                    damage = 2;
                     break;
                 default:
                     RemoveEntity(this);
                     break;
             }
-        }
-
-        private void UpdateMovement()
-        {
-            // Calculate movement
-            ControlAngle(ref direction);
-
-            hsp = (float)(speed * Cos(direction));
-            vsp = (float)(speed * Sin(direction));
-
-            X += hsp;
-            Y += vsp;
-
-            HandleCollisions();
         }
 
         private void ControlAngle(ref double angle)
@@ -107,6 +82,18 @@ namespace WizardGame.App.Classes.Entities.Spells
             }
         }
 
+        private void UpdateMovement()
+        {
+            // Calculate movement
+            hsp = (float)speed * Sign(direction);
+            vsp += grv;
+
+            X += hsp;
+            Y += vsp;
+
+            HandleCollisions();
+        }
+
 
         private void HandleCollisions()
         {
@@ -118,15 +105,8 @@ namespace WizardGame.App.Classes.Entities.Spells
                 if (enemy.Invincibility == false)
                 {
                     enemy.HP -= damage;
-                    IceShard.Spawner(X, Y, Rnd.Next(4, 7));
                     state++;
                 }
-            }
-            else if (CheckCollision(X, Y, Width, Height, typeof(Solid)))
-            {
-                // If collided with wall
-                IceShard.Spawner(X, Y, Rnd.Next(3, 5));
-                state = 3;
             }
         }
     }
