@@ -11,10 +11,9 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
 {
     public class DustCloud : Particle, IDrawable
     {
-        private readonly SpriteSheet spriteSheet;
-        private int state = 0;
         private double angle = 0;
         private float startAngle = (float)(Rnd.NextDouble() * 2 * PI);
+        private float alphaValue = 2;
         public double Angle
         {
             get
@@ -45,8 +44,6 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             };
             fadeOutTimer.Start();
         }
-
-        private float alphaValue = 2;
 
         public void Draw(CanvasDrawingSession ds)
         {
@@ -119,7 +116,7 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         {
             for (int i = 0; i < amount; i++)
             {
-                EntityManager.Entities.Add(new DustCloud()
+                EntityManager.AddEntity("layer_particles", new DustCloud()
                 {
                     X = x,
                     Y = y,

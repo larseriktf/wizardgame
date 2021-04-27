@@ -70,7 +70,7 @@ namespace WizardGame.App.Classes.Graphics
                 await LoadSpriteSheetAsync(
                     device,
                     defaultPath + "/ParticleEffects/spr_onomatopoeia.png",
-                    new Vector2(512, 128)));
+                    new Vector2(128, 128)));
 
             // Load BitMaps
             Bitmaps.Add(

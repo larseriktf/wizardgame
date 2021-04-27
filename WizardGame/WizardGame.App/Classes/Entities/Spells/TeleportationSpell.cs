@@ -1,45 +1,48 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System.Numerics;
 using Windows.UI;
+using WizardGame.App.Classes.Entities.Characters;
+using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
+using static System.Math;
+using static WizardGame.App.Classes.RandomProvider;
+using static WizardGame.App.Classes.EntityManager;
+using WizardGame.App.Classes.Entities.Dev;
 
 namespace WizardGame.App.Classes.Entities.Spells
 {
-    public class TeleportationSpell : Spell, IDrawable
+    public class TeleportationSpell : Spell
     {
-
-        public TeleportationSpell()
+        public static void Teleport()
         {
-            ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
-            Width = 96;
-            Height = 48;
-            speed = 20;
-        }
-
-        public void Draw(CanvasDrawingSession ds)
-        {
-
-            using (var spriteBatch = ds.CreateSpriteBatch())
+            Player player;
+            
+            if (EntityExists(typeof(Player)))
             {
-                spriteSheet.DrawSpriteExt(
-                    spriteBatch,
-                    new Vector2(X, Y),
-                    new Vector2(ImageX, ImageY),
-                    new Vector4(Red, Green, Blue, Alpha),
-                    0,
-                    new Vector2(XScale, YScale),
-                    0);
+                player = (Player)SingleEntity(typeof(Player));
+            }
+            else
+            {
+                return;
             }
 
-            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Yellow);
-        }
+            int distance = 512 + Sign(player.XScale);
 
+            // Spawn particles
+            DustCloud.Spawner(player.X, player.Y, Rnd.Next(4, 7));
+            Onomatopoeia.Spawner(player.X, player.Y, 0);
 
+            // Actual teleportation
+            if (!CheckCollision(player.X + distance, player.Y, player.Width, player.Height, typeof(Solid))
 
-        private void UpdateMovement()
-        {
+             && !(player.X + distance > 1920))
+            {
+                player.X += distance * Sign(player.XScale);
+            }
 
+            // Spawn particles
+            DustCloud.Spawner(player.X, player.Y, Rnd.Next(4, 7));
         }
     }
 }

@@ -10,7 +10,6 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
 {
     public class IceShard : Particle, IDrawable
     {
-        private readonly SpriteSheet spriteSheet;
         private readonly float grv = 0.3f;
         private float hspeed = 0;
         private float vspeed = 0;
@@ -73,7 +72,7 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         {
             for (int i = 0; i < amount; i++)
             {
-                EntityManager.Entities.Add(new IceShard()
+                EntityManager.AddEntity("layer_particles", new IceShard()
                 {
                     X = x,
                     Y = y

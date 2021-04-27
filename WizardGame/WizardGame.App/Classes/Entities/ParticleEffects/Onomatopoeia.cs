@@ -9,7 +9,7 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
 {
     public class Onomatopoeia : Particle, IDrawable
     {
-        private readonly SpriteSheet spriteSheet;
+        private float alphaValue = 2;
         public Onomatopoeia()
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_onomatopoeia_particle");
@@ -25,6 +25,13 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         public void Draw(CanvasDrawingSession ds)
         {
             HandleState();
+
+            alphaValue -= 0.05f;
+
+            if (alphaValue <= 1)
+            {
+                Alpha = alphaValue;
+            }
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
@@ -52,16 +59,15 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
 
         }
 
-        public static void Spawner(float x, float y, int amount)
+        public static void Spawner(float x, float y, int imageX)
         {
-            for (int i = 0; i < amount; i++)
+
+            EntityManager.AddEntity("layer_particles", new Onomatopoeia()
             {
-                EntityManager.Entities.Add(new IceShard()
-                {
-                    X = x,
-                    Y = y
-                });
-            }
+                X = x,
+                Y = y,
+                ImageX = imageX
+            });
         }
     }
 }

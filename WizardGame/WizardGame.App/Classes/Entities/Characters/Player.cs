@@ -93,7 +93,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             });
             Action4.EnsureTapped(() =>
             {
-                DustCloud.Spawner(X, Y, Rnd.Next(4, 6));
+                TeleportationSpell.Teleport();
             });
         }
     }
