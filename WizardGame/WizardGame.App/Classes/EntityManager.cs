@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using WizardGame.App.Classes.Entities;
-using WizardGame.App.Classes.Entities.Dev;
-using WizardGame.App.Interfaces;
 using static System.Math;
 
 namespace WizardGame.App.Classes

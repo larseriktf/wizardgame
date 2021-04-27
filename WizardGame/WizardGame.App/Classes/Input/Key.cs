@@ -44,7 +44,7 @@ namespace WizardGame.App.Classes.Input
             delayTimer = new Timer();
             delayTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
             {   // Every tick update "delayed" boolean
-                    isReady = true;
+                isReady = true;
             };
             delayTimer.Start();
         }

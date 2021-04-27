@@ -142,10 +142,12 @@
     <Compile Include="Classes\Entities\Dev\Target.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\DustCloud.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\IceShard.cs" />
+    <Compile Include="Classes\Entities\ParticleEffects\Onomatopoeia.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\Particle.cs" />
     <Compile Include="Classes\Entities\Spells\IceSpell.cs" />
     <Compile Include="Classes\Entities\Spells\PlantSpell.cs" />
     <Compile Include="Classes\Entities\Spells\Spell.cs" />
+    <Compile Include="Classes\Entities\Spells\TeleportationSpell.cs" />
     <Compile Include="Classes\EntityManager.cs" />
     <Compile Include="Classes\Graphics\ImageLoader.cs" />
     <Compile Include="Classes\Input\Key.cs" />

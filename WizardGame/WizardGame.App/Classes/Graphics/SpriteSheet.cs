@@ -1,9 +1,8 @@
 ﻿using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.UI.Xaml;
+using System;
 using System.Numerics;
 using System.Threading.Tasks;
 using Windows.Foundation;
-using System;
 
 namespace WizardGame.App.Classes.Graphics
 {

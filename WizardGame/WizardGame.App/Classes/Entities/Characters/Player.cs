@@ -1,22 +1,14 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
-using Windows.UI;
-using WizardGame.App.Classes.Entities;
-using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Entities.Spells;
+using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
-using static WizardGame.App.Classes.Input.KeyBoard;
 using static WizardGame.App.Classes.EntityManager;
+using static WizardGame.App.Classes.Input.KeyBoard;
 using static WizardGame.App.Classes.RandomProvider;
-using WizardGame.App.Classes.Graphics;
-using WizardGame.App.Classes.Entities.ParticleEffects;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
@@ -43,7 +35,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             {
                 XScale = Sign(hsp);
             }
-            
+
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
                 spriteSheet.DrawSpriteExt(

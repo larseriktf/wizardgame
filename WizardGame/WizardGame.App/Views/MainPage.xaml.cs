@@ -1,35 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using Microsoft.Graphics.Canvas.UI.Xaml;
+using System;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Windows.UI;
-using System.Numerics;
-using Microsoft.Graphics.Canvas;
-using Microsoft.Graphics.Canvas.Effects;
-using Windows.System;
-using Windows.UI.Core;
 using WizardGame.App.Classes;
-using Microsoft.Graphics.Canvas.UI.Xaml;
-using WizardGame.App.Classes.Entities;
-using WizardGame.App.Interfaces;
 using WizardGame.App.Classes.Entities.Characters;
-using System.Text;
-using WizardGame.App.Classes.Entities.Spells;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Classes.Input;
+using WizardGame.App.Interfaces;
 
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409

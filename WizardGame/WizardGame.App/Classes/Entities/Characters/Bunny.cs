@@ -1,10 +1,5 @@
 ﻿using Microsoft.Graphics.Canvas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using Windows.UI;
 using WizardGame.App.Classes.Entities.Dev;

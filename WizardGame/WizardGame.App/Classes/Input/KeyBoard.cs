@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.System;
+﻿using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 
@@ -19,7 +15,7 @@ namespace WizardGame.App.Classes.Input
         public static Key MoveRight { get; } = new Key();
         public static Key MoveDown { get; } = new Key();
         public static Key MoveLeft { get; } = new Key();
-        
+
         public static Key Action1 { get; } = new Key();
         public static Key Action2 { get; } = new Key();
         public static Key Action3 { get; } = new Key();

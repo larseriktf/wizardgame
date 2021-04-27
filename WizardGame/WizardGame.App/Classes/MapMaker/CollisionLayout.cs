@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WizardGame.App.Classes.Entities;
+﻿using WizardGame.App.Classes.Entities;
 using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Interfaces;
 

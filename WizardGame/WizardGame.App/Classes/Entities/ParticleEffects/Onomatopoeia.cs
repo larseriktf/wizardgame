@@ -4,25 +4,15 @@ using System.Timers;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static WizardGame.App.Classes.EntityManager;
-using static WizardGame.App.Classes.RandomProvider;
 
 namespace WizardGame.App.Classes.Entities.ParticleEffects
 {
-    public class IceShard : Particle, IDrawable
+    public class Onomatopoeia : Particle, IDrawable
     {
         private readonly SpriteSheet spriteSheet;
-        private readonly float grv = 0.3f;
-        private float hspeed = 0;
-        private float vspeed = 0;
-        private int state = 0;
-        public IceShard()
+        public Onomatopoeia()
         {
-            spriteSheet = ImageLoader.GetSpriteSheet("sheet_ice_particle");
-            Width = 5;
-            Height = 5;
-            ImageX = Rnd.Next(0, 3);
-            hspeed = (float)Rnd.NextDouble() * 4 * (Rnd.Next(0, 2) == 1 ? 1 : -1);
-            vspeed = (float)Rnd.NextDouble() * 4 * (Rnd.Next(0, 2) == 1 ? 1 : -1);
+            spriteSheet = ImageLoader.GetSpriteSheet("sheet_onomatopoeia_particle");
 
             fadeOutTimer = new Timer(fadeOutStartTime);
             fadeOutTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
@@ -35,13 +25,6 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         public void Draw(CanvasDrawingSession ds)
         {
             HandleState();
-
-            vspeed += grv;
-
-            hsp = hspeed;
-            vsp = vspeed;
-
-            UpdateCollisions();
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {

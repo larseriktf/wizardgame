@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WizardGame.App.Classes.Entities.Dev;
 using static System.Math;
 using static WizardGame.App.Classes.EntityManager;

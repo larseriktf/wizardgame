@@ -1,10 +1,5 @@
 ﻿using Microsoft.Graphics.Canvas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
@@ -58,7 +53,7 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             HandleState();
 
             CalculateMovement();
-            
+
             UpdateCollisions();
 
             alphaValue -= 0.05f;

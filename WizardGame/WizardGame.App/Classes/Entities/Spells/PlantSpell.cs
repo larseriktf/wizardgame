@@ -1,14 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI;
 using WizardGame.App.Classes.Entities.Characters;
-using WizardGame.App.Classes.Entities.Dev;
-using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
