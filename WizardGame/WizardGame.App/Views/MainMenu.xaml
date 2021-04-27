@@ -31,7 +31,9 @@
         <Grid Grid.Column="1" Grid.Row="1">
             <Rectangle Style="{StaticResource MenuBoxBG}" Fill="Black" Stretch="Fill"/>
             <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical">
-                <Button Style="{StaticResource MenuButton}" Content="Start new game"/>
+                <Button Style="{StaticResource MenuButton}"
+                        Content="Start new game"
+                        Click="OnClickToStartGame"/>
                 <Button Style="{StaticResource MenuButton}" Content="Continue game"/>
                 <Button Style="{StaticResource MenuButton}" Content="Spell book"/>
                 <Button Style="{StaticResource MenuButton}" Content="Settings"/>
