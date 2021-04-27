@@ -12,7 +12,8 @@
                 <ResourceDictionary Source="/Styles/_Thickness.xaml" />
 
                 <ResourceDictionary Source="/Styles/TextBlock.xaml" />
-                <ResourceDictionary Source="/Styles/Page.xaml"/>
+                <ResourceDictionary Source="/Styles/Page.xaml" />
+                <ResourceDictionary Source="/Styles/WizardGameStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
