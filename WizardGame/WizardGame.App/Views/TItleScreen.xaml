@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WizardGame.App.Views.MainMenu"
+    x:Class="WizardGame.App.Views.TitleScreen"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
-    <Grid x:Name="ContentArea">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="512" />
@@ -31,13 +31,11 @@
         <Grid Grid.Column="1" Grid.Row="1">
             <Rectangle Style="{StaticResource MenuBoxBG}" Fill="Black" Stretch="Fill"/>
             <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical">
-                <Button Style="{StaticResource MenuButton}"
-                        Content="Start new game"
-                        Click="OnClickToStartGame"/>
-                <Button Style="{StaticResource MenuButton}" Content="Continue game"/>
-                <Button Style="{StaticResource MenuButton}" Content="Spell book"/>
-                <Button Style="{StaticResource MenuButton}" Content="Settings"/>
-                <Button Style="{StaticResource MenuButton}" Content="Quit game"/>
+                <Button Style="{StaticResource MenuButton}" Content="Start new game" Click="OnClickToStartGame"/>
+                <Button Style="{StaticResource MenuButton}" Content="Continue game" Click="OnClickToContinueGame"/>
+                <Button Style="{StaticResource MenuButton}" Content="Spell book" Click="OnClickToEnterSpellBook"/>
+                <Button Style="{StaticResource MenuButton}" Content="Settings" Click="OnClickToEnterSettings"/>
+                <Button Style="{StaticResource MenuButton}" Content="Quit game" Click="OnClickToQuitGame"/>
             </StackPanel>
         </Grid>
         
