@@ -15,8 +15,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="256" MaxHeight="256" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <Image Style="{StaticResource TitleScreenBG}"
@@ -28,14 +28,27 @@
                    Grid.Column="0" Grid.ColumnSpan="3"
                    Text="Phantastic Wizard"/>
 
-        <Grid Grid.Column="1" Grid.Row="1">
-            <Rectangle Style="{StaticResource MenuBoxBG}" Fill="Black" Stretch="Fill"/>
+        <Grid Grid.Column="1" Grid.Row="1" Background="Indigo">
             <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical">
-                <Button Style="{StaticResource MenuButton}" Content="Start new game" Click="OnClickToStartGame"/>
-                <Button Style="{StaticResource MenuButton}" Content="Continue game" Click="OnClickToContinueGame"/>
-                <Button Style="{StaticResource MenuButton}" Content="Spell book" Click="OnClickToEnterSpellBook"/>
-                <Button Style="{StaticResource MenuButton}" Content="Settings" Click="OnClickToEnterSettings"/>
-                <Button Style="{StaticResource MenuButton}" Content="Quit game" Click="OnClickToQuitGame"/>
+                <Button Content="Start new game"
+                        Click="OnClickToStartGame"
+                        Margin="0 0 0 32"
+                        HorizontalAlignment="Center"/>
+                <Button Content="Continue game"
+                        Click="OnClickToContinueGame"
+                        Margin="0 0 0 32"
+                        HorizontalAlignment="Center"/>
+                <Button Content="Spell book"
+                        Click="OnClickToEnterSpellBook"
+                        Margin="0 0 0 32"
+                        HorizontalAlignment="Center"/>
+                <Button Content="Settings"
+                        Click="OnClickToEnterSettings"
+                        Margin="0 0 0 32"
+                        HorizontalAlignment="Center"/>
+                <Button Content="Quit game"
+                        Click="OnClickToQuitGame"
+                        HorizontalAlignment="Center"/>
             </StackPanel>
         </Grid>
         

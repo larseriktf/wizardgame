@@ -12,6 +12,12 @@
         <Setter Property="Foreground" Value="AntiqueWhite"/>
     </Style>
 
+    <Style TargetType="PivotHeaderItem">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="FontFamily" Value="{StaticResource CurseCasual}"/>
+        <Setter Property="Foreground" Value="AntiqueWhite"/>
+    </Style>
+
     <Style TargetType="Button">
         <Setter Property="FontFamily" Value="{StaticResource CurseCasual}"/>
         <Setter Property="FontSize" Value="24"/>

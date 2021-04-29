@@ -21,5 +21,10 @@ namespace WizardGame.App.Views
                 NavigationService.GoBack();
             }
         }
+
+        private void OnInspectConfiguration(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }
