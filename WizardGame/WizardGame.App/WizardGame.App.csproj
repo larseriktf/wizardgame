@@ -265,6 +265,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <Content Include="Fonts\Curse-Casual.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="WizardGame.App_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

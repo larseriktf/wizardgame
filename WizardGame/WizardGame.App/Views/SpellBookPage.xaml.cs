@@ -8,7 +8,6 @@ namespace WizardGame.App.Views
 {
     public sealed partial class SpellBookPage : Page
     {
-        public BlankViewModel ViewModel { get; } = new BlankViewModel();
 
         public SpellBookPage()
         {
