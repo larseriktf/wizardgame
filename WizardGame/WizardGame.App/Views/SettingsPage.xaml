@@ -34,28 +34,31 @@
                 <Pivot>
                     <PivotItem Header="General">
                         <!-- Pivot content here -->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="0">
-                                <TextBlock Text="Setting 1"/>
-                                <TextBlock Text="Setting 2"/>
-                                <TextBlock Text="Setting 3"/>
-                                <TextBlock Text="Setting 4"/>
-                                <TextBlock Text="Setting 5"/>
-                            </StackPanel>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="Setting 1"/>
+                                    <TextBlock Text="Setting 2"/>
+                                    <TextBlock Text="Setting 3"/>
+                                    <TextBlock Text="Setting 4"/>
+                                    <TextBlock Text="Setting 5"/>
+                                </StackPanel>
 
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="Option / Option"/>
-                                <TextBlock Text="Option / Option"/>
-                                <TextBlock Text="Option / Option"/>
-                                <TextBlock Text="Option / Option"/>
-                                <TextBlock Text="Option / Option"/>
-                            </StackPanel>
-                        </Grid>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="Option / Option"/>
+                                    <TextBlock Text="Option / Option"/>
+                                    <TextBlock Text="Option / Option"/>
+                                    <TextBlock Text="Option / Option"/>
+                                    <TextBlock Text="Option / Option"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                        
                     </PivotItem>
                     <PivotItem Header="Keybindings">
                         <!-- Pivot content here -->

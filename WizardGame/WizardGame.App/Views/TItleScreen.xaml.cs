@@ -16,22 +16,22 @@ namespace WizardGame.App.Views
 
         private void OnClickToStartGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            NavigationService.Navigate(typeof(Game));
+            NavigationService.Navigate<Game>();
         }
 
         private void OnClickToContinueGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            //NavigationService.Navigate(typeof(TabViewPage));
+            //NavigationService.Navigate<TabViewPage>();
         }
 
         private void OnClickToEnterSpellBook(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            NavigationService.Navigate(typeof(SpellBookPage));
+            NavigationService.Navigate<SpellBookPage>();
         }
 
         private void OnClickToEnterSettings(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            NavigationService.Navigate(typeof(SettingsPage));
+            NavigationService.Navigate<SettingsPage>();
         }
 
         private void OnClickToQuitGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
