@@ -133,4 +133,12 @@
     <value>Blank</value>
     <comment>Page title for BlankPage</comment>
   </data>
+  <data name="TabbedPivot_PivotItem1.Header" xml:space="preserve">  
+    <value>Item 1</value>
+    <comment>First Pivot item title for TabbedPivot</comment>
+  </data>
+  <data name="TabbedPivot_PivotItem2.Header" xml:space="preserve">
+    <value>Item 2</value>
+    <comment>Second Pivot item title for TabbedPivot</comment>
+  </data>
 </root>

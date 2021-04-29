@@ -22,7 +22,7 @@ namespace WizardGame.App.Views
 
         private void OnClickToContinueGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            NavigationService.Navigate(typeof(Game));
+            //NavigationService.Navigate(typeof(TabViewPage));
         }
 
         private void OnClickToEnterSpellBook(object sender, Windows.UI.Xaml.RoutedEventArgs e)

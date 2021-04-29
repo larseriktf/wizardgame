@@ -26,44 +26,44 @@
         <TextBlock Style="{StaticResource MainTitle}"
                    Grid.Column="0" Grid.ColumnSpan="3"
                    Text="Settings"/>
-        
+
         <Grid Grid.Column="1" Grid.Row="1">
             <Rectangle Style="{StaticResource MenuBoxBG}" Fill="Black" Stretch="Fill"/>
-            <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical">
-                <Button Style="{StaticResource BaseButton}" Content="Back" Click="OnClickToGoBack"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="512"/>
-                        <ColumnDefinition Width="512"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Setting 1" Grid.Column="0"/>
-                    <TextBlock Text="Option / Option" Grid.Column="1"/>
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="512"/>
-                        <ColumnDefinition Width="512"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Setting 1" Grid.Column="0"/>
-                    <TextBlock Text="Option / Option" Grid.Column="1"/>
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="512"/>
-                        <ColumnDefinition Width="512"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Setting 1" Grid.Column="0"/>
-                    <TextBlock Text="Option / Option" Grid.Column="1"/>
-                </Grid>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="512"/>
-                        <ColumnDefinition Width="512"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Setting 1" Grid.Column="0"/>
-                    <TextBlock Text="Option / Option" Grid.Column="1"/>
-                </Grid>
-            </StackPanel>
+            <Button Style="{StaticResource BaseButton}" Content="Back" Click="OnClickToGoBack"/>
+
+            <Pivot>
+                <PivotItem Header="General">
+                    <!-- Pivot content here -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="512"/>
+                            <ColumnDefinition Width="512"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Setting 1" Grid.Column="0"/>
+                        <TextBlock Text="Setting 2" Grid.Column="0"/>
+                        <TextBlock Text="Setting 3" Grid.Column="0"/>
+                        <TextBlock Text="Setting 4" Grid.Column="0"/>
+                        <TextBlock Text="Setting 5" Grid.Column="0"/>
+
+
+
+                        <TextBlock Text="Option / Option" Grid.Column="1"/>
+                        <TextBlock Text="Option / Option" Grid.Column="1"/>
+                        <TextBlock Text="Option / Option" Grid.Column="1"/>
+                        <TextBlock Text="Option / Option" Grid.Column="1"/>
+                        <TextBlock Text="Option / Option" Grid.Column="1"/>
+                    </Grid>
+
+                </PivotItem>
+
+                <PivotItem Header="Keybindings">
+                    <!-- Pivot content here -->
+                </PivotItem>
+            </Pivot>
         </Grid>
     </Grid>
 </Page>
