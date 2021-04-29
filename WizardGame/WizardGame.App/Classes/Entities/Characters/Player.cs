@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System;
 using System.Numerics;
+using WizardGame.App.Classes.Entities.HudElements;
 using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Entities.Spells;
 using WizardGame.App.Classes.Graphics;
@@ -24,6 +25,7 @@ namespace WizardGame.App.Classes.Entities.Characters
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_player");
             Width = 50;
             Height = 50;
+            AddEntity("layer_hud", new HealthBar());
         }
 
         public void Draw(CanvasDrawingSession ds)

@@ -143,6 +143,7 @@
     <Compile Include="Classes\Entities\Characters\Player.cs" />
     <Compile Include="Classes\Entities\Dev\Solid.cs" />
     <Compile Include="Classes\Entities\Dev\Target.cs" />
+    <Compile Include="Classes\Entities\HudElements\HealthBar.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\DustCloud.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\IceShard.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\Onomatopoeia.cs" />
@@ -241,6 +242,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\TitleScreen\fantasyLand.jpg" />
+    <Content Include="Assets\Sprites\Hud\HealthBarBackground.png" />
+    <Content Include="Assets\Sprites\Hud\HealthBarForeground.png" />
+    <Content Include="Assets\Sprites\Hud\HealthBarLiquid.png" />
+    <Content Include="Assets\Sprites\Hud\spr_health_bar.png" />
     <Content Include="Assets\Sprites\Levels\abandonedRoom.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_dust_cloud.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_ice_shards.png" />

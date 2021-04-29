@@ -14,7 +14,8 @@ namespace WizardGame.App.Classes
             "layer0",
             "layer1",
             "layer2",
-            "layer_particles"
+            "layer_particles",
+            "layer_hud"
         };
 
         private static readonly List<Entity> entities = new List<Entity>();

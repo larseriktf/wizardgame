@@ -72,6 +72,13 @@ namespace WizardGame.App.Classes.Graphics
                     defaultPath + "/ParticleEffects/spr_onomatopoeia.png",
                     new Vector2(128, 128)));
 
+            SpriteSheets.Add(
+                "sheet_health_bar",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/Hud/spr_health_bar.png",
+                    new Vector2(512, 96)));
+
             // Load BitMaps
             Bitmaps.Add(
                 "bitmap_level1",
