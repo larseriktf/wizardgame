@@ -9,49 +9,56 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="512" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="512"/>
+            <ColumnDefinition Width="64"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="64"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="256" MaxHeight="256" />
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
 
-        <Image Style="{StaticResource TitleScreenBG}"
-               Grid.ColumnSpan="3"
-               Grid.RowSpan="3"
+        <Image Stretch="UniformToFill"
+               Grid.ColumnSpan="4"
                Source="/Assets/Images/TitleScreen/fantasyLand.jpg"/>
 
-        <TextBlock Style="{StaticResource MainTitle}"
-                   Grid.Column="0" Grid.ColumnSpan="3"
+        <Grid Grid.Column="0"
+              Grid.Row="1"
+              Background="Indigo"
+              Grid.RowSpan="2">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="384"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Style="{StaticResource MainTitle}"
+                   Grid.Row="0"
                    Text="Phantastic Wizard"/>
 
-        <Grid Grid.Column="1" Grid.Row="1" Background="Indigo">
-            <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical">
-                <Button Content="Start new game"
-                        Click="OnClickToStartGame"
-                        Margin="0 0 0 32"
-                        HorizontalAlignment="Center"/>
-                <Button Content="Continue game"
-                        Click="OnClickToContinueGame"
-                        Margin="0 0 0 32"
-                        HorizontalAlignment="Center"/>
-                <Button Content="Spell book"
-                        Click="OnClickToEnterSpellBook"
-                        Margin="0 0 0 32"
-                        HorizontalAlignment="Center"/>
-                <Button Content="Settings"
-                        Click="OnClickToEnterSettings"
-                        Margin="0 0 0 32"
-                        HorizontalAlignment="Center"/>
-                <Button Content="Quit game"
-                        Click="OnClickToQuitGame"
-                        HorizontalAlignment="Center"/>
+            <StackPanel Style="{StaticResource MenuStackPanel}"
+                        Orientation="Vertical"
+                        Grid.Row="1">
+                <Button Content="START NEW GAME"
+                        Click="OnStartGame"/>
+                <Button Content="CONTINUE GAME"
+                        Click="OnContinueGame"/>
+                <Button Content="SPELL BOOK"
+                        Click="OnOpenSpellBook"/>
+                <Button Content="SETTINGS"
+                        Click="OnOpenSettings"/>
+                <Button Content="QUIT GAME"
+                        Click="OnQuitGame"/>
             </StackPanel>
         </Grid>
-        
 
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="786"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Frame x:Name="TitleScreenFrame"
+                   Grid.Row="1"/>
+            
+        </Grid>
     </Grid>
 </Page>

@@ -171,6 +171,9 @@
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\PausePage.xaml.cs">
+      <DependentUpon>PausePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SpellBookPage.xaml.cs">
       <DependentUpon>SpellBookPage.xaml</DependentUpon>
     </Compile>
@@ -215,6 +218,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PausePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SpellBookPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -245,6 +252,8 @@
     <Content Include="Assets\Sprites\Hud\HealthBarBackground.png" />
     <Content Include="Assets\Sprites\Hud\HealthBarForeground.png" />
     <Content Include="Assets\Sprites\Hud\HealthBarLiquid.png" />
+    <Content Include="Assets\Sprites\Hud\spr_action_arrow.png" />
+    <Content Include="Assets\Sprites\Dev\spr_gif.jpg" />
     <Content Include="Assets\Sprites\Hud\spr_health_bar.png" />
     <Content Include="Assets\Sprites\Levels\abandonedRoom.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_dust_cloud.png" />

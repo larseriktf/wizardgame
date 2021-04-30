@@ -21,6 +21,15 @@
     <Style TargetType="Button">
         <Setter Property="FontFamily" Value="{StaticResource CurseCasual}"/>
         <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="Padding" Value="32 16"/>
+    </Style>
+
+    <Style TargetType="Button"
+           x:Key="MenuButton">
+        <Setter Property="FontFamily" Value="{StaticResource CurseCasual}"/>
+        <Setter Property="FontSize" Value="24"/>
         <Setter Property="Background" Value="Purple"/>
         <Setter Property="Width" Value="auto"/>
         <Setter Property="Padding" Value="32 16"/>
@@ -34,6 +43,7 @@
         
     </Style>
 
+    <!--
     <Style TargetType="Button"
            BasedOn="{StaticResource BaseButton}"
            x:Key="MenuButton">
@@ -42,6 +52,7 @@
         <Setter Property="Width" Value="256"/>
         <Setter Property="Height" Value="64"/>
     </Style>
+    -->
 
     <Style TargetType="StackPanel"
            x:Key="MenuStackPanel">
@@ -52,14 +63,12 @@
            x:Key="MainTitle">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="128"/>
-        <Setter Property="Foreground" Value="Purple"/>
+        <Setter Property="FontSize" Value="96"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="TextAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="AntiqueWhite"/>
         <Setter Property="FontWeight" Value="Bold"/>
-    </Style>
-
-    <Style TargetType="Image"
-           x:Key="TitleScreenBG">
-        <Setter Property="Stretch" Value="UniformToFill"/>
+        <Setter Property="FontFamily" Value="{StaticResource CurseCasual}"/>
     </Style>
 
     <Style TargetType="Rectangle"
