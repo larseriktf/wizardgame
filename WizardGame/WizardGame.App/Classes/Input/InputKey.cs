@@ -3,7 +3,7 @@ using System.Timers;
 
 namespace WizardGame.App.Classes.Input
 {
-    public class Key
+    public class InputKey
     {
         private bool pressed = false;
         public bool Pressed
@@ -39,7 +39,7 @@ namespace WizardGame.App.Classes.Input
         private readonly Timer delayTimer;
         private bool isReady = true;
 
-        public Key()
+        public InputKey()
         {
             delayTimer = new Timer();
             delayTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
@@ -52,7 +52,7 @@ namespace WizardGame.App.Classes.Input
         public void ResetDelay()
         {
             isReady = false;
-            delayTimer.Interval = 20;
+            delayTimer.Interval = 100;
         }
 
         public void EnsureTapped(Action method)

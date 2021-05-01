@@ -14,9 +14,11 @@
 
         <canvas:CanvasAnimatedControl x:Name="canvas"
                                       CreateResources="OnCreateResources"
+                                      Update="OnUpdate"
                                       Draw="OnDraw" 
                                       ClearColor="Black"
                                       Margin="0,0,0,0"
+                                      IsFixedTimeStep="True"
                                       Width="auto"
                                       Grid.Column="0"
                                       Grid.Row="0"
@@ -24,9 +26,8 @@
                                       Grid.RowSpan="3"/>
 
         <Frame x:Name="GameFrame">
-            
+
         </Frame>
-        
-        
+
     </Grid>
 </Page>

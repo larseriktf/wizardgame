@@ -33,5 +33,6 @@
       <Event Name="TabCloseRequested" Dynamic="Required"/>
     </Type>
 
+    <Namespace Name="System.Configuration" Serialize="Required PublicAndInternal" />
   </Application>
 </Directives>

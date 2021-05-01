@@ -7,54 +7,47 @@ namespace WizardGame.App.Classes.Input
 
     public static class KeyBoard
     {
-        public static Key NavContinue { get; } = new Key();
-        public static Key NavPause { get; } = new Key();
-        public static Key NavBack { get; } = new Key();
+        public static InputKey NavContinue { get; } = new InputKey();
+        public static InputKey NavPause { get; } = new InputKey();
+        public static InputKey NavBack { get; } = new InputKey();
 
-        public static Key MoveUp { get; } = new Key();
-        public static Key MoveRight { get; } = new Key();
-        public static Key MoveDown { get; } = new Key();
-        public static Key MoveLeft { get; } = new Key();
+        public static InputKey MoveUp { get; } = new InputKey();
+        public static InputKey MoveRight { get; } = new InputKey();
+        public static InputKey MoveDown { get; } = new InputKey();
+        public static InputKey MoveLeft { get; } = new InputKey();
 
-        public static Key Action1 { get; } = new Key();
-        public static Key Action2 { get; } = new Key();
-        public static Key Action3 { get; } = new Key();
-        public static Key Action4 { get; } = new Key();
+        public static InputKey Action1 { get; } = new InputKey();
+        public static InputKey Action2 { get; } = new InputKey();
+        public static InputKey Action3 { get; } = new InputKey();
+        public static InputKey Action4 { get; } = new InputKey();
 
         // Testing purposes
-        public static Key Interact1 { get; } = new Key();
-        public static Key Interact2 { get; } = new Key();
-        public static Key Interact3 { get; } = new Key();
+        public static InputKey Interact1 { get; } = new InputKey();
+        public static InputKey Interact2 { get; } = new InputKey();
+        public static InputKey Interact3 { get; } = new InputKey();
 
-
-        public static void UpdateKeys()
+        public static void ConfigureInputKey(VirtualKey virtualKey, bool state)
         {
-            // Navigation
-            NavContinue.Pressed = AssignKey(VirtualKey.Enter, CoreVirtualKeyStates.Down);
-            NavPause.Pressed = AssignKey(VirtualKey.Escape, CoreVirtualKeyStates.Down);
-            NavBack.Pressed = AssignKey(VirtualKey.Back, CoreVirtualKeyStates.Down);
+            switch (virtualKey)
+            {
+                case VirtualKey.Enter   : NavContinue.Pressed = state; break;
+                case VirtualKey.Escape  : NavPause.Pressed = state; break;
+                case VirtualKey.Back    : NavBack.Pressed = state; break;
 
-            // Movement
-            MoveUp.Pressed = AssignKey(VirtualKey.W, CoreVirtualKeyStates.Down);
-            MoveLeft.Pressed = AssignKey(VirtualKey.A, CoreVirtualKeyStates.Down);
-            MoveDown.Pressed = AssignKey(VirtualKey.S, CoreVirtualKeyStates.Down);
-            MoveRight.Pressed = AssignKey(VirtualKey.D, CoreVirtualKeyStates.Down);
+                case VirtualKey.W       : MoveUp.Pressed = state; break;
+                case VirtualKey.D       : MoveRight.Pressed = state; break;
+                case VirtualKey.S       : MoveDown.Pressed = state; break;
+                case VirtualKey.A       : MoveLeft.Pressed = state; break;
 
-            // Spellcasting
-            Action1.Pressed = AssignKey(VirtualKey.Up, CoreVirtualKeyStates.Down);
-            Action2.Pressed = AssignKey(VirtualKey.Right, CoreVirtualKeyStates.Down);
-            Action3.Pressed = AssignKey(VirtualKey.Down, CoreVirtualKeyStates.Down);
-            Action4.Pressed = AssignKey(VirtualKey.Left, CoreVirtualKeyStates.Down);
+                case VirtualKey.Up      : Action1.Pressed = state; break;
+                case VirtualKey.Right   : Action2.Pressed = state; break;
+                case VirtualKey.Down    : Action3.Pressed = state; break;
+                case VirtualKey.Left    : Action4.Pressed = state; break;
 
-            // Debugging
-            Interact1.Pressed = AssignKey(VirtualKey.F, CoreVirtualKeyStates.Down);
-            Interact2.Pressed = AssignKey(VirtualKey.G, CoreVirtualKeyStates.Down);
-            Interact3.Pressed = AssignKey(VirtualKey.H, CoreVirtualKeyStates.Down);
-        }
-
-        private static bool AssignKey(VirtualKey key, CoreVirtualKeyStates keyState)
-        {
-            return Window.Current.CoreWindow.GetKeyState(key).HasFlag(keyState);
+                case VirtualKey.F       : Action1.Pressed = state; break;
+                case VirtualKey.G       : Action2.Pressed = state; break;
+                case VirtualKey.H       : Action3.Pressed = state; break;
+            }
         }
     }
 }

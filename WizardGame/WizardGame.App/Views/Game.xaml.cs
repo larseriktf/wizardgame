@@ -9,7 +9,7 @@ using WizardGame.App.Classes.Entities.Characters;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Classes.Input;
 using WizardGame.App.Interfaces;
-
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -20,31 +20,40 @@ namespace WizardGame.App.Views
     /// </summary>
     public sealed partial class Game : Page
     {
-        readonly DispatcherTimer gameTimer = new DispatcherTimer();
-
         public Game()
         {
             InitializeComponent();
         }
 
-        private void Step(object sender, object e)
-        {   // Every tick
-            KeyBoard.UpdateKeys();
-
-
-        }
-
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            gameTimer.Tick += Step;
-            gameTimer.Interval = TimeSpan.FromMilliseconds(16);
-            gameTimer.Start();
+            // Subscribe keyboard input
+            Window.Current.CoreWindow.KeyDown += KeyDown_UIThread;
+            Window.Current.CoreWindow.KeyUp += KeyUp_UIThread;
         }
 
         void OnUnloaded(object sender, RoutedEventArgs e)
         {   // Best practice: Prevent simple memory leak
             canvas.RemoveFromVisualTree();
             canvas = null;
+
+            // Unsubscribe keyboard input
+            Window.Current.CoreWindow.KeyDown -= KeyDown_UIThread;
+            Window.Current.CoreWindow.KeyDown -= KeyUp_UIThread;
+        }
+
+        private void KeyDown_UIThread(CoreWindow sender, KeyEventArgs args)
+        {
+            args.Handled = true;
+
+            var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, true));
+        }
+
+        private void KeyUp_UIThread(CoreWindow sender, KeyEventArgs args)
+        {
+            args.Handled = true;
+
+            var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, false));
         }
 
         private void OnCreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
@@ -74,7 +83,10 @@ namespace WizardGame.App.Views
             MapEditor.LoadMap(0, sender.Device);
         }
 
+        private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
+        {
 
+        }
 
         private void OnDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
