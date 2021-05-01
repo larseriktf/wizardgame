@@ -14,17 +14,17 @@ namespace WizardGame.App.Classes.MapMaker
             this.bitmap = bitmap;
         }
 
+        public void Update()
+        {
+
+        }
+
         public void Draw(CanvasDrawingSession ds)
         {
             if (bitmap != null)
             {
                 ds.DrawImage(bitmap, X, Y);
             }
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

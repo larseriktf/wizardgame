@@ -28,10 +28,15 @@ namespace WizardGame.App.Classes.Entities.Characters
             AddEntity("layer_hud", new HealthBar());
         }
 
-        public void Draw(CanvasDrawingSession ds)
+        public void Update()
         {
             UpdateMovement();
             RegisterSpells();
+        }
+
+        public void Draw(CanvasDrawingSession ds)
+        {
+            
 
             if (Sign(hsp) != 0)
             {
@@ -97,11 +102,6 @@ namespace WizardGame.App.Classes.Entities.Characters
             {
                 TeleportationSpell.Teleport();
             });
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

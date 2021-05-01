@@ -21,6 +21,11 @@ namespace WizardGame.App.Classes.Entities.HudElements
             Y = 64;
         }
 
+        public void Update()
+        {
+
+        }
+
         public void Draw(CanvasDrawingSession ds)
         {
             using (var spriteBatch = ds.CreateSpriteBatch())
@@ -65,11 +70,6 @@ namespace WizardGame.App.Classes.Entities.HudElements
                     new Vector2(XScale, YScale),
                     0);
             }
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

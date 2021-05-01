@@ -65,12 +65,14 @@ namespace WizardGame.App.Classes.Entities.Characters
             }
         }
 
-        public void Draw(CanvasDrawingSession ds)
+        public void Update()
         {
-
             DetectStateChange();
             UpdateMovement();
+        }
 
+        public void Draw(CanvasDrawingSession ds)
+        {
             if (animTimer == null)
             {
                 ImageX = random.Next(0, 3);
@@ -234,11 +236,6 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             X += (float)(speed * Cos(angle));
             Y += (float)(speed * Sin(angle));
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

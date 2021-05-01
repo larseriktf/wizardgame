@@ -24,11 +24,14 @@ namespace WizardGame.App.Classes.Entities.Spells
             speed = 20;
         }
 
-        public void Draw(CanvasDrawingSession ds)
+        public void Update()
         {
             UpdateMovement();
             HandleState();
+        }
 
+        public void Draw(CanvasDrawingSession ds)
+        {
             if (direction < 3 * PI / 2 && direction >= PI / 2)
             {
                 YScale = -1;
@@ -123,11 +126,6 @@ namespace WizardGame.App.Classes.Entities.Spells
                 IceShard.Spawner(X, Y, Rnd.Next(3, 5));
                 state = 3;
             }
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

@@ -13,9 +13,7 @@
     <Grid Width="auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="512"/>
-            <ColumnDefinition Width="64"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="64"/>
         </Grid.ColumnDefinitions>
 
         <canvas:CanvasAnimatedControl x:Name="canvas"
@@ -31,6 +29,13 @@
         <Button Grid.Column="0"
                 Click="OnTogglePauseMenu"
                 Content="Pause"/>
+
+        <Rectangle Fill="Black"
+                   x:Name="DimBox"
+                   Opacity="0.5"
+                   Visibility="Collapsed"
+                   Width="auto"
+                   Height="auto"/>
 
         <Grid x:Name="PausedMenu"
               Grid.Column="0"
@@ -65,7 +70,7 @@
         </Grid>
 
 
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="786"/>

@@ -31,7 +31,7 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             fadeOutTimer.Start();
         }
 
-        public void Draw(CanvasDrawingSession ds)
+        public void Update()
         {
             HandleState();
 
@@ -41,7 +41,10 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             vsp = vspeed;
 
             UpdateCollisions();
+        }
 
+        public void Draw(CanvasDrawingSession ds)
+        {
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
                 spriteSheet.DrawSpriteExt(
@@ -78,11 +81,6 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
                     Y = y
                 });
             }
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

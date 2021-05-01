@@ -24,17 +24,20 @@ namespace WizardGame.App.Classes.Entities.Spells
             vsp = -8;
         }
 
-        public void Draw(CanvasDrawingSession ds)
+        public void Update()
         {
             UpdateMovement();
             HandleState();
 
+            rotation += rotationIncrease;
+        }
+
+        public void Draw(CanvasDrawingSession ds)
+        {
             if (Sign(hsp) != 0)
             {
                 XScale = Sign(hsp);
             }
-
-            rotation += rotationIncrease;
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
@@ -101,11 +104,6 @@ namespace WizardGame.App.Classes.Entities.Spells
                     state++;
                 }
             }
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

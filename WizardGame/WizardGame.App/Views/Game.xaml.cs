@@ -118,11 +118,15 @@ namespace WizardGame.App.Views
             if (PausedMenu.Visibility == Visibility.Visible)
             {
                 PausedMenu.Visibility = Visibility.Collapsed;
+                DimBox.Visibility = Visibility.Collapsed;
                 GameFrame.Content = null;
+                canvas.Paused = false;
             }
             else
             {
                 PausedMenu.Visibility = Visibility.Visible;
+                DimBox.Visibility = Visibility.Visible;
+                canvas.Paused = true;
             }
         }
 

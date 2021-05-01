@@ -22,10 +22,13 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             fadeOutTimer.Start();
         }
 
-        public void Draw(CanvasDrawingSession ds)
+        public void Update()
         {
             HandleState();
+        }
 
+        public void Draw(CanvasDrawingSession ds)
+        {
             alphaValue -= 0.05f;
 
             if (alphaValue <= 1)
@@ -68,11 +71,6 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
                 Y = y,
                 ImageX = imageX
             });
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

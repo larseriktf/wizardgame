@@ -45,11 +45,14 @@ namespace WizardGame.App.Classes.Entities.Characters
             invincibilityTimer.Start();
         }
 
-        public void Draw(CanvasDrawingSession ds)
+        public void Update()
         {
             UpdateMovement();
             HandleCollisions();
+        }
 
+        public void Draw(CanvasDrawingSession ds)
+        {
             if (HP <= 0)
             {
                 DustCloud.Spawner(X, Y, Rnd.Next(4, 7));
@@ -114,11 +117,6 @@ namespace WizardGame.App.Classes.Entities.Characters
             vsp += gravity;
 
             UpdateCollisions();
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }

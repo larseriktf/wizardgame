@@ -6,6 +6,7 @@ using WizardGame.App.Interfaces;
 
 namespace WizardGame.App.Classes.MapMaker
 {
+    // @TODO: Remove this class, as it is unecessary right now
     public class MapLayout : Entity, IDrawable, ILayout
     {
         public int[][] Layout { get; set; } // multidimensional array
@@ -16,6 +17,11 @@ namespace WizardGame.App.Classes.MapMaker
         {
             BitMapUri = bitMapUri;
             Layout = layout;
+        }
+
+        public void Update()
+        {
+
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -47,11 +53,6 @@ namespace WizardGame.App.Classes.MapMaker
             {
 
             }
-        }
-
-        public void Update()
-        {
-            
         }
     }
 }
