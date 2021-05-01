@@ -4,11 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
+using WizardGame.DataAccess;
 
 namespace WizardGame.Api
 {
@@ -24,7 +22,23 @@ namespace WizardGame.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            // For local database
+            var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Game.Database;Trusted_Connection=True;ConnectRetryCount=0";
+            services.AddDbContext<GameContext>(options => options.UseSqlServer(connection));
+
+            // For Donau
+            //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
+            //{
+            //    DataSource = @"donau.hiof.no",
+            //    InitialCatalog = "lefaber",
+            //    PersistSecurityInfo = true,
+            //    UserID = "lefaber",
+            //    Password = "tgJjs\"2d"
+            //};
+            //services.AddDbContext<GameContext>(options => options.UseSqlServer(builder.ConnectionString.ToString()));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,15 +48,13 @@ namespace WizardGame.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
+            else
             {
-                endpoints.MapControllers();
-            });
+                app.UseHsts();
+            }
+
+            app.UseHttpsRedirection();
+            app.UseMvc();
         }
     }
 }

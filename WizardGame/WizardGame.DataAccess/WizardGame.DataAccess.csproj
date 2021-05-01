@@ -12,4 +12,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WizardGame.Model\WizardGame.Model.csproj" />
+  </ItemGroup>
+
 </Project>
