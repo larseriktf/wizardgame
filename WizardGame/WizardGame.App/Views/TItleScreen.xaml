@@ -30,8 +30,8 @@
             </Grid.RowDefinitions>
 
             <TextBlock Style="{StaticResource MainTitle}"
-                   Grid.Row="0"
-                   Text="Phantastic Wizard"/>
+                       Grid.Row="0"
+                       Text="Phantastic Wizard"/>
 
             <StackPanel Style="{StaticResource MenuStackPanel}"
                         Orientation="Vertical"

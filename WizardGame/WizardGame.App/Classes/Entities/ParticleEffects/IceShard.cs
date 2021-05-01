@@ -79,5 +79,10 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
                 });
             }
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }

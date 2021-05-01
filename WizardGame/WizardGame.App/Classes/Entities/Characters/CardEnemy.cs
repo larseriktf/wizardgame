@@ -235,5 +235,10 @@ namespace WizardGame.App.Classes.Entities.Characters
             X += (float)(speed * Cos(angle));
             Y += (float)(speed * Sin(angle));
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }

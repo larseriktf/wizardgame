@@ -66,5 +66,10 @@ namespace WizardGame.App.Classes.Entities.HudElements
                     0);
             }
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }

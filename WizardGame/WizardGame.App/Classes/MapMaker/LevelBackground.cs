@@ -21,5 +21,10 @@ namespace WizardGame.App.Classes.MapMaker
                 ds.DrawImage(bitmap, X, Y);
             }
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }

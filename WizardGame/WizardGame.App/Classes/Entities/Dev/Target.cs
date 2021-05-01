@@ -33,6 +33,11 @@ namespace WizardGame.App.Classes.Entities.Dev
             ds.DrawImage(bitmap, X - 4, Y - 4);
         }
 
+        public void Update()
+        {
+            
+        }
+
         private void Shake(float threshold, float incrementX, float incrementY)
         {   // Pins point to intersection of two moving lines to make a shake effect
             Vector3 f1 = new Vector3(); // X = A, Y = B, Z = C

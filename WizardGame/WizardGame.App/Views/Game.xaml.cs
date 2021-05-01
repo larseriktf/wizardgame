@@ -10,6 +10,8 @@ using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Classes.Input;
 using WizardGame.App.Interfaces;
 using Windows.UI.Core;
+using System.Diagnostics;
+using WizardGame.App.Services;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -45,6 +47,12 @@ namespace WizardGame.App.Views
         private void KeyDown_UIThread(CoreWindow sender, KeyEventArgs args)
         {
             args.Handled = true;
+
+            // @TODO: Move this out of this event handler
+            if (args.VirtualKey == Windows.System.VirtualKey.Escape)
+            {
+                PausedMenu.Visibility = Visibility.Collapsed;
+            }
 
             var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, true));
         }
@@ -85,7 +93,10 @@ namespace WizardGame.App.Views
 
         private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-
+            foreach (IDrawable entity in EntityManager.Entities.ToList())
+            {
+                entity.Update();
+            }
         }
 
         private void OnDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
@@ -100,6 +111,39 @@ namespace WizardGame.App.Views
 
             CanvasDebugger.DrawMessages(ds);
             CanvasDebugger.TestDrawing(ds);
+        }
+
+        private void OnTogglePauseMenu(object sender, RoutedEventArgs e)
+        {
+            if (PausedMenu.Visibility == Visibility.Visible)
+            {
+                PausedMenu.Visibility = Visibility.Collapsed;
+                GameFrame.Content = null;
+            }
+            else
+            {
+                PausedMenu.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void OnOpenSpellBook(object sender, RoutedEventArgs e)
+        {
+            GameFrame.Navigate(typeof(SpellBookPage));
+        }
+
+        private void OnOpenSettings(object sender, RoutedEventArgs e)
+        {
+            GameFrame.Navigate(typeof(SettingsPage));
+        }
+
+        private void OnOpenMainMenu(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate<TitleScreen>();
+        }
+
+        private void OnSaveAndQuit(object sender, RoutedEventArgs e)
+        {
+            Windows.UI.Xaml.Application.Current.Exit();
         }
     }
 }

@@ -69,5 +69,10 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
                 ImageX = imageX
             });
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }

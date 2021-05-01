@@ -6,6 +6,7 @@ using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Entities.Spells;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
+using WizardGame.App.Views;
 using static System.Math;
 using static WizardGame.App.Classes.EntityManager;
 using static WizardGame.App.Classes.Input.KeyBoard;
@@ -96,6 +97,11 @@ namespace WizardGame.App.Classes.Entities.Characters
             {
                 TeleportationSpell.Teleport();
             });
+        }
+
+        public void Update()
+        {
+            
         }
     }
 }

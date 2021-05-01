@@ -115,5 +115,10 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             UpdateCollisions();
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }

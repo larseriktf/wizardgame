@@ -48,5 +48,10 @@ namespace WizardGame.App.Classes.MapMaker
 
             }
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }

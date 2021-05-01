@@ -102,5 +102,10 @@ namespace WizardGame.App.Classes.Entities.Spells
                 }
             }
         }
+
+        public void Update()
+        {
+            
+        }
     }
 }
