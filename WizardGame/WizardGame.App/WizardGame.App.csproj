@@ -249,6 +249,7 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\Settings\configuration.png" />
     <Content Include="Assets\Images\TitleScreen\fantasyLand.jpg" />
     <Content Include="Assets\Sprites\Hud\HealthBarBackground.png" />
     <Content Include="Assets\Sprites\Hud\HealthBarForeground.png" />

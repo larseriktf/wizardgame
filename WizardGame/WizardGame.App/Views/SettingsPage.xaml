@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:WizardGame.Model"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
@@ -15,7 +16,11 @@
                    Text="Settings"/>
 
             <Pivot>
-                <PivotItem Header="General">
+                <PivotItem>
+                    <PivotItem.Header >
+                        <PivotHeaderItem  Content="General"
+                                          Foreground="MediumOrchid"/>
+                    </PivotItem.Header>
                     <!-- Pivot content here -->
                     <StackPanel>
                         <Grid Style="{StaticResource SettingsRow}">
@@ -48,7 +53,11 @@
                     </StackPanel>
 
                 </PivotItem>
-                <PivotItem Header="Keybindings">
+                <PivotItem>
+                    <PivotItem.Header >
+                        <PivotHeaderItem  Content="Keybindings"
+                                          Foreground="MediumOrchid"/>
+                    </PivotItem.Header>
                     <!-- Pivot content here -->
                     <ScrollViewer>
                         <StackPanel>
@@ -69,25 +78,37 @@
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>
-                <PivotItem Header="Configurations">
+                <PivotItem>
+                    <PivotItem.Header >
+                        <PivotHeaderItem  Content="Configurations"
+                                          Foreground="MediumOrchid"/>
+                    </PivotItem.Header>
                     <!-- Pivot content here -->
                     <ScrollViewer>
                         <StackPanel>
                             <GridView x:Name="ConfigurationsGridView"
-                                          
-                                          ItemClick="OnInspectConfiguration"
-                                          IsItemClickEnabled="True"
-                                          SelectionMode="Single"
-                                          />
-                            <!--
+                                      ItemsSource="{x:Bind ViewModel.Configurations}"
+                                      ItemClick="OnInspectConfiguration"
+                                      IsItemClickEnabled="True"
+                                      SelectionMode="Single">
 
-                                ItemTemplate="{StaticResource ConfigurationsTemplate}"
-
-                                <DataTemplate x:Key="ConfigurationsTemplate">
-                                    <TextBlock Text="Bruh"/>
-                                </DataTemplate>
-
-                                -->
+                                <GridView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:Configuration">
+                                        <Grid Width="128"
+                                              Height="128">
+                                            <Image Source="/Assets/Images/Settings/configuration.png"
+                                                   Stretch="UniformToFill"/>
+                                            <TextBlock Text="{x:Bind ConfigurationName}"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"
+                                                       TextWrapping="Wrap"
+                                                       FontFamily="{StaticResource CurseCasual}"
+                                                       FontSize="20"/>
+                                        </Grid>
+                                        
+                                    </DataTemplate>
+                                </GridView.ItemTemplate>
+                            </GridView>
                         </StackPanel>
                     </ScrollViewer>
                 </PivotItem>

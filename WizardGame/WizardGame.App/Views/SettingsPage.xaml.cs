@@ -1,25 +1,27 @@
 ﻿using System;
-
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WizardGame.App.DataAccess;
 using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
+using WizardGame.Model;
 
 namespace WizardGame.App.Views
 {
     public sealed partial class SettingsPage : Page
     {
+        public GamePageViewModel ViewModel { get; } = new GamePageViewModel();
 
         public SettingsPage()
         {
             InitializeComponent();
+
+            Loaded += OnLoadedAsync;
         }
 
-        private void OnClickToGoBack(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
         {
-            if (NavigationService.CanGoBack)
-            {
-                NavigationService.GoBack();
-            }
+            await ViewModel.LoadConfigurationsAsync();
         }
 
         private void OnInspectConfiguration(object sender, ItemClickEventArgs e)
