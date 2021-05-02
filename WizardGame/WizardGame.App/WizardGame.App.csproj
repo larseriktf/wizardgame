@@ -163,7 +163,6 @@
     <Compile Include="Classes\MapMaker\MapLayout.cs" />
     <Compile Include="Classes\Graphics\SpriteSheet.cs" />
     <Compile Include="Classes\RandomProvider.cs" />
-    <Compile Include="DataAccess\ConfigurationsDataAccess.cs" />
     <Compile Include="Helpers\Observable.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />

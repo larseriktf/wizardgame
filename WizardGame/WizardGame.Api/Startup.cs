@@ -25,19 +25,19 @@ namespace WizardGame.Api
             services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
             // For local database
-            var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Game.Database;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<GameContext>(options => options.UseSqlServer(connection));
+            //var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Game.Database;Trusted_Connection=True;ConnectRetryCount=0";
+            //services.AddDbContext<GameContext>(options => options.UseSqlServer(connection));
 
             // For Donau
-            //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
-            //{
-            //    DataSource = @"donau.hiof.no",
-            //    InitialCatalog = "lefaber",
-            //    PersistSecurityInfo = true,
-            //    UserID = "lefaber",
-            //    Password = "tgJjs\"2d"
-            //};
-            //services.AddDbContext<GameContext>(options => options.UseSqlServer(builder.ConnectionString.ToString()));
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
+            {
+                DataSource = @"donau.hiof.no",
+                InitialCatalog = "lefaber",
+                PersistSecurityInfo = true,
+                UserID = "lefaber",
+                Password = "tgJjs\"2d"
+            };
+            services.AddDbContext<GameContext>(options => options.UseSqlServer(builder.ConnectionString.ToString()));
 
         }
 

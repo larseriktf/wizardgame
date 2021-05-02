@@ -23,14 +23,14 @@ namespace WizardGame.Api.Controllers
 
         // GET: api/Game
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Configuration>>> GetConfigurations()
+        public async Task<ActionResult<IEnumerable<Configuration>>> GetConfigurationsAsync()
         {
             return await _context.Configurations.ToListAsync();
         }
 
         // GET: api/Game/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Configuration>> GetConfiguration(int id)
+        public async Task<ActionResult<Configuration>> GetConfigurationAsync(int id)
         {
             var configuration = await _context.Configurations.FindAsync(id);
 
@@ -46,7 +46,7 @@ namespace WizardGame.Api.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutConfiguration(int id, Configuration configuration)
+        public async Task<IActionResult> PutConfigurationAsync(int id, Configuration configuration)
         {
             if (id != configuration.Id)
             {
@@ -78,7 +78,7 @@ namespace WizardGame.Api.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Configuration>> PostConfiguration(Configuration configuration)
+        public async Task<ActionResult<Configuration>> PostConfigurationAsync(Configuration configuration)
         {
             _context.Configurations.Add(configuration);
             await _context.SaveChangesAsync();
@@ -88,7 +88,7 @@ namespace WizardGame.Api.Controllers
 
         // DELETE: api/Game/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Configuration>> DeleteConfiguration(int id)
+        public async Task<ActionResult<Configuration>> DeleteConfigurationAsync(int id)
         {
             var configuration = await _context.Configurations.FindAsync(id);
             if (configuration == null)
