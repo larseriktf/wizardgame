@@ -16,7 +16,7 @@ namespace WizardGame.App.Views
 
         private void OnStartGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            NavigationService.Navigate<Game>();
+            NavigationService.Navigate<GamePage>();
         }
 
         private void OnContinueGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)

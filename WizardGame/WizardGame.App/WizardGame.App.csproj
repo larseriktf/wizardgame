@@ -163,6 +163,7 @@
     <Compile Include="Classes\MapMaker\MapLayout.cs" />
     <Compile Include="Classes\Graphics\SpriteSheet.cs" />
     <Compile Include="Classes\RandomProvider.cs" />
+    <Compile Include="DataAccess\ConfigurationsDataAccess.cs" />
     <Compile Include="Helpers\Observable.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
@@ -170,7 +171,7 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\GamePageViewModel.cs" />
     <Compile Include="Views\PausePage.xaml.cs">
       <DependentUpon>PausePage.xaml</DependentUpon>
     </Compile>
@@ -183,8 +184,8 @@
     <Compile Include="Views\TItleScreen.xaml.cs">
       <DependentUpon>TItleScreen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Game.xaml.cs">
-      <DependentUpon>Game.xaml</DependentUpon>
+    <Compile Include="Views\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -234,7 +235,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Game.xaml">
+    <Page Include="Views\GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -295,13 +296,15 @@
       <Project>{F799BF5C-9047-49DC-9515-62A7A2244217}</Project>
       <Name>WizardGame.App.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WizardGame.Model\WizardGame.Model.csproj">
+      <Project>{354ee807-f45b-453c-b03a-2533958c937e}</Project>
+      <Name>WizardGame.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataAccess\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

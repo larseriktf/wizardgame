@@ -12,6 +12,7 @@ using WizardGame.App.Interfaces;
 using Windows.UI.Core;
 using System.Diagnostics;
 using WizardGame.App.Services;
+using WizardGame.App.ViewModels;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -20,9 +21,11 @@ namespace WizardGame.App.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Game : Page
+    public sealed partial class GamePage : Page
     {
-        public Game()
+        public GamePageViewModel ViewModel { get; } = new GamePageViewModel();
+
+        public GamePage()
         {
             InitializeComponent();
         }
