@@ -37,7 +37,7 @@ namespace WizardGame.Api
                 UserID = "lefaber",
                 Password = "tgJjs\"2d"
             };
-            services.AddDbContext<GameContext>(options => options.UseSqlServer(builder.ConnectionString.ToString()));
+            services.AddDbContext<GameContext>(options => options.UseSqlServer(builder.ConnectionString));
 
         }
 

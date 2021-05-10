@@ -9,8 +9,8 @@ using WizardGame.DataAccess;
 namespace WizardGame.DataAccess.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20210502133349_Added ConfigurationName")]
-    partial class AddedConfigurationName
+    [Migration("20210502183637_Donau Migration")]
+    partial class DonauMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

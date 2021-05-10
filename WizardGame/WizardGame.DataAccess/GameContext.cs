@@ -174,30 +174,5 @@ namespace WizardGame.DataAccess
                     Interact3 = "C"
                 });
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // New Connection Method
-
-            // For Donau
-            //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
-            //{
-            //    DataSource = @"donau.hiof.no",
-            //    InitialCatalog = "lefaber",
-            //    PersistSecurityInfo = true,
-            //    UserID = "lefaber",
-            //    Password = "tgJjs\"2d"
-            //};
-
-            // For local
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
-            {
-                DataSource = @"(localdb)\MSSQLLocalDB",
-                InitialCatalog = "Game.Database",
-                IntegratedSecurity = true
-            };
-
-            optionsBuilder.UseSqlServer(builder.ConnectionString.ToString());
-        }
     }
 }
