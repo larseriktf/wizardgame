@@ -137,6 +137,7 @@
     <Compile Include="Classes\CanvasDebugger.cs" />
     <Compile Include="Classes\Entities\Characters\Bunny.cs" />
     <Compile Include="Classes\Entities\Characters\CactusEnemy.cs" />
+    <Compile Include="Classes\Entities\Characters\CactusPot.cs" />
     <Compile Include="Classes\Entities\Characters\CardEnemy.cs" />
     <Compile Include="Classes\Entities\Characters\Character.cs" />
     <Compile Include="Classes\Entities\Collidable.cs" />
@@ -251,6 +252,7 @@
   <ItemGroup>
     <Content Include="Assets\Images\Settings\configuration.png" />
     <Content Include="Assets\Images\TitleScreen\fantasyLand.jpg" />
+    <Content Include="Assets\Sprites\Characters\CactusEnemy\spr_cactus_enemy.png" />
     <Content Include="Assets\Sprites\Hud\HealthBarBackground.png" />
     <Content Include="Assets\Sprites\Hud\HealthBarForeground.png" />
     <Content Include="Assets\Sprites\Hud\HealthBarLiquid.png" />

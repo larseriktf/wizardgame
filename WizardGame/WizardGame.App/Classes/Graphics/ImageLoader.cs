@@ -79,6 +79,13 @@ namespace WizardGame.App.Classes.Graphics
                     defaultPath + "/Hud/spr_health_bar.png",
                     new Vector2(512, 96)));
 
+            SpriteSheets.Add(
+                "sheet_cactus_enemy",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/Characters/CactusEnemy/spr_cactus_enemy.png",
+                    new Vector2(64, 64)));
+
             // Load BitMaps
             Bitmaps.Add(
                 "bitmap_level1",

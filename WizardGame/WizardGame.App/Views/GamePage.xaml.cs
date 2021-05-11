@@ -83,10 +83,15 @@ namespace WizardGame.App.Views
                 X = 400,
                 Y = 400
             });
-            EntityManager.AddEntity("layer1", new Bunny()
+            //EntityManager.AddEntity("layer1", new Bunny()
+            //{
+            //    X = 1000,
+            //    Y = 200
+            //});
+            EntityManager.AddEntity("layer1", new CactusPot()
             {
-                X = 1000,
-                Y = 200
+                X = (8 * 128) + 64,
+                Y = (4 * 128) + 96
             });
 
             // Generate and load maps

@@ -14,34 +14,16 @@ using static WizardGame.App.Classes.Input.KeyBoard;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
-    class CactusEnemy : Collidable, IDrawable
+    class CactusPot : Collidable, IDrawable
     {
         private readonly SpriteSheet spriteSheet;
-        private double direction = 0;
-        public double Direction
-        {
-            get
-            {
-                return direction;
-            }
-            set
-            {
-                direction = value;
-            }
-        }
-
-        // Sprite values
-        private int sprTop = 4;
-        private int sprMiddle = 1;
-        private int sprBottom = 5;
-        private int sprConnect = 3;
-        private int sprCurrent = 0;
+        private double direction = PI / 2;
 
         // Cactus placing values
         private bool cactusPlaced = false;
         private bool allowPlacement = true;
 
-        public CactusEnemy() 
+        public CactusPot()
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_cactus_enemy");
             Width = 64;
@@ -51,7 +33,11 @@ namespace WizardGame.App.Classes.Entities.Characters
         public void Update()
         {
             PlaceCactus();
-            HandleSprites();
+
+            if (Sign(hsp) != 0)
+            {
+                XScale = Sign(hsp);
+            }
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -61,7 +47,7 @@ namespace WizardGame.App.Classes.Entities.Characters
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
                     new Vector2(X, Y),
-                    new Vector2(sprCurrent, ImageY),
+                    new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
                     0,
                     new Vector2(XScale, YScale),
@@ -91,45 +77,6 @@ namespace WizardGame.App.Classes.Entities.Characters
                 }
 
                 cactusPlaced = true;
-            }
-        }
-
-        private void HandleSprites()
-        {
-            if (Sign(hsp) != 0)
-            {
-                XScale = Sign(hsp);
-            }
-
-            ControlAngle(ref direction);
-
-            if (direction > (PI / 4) && direction < (3 * PI / 4)
-             || direction > (5 * PI / 4) && direction < (2 * PI))
-            {   // Direction is vertical
-                sprTop = 4;
-                sprMiddle = 1;
-                sprBottom = 5;
-            }
-            else
-            {   // Direction is horizontal
-                sprTop = 6;
-                sprMiddle = 2;
-                sprBottom = 7;
-            }
-
-            // @TODO: Add logic to change sprCurrent, depending on placement of other cactus enemies
-            sprCurrent = sprMiddle;
-        }
-
-        private void ControlAngle(ref double angle)
-        {   // Contain Angle within its bounds
-            if (angle >= 2 * PI)
-            {
-                angle -= 2 * PI;
-            }
-            else if (angle < 0)
-            {
-                angle += 2 * PI;
             }
         }
     }
