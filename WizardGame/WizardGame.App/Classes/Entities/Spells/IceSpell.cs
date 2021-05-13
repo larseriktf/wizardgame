@@ -21,11 +21,12 @@ namespace WizardGame.App.Classes.Entities.Spells
             ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
             Width = 96;
             Height = 48;
-            speed = 20;
+            moveSpeed = 32;
         }
 
         public void Update()
         {
+            MakeTrail();
             UpdateMovement();
             HandleState();
         }
@@ -60,6 +61,11 @@ namespace WizardGame.App.Classes.Entities.Spells
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Yellow);
         }
 
+        private void MakeTrail()
+        {
+            IceCrystals.Spawner(X, Y, 1);
+        }
+
         private void HandleState()
         {
             switch (state)
@@ -84,8 +90,8 @@ namespace WizardGame.App.Classes.Entities.Spells
             // Calculate movement
             ControlAngle(ref direction);
 
-            hsp = (float)(speed * Cos(direction));
-            vsp = (float)(speed * Sin(direction));
+            hsp = (float)(moveSpeed * Cos(direction));
+            vsp = (float)(moveSpeed * Sin(direction));
 
             X += hsp;
             Y += vsp;

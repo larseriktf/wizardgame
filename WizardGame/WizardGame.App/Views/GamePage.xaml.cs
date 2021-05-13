@@ -89,7 +89,7 @@ namespace WizardGame.App.Views
             //    X = 1000,
             //    Y = 200
             //});
-            EntityManager.AddEntity("layer1", new CactusPot()
+            EntityManager.AddEntity("layer1", new Cactus()
             {
                 X = (8 * 128) + 64,
                 Y = (4 * 128) + 96

@@ -13,8 +13,6 @@ namespace WizardGame.App.Classes.Entities
         protected float vsp;
         protected float hsp;
 
-        protected int state = 0;
-
         protected void UpdateCollisions()
         {
             // Horizontal Collision

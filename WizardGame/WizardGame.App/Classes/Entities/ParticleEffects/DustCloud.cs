@@ -36,13 +36,6 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             double scale = Rnd.NextDouble() * (1.2 - 0.8) + 0.8;
             XScale = (float)scale;
             YScale = (float)scale;
-
-            fadeOutTimer = new Timer(fadeOutStartTime);
-            fadeOutTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
-            {
-                state++;
-            };
-            fadeOutTimer.Start();
         }
 
         public void Update()

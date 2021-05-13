@@ -6,9 +6,17 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
 {
     public abstract class Particle : PhysicsObject
     {
-        protected SpriteSheet spriteSheet;
-        protected int fadeTime = 1000;
-        protected int fadeOutStartTime = new Random().Next(800, 1200);
         protected Timer fadeOutTimer;
+        protected int state = 0;
+
+        public Particle(int lifeSpan = 1000)
+        {
+            fadeOutTimer = new Timer(lifeSpan);
+            fadeOutTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
+            {
+                state++;
+            };
+            fadeOutTimer.Start();
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace WizardGame.App.Classes.Entities.Spells
 {
     public abstract class Spell : PhysicsObject
     {
-        protected SpriteSheet spriteSheet;
+        protected int state = 0;
         protected double direction = 0;
         public double Direction
         {
@@ -17,8 +17,6 @@ namespace WizardGame.App.Classes.Entities.Spells
                 direction = value;
             }
         }
-
-        protected double speed = 12;
         protected int damage = 1;
     }
 }

@@ -140,6 +140,7 @@
     <Compile Include="Classes\Entities\Enemies\CactusPot.cs" />
     <Compile Include="Classes\Entities\Enemies\MagicCard.cs" />
     <Compile Include="Classes\Entities\Enemies\Enemy.cs" />
+    <Compile Include="Classes\Entities\ParticleEffects\IceCrystals.cs" />
     <Compile Include="Classes\Entities\PhysicsObject.cs" />
     <Compile Include="Classes\Entities\Entity.cs" />
     <Compile Include="Classes\Entities\Player.cs" />
@@ -263,6 +264,7 @@
     <Content Include="Assets\Sprites\Levels\abandonedRoom.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_cactus_debris.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_dust_cloud.png" />
+    <Content Include="Assets\Sprites\ParticleEffects\spr_ice_crystals.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_ice_shards.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_onomatopoeia.png" />
     <Content Include="Assets\Sprites\Spells\spr_spell_ice.png" />

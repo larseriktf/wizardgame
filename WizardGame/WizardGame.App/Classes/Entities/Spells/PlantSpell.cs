@@ -81,7 +81,7 @@ namespace WizardGame.App.Classes.Entities.Spells
         private void UpdateMovement()
         {
             // Calculate movement
-            hsp = (float)speed * Sign(direction);
+            hsp = (float)moveSpeed * Sign(direction);
             vsp += grv;
 
             X += hsp;

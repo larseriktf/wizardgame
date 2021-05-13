@@ -93,6 +93,13 @@ namespace WizardGame.App.Classes.Graphics
                     defaultPath + "/ParticleEffects/spr_cactus_debris.png",
                     new Vector2(24, 24)));
 
+            SpriteSheets.Add(
+                "sheet_ice_crystals",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/ParticleEffects/spr_ice_crystals.png",
+                    new Vector2(24, 24)));
+
             // Load BitMaps
             Bitmaps.Add(
                 "bitmap_level1",

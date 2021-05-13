@@ -13,13 +13,6 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         public Onomatopoeia()
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_onomatopoeia_particle");
-
-            fadeOutTimer = new Timer(fadeOutStartTime);
-            fadeOutTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
-            {
-                state++;
-            };
-            fadeOutTimer.Start();
         }
 
         public void Update()

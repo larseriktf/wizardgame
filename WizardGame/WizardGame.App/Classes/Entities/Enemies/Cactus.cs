@@ -38,12 +38,15 @@ namespace WizardGame.App.Classes.Entities.Enemies
         private int sprMiddle = 1;
         private int sprBottom = 5;
         private int sprConnect = 3;
-        private int sprCurrent = 0;
+        private int sprCurrent = 3;
 
         // Cactus placing values
         private bool allowPlacement = false;
         private Timer placementTimer;
         private int placeTime = 1000;
+
+        // @TODO: Remove this
+        private bool colliding = false;
 
         public Cactus() 
         {
@@ -81,6 +84,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
 
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
             ds.DrawRectangle(X - Width / 2, Y - Height / 2 - 64, Width, Height, Colors.Red);
+            ds.DrawText("Colliding: " + colliding, X + 64, Y, Colors.Blue);
         }
 
         private void PlaceCactus()
@@ -94,8 +98,12 @@ namespace WizardGame.App.Classes.Entities.Enemies
                 float newY = Y - 64;
 
                 // if area next of cactus relative to angle is available, place new cactus
-                if (!CheckCollisionMultiple(newX, newY, Width, Height, typeof(Solid))
-                 && !CheckCollisionMultiple(newX, newY, Width, Height, typeof(Cactus)))
+                if (CheckCollisionMultiple(newX, newY, Width, Height, typeof(Solid))
+                 || CheckCollisionMultiple(newX, newY, Width, Height, typeof(Cactus)))
+                {
+                    colliding = true;
+                }
+                if (!colliding)
                 {
                     AddEntity("layer1", new Cactus()
                     {
@@ -133,6 +141,8 @@ namespace WizardGame.App.Classes.Entities.Enemies
             }
 
             // @TODO: Add logic to change sprCurrent, depending on placement of other cactus enemies
+
+
             sprCurrent = sprMiddle;
         }
 
@@ -146,6 +156,12 @@ namespace WizardGame.App.Classes.Entities.Enemies
             {
                 angle += 2 * PI;
             }
+        }
+
+        protected override void Die()
+        {
+            CactusDebris.Spawner(X, Y, Rnd.Next(4, 7));
+            RemoveEntity(this);
         }
     }
 }

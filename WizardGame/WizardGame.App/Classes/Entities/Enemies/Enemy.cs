@@ -12,6 +12,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
         public bool Invincible { get; set; } = false;
         protected readonly Timer invincibilityTimer = new Timer();
         private readonly int invincibleTime = 250;
+        protected int state = 0;
 
         public Enemy()
         {
