@@ -189,10 +189,10 @@ namespace WizardGame.App.Classes
         public static bool CheckCollisionSingle(float x, float y, int width, int height, Entity entity)
         {
             // Run four checks to see if it collides
-            if ((x + width / 2) >= entity.X
-             && (x - width / 2) <= (entity.X + entity.Width)
-             && (y + height / 2) >= entity.Y
-             && (y - height / 2) <= (entity.Y + entity.Height))
+            if ((x + width / 2)  >= (entity.X - entity.Width / 2)
+             && (x - width / 2)  <= (entity.X + entity.Width / 2)
+             && (y + height / 2) >= (entity.Y - entity.Height / 2)
+             && (y - height / 2) <= (entity.Y + entity.Height / 2))
             {   // Collision detected!
                 return true;
             }

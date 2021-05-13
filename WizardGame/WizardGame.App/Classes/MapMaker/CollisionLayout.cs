@@ -24,8 +24,8 @@ namespace WizardGame.App.Classes.MapMaker
                         EntityManager.Entities.Add(
                             new Solid()
                             {
-                                X = x * 128,
-                                Y = y * 128
+                                X = x * 128 + 64,
+                                Y = y * 128 + 64
                             });
                     }
                 }

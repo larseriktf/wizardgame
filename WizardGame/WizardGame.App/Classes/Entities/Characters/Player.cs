@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System;
 using System.Numerics;
+using Windows.UI;
 using WizardGame.App.Classes.Entities.HudElements;
 using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Entities.Spells;
@@ -32,17 +33,15 @@ namespace WizardGame.App.Classes.Entities.Characters
         {
             UpdateMovement();
             RegisterSpells();
-        }
-
-        public void Draw(CanvasDrawingSession ds)
-        {
-            
 
             if (Sign(hsp) != 0)
             {
                 XScale = Sign(hsp);
             }
+        }
 
+        public void Draw(CanvasDrawingSession ds)
+        {
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
                 spriteSheet.DrawSpriteExt(
@@ -54,6 +53,8 @@ namespace WizardGame.App.Classes.Entities.Characters
                     new Vector2(XScale, YScale),
                     0);
             }
+
+            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
         }
 
 

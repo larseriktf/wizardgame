@@ -113,7 +113,7 @@ namespace WizardGame.App.Classes.Entities.Spells
                 // If collided with character
                 // Do damage to enemy character
                 Character enemy = (Character)GetCollisionObject(X, Y, Width, Height, typeof(Character));
-                if (enemy.Invincibility == false)
+                if (enemy.Invincible == false)
                 {
                     enemy.HP -= damage;
                     IceShard.Spawner(X, Y, Rnd.Next(4, 7));

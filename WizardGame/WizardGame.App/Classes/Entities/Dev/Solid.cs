@@ -1,4 +1,5 @@
 ﻿using Microsoft.Graphics.Canvas;
+using Windows.UI;
 using WizardGame.App.Interfaces;
 
 namespace WizardGame.App.Classes.Entities.Dev
@@ -18,6 +19,7 @@ namespace WizardGame.App.Classes.Entities.Dev
 
         public void Draw(CanvasDrawingSession ds)
         {
+            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
             //ds.DrawRectangle(X, Y, Width, Height, Colors.Blue);
         }
     }

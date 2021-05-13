@@ -16,7 +16,7 @@ using static WizardGame.App.Classes.RandomProvider;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
-    class CactusEnemy : Collidable, IDrawable
+    class CactusEnemy : Character, IDrawable
     {
         private readonly SpriteSheet spriteSheet;
         private double direction = 0;
@@ -60,6 +60,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         public void Update()
         {
+            UpdateAliveState();
             PlaceCactus();
             HandleSprites();
         }

@@ -22,7 +22,6 @@ namespace WizardGame.App.Classes.Entities.Characters
         private readonly float gravity = 0.5f;
         private readonly int maxHP = 8;
         private readonly Timer animTimer;
-        private readonly Timer invincibilityTimer;
 
         public Bunny()
         {
@@ -37,28 +36,13 @@ namespace WizardGame.App.Classes.Entities.Characters
                 PlayAnimation();
             };
             animTimer.Start();
-
-            invincibilityTimer = new Timer(1000);
-            invincibilityTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
-            {   // Plays animation on timer tick
-                Invincibility = false;
-            };
-            invincibilityTimer.Start();
         }
 
         public void Update()
         {
+            UpdateAliveState();
             UpdateMovement();
-            HandleCollisions();
-        }
-
-        public void Draw(CanvasDrawingSession ds)
-        {
-            if (HP <= 0)
-            {
-                DustCloud.Spawner(X, Y, Rnd.Next(4, 7));
-                RemoveEntity(this);
-            }
+            UpdateInvincibility();
 
             if (Sign(hsp) != 0)
             {
@@ -66,7 +50,10 @@ namespace WizardGame.App.Classes.Entities.Characters
             }
 
             ImageY = 1;
+        }
 
+        public void Draw(CanvasDrawingSession ds)
+        {
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
                 spriteSheet.DrawSpriteExt(
@@ -81,15 +68,8 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
             ds.DrawText("HP: " + HP, X, Y, Colors.Red);
-        }
-
-        private void HandleCollisions()
-        {
-            if (CheckCollisionMultiple(X, Y, Width, Height, typeof(Spell)) && HP != maxHP && invincibilityTimer.Interval <= 0)
-            {
-                Invincibility = true;
-                invincibilityTimer.Interval = 1000;
-            }
+            ds.DrawText("Invincibility: " + Invincible, X, Y - 16, Colors.Green);
+            ds.DrawText("Timer: " + invincibilityTimer.Interval, X, Y - 32, Colors.Blue);
         }
 
         private void PlayAnimation()
