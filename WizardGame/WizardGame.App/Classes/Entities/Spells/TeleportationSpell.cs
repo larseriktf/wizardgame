@@ -1,7 +1,6 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System.Numerics;
 using Windows.UI;
-using WizardGame.App.Classes.Entities.Characters;
 using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;

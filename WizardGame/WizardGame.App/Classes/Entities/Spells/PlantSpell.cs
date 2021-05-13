@@ -1,7 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System.Numerics;
 using Windows.UI;
-using WizardGame.App.Classes.Entities.Characters;
+using WizardGame.App.Classes.Entities.Enemies;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
@@ -93,11 +93,11 @@ namespace WizardGame.App.Classes.Entities.Spells
 
         private void HandleCollisions()
         {
-            if (CheckCollisionMultiple(X, Y, Width, Height, typeof(Character)))
+            if (CheckCollisionMultiple(X, Y, Width, Height, typeof(Enemy)))
             {
                 // If collided with character
                 // Do damage to enemy character
-                Character enemy = (Character)GetCollisionObject(X, Y, Width, Height, typeof(Character));
+                Enemy enemy = (Enemy)GetCollisionObject(X, Y, Width, Height, typeof(Enemy));
                 if (enemy.Invincible == false)
                 {
                     enemy.HP -= damage;

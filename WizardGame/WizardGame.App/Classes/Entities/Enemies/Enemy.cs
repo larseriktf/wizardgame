@@ -4,20 +4,20 @@ using WizardGame.App.Classes.Entities.Spells;
 using static WizardGame.App.Classes.EntityManager;
 using static WizardGame.App.Classes.RandomProvider;
 
-namespace WizardGame.App.Classes.Entities.Characters
+namespace WizardGame.App.Classes.Entities.Enemies
 {
-    public abstract class Character : Collidable
+    public abstract class Enemy : PhysicsObject
     {
         public int HP { get; set; } = 1;
-        public bool Invincible { get; set; } = false;
+        public bool Invincible { get; set; } = true;
         protected readonly Timer invincibilityTimer = new Timer();
 
-        public Character()
+        public Enemy()
         {
             invincibilityTimer.Elapsed +=
                 delegate (object source, ElapsedEventArgs e)
                 {
-                    Invincible = false;
+                    //Invincible = false;
                 };
             invincibilityTimer.Start();
         }

@@ -2,6 +2,7 @@
 using System;
 using System.Numerics;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Entities.Enemies;
 using WizardGame.App.Classes.Entities.HudElements;
 using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Entities.Spells;
@@ -12,11 +13,10 @@ using static System.Math;
 using static WizardGame.App.Classes.EntityManager;
 using static WizardGame.App.Classes.Input.KeyBoard;
 
-namespace WizardGame.App.Classes.Entities.Characters
+namespace WizardGame.App.Classes.Entities.Enemies
 {
-    class CactusPot : Collidable, IDrawable
+    class CactusPot : PhysicsObject, IDrawable
     {
-        private readonly SpriteSheet spriteSheet;
         private double direction = PI / 2;
 
         // Cactus placing values
@@ -68,7 +68,7 @@ namespace WizardGame.App.Classes.Entities.Characters
                 // if area next of cactus relative to angle is available, place new cactus
                 if (!CheckCollisionMultiple(newX, newY, Width, Height, typeof(Solid)))
                 {
-                    AddEntity("layer1", new CactusEnemy()
+                    AddEntity("layer1", new Cactus()
                     {
                         X = newX,
                         Y = newY,

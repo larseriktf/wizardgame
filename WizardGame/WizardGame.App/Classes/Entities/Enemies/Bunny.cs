@@ -4,6 +4,7 @@ using System.Numerics;
 using System.Timers;
 using Windows.UI;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Entities.Enemies;
 using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Entities.Spells;
 using WizardGame.App.Classes.Graphics;
@@ -12,15 +13,10 @@ using static System.Math;
 using static WizardGame.App.Classes.EntityManager;
 using static WizardGame.App.Classes.RandomProvider;
 
-namespace WizardGame.App.Classes.Entities.Characters
+namespace WizardGame.App.Classes.Entities.Enemies
 {
-    public class Bunny : Character, IDrawable
+    public class Bunny : Enemy, IDrawable
     {
-        public int MoveSpeed { get; set; } = 3;
-
-        private readonly SpriteSheet spriteSheet;
-        private readonly float gravity = 0.5f;
-        private readonly int maxHP = 8;
         private readonly Timer animTimer;
 
         public Bunny()
@@ -28,7 +24,6 @@ namespace WizardGame.App.Classes.Entities.Characters
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_bunny");
             Width = 96;
             Height = 96;
-            HP = maxHP;
 
             animTimer = new Timer(40);
             animTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
@@ -94,8 +89,8 @@ namespace WizardGame.App.Classes.Entities.Characters
                 moveDir = -moveDir;
             }
 
-            hsp = moveDir * MoveSpeed;
-            vsp += gravity;
+            hsp = moveDir * moveSpeed;
+            vsp += Gravity;
 
             UpdateCollisions();
         }

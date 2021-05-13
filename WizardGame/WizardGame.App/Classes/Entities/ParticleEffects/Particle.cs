@@ -4,7 +4,7 @@ using WizardGame.App.Classes.Graphics;
 
 namespace WizardGame.App.Classes.Entities.ParticleEffects
 {
-    public abstract class Particle : Collidable
+    public abstract class Particle : PhysicsObject
     {
         protected SpriteSheet spriteSheet;
         protected int fadeTime = 1000;

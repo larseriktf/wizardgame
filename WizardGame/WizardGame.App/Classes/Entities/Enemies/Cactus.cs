@@ -2,7 +2,9 @@
 using System;
 using System.Numerics;
 using System.Timers;
+using Windows.UI;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Entities.Enemies;
 using WizardGame.App.Classes.Entities.HudElements;
 using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Entities.Spells;
@@ -14,11 +16,10 @@ using static WizardGame.App.Classes.EntityManager;
 using static WizardGame.App.Classes.Input.KeyBoard;
 using static WizardGame.App.Classes.RandomProvider;
 
-namespace WizardGame.App.Classes.Entities.Characters
+namespace WizardGame.App.Classes.Entities.Enemies
 {
-    class CactusEnemy : Character, IDrawable
+    class Cactus : Enemy, IDrawable
     {
-        private readonly SpriteSheet spriteSheet;
         private double direction = 0;
         public double Direction
         {
@@ -44,7 +45,7 @@ namespace WizardGame.App.Classes.Entities.Characters
         private Timer placementTimer;
         private int placeTime = 1000;
 
-        public CactusEnemy() 
+        public Cactus() 
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_cactus_enemy");
             Width = 64;
@@ -78,6 +79,9 @@ namespace WizardGame.App.Classes.Entities.Characters
                     new Vector2(XScale, YScale),
                     0);
             }
+
+            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
+            ds.DrawRectangle(X - Width / 2, Y - Height / 2 - 64, Width, Height, Colors.Red);
         }
 
         private void PlaceCactus()
@@ -92,9 +96,9 @@ namespace WizardGame.App.Classes.Entities.Characters
 
                 // if area next of cactus relative to angle is available, place new cactus
                 if (!CheckCollisionMultiple(newX, newY, Width, Height, typeof(Solid))
-                 && !CheckCollisionMultiple(newX, newY, Width, Height, typeof(CactusEnemy)))
+                 && !CheckCollisionMultiple(newX, newY, Width, Height, typeof(Cactus)))
                 {
-                    AddEntity("layer1", new CactusEnemy()
+                    AddEntity("layer1", new Cactus()
                     {
                         X = newX,
                         Y = newY,

@@ -8,7 +8,7 @@ namespace WizardGame.App.Classes.Entities.Dev
 {
     public class Target : Entity, IDrawable
     {
-        private CanvasBitmap bitmap;
+        
 
         private float originalX = 0;
         private float originalY = 0;

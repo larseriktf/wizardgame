@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WizardGame.App.Classes;
-using WizardGame.App.Classes.Entities.Characters;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Classes.Input;
 using WizardGame.App.Interfaces;
@@ -13,6 +12,8 @@ using Windows.UI.Core;
 using System.Diagnostics;
 using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
+using WizardGame.App.Classes.Entities.Enemies;
+using WizardGame.App.Classes.Entities;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 

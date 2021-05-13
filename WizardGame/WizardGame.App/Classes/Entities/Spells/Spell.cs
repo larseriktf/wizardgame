@@ -2,7 +2,7 @@
 
 namespace WizardGame.App.Classes.Entities.Spells
 {
-    public abstract class Spell : Collidable
+    public abstract class Spell : PhysicsObject
     {
         protected SpriteSheet spriteSheet;
         protected double direction = 0;

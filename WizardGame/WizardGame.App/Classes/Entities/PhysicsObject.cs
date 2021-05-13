@@ -6,11 +6,13 @@ using static WizardGame.App.Classes.EntityManager;
 
 namespace WizardGame.App.Classes.Entities
 {
-    public abstract class Collidable : Entity
+    public abstract class PhysicsObject : Entity
     {
+        public static float Gravity { get; set; } = 0.5f;
+        protected int moveSpeed = 3;
         protected float vsp;
         protected float hsp;
-        protected List<Type> collidables = new List<Type>();
+
         protected int state = 0;
 
         protected void UpdateCollisions()

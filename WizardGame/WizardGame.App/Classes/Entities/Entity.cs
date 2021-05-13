@@ -1,7 +1,12 @@
-﻿namespace WizardGame.App.Classes.Entities
+﻿using Microsoft.Graphics.Canvas;
+using WizardGame.App.Classes.Graphics;
+
+namespace WizardGame.App.Classes.Entities
 {
     public abstract class Entity
     {
+        protected SpriteSheet spriteSheet;
+        protected CanvasBitmap bitmap;
         public string Layer { get; set; } = "baseLayer";
         public float X { get; set; } = 0;
         public float Y { get; set; } = 0;

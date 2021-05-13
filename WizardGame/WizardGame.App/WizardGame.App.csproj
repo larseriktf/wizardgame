@@ -135,14 +135,14 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Classes\CanvasDebugger.cs" />
-    <Compile Include="Classes\Entities\Characters\Bunny.cs" />
-    <Compile Include="Classes\Entities\Characters\CactusEnemy.cs" />
-    <Compile Include="Classes\Entities\Characters\CactusPot.cs" />
-    <Compile Include="Classes\Entities\Characters\CardEnemy.cs" />
-    <Compile Include="Classes\Entities\Characters\Character.cs" />
-    <Compile Include="Classes\Entities\Collidable.cs" />
+    <Compile Include="Classes\Entities\Enemies\Bunny.cs" />
+    <Compile Include="Classes\Entities\Enemies\Cactus.cs" />
+    <Compile Include="Classes\Entities\Enemies\CactusPot.cs" />
+    <Compile Include="Classes\Entities\Enemies\MagicCard.cs" />
+    <Compile Include="Classes\Entities\Enemies\Enemy.cs" />
+    <Compile Include="Classes\Entities\PhysicsObject.cs" />
     <Compile Include="Classes\Entities\Entity.cs" />
-    <Compile Include="Classes\Entities\Characters\Player.cs" />
+    <Compile Include="Classes\Entities\Player.cs" />
     <Compile Include="Classes\Entities\Dev\Solid.cs" />
     <Compile Include="Classes\Entities\Dev\Target.cs" />
     <Compile Include="Classes\Entities\HudElements\HealthBar.cs" />

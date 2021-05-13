@@ -2,6 +2,7 @@
 using System;
 using System.Numerics;
 using Windows.UI;
+using WizardGame.App.Classes.Entities.Enemies;
 using WizardGame.App.Classes.Entities.HudElements;
 using WizardGame.App.Classes.Entities.ParticleEffects;
 using WizardGame.App.Classes.Entities.Spells;
@@ -12,17 +13,16 @@ using static System.Math;
 using static WizardGame.App.Classes.EntityManager;
 using static WizardGame.App.Classes.Input.KeyBoard;
 
-namespace WizardGame.App.Classes.Entities.Characters
+namespace WizardGame.App.Classes.Entities
 {
-    public class Player : Collidable, IDrawable
+    public class Player : PhysicsObject, IDrawable
     {
-        public int MoveSpeed { get; set; } = 10;
-        private readonly SpriteSheet spriteSheet;
         public readonly int spriteWidth = 96;
         public readonly int spriteHeight = 96;
 
         public Player()
         {
+            moveSpeed = 10;
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_player");
             Width = 50;
             Height = 50;
@@ -64,8 +64,8 @@ namespace WizardGame.App.Classes.Entities.Characters
             float moveHorizontal = Convert.ToInt32(MoveRight.Pressed) - Convert.ToInt32(MoveLeft.Pressed);
             float moveVertical = Convert.ToInt32(MoveDown.Pressed) - Convert.ToInt32(MoveUp.Pressed);
 
-            hsp = moveHorizontal * MoveSpeed;
-            vsp = moveVertical * MoveSpeed;
+            hsp = moveHorizontal * moveSpeed;
+            vsp = moveVertical * moveSpeed;
 
             UpdateCollisions();
 

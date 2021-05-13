@@ -6,14 +6,13 @@ using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
+using WizardGame.App.Classes.Entities.Enemies;
 using static WizardGame.App.Classes.RandomProvider;
 
-namespace WizardGame.App.Classes.Entities.Characters
+namespace WizardGame.App.Classes.Entities.Enemies
 {
-    public class CardEnemy : Character, IDrawable
+    public class MagicCard : Enemy, IDrawable
     {
-        private readonly SpriteSheet spriteSheet;
-
         private readonly double speed = 6 + Rnd.NextDouble() * 5;
         private double angle = Rnd.NextDouble() * 2 * Math.PI;
         private double decidedAngle = 0;
@@ -38,7 +37,7 @@ namespace WizardGame.App.Classes.Entities.Characters
         Timer animTimer = null;
         Entity target;
 
-        public CardEnemy()
+        public MagicCard()
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_cardenemy");
         }
@@ -56,7 +55,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
             for (int i = 0; i < amount; i++)
             {
-                EntityManager.Entities.Add(new CardEnemy()
+                EntityManager.Entities.Add(new MagicCard()
                 {
                     X = x + (float)Rnd.NextDouble() * (max - min) + min,
                     Y = y + (float)Rnd.NextDouble() * (max - min) + min
