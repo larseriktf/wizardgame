@@ -93,7 +93,7 @@ namespace WizardGame.App.Classes.Entities.Spells
 
         private void HandleCollisions()
         {
-            if (CheckCollision(X, Y, Width, Height, typeof(Character)))
+            if (CheckCollisionMultiple(X, Y, Width, Height, typeof(Character)))
             {
                 // If collided with character
                 // Do damage to enemy character

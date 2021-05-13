@@ -172,19 +172,29 @@ namespace WizardGame.App.Classes
             return distance;
         }
 
-        public static bool CheckCollision(float x, float y, int width, int height, Type className)
+        public static bool CheckCollisionMultiple(float x, float y, int width, int height, Type className)
         {
             List<Entity> entities = GetEntities(className);
 
             foreach (Entity entity in entities)
-            {   // Run four checks to see if it collides
-                if ((x + width / 2) >= entity.X
-                 && (x - width / 2) <= (entity.X + entity.Width)
-                 && (y + height / 2) >= entity.Y
-                 && (y - height / 2) <= (entity.Y + entity.Height))
-                {   // Collision detected!
+            {
+                if (CheckCollisionSingle(x, y, width, height, entity))
+                {
                     return true;
                 }
+            }
+            return false;
+        }
+
+        public static bool CheckCollisionSingle(float x, float y, int width, int height, Entity entity)
+        {
+            // Run four checks to see if it collides
+            if ((x + width / 2) >= entity.X
+             && (x - width / 2) <= (entity.X + entity.Width)
+             && (y + height / 2) >= entity.Y
+             && (y - height / 2) <= (entity.Y + entity.Height))
+            {   // Collision detected!
+                return true;
             }
             return false;
         }
@@ -196,12 +206,9 @@ namespace WizardGame.App.Classes
             List<Entity> entities = GetEntities(className);
 
             foreach (Entity entity in entities)
-            {   // Run four checks to see if it collides
-                if ((x + width / 2) >= entity.X
-                 && (x - width / 2) <= (entity.X + entity.Width)
-                 && (y + height / 2) >= entity.Y
-                 && (y - height / 2) <= (entity.Y + entity.Height))
-                {   // Collision detected! Return object
+            {
+                if (CheckCollisionSingle(x, y, width, height, entity))
+                {
                     return entity;
                 }
             }

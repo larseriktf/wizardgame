@@ -66,7 +66,7 @@ namespace WizardGame.App.Classes.Entities.Characters
                 float newY = Y - 64;
 
                 // if area next of cactus relative to angle is available, place new cactus
-                if (!CheckCollision(newX, newY, Width, Height, typeof(Solid)))
+                if (!CheckCollisionMultiple(newX, newY, Width, Height, typeof(Solid)))
                 {
                     AddEntity("layer1", new CactusEnemy()
                     {

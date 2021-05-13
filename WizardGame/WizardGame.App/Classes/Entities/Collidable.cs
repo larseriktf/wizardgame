@@ -16,9 +16,9 @@ namespace WizardGame.App.Classes.Entities
         protected void UpdateCollisions()
         {
             // Horizontal Collision
-            if (CheckCollision(X + hsp, Y, Width, Height, typeof(Solid)))
+            if (CheckCollisionMultiple(X + hsp, Y, Width, Height, typeof(Solid)))
             {
-                while (!CheckCollision(X + Sign(hsp), Y, Width, Height, typeof(Solid)))
+                while (!CheckCollisionMultiple(X + Sign(hsp), Y, Width, Height, typeof(Solid)))
                 {   // Move as close as possible to the entity
                     X += Sign(hsp);
                 }
@@ -29,9 +29,9 @@ namespace WizardGame.App.Classes.Entities
             X += hsp;
 
             // Horizontal Collision
-            if (CheckCollision(X, Y + vsp, Width, Height, typeof(Solid)))
+            if (CheckCollisionMultiple(X, Y + vsp, Width, Height, typeof(Solid)))
             {
-                while (!CheckCollision(X, Y + Sign(vsp), Width, Height, typeof(Solid)))
+                while (!CheckCollisionMultiple(X, Y + Sign(vsp), Width, Height, typeof(Solid)))
                 {   // Move as close as possible to the entity
                     Y += Sign(vsp);
                 }

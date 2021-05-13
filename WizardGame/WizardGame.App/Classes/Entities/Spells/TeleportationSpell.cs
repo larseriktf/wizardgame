@@ -34,7 +34,7 @@ namespace WizardGame.App.Classes.Entities.Spells
             Onomatopoeia.Spawner(player.X, player.Y, 0);
 
             // Actual teleportation
-            if (!CheckCollision(player.X + distance, player.Y, player.Width, player.Height, typeof(Solid))
+            if (!CheckCollisionMultiple(player.X + distance, player.Y, player.Width, player.Height, typeof(Solid))
 
              && !(player.X + distance > 1920))
             {

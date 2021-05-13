@@ -85,7 +85,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         private void HandleCollisions()
         {
-            if (CheckCollision(X, Y, Width, Height, typeof(Spell)) && HP != maxHP && invincibilityTimer.Interval <= 0)
+            if (CheckCollisionMultiple(X, Y, Width, Height, typeof(Spell)) && HP != maxHP && invincibilityTimer.Interval <= 0)
             {
                 Invincibility = true;
                 invincibilityTimer.Interval = 1000;
@@ -109,7 +109,7 @@ namespace WizardGame.App.Classes.Entities.Characters
         private int moveDir = 1;
         private void UpdateMovement()
         {   // Calculate movement
-            if (EntityManager.CheckCollision(X + hsp, Y, Width, Height, typeof(Solid)))
+            if (EntityManager.CheckCollisionMultiple(X + hsp, Y, Width, Height, typeof(Solid)))
             {
                 moveDir = -moveDir;
             }

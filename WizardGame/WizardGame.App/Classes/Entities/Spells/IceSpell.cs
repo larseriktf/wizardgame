@@ -108,7 +108,7 @@ namespace WizardGame.App.Classes.Entities.Spells
 
         private void HandleCollisions()
         {
-            if (CheckCollision(X, Y, Width, Height, typeof(Character)))
+            if (CheckCollisionMultiple(X, Y, Width, Height, typeof(Character)))
             {
                 // If collided with character
                 // Do damage to enemy character
@@ -120,7 +120,7 @@ namespace WizardGame.App.Classes.Entities.Spells
                     state++;
                 }
             }
-            else if (CheckCollision(X, Y, Width, Height, typeof(Solid)))
+            else if (CheckCollisionMultiple(X, Y, Width, Height, typeof(Solid)))
             {
                 // If collided with wall
                 IceShard.Spawner(X, Y, Rnd.Next(3, 5));
