@@ -146,6 +146,7 @@
     <Compile Include="Classes\Entities\Dev\Solid.cs" />
     <Compile Include="Classes\Entities\Dev\Target.cs" />
     <Compile Include="Classes\Entities\HudElements\HealthBar.cs" />
+    <Compile Include="Classes\Entities\ParticleEffects\CactusDebris.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\DustCloud.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\IceShard.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\Onomatopoeia.cs" />
@@ -252,7 +253,7 @@
   <ItemGroup>
     <Content Include="Assets\Images\Settings\configuration.png" />
     <Content Include="Assets\Images\TitleScreen\fantasyLand.jpg" />
-    <Content Include="Assets\Sprites\Characters\CactusEnemy\spr_cactus_enemy.png" />
+    <Content Include="Assets\Sprites\Characters\spr_cactus_enemy.png" />
     <Content Include="Assets\Sprites\Hud\HealthBarBackground.png" />
     <Content Include="Assets\Sprites\Hud\HealthBarForeground.png" />
     <Content Include="Assets\Sprites\Hud\HealthBarLiquid.png" />
@@ -260,6 +261,7 @@
     <Content Include="Assets\Sprites\Dev\spr_gif.jpg" />
     <Content Include="Assets\Sprites\Hud\spr_health_bar.png" />
     <Content Include="Assets\Sprites\Levels\abandonedRoom.png" />
+    <Content Include="Assets\Sprites\ParticleEffects\spr_cactus_debris.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_dust_cloud.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_ice_shards.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_onomatopoeia.png" />
@@ -268,10 +270,10 @@
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Sprites\Dev\spr_dev.jpg" />
     <Content Include="Assets\Sprites\Dev\spr_point.jpg" />
-    <Content Include="Assets\Sprites\Characters\Bunny\spr_bunny.png" />
-    <Content Include="Assets\Sprites\Characters\CardEnemy\spr_cards.png" />
-    <Content Include="Assets\Sprites\Characters\Player\spr_player_idle.png" />
-    <Content Include="Assets\Sprites\Characters\Player\spr_player.png" />
+    <Content Include="Assets\Sprites\Characters\spr_bunny.png" />
+    <Content Include="Assets\Sprites\Characters\spr_cards.png" />
+    <Content Include="Assets\Sprites\Characters\spr_player_idle.png" />
+    <Content Include="Assets\Sprites\Characters\spr_player.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

@@ -6,6 +6,7 @@ using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
+using static WizardGame.App.Classes.RandomProvider;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
@@ -13,10 +14,8 @@ namespace WizardGame.App.Classes.Entities.Characters
     {
         private readonly SpriteSheet spriteSheet;
 
-        private static readonly Random random = new Random();
-
-        private readonly double speed = 6 + random.NextDouble() * 5;
-        private double angle = random.NextDouble() * 2 * Math.PI;
+        private readonly double speed = 6 + Rnd.NextDouble() * 5;
+        private double angle = Rnd.NextDouble() * 2 * Math.PI;
         private double decidedAngle = 0;
         private double targetAngle = 0;
         private double lagAngle = 0;
@@ -27,9 +26,9 @@ namespace WizardGame.App.Classes.Entities.Characters
 
         private double threshold = 0;
 
-        private readonly double wiggleRate = random.NextDouble() * 0.1;
-        private readonly double wiggleMultiplier = random.NextDouble() * 0.025;
-        private double wiggle = random.NextDouble();
+        private readonly double wiggleRate = Rnd.NextDouble() * 0.1;
+        private readonly double wiggleMultiplier = Rnd.NextDouble() * 0.025;
+        private double wiggle = Rnd.NextDouble();
 
         // For debugging
         public static double Angle = 0;
@@ -59,8 +58,8 @@ namespace WizardGame.App.Classes.Entities.Characters
             {
                 EntityManager.Entities.Add(new CardEnemy()
                 {
-                    X = x + (float)random.NextDouble() * (max - min) + min,
-                    Y = y + (float)random.NextDouble() * (max - min) + min
+                    X = x + (float)Rnd.NextDouble() * (max - min) + min,
+                    Y = y + (float)Rnd.NextDouble() * (max - min) + min
                 });
             }
         }
@@ -75,9 +74,9 @@ namespace WizardGame.App.Classes.Entities.Characters
         {
             if (animTimer == null)
             {
-                ImageX = random.Next(0, 3);
+                ImageX = Rnd.Next(0, 3);
 
-                animTimer = new Timer(random.Next(0, 2000));
+                animTimer = new Timer(Rnd.Next(0, 2000));
 
                 animTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
                 {   // Plays animation on timer tick
@@ -136,7 +135,7 @@ namespace WizardGame.App.Classes.Entities.Characters
 
                 if (ImageY % 2 == 0)
                 {   // Front / back of card
-                    animTimer.Interval = random.Next(1000, 3000);
+                    animTimer.Interval = Rnd.Next(1000, 3000);
                 }
                 else
                 {   // Card is in transition

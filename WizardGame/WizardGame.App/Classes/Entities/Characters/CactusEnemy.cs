@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System;
 using System.Numerics;
+using System.Timers;
 using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Classes.Entities.HudElements;
 using WizardGame.App.Classes.Entities.ParticleEffects;
@@ -11,6 +12,7 @@ using WizardGame.App.Views;
 using static System.Math;
 using static WizardGame.App.Classes.EntityManager;
 using static WizardGame.App.Classes.Input.KeyBoard;
+using static WizardGame.App.Classes.RandomProvider;
 
 namespace WizardGame.App.Classes.Entities.Characters
 {
@@ -38,14 +40,22 @@ namespace WizardGame.App.Classes.Entities.Characters
         private int sprCurrent = 0;
 
         // Cactus placing values
-        private bool cactusPlaced = false;
-        private bool allowPlacement = true;
+        private bool allowPlacement = false;
+        private Timer placementTimer;
+        private int placeTime = 1000;
 
         public CactusEnemy() 
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_cactus_enemy");
             Width = 64;
             Height = 64;
+
+            placementTimer = new Timer(placeTime);
+            placementTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
+            {
+                allowPlacement = true;
+            };
+            placementTimer.Start();
         }
 
         public void Update()
@@ -72,7 +82,7 @@ namespace WizardGame.App.Classes.Entities.Characters
         private void PlaceCactus()
         {
             // If allowed to allowed to place and haven't placed yet
-            if (cactusPlaced == false && allowPlacement == true)
+            if (allowPlacement == true)
             {
                 // @TODO
                 // Calculate newX and newY
@@ -80,7 +90,8 @@ namespace WizardGame.App.Classes.Entities.Characters
                 float newY = Y - 64;
 
                 // if area next of cactus relative to angle is available, place new cactus
-                if (!CheckCollisionMultiple(newX, newY, Width, Height, typeof(Solid)))
+                if (!CheckCollisionMultiple(newX, newY, Width, Height, typeof(Solid))
+                 && !CheckCollisionMultiple(newX, newY, Width, Height, typeof(CactusEnemy)))
                 {
                     AddEntity("layer1", new CactusEnemy()
                     {
@@ -88,9 +99,9 @@ namespace WizardGame.App.Classes.Entities.Characters
                         Y = newY,
                         Direction = direction
                     });
+                    CactusDebris.Spawner(newX, newY, Rnd.Next(5, 8));
                 }
-
-                cactusPlaced = true;
+                allowPlacement = false;
             }
         }
 

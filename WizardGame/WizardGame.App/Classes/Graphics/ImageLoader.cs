@@ -20,21 +20,21 @@ namespace WizardGame.App.Classes.Graphics
                 "sheet_player",
                 await LoadSpriteSheetAsync(
                     device,
-                    defaultPath + "/Characters/Player/spr_player.png",
+                    defaultPath + "/Characters/spr_player.png",
                     new Vector2(96, 96)));
 
             SpriteSheets.Add(
                 "sheet_cardenemy",
                 await LoadSpriteSheetAsync(
                     device,
-                    defaultPath + "/Characters/CardEnemy/spr_cards.png",
+                    defaultPath + "/Characters/spr_cards.png",
                     new Vector2(24, 24)));
 
             SpriteSheets.Add(
                 "sheet_bunny",
                 await LoadSpriteSheetAsync(
                     device,
-                    defaultPath + "/Characters/Bunny/spr_bunny.png",
+                    defaultPath + "/Characters/spr_bunny.png",
                     new Vector2(96, 96)));
 
             SpriteSheets.Add(
@@ -83,8 +83,15 @@ namespace WizardGame.App.Classes.Graphics
                 "sheet_cactus_enemy",
                 await LoadSpriteSheetAsync(
                     device,
-                    defaultPath + "/Characters/CactusEnemy/spr_cactus_enemy.png",
+                    defaultPath + "/Characters/spr_cactus_enemy.png",
                     new Vector2(64, 64)));
+
+            SpriteSheets.Add(
+                "sheet_cactus_debris",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/ParticleEffects/spr_cactus_debris.png",
+                    new Vector2(24, 24)));
 
             // Load BitMaps
             Bitmaps.Add(
