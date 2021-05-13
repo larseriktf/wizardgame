@@ -83,7 +83,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
         private int moveDir = 1;
         private void UpdateMovement()
         {   // Calculate movement
-            if (CheckCollisionMultiple(X + hsp, Y, Width, Height, typeof(Solid)))
+            if (IsColliding(X + hsp, Y, Width, Height, typeof(Solid)))
             {
                 moveDir = -moveDir;
             }

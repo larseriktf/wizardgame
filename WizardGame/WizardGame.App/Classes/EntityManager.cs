@@ -172,7 +172,7 @@ namespace WizardGame.App.Classes
             return distance;
         }
 
-        public static bool CheckCollisionMultiple(float x, float y, int width, int height, Type className)
+        public static bool IsColliding(float x, float y, int width, int height, Type className)
         {
             List<Entity> entities = GetEntities(className);
 
@@ -189,8 +189,8 @@ namespace WizardGame.App.Classes
         public static bool CheckCollisionSingle(float x, float y, int width, int height, Entity entity)
         {
             // Run four checks to see if it collides
-            if ((x + width / 2)  > (entity.X - entity.Width / 2)
-             && (x - width / 2)  < (entity.X + entity.Width / 2)
+            if ((x + width / 2) > (entity.X - entity.Width / 2)
+             && (x - width / 2) < (entity.X + entity.Width / 2)
              && (y + height / 2) > (entity.Y - entity.Height / 2)
              && (y - height / 2) < (entity.Y + entity.Height / 2))
             {   // Collision detected!
@@ -198,10 +198,8 @@ namespace WizardGame.App.Classes
             }
             return false;
         }
-
         public static Entity GetCollisionObject(float x, float y, int width, int height, Type className)
         {
-
             // Get list of entities at are either of className, or a child member of className
             List<Entity> entities = GetEntities(className);
 
@@ -212,10 +210,35 @@ namespace WizardGame.App.Classes
                     return entity;
                 }
             }
-
             return null;
         }
 
+        public static bool IsOverlapping(float x, float y, int width, int height, Type className)
+        {
+            List<Entity> entities = GetEntities(className);
+
+            foreach (Entity entity in entities)
+            {
+                if (CheckCollisionSingle(x, y, width, height, entity))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool IsOverlappingSingle(float x, float y, int width, int height, Entity entity)
+        {
+            // Run four checks to see if it collides
+            if ((x + width / 2) > (entity.X - entity.Width / 2)
+             && (x - width / 2) < (entity.X + entity.Width / 2)
+             && (y + height / 2) > (entity.Y - entity.Height / 2)
+             && (y - height / 2) < (entity.Y + entity.Height / 2))
+            {   // Collision detected!
+                return true;
+            }
+            return false;
+        }
 
     }
 }

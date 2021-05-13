@@ -94,12 +94,12 @@ namespace WizardGame.App.Classes.Entities.Enemies
             {
                 // @TODO
                 // Calculate newX and newY
-                float newX = X + 0;
-                float newY = Y - 64;
+                float newX = X + (float)(64 * Cos(direction));
+                float newY = Y + (float)(64 * Sin(direction));
 
                 // if area next of cactus relative to angle is available, place new cactus
-                if (CheckCollisionMultiple(newX, newY, Width, Height, typeof(Solid))
-                 || CheckCollisionMultiple(newX, newY, Width, Height, typeof(Cactus)))
+                if (IsOverlapping(newX, newY, Width, Height, typeof(Solid))
+                 || IsOverlapping(newX, newY, Width, Height, typeof(Cactus)))
                 {
                     colliding = true;
                 }
