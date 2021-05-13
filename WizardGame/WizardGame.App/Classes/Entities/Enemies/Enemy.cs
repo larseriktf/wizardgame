@@ -8,36 +8,37 @@ namespace WizardGame.App.Classes.Entities.Enemies
 {
     public abstract class Enemy : PhysicsObject
     {
-        public int HP { get; set; } = 1;
-        public bool Invincible { get; set; } = true;
+        protected int hp = 1;
+        public bool Invincible { get; set; } = false;
         protected readonly Timer invincibilityTimer = new Timer();
+        private readonly int invincibleTime = 250;
 
         public Enemy()
         {
             invincibilityTimer.Elapsed +=
                 delegate (object source, ElapsedEventArgs e)
                 {
-                    //Invincible = false;
+                    Invincible = false;
                 };
             invincibilityTimer.Start();
         }
 
-        protected virtual void UpdateAliveState()
+        protected virtual void Die()
         {
-            if (HP <= 0)
-            {
-                DustCloud.Spawner(X, Y, Rnd.Next(4, 7));
-                RemoveEntity(this);
-            }
+            DustCloud.Spawner(X, Y, Rnd.Next(4, 7));
+            RemoveEntity(this);
         }
 
-        protected virtual void UpdateInvincibility()
+        public void TakeDamage(int dmg)
         {
-            if (CheckCollisionMultiple(X, Y, Width, Height, typeof(Spell))
-             && Invincible == false)
+            if (Invincible == false)
             {
+                if ((hp -= dmg) <= 0)
+                {
+                    Die();
+                }
+                invincibilityTimer.Interval = invincibleTime;
                 Invincible = true;
-                invincibilityTimer.Interval = 1000;
             }
         }
 

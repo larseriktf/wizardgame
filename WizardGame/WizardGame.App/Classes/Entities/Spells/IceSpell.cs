@@ -115,7 +115,7 @@ namespace WizardGame.App.Classes.Entities.Spells
                 Enemy enemy = (Enemy)GetCollisionObject(X, Y, Width, Height, typeof(Enemy));
                 if (enemy.Invincible == false)
                 {
-                    enemy.HP -= damage;
+                    enemy.TakeDamage(damage);
                     IceShard.Spawner(X, Y, Rnd.Next(4, 7));
                     state++;
                 }

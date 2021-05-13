@@ -61,7 +61,6 @@ namespace WizardGame.App.Classes.Entities.Enemies
 
         public void Update()
         {
-            UpdateAliveState();
             PlaceCactus();
             HandleSprites();
         }

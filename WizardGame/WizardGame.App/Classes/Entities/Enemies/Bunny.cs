@@ -21,6 +21,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
 
         public Bunny()
         {
+            hp = 20;
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_bunny");
             Width = 96;
             Height = 96;
@@ -35,9 +36,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
 
         public void Update()
         {
-            UpdateAliveState();
             UpdateMovement();
-            UpdateInvincibility();
 
             if (Sign(hsp) != 0)
             {
@@ -62,7 +61,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
             }
 
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
-            ds.DrawText("HP: " + HP, X, Y, Colors.Red);
+            ds.DrawText("HP: " + hp, X, Y, Colors.Red);
             ds.DrawText("Invincibility: " + Invincible, X, Y - 16, Colors.Green);
             ds.DrawText("Timer: " + invincibilityTimer.Interval, X, Y - 32, Colors.Blue);
         }
@@ -84,7 +83,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
         private int moveDir = 1;
         private void UpdateMovement()
         {   // Calculate movement
-            if (EntityManager.CheckCollisionMultiple(X + hsp, Y, Width, Height, typeof(Solid)))
+            if (CheckCollisionMultiple(X + hsp, Y, Width, Height, typeof(Solid)))
             {
                 moveDir = -moveDir;
             }
