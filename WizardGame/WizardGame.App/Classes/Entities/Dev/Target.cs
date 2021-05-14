@@ -29,11 +29,12 @@ namespace WizardGame.App.Classes.Entities.Dev
             }
 
             Shake(60, 0.01f, 0.015f);
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)
         {
-            ds.DrawImage(bitmap, X - 4, Y - 4);
+            ds.DrawImage(bitmap, OffsetX - 4, OffsetY - 4);
         }
 
         private void Shake(float threshold, float incrementX, float incrementY)

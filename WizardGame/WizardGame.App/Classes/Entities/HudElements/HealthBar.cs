@@ -23,7 +23,7 @@ namespace WizardGame.App.Classes.Entities.HudElements
 
         public void Update()
         {
-
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -33,41 +33,41 @@ namespace WizardGame.App.Classes.Entities.HudElements
                 // Draw glass background
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, 2),
                     new Vector4(Red, Green, Blue, Alpha),
                     0,
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
 
                 // Draw cork
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, 3),
                     new Vector4(Red, Green, Blue, Alpha),
                     0,
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
 
                 // Draw liquid
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, 1),
                     new Vector4(Red, Green, Blue, Alpha),
                     0,
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
 
                 // Draw glass foreground
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, 0),
                     new Vector4(Red, Green, Blue, Alpha),
                     0,
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
         }

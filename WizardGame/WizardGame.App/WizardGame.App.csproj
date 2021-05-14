@@ -261,7 +261,7 @@
     <Content Include="Assets\Sprites\Hud\spr_action_arrow.png" />
     <Content Include="Assets\Sprites\Dev\spr_gif.jpg" />
     <Content Include="Assets\Sprites\Hud\spr_health_bar.png" />
-    <Content Include="Assets\Sprites\Levels\abandonedRoom.png" />
+    <Content Include="Assets\Sprites\Levels\spr_levels.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_cactus_debris.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_dust_cloud.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_ice_crystals.png" />

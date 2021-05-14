@@ -14,12 +14,12 @@ namespace WizardGame.App.Classes.Entities.Dev
 
         public void Update()
         {
-
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)
         {
-            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
+            ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
             //ds.DrawRectangle(X, Y, Width, Height, Colors.Blue);
         }
     }

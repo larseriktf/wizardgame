@@ -100,18 +100,20 @@ namespace WizardGame.App.Classes.Graphics
                     defaultPath + "/ParticleEffects/spr_ice_crystals.png",
                     new Vector2(24, 24)));
 
-            // Load BitMaps
-            Bitmaps.Add(
-                "bitmap_level1",
-                await CanvasBitmap.LoadAsync(
+            SpriteSheets.Add(
+                "sheet_levels",
+                await LoadSpriteSheetAsync(
                     device,
-                    new Uri(defaultPath + "/Levels/abandonedRoom.png")));
+                    defaultPath + "/Levels/spr_levels.png",
+                    new Vector2(1920, 1152)));
+
+            // Load BitMaps
 
             Bitmaps.Add(
                 "bitmap_target",
                 await CanvasBitmap.LoadAsync(
                     device,
-                    new Uri(defaultPath + "/Levels/abandonedRoom.png")));
+                    new Uri(defaultPath + "/Dev/spr_point.jpg")));
         }
 
         public static SpriteSheet GetSpriteSheet(string key)

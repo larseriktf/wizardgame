@@ -107,11 +107,11 @@ namespace WizardGame.App.Classes.Entities.Enemies
             {
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
                     (float)(angle + 0.5 * PI),
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
         }

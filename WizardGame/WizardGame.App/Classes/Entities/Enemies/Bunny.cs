@@ -53,18 +53,18 @@ namespace WizardGame.App.Classes.Entities.Enemies
             {
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
                     0,
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
 
-            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
-            ds.DrawText("HP: " + hp, X, Y, Colors.Red);
-            ds.DrawText("Invincibility: " + Invincible, X, Y - 16, Colors.Green);
-            ds.DrawText("Timer: " + invincibilityTimer.Interval, X, Y - 32, Colors.Blue);
+            ds.DrawRectangle(OffsetX - OffsetWidth / 2, Y - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
+            ds.DrawText("HP: " + hp, OffsetX, OffsetY, Colors.Red);
+            ds.DrawText("Invincibility: " + Invincible, OffsetX, OffsetY - 16, Colors.Green);
+            ds.DrawText("Timer: " + invincibilityTimer.Interval, OffsetX, OffsetY - 32, Colors.Blue);
         }
 
         private void PlayAnimation()

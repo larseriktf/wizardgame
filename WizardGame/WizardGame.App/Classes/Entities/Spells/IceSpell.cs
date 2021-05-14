@@ -29,6 +29,7 @@ namespace WizardGame.App.Classes.Entities.Spells
             MakeTrail();
             UpdateMovement();
             HandleState();
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -50,15 +51,15 @@ namespace WizardGame.App.Classes.Entities.Spells
             {
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
                     (float)direction * angleMod,
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
 
-            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Yellow);
+            ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Yellow);
         }
 
         private void MakeTrail()

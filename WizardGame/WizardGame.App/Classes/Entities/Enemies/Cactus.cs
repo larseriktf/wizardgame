@@ -75,16 +75,14 @@ namespace WizardGame.App.Classes.Entities.Enemies
             {
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(sprCurrent, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
                     0,
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
 
-            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
-            ds.DrawRectangle(X - Width / 2, Y - Height / 2 - 64, Width, Height, Colors.Red);
             ds.DrawText("Colliding: " + colliding, X + 64, Y, Colors.Blue);
         }
 

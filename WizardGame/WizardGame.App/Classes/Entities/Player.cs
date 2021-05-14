@@ -38,6 +38,7 @@ namespace WizardGame.App.Classes.Entities
             {
                 XScale = Sign(hsp);
             }
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -46,16 +47,16 @@ namespace WizardGame.App.Classes.Entities
             {
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
                     0,
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
 
-            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
-            ds.DrawText("Screen Width: " + ScreenWidth, X, Y, Colors.Blue);
+            ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
+            ds.DrawText("Screen Width: " + ScreenWidth, OffsetX, OffsetY, Colors.Blue);
         }
 
 
@@ -108,11 +109,11 @@ namespace WizardGame.App.Classes.Entities
             // @TODO: Remove later
             if (Interact1.Pressed)
             {
-                ScreenWidth++;
+                ScreenWidth += 10;
             }
             if (Interact2.Pressed)
             {
-                ScreenWidth--;
+                ScreenWidth -= 10;
             }
         }
     }

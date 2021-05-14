@@ -29,7 +29,7 @@ namespace WizardGame.App.Classes
             Maps.Add(new Map()
             {
                 CollisionLayout = new CollisionLayout(collisions),
-                LevelBackground = new LevelBackground(ImageLoader.GetBitMap("bitmap_level1"))
+                LevelBackground = new LevelBackground(0, 0)
             });
         }
 

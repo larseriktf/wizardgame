@@ -33,6 +33,7 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             vsp = vspeed;
 
             UpdateCollisions();
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -41,11 +42,11 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             {
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
-                    new Vector2(X, Y),
+                    new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, ImageY),
                     new Vector4(Red, Green, Blue, Alpha),
                     0,
-                    new Vector2(XScale, YScale),
+                    new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
         }
