@@ -14,6 +14,8 @@ using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
 using WizardGame.App.Classes.Entities.Enemies;
 using WizardGame.App.Classes.Entities;
+using Windows.Graphics.Display;
+using Windows.Foundation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -164,6 +166,11 @@ namespace WizardGame.App.Views
         private void OnSaveAndQuit(object sender, RoutedEventArgs e)
         {
             Windows.UI.Xaml.Application.Current.Exit();
+        }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Screen.Width = e.NewSize.Width;
         }
     }
 }

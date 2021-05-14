@@ -1,4 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
+using Windows.Foundation;
+using Windows.Graphics.Display;
+using Windows.UI.ViewManagement;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Views;
 
@@ -32,19 +35,14 @@ namespace WizardGame.App.Classes.Entities
         public float Blue { get; set; } = 1f;
         public float Alpha { get; set; } = 1f;
 
-        // @TODO: Remove later, used for testing
-        public static int ScreenWidth { get; set; } = 1920;
-        public static int StandardScreenWidth { get; set; } = 1920;
-        public static int StandardScreenHeight { get; set; } = 1080;
-
         protected void OffsetAndScale()
         {
-            OffsetX = X * ScreenWidth / StandardScreenWidth;
-            OffsetY = Y * ScreenWidth / StandardScreenWidth;
-            OffsetWidth = Width * ScreenWidth / StandardScreenWidth;
-            OffsetHeight = Height * ScreenWidth / StandardScreenWidth;
-            OffsetXScale = XScale * ScreenWidth / StandardScreenWidth;
-            OffsetYScale = YScale * ScreenWidth / StandardScreenWidth;
+            OffsetX = (float)(X * Screen.Width / Screen.StandardWidth);
+            OffsetY = (float)(Y * Screen.Width / Screen.StandardWidth);
+            OffsetWidth = (int)(Width * Screen.Width / Screen.StandardWidth);
+            OffsetHeight = (int)(Height * Screen.Width / Screen.StandardWidth);
+            OffsetXScale = (float)(XScale * Screen.Width / Screen.StandardWidth);
+            OffsetYScale = (float)(YScale * Screen.Width / Screen.StandardWidth);
         }
     }
 }

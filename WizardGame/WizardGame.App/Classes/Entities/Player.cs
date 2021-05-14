@@ -56,7 +56,7 @@ namespace WizardGame.App.Classes.Entities
             }
 
             ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
-            ds.DrawText("Screen Width: " + ScreenWidth, OffsetX, OffsetY, Colors.Blue);
+            ds.DrawText("Screen Width: " + Screen.Width, OffsetX, OffsetY, Colors.Blue);
         }
 
 
@@ -109,11 +109,11 @@ namespace WizardGame.App.Classes.Entities
             // @TODO: Remove later
             if (Interact1.Pressed)
             {
-                ScreenWidth += 10;
+                Screen.Width += 10;
             }
             if (Interact2.Pressed)
             {
-                ScreenWidth -= 10;
+                Screen.Width -= 10;
             }
         }
     }

@@ -12,8 +12,6 @@ namespace WizardGame.App.Classes.Entities.HudElements
 {
     public class HealthBar : Entity, IDrawable
     {
-        private readonly SpriteSheet spriteSheet;
-
         public HealthBar()
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_health_bar");
