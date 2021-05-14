@@ -44,6 +44,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
             }
 
             ImageY = 1;
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)

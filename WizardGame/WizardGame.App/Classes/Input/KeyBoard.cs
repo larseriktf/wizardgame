@@ -48,9 +48,9 @@ namespace WizardGame.App.Classes.Input
                 case VirtualKey.Right   : Action3.Pressed = state; break;
                 case VirtualKey.Down    : Action4.Pressed = state; break;
 
-                case VirtualKey.F       : Action1.Pressed = state; break;
-                case VirtualKey.G       : Action2.Pressed = state; break;
-                case VirtualKey.H       : Action3.Pressed = state; break;
+                case VirtualKey.F       : Interact1.Pressed = state; break;
+                case VirtualKey.G       : Interact2.Pressed = state; break;
+                case VirtualKey.H       : Interact3.Pressed = state; break;
             }
         }
     }

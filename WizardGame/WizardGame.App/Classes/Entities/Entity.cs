@@ -1,5 +1,6 @@
 ﻿using Microsoft.Graphics.Canvas;
 using WizardGame.App.Classes.Graphics;
+using WizardGame.App.Views;
 
 namespace WizardGame.App.Classes.Entities
 {
@@ -22,5 +23,13 @@ namespace WizardGame.App.Classes.Entities
         public float Green { get; set; } = 1f;
         public float Blue { get; set; } = 1f;
         public float Alpha { get; set; } = 1f;
+
+        // @TODO: Remove later, used for testing
+        public static int ScreenWidth { get; set; } = 1920;
+
+        protected void OffsetAndScale()
+        {
+            X = X * (ScreenWidth - 0) / (1920 - 0);
+        }
     }
 }

@@ -55,6 +55,7 @@ namespace WizardGame.App.Classes.Entities
             }
 
             ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Green);
+            ds.DrawText("Screen Width: " + ScreenWidth, X, Y, Colors.Blue);
         }
 
 
@@ -103,6 +104,16 @@ namespace WizardGame.App.Classes.Entities
             {
                 TeleportationSpell.Teleport();
             });
+
+            // @TODO: Remove later
+            if (Interact1.Pressed)
+            {
+                ScreenWidth++;
+            }
+            if (Interact2.Pressed)
+            {
+                ScreenWidth--;
+            }
         }
     }
 }

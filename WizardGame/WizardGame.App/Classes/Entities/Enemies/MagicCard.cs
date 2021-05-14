@@ -67,6 +67,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
         {
             DetectStateChange();
             UpdateMovement();
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)

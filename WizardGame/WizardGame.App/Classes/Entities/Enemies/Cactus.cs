@@ -66,6 +66,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
         {
             PlaceCactus();
             HandleSprites();
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)

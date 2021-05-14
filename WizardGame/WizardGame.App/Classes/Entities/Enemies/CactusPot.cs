@@ -38,6 +38,8 @@ namespace WizardGame.App.Classes.Entities.Enemies
             {
                 XScale = Sign(hsp);
             }
+
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)
