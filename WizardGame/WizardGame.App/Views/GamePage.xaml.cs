@@ -99,7 +99,7 @@ namespace WizardGame.App.Views
 
             // Add enemy spawners
             EnemySpawner.Spawner((2 * 128) + 64, (5 * 128) + 64);
-            EnemySpawner.Spawner((11 * 128) + 64, (5 * 128) + 64);
+            EnemySpawner.Spawner((12 * 128) + 64, (5 * 128) + 64);
 
             // Generate and load maps
             MapEditor.MakeMaps();
@@ -108,10 +108,10 @@ namespace WizardGame.App.Views
 
         private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            //if (GameStateManager.EnemyCounter <= 0)
-            //{
-            //    GameStateManager.NextWave();
-            //}
+            if (GameStateManager.EnemyCounter <= 0)
+            {
+                GameStateManager.NextWave();
+            }
 
             foreach (IDrawable entity in EntityManager.Entities.ToList())
             {

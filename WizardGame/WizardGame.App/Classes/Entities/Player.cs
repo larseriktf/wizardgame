@@ -76,7 +76,7 @@ namespace WizardGame.App.Classes.Entities
         {
             Action1.EnsureTapped(() =>
             {
-                AddEntity("layer2", new Bunny(X, X));
+                Bunny.Spawner(X, Y);
             });
             Action2.EnsureTapped(() =>
             {
@@ -96,16 +96,6 @@ namespace WizardGame.App.Classes.Entities
             {
                 TeleportationSpell.Teleport();
             });
-
-            // @TODO: Remove later
-            if (Interact1.Pressed)
-            {
-                Screen.Width += 10;
-            }
-            if (Interact2.Pressed)
-            {
-                Screen.Width -= 10;
-            }
         }
 
         public static void Spawner(float x, float y)

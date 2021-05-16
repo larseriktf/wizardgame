@@ -59,7 +59,11 @@ namespace WizardGame.App.Classes.Entities.Enemies
                     0);
             }
 
-            ds.DrawRectangle(OffsetX - OffsetWidth / 2, Y - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
+            ds.DrawRectangle(
+                OffsetX - OffsetWidth / 2,
+                OffsetY - OffsetHeight / 2,
+                OffsetWidth, OffsetHeight,
+                Colors.Green);
             ds.DrawText("HP: " + hp, OffsetX, OffsetY, Colors.Red);
             ds.DrawText("Invincibility: " + Invincible, OffsetX, OffsetY - 16, Colors.Green);
             ds.DrawText("Timer: " + invincibilityTimer.Interval, OffsetX, OffsetY - 32, Colors.Blue);

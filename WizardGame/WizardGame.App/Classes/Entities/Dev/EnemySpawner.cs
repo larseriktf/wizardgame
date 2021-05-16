@@ -17,6 +17,7 @@ namespace WizardGame.App.Classes.Entities.Dev
         private int spawnDelay = 1000;
         private Timer spawnTimer = new Timer();
         private bool canSpawn = true;
+        private int previousWave = GameStateManager.Wave;
         
 
         public EnemySpawner(float x, float y) : base(x, y, 32, 32)
@@ -30,6 +31,12 @@ namespace WizardGame.App.Classes.Entities.Dev
 
         public void Update()
         {
+            if (GameStateManager.Wave != previousWave)
+            {   // New wave started
+                EnemiesToSpawn = GameStateManager.EnemyCounter / 2;
+                previousWave = GameStateManager.Wave;
+            }
+
             if (EnemiesToSpawn > 0 && canSpawn == true)
             {
                 Bunny.Spawner(X, Y);
@@ -42,11 +49,10 @@ namespace WizardGame.App.Classes.Entities.Dev
 
         public void Draw(CanvasDrawingSession ds)
         {
-            ds.DrawRectangle(
+            ds.DrawCircle(
                 OffsetX - OffsetWidth / 2,
                 OffsetY - OffsetHeight / 2,
-                OffsetWidth,
-                OffsetHeight,
+                8,
                 Colors.Red);
         }
 
