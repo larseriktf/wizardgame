@@ -13,6 +13,11 @@ namespace WizardGame.App.Classes.Entities.Spells
 {
     public class TeleportationSpell : Spell
     {
+        public TeleportationSpell() : base(0, 0, 0, 0)
+        {
+
+        }
+
         public static void Teleport()
         {
             Player player;

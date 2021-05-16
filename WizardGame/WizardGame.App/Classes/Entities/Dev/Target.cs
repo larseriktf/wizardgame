@@ -15,7 +15,7 @@ namespace WizardGame.App.Classes.Entities.Dev
         private float valueY = 0;
         private float valueX = 0;
 
-        public Target()
+        public Target(float x, float y) : base(x, y)
         {
             bitmap = ImageLoader.GetBitMap("bitmap_target");
         }

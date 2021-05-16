@@ -20,12 +20,10 @@ namespace WizardGame.App.Classes.Entities
         public readonly int spriteWidth = 96;
         public readonly int spriteHeight = 96;
 
-        public Player()
+        public Player(float x, float y) : base(x, y, 50, 50)
         {
             moveSpeed = 10;
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_player");
-            Width = 50;
-            Height = 50;
             AddEntity("layer_hud", new HealthBar());
             AddEntity("layer_hud", new CrystalOrb());
         }
@@ -78,27 +76,19 @@ namespace WizardGame.App.Classes.Entities
         {
             Action1.EnsureTapped(() =>
             {
-                AddEntity("layer2", new Bunny()
-                {
-                    X = X,
-                    Y = Y
-                });
+                AddEntity("layer2", new Bunny(X, X));
             });
             Action2.EnsureTapped(() =>
             {
-                AddEntity("layer2", new IceSpell()
+                AddEntity("layer2", new IceSpell(X, Y)
                 {
-                    X = X,
-                    Y = Y,
                     Direction = (XScale == 1) ? 0 : PI
                 });
             });
             Action3.EnsureTapped(() =>
             {
-                AddEntity("layer2", new PlantSpell()
+                AddEntity("layer2", new PlantSpell(X, Y)
                 {
-                    X = X,
-                    Y = Y,
                     Direction = Sign(XScale)
                 });
             });
@@ -116,6 +106,11 @@ namespace WizardGame.App.Classes.Entities
             {
                 Screen.Width -= 10;
             }
+        }
+
+        public static void Spawner(float x, float y)
+        {
+            AddEntity("layer1", new Player(x, y));
         }
     }
 }

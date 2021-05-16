@@ -41,5 +41,13 @@ namespace WizardGame.App.Classes.Entities
             // Update Y 
             Y += vsp;
         }
+
+        public PhysicsObject(
+            float x, float y,
+            int width, int height)
+            : base(x, y, width, height)
+        {
+
+        }
     }
 }

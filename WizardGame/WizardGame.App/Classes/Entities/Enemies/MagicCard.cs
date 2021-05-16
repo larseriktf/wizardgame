@@ -37,7 +37,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
         Timer animTimer = null;
         Entity target;
 
-        public MagicCard()
+        public MagicCard(float x, float y) : base(x, y, 16, 16)
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_cardenemy");
         }
@@ -47,19 +47,13 @@ namespace WizardGame.App.Classes.Entities.Enemies
             int min = -16;
             int max = 16;
 
-            EntityManager.Entities.Add(new Target()
-            {
-                X = x,
-                Y = y
-            });
+            EntityManager.Entities.Add(new Target(x, y));
 
             for (int i = 0; i < amount; i++)
             {
-                EntityManager.Entities.Add(new MagicCard()
-                {
-                    X = x + (float)Rnd.NextDouble() * (max - min) + min,
-                    Y = y + (float)Rnd.NextDouble() * (max - min) + min
-                });
+                EntityManager.Entities.Add(new MagicCard(
+                    x + (float)Rnd.NextDouble() * (max - min) + min,
+                    y + (float)Rnd.NextDouble() * (max - min) + min));
             }
         }
 

@@ -13,13 +13,9 @@ namespace WizardGame.App.Classes.Entities.HudElements
 {
     class CrystalOrb : Entity, IDrawable
     {
-        public CrystalOrb()
+        public CrystalOrb() : base(1744, 64, 96, 96)
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_crystal_orb");
-            Width = 96;
-            Height = 96;
-            X = 1744;
-            Y = 64;
         }
 
         public void Update()

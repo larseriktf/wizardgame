@@ -10,7 +10,7 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
     public class Onomatopoeia : Particle, IDrawable
     {
         private float alphaValue = 2;
-        public Onomatopoeia()
+        public Onomatopoeia(float x, float y) : base(x, y)
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_onomatopoeia_particle");
         }
@@ -59,10 +59,8 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         public static void Spawner(float x, float y, int imageX)
         {
 
-            EntityManager.AddEntity("layer_particles", new Onomatopoeia()
+            EntityManager.AddEntity("layer_particles", new Onomatopoeia(x, y)
             {
-                X = x,
-                Y = y,
                 ImageX = imageX
             });
         }

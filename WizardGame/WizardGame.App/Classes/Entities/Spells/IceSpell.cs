@@ -16,11 +16,9 @@ namespace WizardGame.App.Classes.Entities.Spells
     {
         private int angleMod = 1;
 
-        public IceSpell()
+        public IceSpell(float x, float y) : base(x, y, 96, 48)
         {
             ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
-            Width = 96;
-            Height = 48;
             moveSpeed = 32;
         }
 

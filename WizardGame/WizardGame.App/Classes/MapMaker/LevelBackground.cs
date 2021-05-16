@@ -8,13 +8,11 @@ namespace WizardGame.App.Classes.MapMaker
 {
     public class LevelBackground : Entity, IDrawable
     {
-        public LevelBackground(int imageX, int imageY)
+        public LevelBackground(int imageX, int imageY) : base(1920 / 2, 1152 / 2)
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_levels");
             ImageX = imageX;
             ImageY = imageY;
-            X = 1920 / 2;
-            Y = 1152 / 2;
         }
 
         public void Update()

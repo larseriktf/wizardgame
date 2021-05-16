@@ -26,11 +26,9 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
             }
         }
         private double speed = Rnd.NextDouble() * (5.5 - 3.5) + 3.5; // random.NextDouble() * (max - min) + min
-        public DustCloud()
+        public DustCloud(float x, float y) : base(x, y, 5, 5)
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_dust_particle");
-            Width = 5;
-            Height = 5;
             ImageX = Rnd.Next(0, 3);
 
             double scale = Rnd.NextDouble() * (1.2 - 0.8) + 0.8;
@@ -112,10 +110,8 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         {
             for (int i = 0; i < amount; i++)
             {
-                EntityManager.AddEntity("layer_particles", new DustCloud()
+                EntityManager.AddEntity("layer_particles", new DustCloud(x, y)
                 {
-                    X = x,
-                    Y = y,
                     Angle = (2 * PI) / amount * i + Rnd.NextDouble()
                 });
 

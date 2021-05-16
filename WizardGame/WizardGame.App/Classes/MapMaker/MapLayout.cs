@@ -13,7 +13,7 @@ namespace WizardGame.App.Classes.MapMaker
         private SpriteSheet sprite = null;
         public string BitMapUri { get; set; }
 
-        public MapLayout(string bitMapUri, int[][] layout)
+        public MapLayout(string bitMapUri, int[][] layout) : base(0, 0)
         {
             BitMapUri = bitMapUri;
             Layout = layout;

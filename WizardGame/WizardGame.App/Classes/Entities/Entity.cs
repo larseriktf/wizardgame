@@ -35,14 +35,39 @@ namespace WizardGame.App.Classes.Entities
         public float Blue { get; set; } = 1f;
         public float Alpha { get; set; } = 1f;
 
+        private float scaling = (float)(Screen.Width / Screen.StandardWidth);
+
+        public Entity(
+            float x, float y,
+            int width = 0, int height = 0,
+            float xScale = 1, float yScale = 1)
+        {
+            X = x;
+            Y = y;
+            OffsetX = x * scaling;
+            OffsetY = y * scaling;
+
+            Width = width;
+            Height = height;
+            OffsetWidth = (int)(width * scaling);
+            OffsetHeight = (int)(height * scaling);
+
+            XScale = xScale;
+            YScale = yScale;
+            OffsetXScale = xScale * scaling;
+            OffsetYScale = yScale * scaling;
+        }
+
         protected void OffsetAndScale()
         {
-            OffsetX = (float)(X * Screen.Width / Screen.StandardWidth);
-            OffsetY = (float)(Y * Screen.Width / Screen.StandardWidth);
-            OffsetWidth = (int)(Width * Screen.Width / Screen.StandardWidth);
-            OffsetHeight = (int)(Height * Screen.Width / Screen.StandardWidth);
-            OffsetXScale = (float)(XScale * Screen.Width / Screen.StandardWidth);
-            OffsetYScale = (float)(YScale * Screen.Width / Screen.StandardWidth);
+            scaling = (float)(Screen.Width / Screen.StandardWidth);
+
+            OffsetX = X * scaling;
+            OffsetY = Y * scaling;
+            OffsetWidth = (int)(Width * scaling);
+            OffsetHeight = (int)(Height * scaling);
+            OffsetXScale = XScale * scaling;
+            OffsetYScale = YScale * scaling;
         }
     }
 }

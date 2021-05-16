@@ -16,6 +16,7 @@ using WizardGame.App.Classes.Entities.Enemies;
 using WizardGame.App.Classes.Entities;
 using Windows.Graphics.Display;
 using Windows.Foundation;
+using WizardGame.App.Classes.Entities.Dev;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -88,21 +89,17 @@ namespace WizardGame.App.Views
             // Pre-load image resources
             await ImageLoader.LoadImageResourceAsync(sender.Device);
 
-            EntityManager.AddEntity("layer1", new Player()
-            {
-                X = 400,
-                Y = 400
-            });
-            //EntityManager.AddEntity("layer1", new Bunny()
+
+            Player.Spawner(400, 400);
+            //EntityManager.AddEntity("layer1", new Cactus()
             //{
-            //    X = 1000,
-            //    Y = 200
+            //    X = (8 * 128) + 64,
+            //    Y = (4 * 128) + 96
             //});
-            EntityManager.AddEntity("layer1", new Cactus()
-            {
-                X = (8 * 128) + 64,
-                Y = (4 * 128) + 96
-            });
+
+            // Add enemy spawners
+            EnemySpawner.Spawner((2 * 128) + 64, (5 * 128) + 64);
+            EnemySpawner.Spawner((11 * 128) + 64, (5 * 128) + 64);
 
             // Generate and load maps
             MapEditor.MakeMaps();
@@ -111,10 +108,10 @@ namespace WizardGame.App.Views
 
         private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            if (GameStateManager.EnemyCounter <= 0)
-            {
-                GameStateManager.NextWave();
-            }
+            //if (GameStateManager.EnemyCounter <= 0)
+            //{
+            //    GameStateManager.NextWave();
+            //}
 
             foreach (IDrawable entity in EntityManager.Entities.ToList())
             {

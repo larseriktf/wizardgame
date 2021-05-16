@@ -8,7 +8,7 @@ namespace WizardGame.App.Classes.MapMaker
     {
         public int[][] Layout { get; set; }
 
-        public CollisionLayout(int[][] layout)
+        public CollisionLayout(int[][] layout) : base(0, 0)
         {
             Layout = layout;
         }
@@ -22,11 +22,7 @@ namespace WizardGame.App.Classes.MapMaker
                     if (Layout[y][x] == 1)
                     {
                         EntityManager.Entities.Add(
-                            new Solid()
-                            {
-                                X = x * 128 + 64,
-                                Y = y * 128 + 64
-                            });
+                            new Solid(x * 128 + 64, y * 128 + 64));
                     }
                 }
             }

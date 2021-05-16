@@ -18,5 +18,14 @@ namespace WizardGame.App.Classes.Entities.Spells
             }
         }
         protected int damage = 1;
+
+
+        public Spell(
+            float x, float y,
+            int width, int height)
+            : base(x, y, width, height)
+        {
+
+        }
     }
 }

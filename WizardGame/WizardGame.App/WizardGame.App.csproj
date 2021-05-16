@@ -136,10 +136,10 @@
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="Classes\ApplicationSettings.cs" />
     <Compile Include="Classes\CanvasDebugger.cs" />
+    <Compile Include="Classes\Entities\Dev\EnemySpawner.cs" />
     <Compile Include="Classes\Entities\Enemies\Bunny.cs" />
     <Compile Include="Classes\Entities\Enemies\Cactus.cs" />
     <Compile Include="Classes\Entities\Enemies\CactusPot.cs" />
-    <Compile Include="Classes\Entities\Enemies\EnemySpawner.cs" />
     <Compile Include="Classes\Entities\Enemies\MagicCard.cs" />
     <Compile Include="Classes\Entities\Enemies\Enemy.cs" />
     <Compile Include="Classes\Entities\HudElements\CrystalOrb.cs" />

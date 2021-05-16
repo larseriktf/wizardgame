@@ -23,11 +23,9 @@ namespace WizardGame.App.Classes.Entities.Enemies
         private bool cactusPlaced = false;
         private bool allowPlacement = true;
 
-        public CactusPot()
+        public CactusPot(float x, float y) : base(x, y, 64, 64)
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_cactus_enemy");
-            Width = 64;
-            Height = 64;
         }
 
         public void Update()
@@ -70,10 +68,8 @@ namespace WizardGame.App.Classes.Entities.Enemies
                 // if area next of cactus relative to angle is available, place new cactus
                 if (!IsColliding(newX, newY, Width, Height, typeof(Solid)))
                 {
-                    AddEntity("layer1", new Cactus()
+                    AddEntity("layer1", new Cactus(newX, newY)
                     {
-                        X = newX,
-                        Y = newY,
                         Direction = direction
                     });
                 }

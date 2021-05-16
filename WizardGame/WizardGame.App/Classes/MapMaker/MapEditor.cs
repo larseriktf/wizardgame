@@ -41,11 +41,9 @@ namespace WizardGame.App.Classes
 
             foreach (MapLayout layout in map.MapLayouts)
             {
-                //EntityManager.Layers["layer0"].Add(layout);
                 EntityManager.AddEntity("layer0", layout);
             }
 
-            //EntityManager.Layers["layer0"].Add(map.LevelBackground);
             EntityManager.AddEntity("layer0", map.LevelBackground);
         }
     }
