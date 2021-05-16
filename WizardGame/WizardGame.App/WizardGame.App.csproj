@@ -138,6 +138,7 @@
     <Compile Include="Classes\Entities\Enemies\Bunny.cs" />
     <Compile Include="Classes\Entities\Enemies\Cactus.cs" />
     <Compile Include="Classes\Entities\Enemies\CactusPot.cs" />
+    <Compile Include="Classes\Entities\Enemies\EnemySpawner.cs" />
     <Compile Include="Classes\Entities\Enemies\MagicCard.cs" />
     <Compile Include="Classes\Entities\Enemies\Enemy.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\IceCrystals.cs" />
@@ -157,6 +158,7 @@
     <Compile Include="Classes\Entities\Spells\Spell.cs" />
     <Compile Include="Classes\Entities\Spells\TeleportationSpell.cs" />
     <Compile Include="Classes\EntityManager.cs" />
+    <Compile Include="Classes\GameStateManager.cs" />
     <Compile Include="Classes\Graphics\ImageLoader.cs" />
     <Compile Include="Classes\Input\InputKey.cs" />
     <Compile Include="Classes\Input\KeyBoard.cs" />

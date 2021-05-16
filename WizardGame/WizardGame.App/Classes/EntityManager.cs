@@ -73,7 +73,7 @@ namespace WizardGame.App.Classes
             return false;
         }
 
-        public static bool OneEntityExists(Type className)
+        public static bool SingleEntityExists(Type className)
         {
             int occurrences = 0;
             foreach (Entity entity in entities.ToList())

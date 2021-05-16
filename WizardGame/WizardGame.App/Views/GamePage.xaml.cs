@@ -111,6 +111,11 @@ namespace WizardGame.App.Views
 
         private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
+            if (GameStateManager.EnemyCounter <= 0)
+            {
+                GameStateManager.NextWave();
+            }
+
             foreach (IDrawable entity in EntityManager.Entities.ToList())
             {
                 entity.Update();
