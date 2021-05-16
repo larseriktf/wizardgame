@@ -26,7 +26,7 @@ namespace WizardGame.App.Classes.Entities.Spells
 
         public void Update()
         {
-            MakeTrail();
+            //MakeTrail();
             UpdateMovement();
             HandleState();
             OffsetAndScale();

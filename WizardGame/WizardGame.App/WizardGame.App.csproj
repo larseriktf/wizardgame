@@ -134,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Classes\ApplicationSettings.cs" />
     <Compile Include="Classes\CanvasDebugger.cs" />
     <Compile Include="Classes\Entities\Enemies\Bunny.cs" />
     <Compile Include="Classes\Entities\Enemies\Cactus.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Classes\Entities\Enemies\EnemySpawner.cs" />
     <Compile Include="Classes\Entities\Enemies\MagicCard.cs" />
     <Compile Include="Classes\Entities\Enemies\Enemy.cs" />
+    <Compile Include="Classes\Entities\HudElements\CrystalOrb.cs" />
     <Compile Include="Classes\Entities\ParticleEffects\IceCrystals.cs" />
     <Compile Include="Classes\Entities\PhysicsObject.cs" />
     <Compile Include="Classes\Entities\Entity.cs" />
@@ -258,11 +260,9 @@
     <Content Include="Assets\Images\Settings\configuration.png" />
     <Content Include="Assets\Images\TitleScreen\fantasyLand.jpg" />
     <Content Include="Assets\Sprites\Characters\spr_cactus_enemy.png" />
-    <Content Include="Assets\Sprites\Hud\HealthBarBackground.png" />
-    <Content Include="Assets\Sprites\Hud\HealthBarForeground.png" />
-    <Content Include="Assets\Sprites\Hud\HealthBarLiquid.png" />
     <Content Include="Assets\Sprites\Hud\spr_action_arrow.png" />
     <Content Include="Assets\Sprites\Dev\spr_gif.jpg" />
+    <Content Include="Assets\Sprites\Hud\spr_crystal_ball.png" />
     <Content Include="Assets\Sprites\Hud\spr_health_bar.png" />
     <Content Include="Assets\Sprites\Levels\spr_levels.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_cactus_debris.png" />

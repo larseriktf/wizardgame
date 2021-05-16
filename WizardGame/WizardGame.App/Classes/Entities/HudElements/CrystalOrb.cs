@@ -1,0 +1,51 @@
+﻿using Microsoft.Graphics.Canvas;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
+using Windows.UI;
+using WizardGame.App.Classes.Graphics;
+using WizardGame.App.Interfaces;
+
+namespace WizardGame.App.Classes.Entities.HudElements
+{
+    class CrystalOrb : Entity, IDrawable
+    {
+        public CrystalOrb()
+        {
+            spriteSheet = ImageLoader.GetSpriteSheet("sheet_crystal_orb");
+            Width = 96;
+            Height = 96;
+            X = 1744;
+            Y = 64;
+        }
+
+        public void Update()
+        {
+            OffsetAndScale();
+        }
+
+        public void Draw(CanvasDrawingSession ds)
+        {
+            using (var spriteBatch = ds.CreateSpriteBatch())
+            {
+                // Draw glass background
+                spriteSheet.DrawSpriteExt(
+                    spriteBatch,
+                    new Vector2(OffsetX, OffsetY),
+                    new Vector2(ImageX, ImageY),
+                    new Vector4(Red, Green, Blue, Alpha),
+                    0,
+                    new Vector2(OffsetXScale, OffsetYScale),
+                    0);
+            }
+
+
+            ds.DrawText("" + GameStateManager.Wave,
+                OffsetX, OffsetY,
+                Colors.Magenta, ApplicationSettings.standardFormat);
+        }
+    }
+}

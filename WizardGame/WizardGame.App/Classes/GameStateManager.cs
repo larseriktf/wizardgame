@@ -10,12 +10,13 @@ namespace WizardGame.App.Classes
 {
     public static class GameStateManager
     {
-        public static int Wave { get; set; } = 1;
+        public static int Wave { get; set; } = 0;
         public static int EnemyCounter { get; set; } = 0;
 
         public static void NextWave()
         {
-            NormalWave(10, 1);
+            Wave++;
+            NormalWave(1, 1);
         }
 
         public static void NormalWave(int amount, double damageMultiplier)

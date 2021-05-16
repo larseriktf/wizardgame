@@ -27,6 +27,7 @@ namespace WizardGame.App.Classes.Entities
             Width = 50;
             Height = 50;
             AddEntity("layer_hud", new HealthBar());
+            AddEntity("layer_hud", new CrystalOrb());
         }
 
         public void Update()
