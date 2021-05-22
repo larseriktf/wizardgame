@@ -1,18 +1,21 @@
 ﻿using Microsoft.Graphics.Canvas;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
-using WizardGame.App.Classes.Entities;
+using System.Text;
+using System.Threading.Tasks;
+using Windows.UI;
 using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 
-namespace WizardGame.App.Classes.MapMaker
+namespace WizardGame.App.Classes.Entities.HudElements
 {
-    public class LevelBackground : Entity, IDrawable
+    class CrystalOrb : Entity, IDrawable
     {
-        public LevelBackground(int imageX, int imageY) : base(1920 / 2, 1152 / 2)
+        public CrystalOrb() : base(1744, 64, 96, 96)
         {
-            spriteSheet = ImageLoader.GetSpriteSheet("sheet_levels");
-            ImageX = imageX;
-            ImageY = imageY;
+            spriteSheet = ImageLoader.GetSpriteSheet("sheet_crystal_orb");
         }
 
         public void Update()
@@ -24,6 +27,7 @@ namespace WizardGame.App.Classes.MapMaker
         {
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
+                // Draw glass background
                 spriteSheet.DrawSpriteExt(
                     spriteBatch,
                     new Vector2(OffsetX, OffsetY),
@@ -33,6 +37,11 @@ namespace WizardGame.App.Classes.MapMaker
                     new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
+
+
+            ds.DrawText("" + GameStateManager.Wave,
+                OffsetX, OffsetY,
+                Colors.Magenta, ApplicationSettings.standardFormat);
         }
     }
 }

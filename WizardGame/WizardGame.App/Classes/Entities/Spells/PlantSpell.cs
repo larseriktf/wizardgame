@@ -16,11 +16,9 @@ namespace WizardGame.App.Classes.Entities.Spells
         private float rotation = 0;
         private float rotationIncrease = (float)(Rnd.NextDouble() * (0.3 - (-0.3)) + (-0.3));
 
-        public PlantSpell()
+        public PlantSpell(float x, float y) : base(x, y, 48, 48)
         {
             ImageLoader.SpriteSheets.TryGetValue("sheet_plant_spell", out spriteSheet);
-            Width = 48;
-            Height = 48;
             vsp = -8;
         }
 

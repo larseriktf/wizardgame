@@ -48,11 +48,9 @@ namespace WizardGame.App.Classes.Entities.Enemies
         // @TODO: Remove this
         private bool colliding = false;
 
-        public Cactus() 
+        public Cactus(float x, float y) : base(x, y, 64, 64)
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_cactus_enemy");
-            Width = 64;
-            Height = 64;
 
             placementTimer = new Timer(placeTime);
             placementTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
@@ -104,10 +102,8 @@ namespace WizardGame.App.Classes.Entities.Enemies
                 }
                 if (!colliding)
                 {
-                    AddEntity("layer1", new Cactus()
+                    AddEntity("layer1", new Cactus(newX, newY)
                     {
-                        X = newX,
-                        Y = newY,
                         Direction = direction
                     });
                     CactusDebris.Spawner(newX, newY, Rnd.Next(5, 8));

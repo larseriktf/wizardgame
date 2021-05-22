@@ -13,11 +13,9 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         private readonly float grv = 0.3f;
         private float hspeed = 0;
         private float vspeed = 0;
-        public IceShard()
+        public IceShard(float x, float y) : base(x, y, 5, 5)
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_ice_particle");
-            Width = 5;
-            Height = 5;
             ImageX = Rnd.Next(0, 3);
             hspeed = (float)Rnd.NextDouble() * 4 * (Rnd.Next(0, 2) == 1 ? 1 : -1);
             vspeed = (float)Rnd.NextDouble() * 4 * (Rnd.Next(0, 2) == 1 ? 1 : -1);
@@ -68,11 +66,7 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         {
             for (int i = 0; i < amount; i++)
             {
-                EntityManager.AddEntity("layer_particles", new IceShard()
-                {
-                    X = x,
-                    Y = y
-                });
+                AddEntity("layer_particles", new IceShard(x, y));
             }
         }
     }

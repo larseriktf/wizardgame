@@ -10,27 +10,24 @@ namespace WizardGame.App.Classes
 {
     public static class GameStateManager
     {
-        public static int Wave { get; set; } = 1;
+        public static int Wave { get; set; } = 0;
         public static int EnemyCounter { get; set; } = 0;
+
+        private static int enemyCount = 2;
+        private static double damageMultiplier = 1;
 
         public static void NextWave()
         {
-            NormalWave(10, 1);
+            Wave++;
+            NormalWave();
         }
 
-        public static void NormalWave(int amount, double damageMultiplier)
+        public static void NormalWave()
         {
-            if (EntityManager.SingleEntityExists(typeof(Player)))
-            {
-                Player player = (Player)EntityManager.SingleEntity(typeof(Player));
+            EnemyCounter = enemyCount;
 
-                for (int i = 0; i < amount; i++)
-                {
-                    Bunny.Spawner(player.X, player.Y);
-                }
-
-                EnemyCounter = amount;
-            }
+            enemyCount += 2;
+            damageMultiplier += 0.1;
         }
 
         public static void SpecialWave()

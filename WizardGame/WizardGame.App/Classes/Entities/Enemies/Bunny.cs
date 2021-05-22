@@ -19,12 +19,10 @@ namespace WizardGame.App.Classes.Entities.Enemies
     {
         private readonly Timer animTimer;
 
-        public Bunny()
+        public Bunny(float x, float y) : base(x, y, 96, 96)
         {
             hp = 20;
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_bunny");
-            Width = 96;
-            Height = 96;
 
             animTimer = new Timer(40);
             animTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
@@ -61,7 +59,11 @@ namespace WizardGame.App.Classes.Entities.Enemies
                     0);
             }
 
-            ds.DrawRectangle(OffsetX - OffsetWidth / 2, Y - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
+            ds.DrawRectangle(
+                OffsetX - OffsetWidth / 2,
+                OffsetY - OffsetHeight / 2,
+                OffsetWidth, OffsetHeight,
+                Colors.Green);
             ds.DrawText("HP: " + hp, OffsetX, OffsetY, Colors.Red);
             ds.DrawText("Invincibility: " + Invincible, OffsetX, OffsetY - 16, Colors.Green);
             ds.DrawText("Timer: " + invincibilityTimer.Interval, OffsetX, OffsetY - 32, Colors.Blue);
@@ -97,11 +99,7 @@ namespace WizardGame.App.Classes.Entities.Enemies
 
         public static void Spawner(float x, float y)
         {
-            AddEntity("layer1", new Bunny()
-            {
-                X = x,
-                Y = y
-            });
+            AddEntity("layer1", new Bunny(x, y));
         }
     }
 }

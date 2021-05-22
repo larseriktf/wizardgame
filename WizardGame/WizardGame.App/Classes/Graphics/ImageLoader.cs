@@ -107,6 +107,13 @@ namespace WizardGame.App.Classes.Graphics
                     defaultPath + "/Levels/spr_levels.png",
                     new Vector2(1920, 1152)));
 
+            SpriteSheets.Add(
+                "sheet_crystal_orb",
+                await LoadSpriteSheetAsync(
+                    device,
+                    defaultPath + "/Hud/spr_crystal_ball.png",
+                    new Vector2(96, 96)));
+
             // Load BitMaps
 
             Bitmaps.Add(

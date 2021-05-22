@@ -12,11 +12,9 @@ namespace WizardGame.App.Classes.Entities.HudElements
 {
     public class HealthBar : Entity, IDrawable
     {
-        public HealthBar()
+        public HealthBar() : base(384, 64)
         {
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_health_bar");
-            X = 384;
-            Y = 64;
         }
 
         public void Update()

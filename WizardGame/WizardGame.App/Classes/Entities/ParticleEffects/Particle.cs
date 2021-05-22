@@ -9,7 +9,10 @@ namespace WizardGame.App.Classes.Entities.ParticleEffects
         protected Timer fadeOutTimer;
         protected int state = 0;
 
-        public Particle(int lifeSpan = 1000)
+        public Particle(float x, float y,
+            int width = 0, int height = 0,
+            int lifeSpan = 1000)
+            : base(x, y, width, height)
         {
             fadeOutTimer = new Timer(lifeSpan);
             fadeOutTimer.Elapsed += delegate (object source, ElapsedEventArgs e)
