@@ -7,6 +7,8 @@ namespace WizardGame.DataAccess
     public class GameContext : DbContext
     {
         public DbSet<Configuration> Configurations { get; set; }
+        public DbSet<GameStatistic> GameStatistics { get; set; }
+        public DbSet<PlayerProfile> PlayerProfiles { get; set; }
 
         public GameContext(DbContextOptions<GameContext> options) : base(options)
         {
@@ -172,6 +174,72 @@ namespace WizardGame.DataAccess
                     Interact1 = "R",
                     Interact2 = "F",
                     Interact3 = "C"
+                });
+
+            modelBuilder.Entity<GameStatistic>()
+                .HasData(
+                new GameStatistic()
+                {
+                    Id = 1,
+                    WavesPlayed = 10
+                },
+                new GameStatistic()
+                {
+                    Id = 2,
+                    WavesPlayed = 10
+                },
+                new GameStatistic()
+                {
+                    Id = 3,
+                    WavesPlayed = 10
+                },
+                new GameStatistic()
+                {
+                    Id = 4,
+                    WavesPlayed = 10
+                },
+                new GameStatistic()
+                {
+                    Id = 5,
+                    WavesPlayed = 10
+                },
+                new GameStatistic()
+                {
+                    Id = 6,
+                    WavesPlayed = 10
+                },
+                new GameStatistic()
+                {
+                    Id = 7,
+                    WavesPlayed = 10
+                },
+                new GameStatistic()
+                {
+                    Id = 8,
+                    WavesPlayed = 10
+                },
+                new GameStatistic()
+                {
+                    Id = 9,
+                    WavesPlayed = 10
+                });
+
+            modelBuilder.Entity<PlayerProfile>()
+                .HasData(
+                new PlayerProfile()
+                {
+                    Id = 1,
+                    PlayerName = "Åge",
+                },
+                new PlayerProfile()
+                {
+                    Id = 2,
+                    PlayerName = "Patrenko Escobar",
+                },
+                new PlayerProfile()
+                {
+                    Id = 3,
+                    PlayerName = "Player3",
                 });
         }
     }
