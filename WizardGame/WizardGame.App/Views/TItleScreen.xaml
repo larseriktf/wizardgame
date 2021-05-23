@@ -38,10 +38,10 @@
                         Grid.Row="1">
                 <Button Content="START NEW GAME"
                         Click="OnStartGame"/>
-                <Button Content="CONTINUE GAME"
-                        Click="OnContinueGame"/>
                 <Button Content="SPELL BOOK"
                         Click="OnOpenSpellBook"/>
+                <Button Content="LEADERBOARDS"
+                        Click="OnOpenLeaderboards"/>
                 <Button Content="SETTINGS"
                         Click="OnOpenSettings"/>
                 <Button Content="QUIT GAME"

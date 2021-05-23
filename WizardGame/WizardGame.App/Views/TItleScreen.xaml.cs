@@ -19,14 +19,14 @@ namespace WizardGame.App.Views
             NavigationService.Navigate<GamePage>();
         }
 
-        private void OnContinueGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            TitleScreenFrame.Navigate(typeof(SettingsPage));
-        }
-
         private void OnOpenSpellBook(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(SpellBookPage));
+        }
+
+        private void OnOpenLeaderboards(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            TitleScreenFrame.Navigate(typeof(LeaderboardsPage));
         }
 
         private void OnOpenSettings(object sender, Windows.UI.Xaml.RoutedEventArgs e)

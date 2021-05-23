@@ -20,19 +20,19 @@ namespace WizardGame.App.ViewModels
             {
                 return;
             }
-            Configuration = await dataService.GetAsync<Configuration>("http://localhost:34367/api/Game/" + Id);
+            Configuration = await dataService.GetAsync<Configuration>("http://localhost:34367/api/Configurations/" + Id);
         }
 
         internal async Task LoadAllConfigurationsAsync()
         {
             List<Configuration> configurations = new List<Configuration>()
             {
-                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Game/1"),
-                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Game/2"),
-                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Game/3"),
-                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Game/4"),
-                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Game/5"),
-                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Game/6"),
+                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Configurations/1"),
+                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Configurations/2"),
+                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Configurations/3"),
+                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Configurations/4"),
+                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Configurations/5"),
+                await dataService.GetAsync<Configuration>("http://localhost:34367/api/Configurations/6"),
             };
 
             foreach (Configuration configuration in configurations)
