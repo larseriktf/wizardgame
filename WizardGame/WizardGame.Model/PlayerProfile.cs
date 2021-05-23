@@ -9,6 +9,6 @@ namespace WizardGame.Model
         public int Id { get; set; }
         [Required]
         public string PlayerName { get; set; }
-        public List<GameStatistic> GameStatistics { get; set; }
+        public ICollection<GameStatistic> GameStatistics { get; set; }
     }
 }
