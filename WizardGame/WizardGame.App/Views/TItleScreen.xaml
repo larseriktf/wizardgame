@@ -17,7 +17,7 @@
 
         <Image Stretch="UniformToFill"
                Grid.ColumnSpan="4"
-               Source="/Assets/Images/TitleScreen/fantasyLand.jpg"/>
+               Source="/Assets/Images/fantasyLand.jpg"/>
 
         <Grid Grid.Column="0"
               Grid.Row="1"

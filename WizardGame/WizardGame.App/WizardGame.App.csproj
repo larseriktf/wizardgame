@@ -273,8 +273,10 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Images\Settings\configuration.png" />
-    <Content Include="Assets\Images\TitleScreen\fantasyLand.jpg" />
+    <Content Include="Assets\Images\addButton.png" />
+    <Content Include="Assets\Images\configuration.png" />
+    <Content Include="Assets\Images\fantasyLand.jpg" />
+    <Content Include="Assets\Images\playerProfile.png" />
     <Content Include="Assets\Sprites\Characters\spr_cactus_enemy.png" />
     <Content Include="Assets\Sprites\Hud\spr_action_arrow.png" />
     <Content Include="Assets\Sprites\Dev\spr_gif.jpg" />
