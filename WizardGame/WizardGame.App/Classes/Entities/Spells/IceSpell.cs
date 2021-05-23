@@ -1,56 +1,136 @@
 ﻿using Microsoft.Graphics.Canvas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI;
+using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.App.Classes.Entities.Enemies;
+using WizardGame.App.Classes.Entities.ParticleEffects;
+using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
+using static System.Math;
+using static WizardGame.App.Classes.EntityManager;
+using static WizardGame.App.Classes.RandomProvider;
 
 namespace WizardGame.App.Classes.Entities.Spells
 {
     public class IceSpell : Spell, IDrawable
     {
-        public string BitMapUri { get; } = "ms-appx:///Assets/Sprites/Spells/spr_spell_ice.png";
-        public SpriteSheet Sprite { get; set; } = null;
-        public readonly int spriteWidth = 96;
-        public readonly int spriteHeight = 48;
+        private int angleMod = 1;
 
-        public IceSpell()
+        public IceSpell(float x, float y) : base(x, y, 96, 48)
         {
-            X = 600;
-            Y = 500;
-            Width = 96;
-            Height = 48;
+            ImageLoader.SpriteSheets.TryGetValue("sheet_ice_spell", out spriteSheet);
+            moveSpeed = 32;
         }
 
-        public async void LoadImageResourceAsync(CanvasDevice device)
+        public void Update()
         {
-            Sprite = await SpriteSheet.LoadSpriteSheetAsync(device, BitMapUri, new Vector2(spriteWidth, spriteHeight));
+            //MakeTrail();
+            UpdateMovement();
+            HandleState();
+            OffsetAndScale();
         }
+
         public void Draw(CanvasDrawingSession ds)
         {
-            using (var spriteBatch = ds.CreateSpriteBatch())
+            if (direction < 3 * PI / 2 && direction >= PI / 2)
             {
-                if (Sprite != null)
-                {
-                    Sprite.DrawSpriteExt(
-                        spriteBatch,
-                        new Vector2(X, Y),
-                        new Vector2(ImageX, ImageY),
-                        new Vector4(Red, Green, Blue, Alpha),
-                        0,
-                        new Vector2(XScale, YScale),
-                        0);
-                }
-                else
-                {
-                    LoadImageResourceAsync(ds.Device);
-                }
+                YScale = -1;
+                angleMod = -1;
+            }
+            else
+            {
+                YScale = 1;
+                angleMod = 1;
             }
 
-            ds.DrawRectangle(X - Width / 2, Y - Height / 2, Width, Height, Colors.Yellow);
+            ImageX = state;
+
+            using (var spriteBatch = ds.CreateSpriteBatch())
+            {
+                spriteSheet.DrawSpriteExt(
+                    spriteBatch,
+                    new Vector2(OffsetX, OffsetY),
+                    new Vector2(ImageX, ImageY),
+                    new Vector4(Red, Green, Blue, Alpha),
+                    (float)direction * angleMod,
+                    new Vector2(OffsetXScale, OffsetYScale),
+                    0);
+            }
+
+            ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Yellow);
+        }
+
+        private void MakeTrail()
+        {
+            IceCrystals.Spawner(X, Y, 1);
+        }
+
+        private void HandleState()
+        {
+            switch (state)
+            {
+                case 0:
+                    damage = 6;
+                    break;
+                case 1:
+                    damage = 4;
+                    break;
+                case 2:
+                    damage = 2;
+                    break;
+                default:
+                    RemoveEntity(this);
+                    break;
+            }
+        }
+
+        private void UpdateMovement()
+        {
+            // Calculate movement
+            ControlAngle(ref direction);
+
+            hsp = (float)(moveSpeed * Cos(direction));
+            vsp = (float)(moveSpeed * Sin(direction));
+
+            X += hsp;
+            Y += vsp;
+
+            HandleCollisions();
+        }
+
+        private void ControlAngle(ref double angle)
+        {   // Contain Angle within its bounds
+            if (angle >= 2 * PI)
+            {
+                angle -= 2 * PI;
+            }
+            else if (angle < 0)
+            {
+                angle += 2 * PI;
+            }
+        }
+
+
+        private void HandleCollisions()
+        {
+            if (IsColliding(X, Y, Width, Height, typeof(Enemy)))
+            {
+                // If collided with character
+                // Do damage to enemy character
+                Enemy enemy = (Enemy)GetCollisionObject(X, Y, Width, Height, typeof(Enemy));
+                if (enemy.Invincible == false)
+                {
+                    enemy.TakeDamage(damage);
+                    IceShard.Spawner(X, Y, Rnd.Next(4, 7));
+                    state++;
+                }
+            }
+            else if (IsColliding(X, Y, Width, Height, typeof(Solid)))
+            {
+                // If collided with wall
+                IceShard.Spawner(X, Y, Rnd.Next(3, 5));
+                state = 3;
+            }
         }
     }
 }

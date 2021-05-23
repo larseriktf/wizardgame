@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WizardGame.App.Classes.Entities;
+﻿using WizardGame.App.Classes.Entities;
 using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.App.Interfaces;
 
@@ -13,7 +8,7 @@ namespace WizardGame.App.Classes.MapMaker
     {
         public int[][] Layout { get; set; }
 
-        public CollisionLayout(int[][] layout)
+        public CollisionLayout(int[][] layout) : base(0, 0)
         {
             Layout = layout;
         }
@@ -27,11 +22,7 @@ namespace WizardGame.App.Classes.MapMaker
                     if (Layout[y][x] == 1)
                     {
                         EntityManager.Entities.Add(
-                            new Solid()
-                            {
-                                X = x * 128,
-                                Y = y * 128
-                            });
+                            new Solid(x * 128 + 64, y * 128 + 64));
                     }
                 }
             }

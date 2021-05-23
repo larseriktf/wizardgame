@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace WizardGame.App.Helpers
@@ -8,7 +7,7 @@ namespace WizardGame.App.Helpers
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
+        protected void Set<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
         {
             if (Equals(storage, value))
             {

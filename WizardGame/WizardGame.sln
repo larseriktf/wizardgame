@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardGame.Model", "WizardGame.Model\WizardGame.Model.csproj", "{354EE807-F45B-453C-B03A-2533958C937E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WizardGame.Model", "WizardGame.Model\WizardGame.Model.csproj", "{354EE807-F45B-453C-B03A-2533958C937E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardGame.DataAccess", "WizardGame.DataAccess\WizardGame.DataAccess.csproj", "{30BF0BE8-B9A3-4B00-A46A-C6FF30832B7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WizardGame.DataAccess", "WizardGame.DataAccess\WizardGame.DataAccess.csproj", "{30BF0BE8-B9A3-4B00-A46A-C6FF30832B7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardGame.Api", "WizardGame.Api\WizardGame.Api.csproj", "{E16A061F-114B-4403-BB9E-66128BF490AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WizardGame.Api", "WizardGame.Api\WizardGame.Api.csproj", "{E16A061F-114B-4403-BB9E-66128BF490AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WizardGame.App", "WizardGame.App\WizardGame.App.csproj", "{0D1F6397-4256-44A5-B84D-0615D44D95F6}"
 EndProject
@@ -88,6 +88,8 @@ Global
 		{E16A061F-114B-4403-BB9E-66128BF490AE}.Release|x86.ActiveCfg = Release|Any CPU
 		{E16A061F-114B-4403-BB9E-66128BF490AE}.Release|x86.Build.0 = Release|Any CPU
 		{0D1F6397-4256-44A5-B84D-0615D44D95F6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0D1F6397-4256-44A5-B84D-0615D44D95F6}.Debug|Any CPU.Build.0 = Debug|x86
+		{0D1F6397-4256-44A5-B84D-0615D44D95F6}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{0D1F6397-4256-44A5-B84D-0615D44D95F6}.Debug|ARM.ActiveCfg = Debug|ARM
 		{0D1F6397-4256-44A5-B84D-0615D44D95F6}.Debug|ARM.Build.0 = Debug|ARM
 		{0D1F6397-4256-44A5-B84D-0615D44D95F6}.Debug|ARM.Deploy.0 = Debug|ARM

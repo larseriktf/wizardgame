@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using WizardGame.App.Classes.Entities;
-using WizardGame.App.Classes.Entities.Dev;
-using WizardGame.App.Interfaces;
 using static System.Math;
 
 namespace WizardGame.App.Classes
@@ -19,7 +13,9 @@ namespace WizardGame.App.Classes
         {
             "layer0",
             "layer1",
-            "layer2"
+            "layer2",
+            "layer_particles",
+            "layer_hud"
         };
 
         private static readonly List<Entity> entities = new List<Entity>();
@@ -55,9 +51,19 @@ namespace WizardGame.App.Classes
             entities.Insert(index, entity);
         }
 
+        public static Entity RemoveEntity(Entity obj)
+        {
+            if (entities.Contains(obj))
+            {
+                entities.Remove(obj);
+                return obj;
+            }
+            return null;
+        }
+
         public static bool EntityExists(Type className)
         {   // Runs through list of entities and checks if they are of type className
-            foreach (Entity entity in Entities)
+            foreach (Entity entity in entities.ToList())
             {
                 if (entity.GetType().Equals(className))
                 {
@@ -70,7 +76,7 @@ namespace WizardGame.App.Classes
         public static bool SingleEntityExists(Type className)
         {
             int occurrences = 0;
-            foreach (Entity entity in Entities)
+            foreach (Entity entity in entities.ToList())
             {
                 if (entity.GetType().Equals(className))
                 {
@@ -81,9 +87,9 @@ namespace WizardGame.App.Classes
             return false;
         }
 
-        public static Entity GetSingleEntity(Type className)
+        public static Entity SingleEntity(Type className)
         {
-            foreach (Entity entity in Entities)
+            foreach (Entity entity in entities.ToList())
             {
                 if (entity.GetType().Equals(className))
                 {
@@ -93,7 +99,7 @@ namespace WizardGame.App.Classes
             return null;
         }
 
-        public static Entity GetNearestEntity(Entity obj, Type className)
+        public static Entity NearestEntity(Entity obj, Type className)
         {
             List<Entity> entities = GetEntities(className);
             Entity nearest = null;
@@ -104,9 +110,9 @@ namespace WizardGame.App.Classes
                 if (nearest == null)
                 {
                     nearest = entity;
-                    dist = GetDistanceBetweenEntities(obj, entity);
+                    dist = DistanceBetweenEntities(obj, entity);
                 }
-                else if (GetDistanceBetweenEntities(obj, entity) < dist)
+                else if (DistanceBetweenEntities(obj, entity) < dist)
                 {
                     nearest = entity;
                 }
@@ -117,32 +123,21 @@ namespace WizardGame.App.Classes
         public static List<Entity> GetEntities(Type className)
         {
             List<Entity> listOfObjects = new List<Entity>();
-            foreach (Entity entity in Entities)
+            foreach (Entity entity in entities.ToList())
             {
-                if (entity.GetType().Equals(className))
-                {
-                    listOfObjects.Add(entity);
+                if (entity != null)
+                {   // Has to check if entity is not null, or else it might throw exception
+                    if (entity.GetType().Equals(className)
+                     || className.IsAssignableFrom(entity.GetType()))
+                    {
+                        listOfObjects.Add(entity);
+                    }
                 }
             }
             return listOfObjects;
         }
 
-        public static List<Solid> GetAllSolidEntities()
-        {
-            List<Solid> listOfSolids = new List<Solid>();
-
-            foreach (Entity entity in Entities)
-            {
-                if (entity.GetType().IsSubclassOf(typeof(Solid)))
-                {
-                    listOfSolids.Add((Solid)entity);
-                }
-            }
-
-            return listOfSolids;
-        }
-
-        public static double GetAngleBetweenEntitiesInRadians(Entity objA, Entity objB)
+        public static double AngleBetweenEntitiesInRadians(Entity objA, Entity objB)
         {
             // Vector between objA and objB
             Vector2 a = new Vector2(objB.X - objA.X, objB.Y - objA.Y);
@@ -152,7 +147,7 @@ namespace WizardGame.App.Classes
 
             // Calculate angle (theta) in radians
             // Thanks to https://www.youtube.com/watch?v=_VuZZ9_58Wg
-            float crossProduct = GetCrossProductOfTwoVectors(a, b);
+            float crossProduct = CrossProductOfTwoVectors(a, b);
             double angle = Atan2(Abs(crossProduct), Vector2.Dot(a, b));
 
             if (crossProduct > 0)
@@ -163,12 +158,12 @@ namespace WizardGame.App.Classes
             return angle;
         }
 
-        public static float GetCrossProductOfTwoVectors(Vector2 a, Vector2 b)
+        public static float CrossProductOfTwoVectors(Vector2 a, Vector2 b)
         {
             return a.X * b.Y - a.Y * b.X; ;
         }
 
-        public static double GetDistanceBetweenEntities(Entity objA, Entity objB)
+        public static double DistanceBetweenEntities(Entity objA, Entity objB)
         {
             double x = objB.X - objA.X;
             double y = objB.Y - objA.Y;
@@ -177,40 +172,73 @@ namespace WizardGame.App.Classes
             return distance;
         }
 
-
-
-        public static bool CheckCollision(float x, float y, int width, int height, Type className)
+        public static bool IsColliding(float x, float y, int width, int height, Type className)
         {
             List<Entity> entities = GetEntities(className);
 
             foreach (Entity entity in entities)
-            {   // Run four checks to see if it collides
-                if ((x + width / 2) >= entity.X
-                 && (x - width / 2) <= (entity.X + entity.Width)
-                 && (y + height / 2) >= entity.Y
-                 && (y - height / 2) <= (entity.Y + entity.Height))
-                {   // Collision detected!
+            {
+                if (CheckCollisionSingle(x, y, width, height, entity))
+                {
                     return true;
                 }
             }
             return false;
         }
 
-        //public static bool CheckCollisionBBox(Entity obj, Type className)
-        //{
-        //    List<Entity> entities = GetEntities(className);
+        public static bool CheckCollisionSingle(float x, float y, int width, int height, Entity entity)
+        {
+            // Run four checks to see if it collides
+            if ((x + width / 2) > (entity.X - entity.Width / 2)
+             && (x - width / 2) < (entity.X + entity.Width / 2)
+             && (y + height / 2) > (entity.Y - entity.Height / 2)
+             && (y - height / 2) < (entity.Y + entity.Height / 2))
+            {   // Collision detected!
+                return true;
+            }
+            return false;
+        }
+        public static Entity GetCollisionObject(float x, float y, int width, int height, Type className)
+        {
+            // Get list of entities at are either of className, or a child member of className
+            List<Entity> entities = GetEntities(className);
 
-        //    foreach (Entity entity in entities)
-        //    {   // Run four checks to see if it collides
-        //        if ((obj.XPos + obj.Width - (obj.Width / 2)) >= entity.XPos
-        //         && obj.XPos - (obj.Width / 2) <= (entity.XPos + entity.Width)
-        //         && (obj.YPos + obj.Width - (obj.Height / 2)) >= entity.YPos
-        //         && obj.YPos - (obj.Height / 2) <= (entity.YPos + entity.Height))
-        //        {   // Collision detected!
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
+            foreach (Entity entity in entities)
+            {
+                if (CheckCollisionSingle(x, y, width, height, entity))
+                {
+                    return entity;
+                }
+            }
+            return null;
+        }
+
+        public static bool IsOverlapping(float x, float y, int width, int height, Type className)
+        {
+            List<Entity> entities = GetEntities(className);
+
+            foreach (Entity entity in entities)
+            {
+                if (CheckCollisionSingle(x, y, width, height, entity))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public static bool IsOverlappingSingle(float x, float y, int width, int height, Entity entity)
+        {
+            // Run four checks to see if it collides
+            if ((x + width / 2) > (entity.X - entity.Width / 2)
+             && (x - width / 2) < (entity.X + entity.Width / 2)
+             && (y + height / 2) > (entity.Y - entity.Height / 2)
+             && (y - height / 2) < (entity.Y + entity.Height / 2))
+            {   // Collision detected!
+                return true;
+            }
+            return false;
+        }
+
     }
 }

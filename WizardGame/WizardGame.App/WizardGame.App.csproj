@@ -119,6 +119,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.4.3</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.1</Version>
     </PackageReference>
@@ -131,23 +134,44 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
+    <Compile Include="Classes\ApplicationSettings.cs" />
     <Compile Include="Classes\CanvasDebugger.cs" />
-    <Compile Include="Classes\Entities\Characters\Bunny.cs" />
-    <Compile Include="Classes\Entities\Characters\CardEnemy.cs" />
+    <Compile Include="Classes\Entities\Dev\EnemySpawner.cs" />
+    <Compile Include="Classes\Entities\Enemies\Bunny.cs" />
+    <Compile Include="Classes\Entities\Enemies\Cactus.cs" />
+    <Compile Include="Classes\Entities\Enemies\CactusPot.cs" />
+    <Compile Include="Classes\Entities\Enemies\MagicCard.cs" />
+    <Compile Include="Classes\Entities\Enemies\Enemy.cs" />
+    <Compile Include="Classes\Entities\HudElements\CrystalOrb.cs" />
+    <Compile Include="Classes\Entities\ParticleEffects\IceCrystals.cs" />
+    <Compile Include="Classes\Entities\PhysicsObject.cs" />
     <Compile Include="Classes\Entities\Entity.cs" />
-    <Compile Include="Classes\Entities\Characters\Player.cs" />
+    <Compile Include="Classes\Entities\Player.cs" />
     <Compile Include="Classes\Entities\Dev\Solid.cs" />
     <Compile Include="Classes\Entities\Dev\Target.cs" />
+    <Compile Include="Classes\Entities\HudElements\HealthBar.cs" />
+    <Compile Include="Classes\Entities\ParticleEffects\CactusDebris.cs" />
+    <Compile Include="Classes\Entities\ParticleEffects\DustCloud.cs" />
+    <Compile Include="Classes\Entities\ParticleEffects\IceShard.cs" />
+    <Compile Include="Classes\Entities\ParticleEffects\Onomatopoeia.cs" />
+    <Compile Include="Classes\Entities\ParticleEffects\Particle.cs" />
     <Compile Include="Classes\Entities\Spells\IceSpell.cs" />
+    <Compile Include="Classes\Entities\Spells\PlantSpell.cs" />
     <Compile Include="Classes\Entities\Spells\Spell.cs" />
+    <Compile Include="Classes\Entities\Spells\TeleportationSpell.cs" />
     <Compile Include="Classes\EntityManager.cs" />
-    <Compile Include="Classes\KeyBoard.cs" />
+    <Compile Include="Classes\GameStateManager.cs" />
+    <Compile Include="Classes\Graphics\ImageLoader.cs" />
+    <Compile Include="Classes\Input\InputKey.cs" />
+    <Compile Include="Classes\Input\KeyBoard.cs" />
     <Compile Include="Classes\MapMaker\CollisionLayout.cs" />
     <Compile Include="Classes\MapMaker\LevelBackground.cs" />
     <Compile Include="Classes\MapMaker\Map.cs" />
     <Compile Include="Classes\MapMaker\MapEditor.cs" />
     <Compile Include="Classes\MapMaker\MapLayout.cs" />
-    <Compile Include="Classes\SpriteSheet.cs" />
+    <Compile Include="Classes\Graphics\SpriteSheet.cs" />
+    <Compile Include="Classes\RandomProvider.cs" />
+    <Compile Include="Classes\Screen.cs" />
     <Compile Include="Helpers\Observable.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Interfaces\IDrawable.cs" />
@@ -155,9 +179,29 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="ViewModels\PlayerProfilePageViewModel.cs" />
+    <Compile Include="ViewModels\LeaderboardsViewModel.cs" />
+    <Compile Include="ViewModels\GamePageViewModel.cs" />
+    <Compile Include="Views\PlayerProfilePage.xaml.cs">
+      <DependentUpon>PlayerProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LeaderboardsPage.xaml.cs">
+      <DependentUpon>LeaderboardsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PausePage.xaml.cs">
+      <DependentUpon>PausePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SpellBookPage.xaml.cs">
+      <DependentUpon>SpellBookPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TItleScreen.xaml.cs">
+      <DependentUpon>TItleScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +214,10 @@
     <Page Include="Styles\Page.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\WizardGameStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\_Colors.xaml">
       <SubType>Designer</SubType>
@@ -187,7 +235,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainPage.xaml">
+    <Page Include="Views\PlayerProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LeaderboardsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PausePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SpellBookPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TItleScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -201,16 +273,28 @@
     <Compile Include="Helpers\ResourceExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Sprites\Levels\abandonedRoom.png" />
+    <Content Include="Assets\Images\Settings\configuration.png" />
+    <Content Include="Assets\Images\TitleScreen\fantasyLand.jpg" />
+    <Content Include="Assets\Sprites\Characters\spr_cactus_enemy.png" />
+    <Content Include="Assets\Sprites\Hud\spr_action_arrow.png" />
+    <Content Include="Assets\Sprites\Dev\spr_gif.jpg" />
+    <Content Include="Assets\Sprites\Hud\spr_crystal_ball.png" />
+    <Content Include="Assets\Sprites\Hud\spr_health_bar.png" />
+    <Content Include="Assets\Sprites\Levels\spr_levels.png" />
+    <Content Include="Assets\Sprites\ParticleEffects\spr_cactus_debris.png" />
+    <Content Include="Assets\Sprites\ParticleEffects\spr_dust_cloud.png" />
+    <Content Include="Assets\Sprites\ParticleEffects\spr_ice_crystals.png" />
     <Content Include="Assets\Sprites\ParticleEffects\spr_ice_shards.png" />
+    <Content Include="Assets\Sprites\ParticleEffects\spr_onomatopoeia.png" />
     <Content Include="Assets\Sprites\Spells\spr_spell_ice.png" />
+    <Content Include="Assets\Sprites\Spells\spr_spell_plant.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Sprites\Dev\spr_dev.jpg" />
     <Content Include="Assets\Sprites\Dev\spr_point.jpg" />
-    <Content Include="Assets\Sprites\Characters\Bunny\spr_bunny.png" />
-    <Content Include="Assets\Sprites\Characters\CardEnemy\spr_cards.png" />
-    <Content Include="Assets\Sprites\Characters\Player\spr_player_idle.png" />
-    <Content Include="Assets\Sprites\Characters\Player\spr_player.png" />
+    <Content Include="Assets\Sprites\Characters\spr_bunny.png" />
+    <Content Include="Assets\Sprites\Characters\spr_cards.png" />
+    <Content Include="Assets\Sprites\Characters\spr_player_idle.png" />
+    <Content Include="Assets\Sprites\Characters\spr_player.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -221,6 +305,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
+    <Content Include="Fonts\Curse-Casual.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="App.config" />
     <None Include="WizardGame.App_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +322,13 @@
       <Project>{F799BF5C-9047-49DC-9515-62A7A2244217}</Project>
       <Name>WizardGame.App.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WizardGame.Model\WizardGame.Model.csproj">
+      <Project>{354ee807-f45b-453c-b03a-2533958c937e}</Project>
+      <Name>WizardGame.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

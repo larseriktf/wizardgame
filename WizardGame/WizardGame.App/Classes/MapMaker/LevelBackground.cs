@@ -1,34 +1,37 @@
 ﻿using Microsoft.Graphics.Canvas;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Numerics;
 using WizardGame.App.Classes.Entities;
+using WizardGame.App.Classes.Graphics;
 using WizardGame.App.Interfaces;
 
 namespace WizardGame.App.Classes.MapMaker
 {
     public class LevelBackground : Entity, IDrawable
     {
-        public CanvasBitmap BitMap;
-        public string BitMapUri { get; }
-
-        public LevelBackground(string bitMapUri)
+        public LevelBackground(int imageX, int imageY) : base(1920 / 2, 1152 / 2)
         {
-            BitMapUri = bitMapUri;
+            spriteSheet = ImageLoader.GetSpriteSheet("sheet_levels");
+            ImageX = imageX;
+            ImageY = imageY;
         }
 
-        public async void LoadImageResourceAsync(CanvasDevice device)
+        public void Update()
         {
-            BitMap = await CanvasBitmap.LoadAsync(device, new Uri(BitMapUri));
+            OffsetAndScale();
         }
 
         public void Draw(CanvasDrawingSession ds)
         {
-            if (BitMap != null)
+            using (var spriteBatch = ds.CreateSpriteBatch())
             {
-                ds.DrawImage(BitMap, X, Y);
+                spriteSheet.DrawSpriteExt(
+                    spriteBatch,
+                    new Vector2(OffsetX, OffsetY),
+                    new Vector2(ImageX, ImageY),
+                    new Vector4(Red, Green, Blue, Alpha),
+                    0,
+                    new Vector2(OffsetXScale, OffsetYScale),
+                    0);
             }
         }
     }

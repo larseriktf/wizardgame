@@ -46,7 +46,7 @@ namespace WizardGame.App
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(Views.MainPage));
+            return new ActivationService(this, typeof(Views.TitleScreen));
         }
     }
 }

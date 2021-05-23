@@ -1,13 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using WizardGame.App.Classes.Graphics;
 
 namespace WizardGame.App.Classes.Entities.Spells
 {
-    public abstract class Spell : Entity
+    public abstract class Spell : PhysicsObject
     {
-        public double Angle { get; set; } = 0;
+        protected int state = 0;
+        protected double direction = 0;
+        public double Direction
+        {
+            get
+            {
+                return direction;
+            }
+            set
+            {
+                direction = value;
+            }
+        }
+        protected int damage = 1;
+
+
+        public Spell(
+            float x, float y,
+            int width, int height)
+            : base(x, y, width, height)
+        {
+
+        }
     }
 }

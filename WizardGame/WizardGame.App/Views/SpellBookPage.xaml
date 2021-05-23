@@ -1,0 +1,281 @@
+﻿<Page
+    x:Class="WizardGame.App.Views.SpellBookPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource PageStyle}"
+    mc:Ignorable="d">
+    <Grid Background="Indigo">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="896"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="128"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Style="{StaticResource MainTitle}"
+                   Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="Spell Book"/>
+
+        <Grid Grid.Column="0" Grid.Row="1" Padding="16">
+            <StackPanel>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="256"/>
+                            <ColumnDefinition Width="192"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Spells"
+                                   HorizontalAlignment="Center"
+                                   Grid.Column="0"
+                                   Foreground="MediumOrchid"/>
+
+                        <TextBlock Text="Button Sequence"
+                                   HorizontalAlignment="Center"
+                                   Grid.Column="2"
+                                   Foreground="MediumOrchid"/>
+
+                    </Grid>
+                    <Grid Style="{StaticResource SettingsRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="256"/>
+                            <ColumnDefinition Width="192"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Ice Spell"
+                                   Grid.Column="0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Sequence"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 16 0"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Orientation="Horizontal">
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="0"/>
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="90"/>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="180"/>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="270"/>
+                                </Image.RenderTransform>
+                            </Image>
+                        </StackPanel>
+                        
+
+                    </Grid>
+                    <Grid Style="{StaticResource SettingsRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="256"/>
+                            <ColumnDefinition Width="192"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Ice Spell"
+                                   Grid.Column="0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Sequence"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 16 0"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Orientation="Horizontal">
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="0"/>
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="90"/>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="180"/>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="270"/>
+                                </Image.RenderTransform>
+                            </Image>
+                        </StackPanel>
+
+
+                    </Grid>
+                    <Grid Style="{StaticResource SettingsRow}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="256"/>
+                            <ColumnDefinition Width="192"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Ice Spell"
+                                   Grid.Column="0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+
+                        <TextBlock Text="Sequence"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 16 0"/>
+
+                        <StackPanel Grid.Column="2"
+                                    Orientation="Horizontal">
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="0"/>
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="90"/>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="180"/>
+                                </Image.RenderTransform>
+                            </Image>
+                            <Image Source="/Assets/Sprites/Hud/spr_action_arrow.png"
+                                   Height="48"
+                                   Width="48"
+                                   Margin="0 0 8 0"
+                                   RenderTransformOrigin="0.5, 0.5">
+                                <Image.RenderTransform>
+                                    <RotateTransform Angle="270"/>
+                                </Image.RenderTransform>
+                            </Image>
+                        </StackPanel>
+
+
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="1" Grid.Row="1" Padding="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Image Source="/Assets/Sprites/Dev/spr_gif.jpg"
+                   Grid.Row="0"/>
+
+            <StackPanel Grid.Row="1"
+                        Background="Purple"
+                        Padding="8"
+                        Margin="0 0 0 16">
+                <TextBlock Text="SpellName (Binding)"
+                           HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="Description"
+                           Foreground="MediumOrchid"/>
+                <TextBlock Text="Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh "
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="3">
+                <TextBlock Text="Critical Effect"
+                           Foreground="MediumOrchid"/>
+                <TextBlock Text="Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh Bruh "
+                           TextWrapping="Wrap"/>
+            </StackPanel>
+
+
+        </Grid>
+
+
+    </Grid>
+</Page>
