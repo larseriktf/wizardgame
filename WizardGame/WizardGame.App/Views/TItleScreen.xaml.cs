@@ -24,6 +24,11 @@ namespace WizardGame.App.Views
             TitleScreenFrame.Navigate(typeof(SpellBookPage));
         }
 
+        private void OnOpenPlayerProfile(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            TitleScreenFrame.Navigate(typeof(PlayerProfilePage));
+        }
+
         private void OnOpenLeaderboards(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(LeaderboardsPage));

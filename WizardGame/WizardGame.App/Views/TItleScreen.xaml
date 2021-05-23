@@ -40,6 +40,8 @@
                         Click="OnStartGame"/>
                 <Button Content="SPELL BOOK"
                         Click="OnOpenSpellBook"/>
+                <Button Content="PLAYER PROFILE"
+                        Click="OnOpenPlayerProfile"/>
                 <Button Content="LEADERBOARDS"
                         Click="OnOpenLeaderboards"/>
                 <Button Content="SETTINGS"

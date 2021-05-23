@@ -179,8 +179,12 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="ViewModels\PlayerProfilePageViewModel.cs" />
     <Compile Include="ViewModels\LeaderboardsViewModel.cs" />
     <Compile Include="ViewModels\GamePageViewModel.cs" />
+    <Compile Include="Views\PlayerProfilePage.xaml.cs">
+      <DependentUpon>PlayerProfilePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LeaderboardsPage.xaml.cs">
       <DependentUpon>LeaderboardsPage.xaml</DependentUpon>
     </Compile>
@@ -230,6 +234,10 @@
     <Page Include="Styles\TextBlock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlayerProfilePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LeaderboardsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
