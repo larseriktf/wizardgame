@@ -10,41 +10,49 @@
     mc:Ignorable="d">
 
     <Grid Background="Indigo">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="128"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <StackPanel>
-            <TextBlock Style="{StaticResource MainTitle}"
-                       Text="Player Profiles"
-                       Margin="16"/>
+        <TextBlock Style="{StaticResource MainTitle}"
+                   Text="Player Profiles"
+                   Grid.Row="0"/>
 
-            <Grid Height="512">
+        <StackPanel Grid.Row="1">
+            <Grid Height="460">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                <ScrollViewer Grid.Column="0">
+                <ScrollViewer Grid.Column="0" Grid.Row="0">
                     <StackPanel Background="Purple">
-                        
+
 
                         <GridView x:Name="ConfigurationsGridView"
                                   ItemsSource="{x:Bind PlayerProfileViewModel.PlayerProfiles, Mode=TwoWay}"
                                   SelectionMode="Single"
-                                  IsItemClickEnabled="True"
-                                  ItemClick="OnClickPlayerProfile"
-                                  GotFocus="OnFocusPlayerProfile"
-                                  LostFocus="OnUnFocusPlayerProfile">
+                                  IsItemClickEnabled="True">
 
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="model:PlayerProfile">
                                     <StackPanel Width="128">
-                                        <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
-                                        <TextBlock x:Name="playerNameText"
+                                        <Button Click="OnCLickPlayerProfile">
+                                            <StackPanel>
+                                                <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
+                                                <TextBlock x:Name="playerNameText"
                                                     Text="{x:Bind PlayerName, Mode=OneWay}"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
                                                     TextWrapping="Wrap"
                                                     FontFamily="{StaticResource CurseCasual}"
                                                     FontSize="20"/>
+                                            </StackPanel>
+                                        </Button>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
@@ -63,50 +71,51 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        
-                        <StackPanel Grid.Column="1" Grid.ColumnSpan="5">
-                            <Button Padding="0"
-                                    Click="OnToggleProfileCreationMenu"
-                                    Content="New Profile"
-                                    Background="Purple"/>
 
-                            <Rectangle Fill="Purple" Height="2" Margin="0, 16"/>
-
-                            <StackPanel x:Name="ProfileDisplay" Visibility="Collapsed">
-                                <TextBlock Text="Name" Foreground="Purple"/>
-                            </StackPanel>
-                            
-                        </StackPanel>
+                        <Pivot Grid.Column="1" Grid.ColumnSpan="5">
+                            <PivotItem>
+                                <PivotItem.Header >
+                                    <PivotHeaderItem  Content="Selected" Foreground="MediumOrchid"/>
+                                </PivotItem.Header>
+                                <!-- Pivot content here -->
+                                <StackPanel>
+                                    <TextBlock Text="Id"
+                                           Foreground="Purple"
+                                           Margin="0 16 0 0"/>
+                                    <TextBlock x:Name="PlayerIdTextBlock" />
+                                    <TextBlock Text="Name"
+                                           Foreground="Purple"
+                                           Margin="0 16 0 0"/>
+                                    <TextBlock x:Name="PlayerNameTextBlock" />
+                                    <TextBlock Text="Last Match"
+                                        Foreground="Purple"
+                                        Margin="0 16 0 0"/>
+                                    <TextBlock x:Name="WaveNumberTextBlock"/>
+                                    <Button Content="Edit Name" Click="OnEditProfileAsync"/>
+                                    <Button Content="Delete Profile" Click="OnDeleteProfileAsync"/>
+                                </StackPanel>
+                            </PivotItem>
+                            <PivotItem>
+                                <PivotItem.Header >
+                                    <PivotHeaderItem  Content="New Profile" Foreground="MediumOrchid"/>
+                                </PivotItem.Header>
+                                <!-- Pivot content here -->
+                                <StackPanel >
+                                    <TextBox x:Name="playerNameTextBox"
+                                                Header="Enter Player Name"
+                                                Width="256"
+                                                Height="64"
+                                                Margin="0 16"/>
+                                    <Button Content="Create Player Profile"
+                                            Click="OnAddPlayerProfileAsync"
+                                            Tag="{x:Bind playerNameTextBox}"/>
+                                </StackPanel>
+                            </PivotItem>
+                        </Pivot>
                     </Grid>
-                    
+
                 </ScrollViewer>
             </Grid>
         </StackPanel>
-
-        <Grid x:Name="ProfileCreationMenu"
-              Visibility="Collapsed"
-              Width="512"
-              Height="512">
-
-            <Rectangle Fill="Black" Opacity="0.25"/>
-
-            <StackPanel Padding="64">
-                <TextBlock Text="Player Profile Creation" HorizontalAlignment="Center"/>
-                <TextBox x:Name="playerNameTextBox"
-                         Header="Enter Player Tag"
-                         Width="256"
-                         Height="64"
-                         Margin="32"/>
-                <Button Content="Add Player Profile"
-                        HorizontalAlignment="Center"
-                        Click="OnAddPlayerProfileAsync"
-                        Tag="{x:Bind playerNameTextBox}"/>
-                <Button Content="Cancel"
-                        HorizontalAlignment="Center"
-                        Click="OnToggleProfileCreationMenu"
-                        Tag="{x:Bind playerNameTextBox}"/>
-            </StackPanel>
-
-        </Grid>
     </Grid>
 </Page>

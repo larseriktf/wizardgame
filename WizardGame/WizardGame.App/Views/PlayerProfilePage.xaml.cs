@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WizardGame.App.ViewModels;
+using WizardGame.Model;
 
 namespace WizardGame.App.Views
 {
@@ -19,17 +20,6 @@ namespace WizardGame.App.Views
             await PlayerProfileViewModel.LoadAllPlayerProfilesAsync();
         }
 
-        private void OnToggleProfileCreationMenu(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            if (ProfileCreationMenu.Visibility == Visibility.Visible)
-            {
-                ProfileCreationMenu.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                ProfileCreationMenu.Visibility = Visibility.Visible;
-            }
-        }
 
         private async void OnAddPlayerProfileAsync(object sender, RoutedEventArgs e)
         {
@@ -42,34 +32,51 @@ namespace WizardGame.App.Views
 
             // Clear textBox
             textBox.Text = string.Empty;
-
-            // Close Window
-            OnToggleProfileCreationMenu(sender, e);
         }
 
-        private void OnClickPlayerProfile(object sender, ItemClickEventArgs e)
-        {
-
-        }
-
-        private void OnFocusPlayerProfile(object sender, RoutedEventArgs e)
-        {
-            ProfileDisplay.Visibility = Visibility.Visible;
-        }
-
-        private void OnUnFocusPlayerProfile(object sender, RoutedEventArgs e)
-        {
-            ProfileDisplay.Visibility = Visibility.Collapsed;
-        }
-
-        //private void OnFocusPlayerProfile(Control sender, FocusEngagedEventArgs args)
+        //private void OnClickPlayerProfile(object sender, ItemClickEventArgs e)
         //{
-        //    ProfileDisplay.Visibility = Visibility.Visible;
+            
+        //    PlayerNameTextBlock.Text = ;
+        //    WaveNumberTextBlock.Text = "20";
         //}
 
-        //private void OnUnFocusPlayerProfile(Control sender, FocusDisengagedEventArgs args)
-        //{
-        //    ProfileDisplay.Visibility = Visibility.Collapsed;
-        //}
+        private void OnCLickPlayerProfile(object sender, RoutedEventArgs e)
+        {
+            PlayerProfile profile = (sender as Button).DataContext as PlayerProfile;
+
+            PlayerIdTextBlock.Text = profile.Id.ToString();
+            PlayerNameTextBlock.Text = profile.PlayerName;
+            WaveNumberTextBlock.Text = "Infinite";
+        }
+
+        private async void OnEditProfileAsync(object sender, RoutedEventArgs e)
+        {
+            if (PlayerIdTextBlock.Text.Length == 0)
+            {
+                return;
+            }
+        }
+
+        private async void OnDeleteProfileAsync(object sender, RoutedEventArgs e)
+        {
+            string Id = PlayerIdTextBlock.Text;
+
+            if (Id.Length == 0)
+            {
+                return;
+            }
+
+            await PlayerProfileViewModel.DeletePlayerProfileAsync(Int32.Parse(Id));
+
+            ClearProfileTextBlocks();
+        }
+
+        private void ClearProfileTextBlocks()
+        {
+            PlayerIdTextBlock.Text = string.Empty;
+            PlayerNameTextBlock.Text = string.Empty;
+            WaveNumberTextBlock.Text = string.Empty;
+        }
     }
 }

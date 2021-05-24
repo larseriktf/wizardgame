@@ -24,7 +24,7 @@ namespace WizardGame.App.ViewModels
             }
         }
 
-        public async Task AddNewPlayerProfileAsync(string playerName)
+        internal async Task AddNewPlayerProfileAsync(string playerName)
         {
             PlayerProfile playerProfile = new PlayerProfile()
             {
@@ -33,6 +33,11 @@ namespace WizardGame.App.ViewModels
             };
 
             await dataService.PostAsJsonAsync($"{basePath}api/PlayerProfiles", playerProfile);
+        }
+
+        internal async Task DeletePlayerProfileAsync(int Id)
+        {
+            await dataService.DeleteAsync($"{basePath}api/PlayerProfiles/{Id}");
         }
     }
 }

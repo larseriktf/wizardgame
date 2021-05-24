@@ -8,7 +8,6 @@ namespace WizardGame.App.Views
 {
     public sealed partial class TitleScreen : Page
     {
-
         public TitleScreen()
         {
             InitializeComponent();
