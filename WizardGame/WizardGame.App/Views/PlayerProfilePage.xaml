@@ -13,22 +13,26 @@
 
         <StackPanel>
             <TextBlock Style="{StaticResource MainTitle}"
-                       Text="Player Profiles"/>
+                       Text="Player Profiles"
+                       Margin="16"/>
 
             <Grid Height="512">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2">
+                <ScrollViewer Grid.Column="0">
                     <StackPanel Background="Purple">
                         
 
                         <GridView x:Name="ConfigurationsGridView"
                                   ItemsSource="{x:Bind PlayerProfileViewModel.PlayerProfiles, Mode=TwoWay}"
-                                  SelectionMode="Single">
+                                  SelectionMode="Single"
+                                  IsItemClickEnabled="True"
+                                  ItemClick="OnClickPlayerProfile"
+                                  GotFocus="OnFocusPlayerProfile"
+                                  LostFocus="OnUnFocusPlayerProfile">
 
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="model:PlayerProfile">
@@ -48,7 +52,7 @@
                     </StackPanel>
                 </ScrollViewer>
 
-                <ScrollViewer Grid.Column="2">
+                <ScrollViewer Grid.Column="1">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -68,7 +72,7 @@
 
                             <Rectangle Fill="Purple" Height="2" Margin="0, 16"/>
 
-                            <StackPanel>
+                            <StackPanel x:Name="ProfileDisplay" Visibility="Collapsed">
                                 <TextBlock Text="Name" Foreground="Purple"/>
                             </StackPanel>
                             

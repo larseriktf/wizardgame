@@ -36,7 +36,7 @@
             <StackPanel Style="{StaticResource MenuStackPanel}"
                         Orientation="Vertical"
                         Grid.Row="1">
-                <Button Content="START NEW GAME"
+                <Button Content="START GAME"
                         Click="OnStartGame"/>
                 <Button Content="SPELL BOOK"
                         Click="OnOpenSpellBook"/>

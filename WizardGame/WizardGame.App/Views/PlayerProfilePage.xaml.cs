@@ -46,5 +46,30 @@ namespace WizardGame.App.Views
             // Close Window
             OnToggleProfileCreationMenu(sender, e);
         }
+
+        private void OnClickPlayerProfile(object sender, ItemClickEventArgs e)
+        {
+
+        }
+
+        private void OnFocusPlayerProfile(object sender, RoutedEventArgs e)
+        {
+            ProfileDisplay.Visibility = Visibility.Visible;
+        }
+
+        private void OnUnFocusPlayerProfile(object sender, RoutedEventArgs e)
+        {
+            ProfileDisplay.Visibility = Visibility.Collapsed;
+        }
+
+        //private void OnFocusPlayerProfile(Control sender, FocusEngagedEventArgs args)
+        //{
+        //    ProfileDisplay.Visibility = Visibility.Visible;
+        //}
+
+        //private void OnUnFocusPlayerProfile(Control sender, FocusDisengagedEventArgs args)
+        //{
+        //    ProfileDisplay.Visibility = Visibility.Collapsed;
+        //}
     }
 }
