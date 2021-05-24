@@ -19,44 +19,62 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <ScrollViewer Grid.Column="0">
-                    <StackPanel>
-                        <Button Padding="0"
-                                Click="OnToggleProfileCreationMenu">
-                            <Grid Width="128"
-                                  Height="128">
-                                <Image Source="/Assets/Images/addButton.png"
-                                       Stretch="UniformToFill"/>
-                                <TextBlock Text="Add New Profile"
-                                           TextWrapping="Wrap"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </Grid>
-                        </Button>
+                <ScrollViewer Grid.Column="0" Grid.ColumnSpan="2">
+                    <StackPanel Background="Purple">
+                        
 
                         <GridView x:Name="ConfigurationsGridView"
-                                  ItemsSource="{x:Bind PlayerProfileViewModel.PlayerProfiles}"
+                                  ItemsSource="{x:Bind PlayerProfileViewModel.PlayerProfiles, Mode=TwoWay}"
                                   SelectionMode="Single">
 
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="model:PlayerProfile">
-                                    <Grid Width="128"
-                                          Height="128">
-                                        <Image Source="/Assets/Images/playerProfile.png"
-                                                   Stretch="UniformToFill"/>
-                                        <TextBlock Text="{x:Bind PlayerName}"
-                                                       HorizontalAlignment="Center"
-                                                       VerticalAlignment="Center"
-                                                       TextWrapping="Wrap"
-                                                       FontFamily="{StaticResource CurseCasual}"
-                                                       FontSize="20"/>
-                                    </Grid>
+                                    <StackPanel Width="128">
+                                        <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
+                                        <TextBlock x:Name="playerNameText"
+                                                    Text="{x:Bind PlayerName, Mode=OneWay}"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    TextWrapping="Wrap"
+                                                    FontFamily="{StaticResource CurseCasual}"
+                                                    FontSize="20"/>
+                                    </StackPanel>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
                     </StackPanel>
+                </ScrollViewer>
+
+                <ScrollViewer Grid.Column="2">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Grid.Column="1" Grid.ColumnSpan="5">
+                            <Button Padding="0"
+                                    Click="OnToggleProfileCreationMenu"
+                                    Content="New Profile"
+                                    Background="Purple"/>
+
+                            <Rectangle Fill="Purple" Height="2" Margin="0, 16"/>
+
+                            <StackPanel>
+                                <TextBlock Text="Name" Foreground="Purple"/>
+                            </StackPanel>
+                            
+                        </StackPanel>
+                    </Grid>
+                    
                 </ScrollViewer>
             </Grid>
         </StackPanel>
@@ -70,16 +88,19 @@
 
             <StackPanel Padding="64">
                 <TextBlock Text="Player Profile Creation" HorizontalAlignment="Center"/>
-                <TextBox Header="Enter Player Tag"
+                <TextBox x:Name="playerNameTextBox"
+                         Header="Enter Player Tag"
                          Width="256"
                          Height="64"
                          Margin="32"/>
                 <Button Content="Add Player Profile"
                         HorizontalAlignment="Center"
-                        Click="OnAddPlayerProfileAsync"/>
+                        Click="OnAddPlayerProfileAsync"
+                        Tag="{x:Bind playerNameTextBox}"/>
                 <Button Content="Cancel"
                         HorizontalAlignment="Center"
-                        Click="OnToggleProfileCreationMenu"/>
+                        Click="OnToggleProfileCreationMenu"
+                        Tag="{x:Bind playerNameTextBox}"/>
             </StackPanel>
 
         </Grid>

@@ -9,10 +9,10 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="512"/>
-            <ColumnDefinition Width="64"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="64"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <Image Stretch="UniformToFill"
@@ -25,7 +25,7 @@
               Grid.RowSpan="2">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="384"/>
+                <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
@@ -51,16 +51,6 @@
             </StackPanel>
         </Grid>
 
-        <Grid Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="786"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Frame x:Name="TitleScreenFrame"
-                   Grid.Row="1"/>
-            
-        </Grid>
+        <Frame x:Name="TitleScreenFrame" Grid.Column="1" Grid.ColumnSpan="3" Margin="64, 128"/>
     </Grid>
 </Page>

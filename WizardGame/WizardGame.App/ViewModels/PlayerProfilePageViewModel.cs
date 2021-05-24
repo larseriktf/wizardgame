@@ -12,30 +12,27 @@ namespace WizardGame.App.ViewModels
     {
         public ObservableCollection<PlayerProfile> PlayerProfiles { get; set; } = new ObservableCollection<PlayerProfile>();
         private HttpDataService dataService = new HttpDataService();
+        private string basePath = "http://localhost:34367/";
 
         internal async Task LoadAllPlayerProfilesAsync()
         {
-            List<PlayerProfile> configurations = new List<PlayerProfile>()
-            {
-                await dataService.GetAsync<PlayerProfile>("http://localhost:34367/api/PlayerProfiles/1"),
-                await dataService.GetAsync<PlayerProfile>("http://localhost:34367/api/PlayerProfiles/2"),
-                await dataService.GetAsync<PlayerProfile>("http://localhost:34367/api/PlayerProfiles/3")
-            };
+            IEnumerable<PlayerProfile> profiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>($"{basePath}api/PlayerProfiles");
 
-            foreach (PlayerProfile playerProfiles in configurations)
-            {   // Add configurations to observable collection
-                PlayerProfiles.Add(playerProfiles);
+            foreach (PlayerProfile profile in profiles)
+            {
+                PlayerProfiles.Add(profile);
             }
         }
 
-        internal async Task AddNewPlayerProfileAsync(string playerName)
+        public async Task AddNewPlayerProfileAsync(string playerName)
         {
             PlayerProfile playerProfile = new PlayerProfile()
             {
-                PlayerName = "playerName"
+                PlayerName = playerName,
+                GameStatistics = null
             };
 
-            await dataService.PostAsync<PlayerProfile>("http://localhost:34367/api/PlayerProfiles/", playerProfile);
+            await dataService.PostAsJsonAsync($"{basePath}api/PlayerProfiles", playerProfile);
         }
     }
 }

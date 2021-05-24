@@ -33,8 +33,18 @@ namespace WizardGame.App.Views
 
         private async void OnAddPlayerProfileAsync(object sender, RoutedEventArgs e)
         {
+            // Get objects
+            Button btn = sender as Button;
+            TextBox textBox = btn.Tag as TextBox;
+
+            // Adds
+            await PlayerProfileViewModel.AddNewPlayerProfileAsync(textBox.Text);
+
+            // Clear textBox
+            textBox.Text = string.Empty;
+
+            // Close Window
             OnToggleProfileCreationMenu(sender, e);
-            await PlayerProfileViewModel.AddNewPlayerProfileAsync("heyo");
         }
     }
 }

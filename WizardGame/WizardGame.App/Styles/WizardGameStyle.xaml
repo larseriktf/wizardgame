@@ -2,10 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- Fonts -->
     <FontFamily x:Key="CurseCasual">./Fonts/Curse-Casual.ttf#Curse Casual</FontFamily>
 
-    <!-- Base Styles -->
     <Style TargetType="TextBlock">
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontFamily" Value="{StaticResource CurseCasual}"/>
@@ -22,8 +20,8 @@
         <Setter Property="FontFamily" Value="{StaticResource CurseCasual}"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Width" Value="auto"/>
-        <Setter Property="Padding" Value="32 16"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
     </Style>
 
     <Style TargetType="Button"
@@ -35,25 +33,6 @@
         <Setter Property="Padding" Value="32 16"/>
     </Style>
 
-    <!-- Specific Styles -->
-    <Style TargetType="Button"
-           x:Key="BaseButton">
-           <!--BasedOn="{StaticResource {x:Type Button}}"-->
-        
-        
-    </Style>
-
-    <!--
-    <Style TargetType="Button"
-           BasedOn="{StaticResource BaseButton}"
-           x:Key="MenuButton">
-        <Setter Property="HorizontalAlignment" Value="Center"/>
-        <Setter Property="Margin" Value="0 0 0 24"/>
-        <Setter Property="Width" Value="256"/>
-        <Setter Property="Height" Value="64"/>
-    </Style>
-    -->
-
     <Style TargetType="StackPanel"
            x:Key="MenuStackPanel">
         <Setter Property="Padding" Value="32"/>
@@ -63,7 +42,7 @@
            x:Key="MainTitle">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
-        <Setter Property="FontSize" Value="96"/>
+        <Setter Property="FontSize" Value="64"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="TextAlignment" Value="Center" />
         <Setter Property="Foreground" Value="AntiqueWhite"/>
@@ -81,10 +60,5 @@
         <Setter Property="Background" Value="Purple" />
         <Setter Property="Margin" Value="0 5 0 0" />
         <Setter Property="Padding" Value="10"/>
-
-        
     </Style>
-
-
-    
 </ResourceDictionary>
