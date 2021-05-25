@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WizardGame.DataAccess;
 
 namespace WizardGame.DataAccess.Migrations
 {
     [DbContext(typeof(GameContext))]
-    partial class GameContextModelSnapshot : ModelSnapshot
+    [Migration("20210525155225_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -299,9 +301,6 @@ namespace WizardGame.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("IsSelected")
-                        .HasColumnType("bit");
-
                     b.Property<string>("PlayerName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -314,19 +313,16 @@ namespace WizardGame.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            IsSelected = false,
                             PlayerName = "Åge"
                         },
                         new
                         {
                             Id = 2,
-                            IsSelected = false,
                             PlayerName = "Patrenko Escobar"
                         },
                         new
                         {
                             Id = 3,
-                            IsSelected = false,
                             PlayerName = "Player3"
                         });
                 });

@@ -9,5 +9,9 @@ namespace WizardGame.Model
         public int WavesPlayed { get; set; } = 0;
         public int EnemiesDefeated { get; set; } = 0;
         public int MinutesElapsed { get; set; } = 0;
+
+        // Navigation Properties
+        public int PlayerProfileId { get; set; }
+        public PlayerProfile PlayerProfile { get; set; }
     }
 }

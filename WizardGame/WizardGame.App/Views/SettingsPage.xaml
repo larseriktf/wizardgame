@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:WizardGame.Model"
+    Loaded="OnLoadedAsync"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
@@ -320,7 +321,7 @@
                                                     Click="OnInspectConfigurationAsync">
                                                 <Grid Width="128"
                                                   Height="128">
-                                                    <Image Source="/Assets/Images/Settings/configuration.png"
+                                                    <Image Source="/Assets/Images/configuration.png"
                                                    Stretch="UniformToFill"/>
                                                     <TextBlock Text="{x:Bind ConfigurationName}"
                                                        HorizontalAlignment="Center"
@@ -374,9 +375,7 @@
                                         <DataTemplate x:DataType="model:Configuration">
                                             <StackPanel>
                                                 <TextBlock Text="{x:Bind ConfigurationName}"/>
-                                                <TextBlock Text="{x:Bind Volume}"/>
-                                                <TextBlock Text="{x:Bind DisplayMode}"/>
-                                                
+
                                                 <TextBlock Text="{x:Bind NavContinue}"/>
                                                 <TextBlock Text="{x:Bind NavPause}"/>
                                                 <TextBlock Text="{x:Bind NavBack}"/>

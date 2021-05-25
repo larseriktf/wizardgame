@@ -10,6 +10,8 @@ using WizardGame.Model;
 
 namespace WizardGame.Api.Controllers
 {
+    // [controller] will return PlayerProfiles, because this controller is named PlayerProfilesController
+    // Meaning, that the path for this controller is api/PlayerProfiles
     [Route("api/[controller]")]
     [ApiController]
     public class PlayerProfilesController : ControllerBase

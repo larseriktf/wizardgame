@@ -23,9 +23,6 @@ namespace WizardGame.DataAccess
                 {
                     Id = 1,
                     ConfigurationName = "Default Configuration",
-                    
-                    Volume = 50,
-                    DisplayMode = 0,
 
                     NavContinue = "ENTER",
                     NavPause = "ESCAPE",
@@ -50,9 +47,6 @@ namespace WizardGame.DataAccess
                     Id = 2,
                     ConfigurationName = "Switch",
 
-                    Volume = 50,
-                    DisplayMode = 0,
-
                     NavContinue = "ENTER",
                     NavPause = "ESCAPE",
                     NavBack = "BACKSPACE",
@@ -75,9 +69,6 @@ namespace WizardGame.DataAccess
                 {
                     Id = 3,
                     ConfigurationName = "Windowed Borderless",
-
-                    Volume = 50,
-                    DisplayMode = 1,
 
                     NavContinue = "ENTER",
                     NavPause = "ESCAPE",
@@ -102,9 +93,6 @@ namespace WizardGame.DataAccess
                     Id = 4,
                     ConfigurationName = "Fullscreen",
 
-                    Volume = 50,
-                    DisplayMode = 2,
-
                     NavContinue = "ENTER",
                     NavPause = "ESCAPE",
                     NavBack = "BACKSPACE",
@@ -128,9 +116,6 @@ namespace WizardGame.DataAccess
                     Id = 5,
                     ConfigurationName = "NumPad",
 
-                    Volume = 50,
-                    DisplayMode = 0,
-
                     NavContinue = "ENTER",
                     NavPause = "ESCAPE",
                     NavBack = "BACKSPACE",
@@ -153,9 +138,6 @@ namespace WizardGame.DataAccess
                 {
                     Id = 6,
                     ConfigurationName = "Close Together",
-
-                    Volume = 50,
-                    DisplayMode = 0,
 
                     NavContinue = "ENTER",
                     NavPause = "ESCAPE",
@@ -181,47 +163,56 @@ namespace WizardGame.DataAccess
                 new GameStatistic()
                 {
                     Id = 1,
-                    WavesPlayed = 10
+                    WavesPlayed = 1,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 2,
-                    WavesPlayed = 10
+                    WavesPlayed = 14,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 3,
-                    WavesPlayed = 10
+                    WavesPlayed = 29,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 4,
-                    WavesPlayed = 10
+                    WavesPlayed = 5,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 5,
-                    WavesPlayed = 10
+                    WavesPlayed = 15,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 6,
-                    WavesPlayed = 10
+                    WavesPlayed = 2,
+                    PlayerProfileId = 2
                 },
                 new GameStatistic()
                 {
                     Id = 7,
-                    WavesPlayed = 10
+                    WavesPlayed = 40,
+                    PlayerProfileId = 2
                 },
                 new GameStatistic()
                 {
                     Id = 8,
-                    WavesPlayed = 10
+                    WavesPlayed = 28,
+                    PlayerProfileId = 2
                 },
                 new GameStatistic()
                 {
                     Id = 9,
-                    WavesPlayed = 10
+                    WavesPlayed = 10,
+                    PlayerProfileId = 2
                 });
 
             modelBuilder.Entity<PlayerProfile>()

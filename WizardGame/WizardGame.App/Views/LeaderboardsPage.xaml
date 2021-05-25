@@ -11,12 +11,12 @@
         <StackPanel>
             <TextBlock Style="{StaticResource MainTitle}"
                    Grid.Column="0" Grid.ColumnSpan="3"
-                   Text="Settings"/>
+                   Text="Leaderboards"/>
 
             <Pivot>
                 <PivotItem>
                     <PivotItem.Header >
-                        <PivotHeaderItem  Content="General"
+                        <PivotHeaderItem  Content="Highest Wave"
                                           Foreground="MediumOrchid"/>
                     </PivotItem.Header>
                     <!-- Pivot content here -->
@@ -25,7 +25,7 @@
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header >
-                        <PivotHeaderItem  Content="Keybindings"
+                        <PivotHeaderItem  Content="Most Enemies Defeated"
                                           Foreground="MediumOrchid"/>
                     </PivotItem.Header>
                     <!-- Pivot content here -->
@@ -33,7 +33,7 @@
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header >
-                        <PivotHeaderItem  Content="Configurations"
+                        <PivotHeaderItem  Content="Longest Play Session"
                                           Foreground="MediumOrchid"/>
                     </PivotItem.Header>
                     <!-- Pivot content here -->

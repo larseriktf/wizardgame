@@ -2,7 +2,7 @@
 
 namespace WizardGame.DataAccess.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,8 +13,6 @@ namespace WizardGame.DataAccess.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ConfigurationName = table.Column<string>(nullable: false),
-                    Volume = table.Column<int>(nullable: false),
-                    DisplayMode = table.Column<int>(nullable: false),
                     NavContinue = table.Column<string>(nullable: true),
                     NavPause = table.Column<string>(nullable: true),
                     NavBack = table.Column<string>(nullable: true),
@@ -57,7 +55,7 @@ namespace WizardGame.DataAccess.Migrations
                     WavesPlayed = table.Column<int>(nullable: false),
                     EnemiesDefeated = table.Column<int>(nullable: false),
                     MinutesElapsed = table.Column<int>(nullable: false),
-                    PlayerProfileId = table.Column<int>(nullable: true)
+                    PlayerProfileId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -67,36 +65,20 @@ namespace WizardGame.DataAccess.Migrations
                         column: x => x.PlayerProfileId,
                         principalTable: "PlayerProfiles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
                 table: "Configurations",
-                columns: new[] { "Id", "Action1", "Action2", "Action3", "Action4", "ConfigurationName", "DisplayMode", "Interact1", "Interact2", "Interact3", "MoveDown", "MoveLeft", "MoveRight", "MoveUp", "NavBack", "NavContinue", "NavPause", "Volume" },
+                columns: new[] { "Id", "Action1", "Action2", "Action3", "Action4", "ConfigurationName", "Interact1", "Interact2", "Interact3", "MoveDown", "MoveLeft", "MoveRight", "MoveUp", "NavBack", "NavContinue", "NavPause" },
                 values: new object[,]
                 {
-                    { 1, "LEFTARROW", "UPARROW", "RIGHTARROW", "DOWNARROW", "Default Configuration", 0, "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE", 50 },
-                    { 2, "A", "W", "D", "S", "Switch", 0, "R", "F", "C", "UPARROW", "LEFTARROW", "RIGHTARROW", "DOWNARROW", "BACKSPACE", "ENTER", "ESCAPE", 50 },
-                    { 3, "LEFTARROW", "UPARROW", "RIGHTARROW", "DOWNARROW", "Windowed Borderless", 1, "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE", 50 },
-                    { 4, "LEFTARROW", "UPARROW", "RIGHTARROW", "DOWNARROW", "Fullscreen", 2, "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE", 50 },
-                    { 5, "NUMLEFT", "NUMUP", "NUMRIGHT", "NUMDOWN", "NumPad", 0, "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE", 50 },
-                    { 6, "N", "J", "K", "M", "Close Together", 0, "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE", 50 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "GameStatistics",
-                columns: new[] { "Id", "EnemiesDefeated", "MinutesElapsed", "PlayerProfileId", "WavesPlayed" },
-                values: new object[,]
-                {
-                    { 9, 0, 0, null, 10 },
-                    { 8, 0, 0, null, 10 },
-                    { 7, 0, 0, null, 10 },
-                    { 6, 0, 0, null, 10 },
-                    { 3, 0, 0, null, 10 },
-                    { 4, 0, 0, null, 10 },
-                    { 2, 0, 0, null, 10 },
-                    { 1, 0, 0, null, 10 },
-                    { 5, 0, 0, null, 10 }
+                    { 1, "LEFTARROW", "UPARROW", "RIGHTARROW", "DOWNARROW", "Default Configuration", "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE" },
+                    { 2, "A", "W", "D", "S", "Switch", "R", "F", "C", "UPARROW", "LEFTARROW", "RIGHTARROW", "DOWNARROW", "BACKSPACE", "ENTER", "ESCAPE" },
+                    { 3, "LEFTARROW", "UPARROW", "RIGHTARROW", "DOWNARROW", "Windowed Borderless", "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE" },
+                    { 4, "LEFTARROW", "UPARROW", "RIGHTARROW", "DOWNARROW", "Fullscreen", "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE" },
+                    { 5, "NUMLEFT", "NUMUP", "NUMRIGHT", "NUMDOWN", "NumPad", "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE" },
+                    { 6, "N", "J", "K", "M", "Close Together", "R", "F", "C", "S", "A", "D", "W", "BACKSPACE", "ENTER", "ESCAPE" }
                 });
 
             migrationBuilder.InsertData(
@@ -104,9 +86,25 @@ namespace WizardGame.DataAccess.Migrations
                 columns: new[] { "Id", "PlayerName" },
                 values: new object[,]
                 {
-                    { 2, "Patrenko Escobar" },
                     { 1, "Åge" },
+                    { 2, "Patrenko Escobar" },
                     { 3, "Player3" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "GameStatistics",
+                columns: new[] { "Id", "EnemiesDefeated", "MinutesElapsed", "PlayerProfileId", "WavesPlayed" },
+                values: new object[,]
+                {
+                    { 1, 0, 0, 1, 1 },
+                    { 2, 0, 0, 1, 14 },
+                    { 3, 0, 0, 1, 29 },
+                    { 4, 0, 0, 1, 5 },
+                    { 5, 0, 0, 1, 15 },
+                    { 6, 0, 0, 2, 2 },
+                    { 7, 0, 0, 2, 40 },
+                    { 8, 0, 0, 2, 28 },
+                    { 9, 0, 0, 2, 10 }
                 });
 
             migrationBuilder.CreateIndex(

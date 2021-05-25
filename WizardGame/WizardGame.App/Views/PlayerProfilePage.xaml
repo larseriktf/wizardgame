@@ -4,42 +4,130 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:WizardGame.Model"
+    Loaded="OnLoadedAsync"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
     <Grid Background="Indigo">
-        <StackPanel>
-            <TextBlock Style="{StaticResource MainTitle}"
-                   Grid.Column="0" Grid.ColumnSpan="3"
-                   Text="Settings"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="128"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-            <Pivot>
-                <PivotItem>
-                    <PivotItem.Header >
-                        <PivotHeaderItem  Content="General"
-                                          Foreground="MediumOrchid"/>
-                    </PivotItem.Header>
-                    <!-- Pivot content here -->
+        <TextBlock Style="{StaticResource MainTitle}"
+                   Text="Player Profiles"
+                   Grid.Row="0"/>
 
+        <StackPanel Grid.Row="1">
+            <Grid Height="460">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                </PivotItem>
-                <PivotItem>
-                    <PivotItem.Header >
-                        <PivotHeaderItem  Content="Keybindings"
-                                          Foreground="MediumOrchid"/>
-                    </PivotItem.Header>
-                    <!-- Pivot content here -->
+                <ScrollViewer Grid.Column="0" Grid.Row="0">
+                    <Grid Background="Purple">
 
-                </PivotItem>
-                <PivotItem>
-                    <PivotItem.Header >
-                        <PivotHeaderItem  Content="Configurations"
-                                          Foreground="MediumOrchid"/>
-                    </PivotItem.Header>
-                    <!-- Pivot content here -->
+                        <GridView x:Name="ConfigurationsGridView"
+                                  ItemsSource="{x:Bind ProfileViewModel.PlayerProfiles, Mode=OneWay}"
+                                  IsItemClickEnabled="True"
+                                  ItemClick="OnClickProfileAsync">
 
-                </PivotItem>
-            </Pivot>
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="model:PlayerProfile">
+                                    <StackPanel Width="128">
+                                        <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
+                                        <TextBlock x:Name="playerNameText"
+                                                   Text="{x:Bind PlayerName, Mode=OneWay}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   TextWrapping="Wrap"
+                                                   FontFamily="{StaticResource CurseCasual}"
+                                                   FontSize="20"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </Grid>
+                </ScrollViewer>
+
+                <ScrollViewer Grid.Column="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Pivot Grid.Column="1" Grid.ColumnSpan="5">
+                            <PivotItem>
+                                <PivotItem.Header >
+                                    <PivotHeaderItem  Content="Selected" Foreground="MediumOrchid"/>
+                                </PivotItem.Header>
+                                <!-- Pivot content here -->
+                                <StackPanel>
+                                    <StackPanel x:Name="PlayerInfoPanel">
+                                        <TextBlock Text="Id"
+                                           Foreground="Purple"
+                                           Margin="0 16 0 0"/>
+                                        <TextBlock x:Name="PlayerIdTextBlock" />
+                                        <TextBlock Text="Name"
+                                           Foreground="Purple"
+                                           Margin="0 16 0 0"/>
+                                        <TextBlock x:Name="PlayerNameTextBlock" />
+                                        <TextBlock Text="Last Match"
+                                        Foreground="Purple"
+                                        Margin="0 16 0 0"/>
+                                        <TextBlock x:Name="WaveNumberTextBlock"/>
+                                        <Button x:Name="EditProfileButton"
+                                                Content="Edit Name"
+                                                Click="OnToggleProfileEdit"
+                                                IsEnabled="False"/>
+                                        <Button x:Name="DeleteProfileButton"
+                                                Content="Delete Profile"
+                                                Click="OnDeleteProfileAsync"
+                                                IsEnabled="False"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="EditPlayerPanel" Visibility="Collapsed">
+                                        <TextBox x:Name="UpdatedPlayerNameTextBox"
+                                                Header="Enter New Player Name"
+                                                Width="256"
+                                                Height="64"
+                                                Margin="0 16"/>
+                                        <Button Content="Update Player Profile" Click="OnApplyEditProfileAsync"/>
+                                        <Button Content="Cancel" Click="OnToggleProfileEdit"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </PivotItem>
+                            <PivotItem>
+                                <PivotItem.Header >
+                                    <PivotHeaderItem  Content="New Profile" Foreground="MediumOrchid"/>
+                                </PivotItem.Header>
+                                <!-- Pivot content here -->
+                                <StackPanel >
+                                    <TextBox x:Name="playerNameTextBox"
+                                                Header="Enter Player Name"
+                                                Width="256"
+                                                Height="64"
+                                                Margin="0 16"/>
+                                    <Button Content="Create Player Profile"
+                                            Click="OnAddPlayerProfileAsync"
+                                            Tag="{x:Bind playerNameTextBox}"/>
+                                </StackPanel>
+                            </PivotItem>
+                        </Pivot>
+                    </Grid>
+
+                </ScrollViewer>
+            </Grid>
         </StackPanel>
     </Grid>
 </Page>

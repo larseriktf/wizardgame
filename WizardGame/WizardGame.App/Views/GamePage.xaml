@@ -13,7 +13,9 @@
 
     <Grid Width="auto">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="512"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -27,61 +29,25 @@
                                       Width="auto"
                                       Grid.ColumnSpan="4"/>
 
-        <Button Grid.Column="0"
-                Click="OnTogglePauseMenu"
-                Content="Pause"/>
+        <Button Grid.Column="0" Click="OnTogglePauseMenu" Content="Pause"/>
 
-        <Rectangle Fill="Black"
-                   x:Name="DimBox"
-                   Opacity="0.5"
-                   Visibility="Collapsed"
-                   Width="auto"
-                   Height="auto"/>
-
-        <Grid x:Name="PausedMenu"
-              Grid.Column="0"
-              Visibility="Collapsed"
-              Background="Indigo">
-
+        <Grid x:Name="PausedMenu" Visibility="Collapsed" Background="Indigo">
             <Grid.RowDefinitions>
-                <RowDefinition Height="384"/>
+                <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
-
-            <TextBlock Text="Pause"
-                       Style="{StaticResource MainTitle}"
-                       Grid.Row="0"/>
-
-            <StackPanel Style="{StaticResource MenuStackPanel}"
-                        Orientation="Vertical"
-                        Grid.Row="1">
-                
-                <Button Content="RESUME"
-                        Click="OnTogglePauseMenu"/>
-                <Button Content="SPELL BOOK"
-                        Click="OnOpenSpellBook"/>
-                <Button Content="SETTINGS"
-                        Click="OnOpenSettings"/>
-                <Button Content="MAIN MENU"
-                        Click="OnOpenMainMenu"/>
-                <Button Content="SAVE AND QUIT"
-                        Click="OnSaveAndQuit"/>
+            
+            <TextBlock Text="Pause" Style="{StaticResource MainTitle}" />
+            
+            <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical" Grid.Row="1">
+                <Button Content="RESUME" Click="OnTogglePauseMenu"/>
+                <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
+                <Button Content="SETTINGS" Click="OnOpenSettings"/>
+                <Button Content="MAIN MENU" Click="OnOpenMainMenu"/>
+                <Button Content="SAVE AND QUIT" Click="OnSaveAndQuit"/>
             </StackPanel>
         </Grid>
 
-
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition Height="786"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Frame x:Name="GameFrame"
-                   Grid.Row="1"/>
-        </Grid>
-        
-
+        <Frame x:Name="GameFrame" Grid.Column="1" Grid.ColumnSpan="3" Margin="64, 128"/>
     </Grid>
 </Page>

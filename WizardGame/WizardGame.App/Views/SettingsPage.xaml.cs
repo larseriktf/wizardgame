@@ -15,8 +15,6 @@ namespace WizardGame.App.Views
         public SettingsPage()
         {
             InitializeComponent();
-
-            Loaded += OnLoadedAsync;
         }
 
         private async void OnLoadedAsync(object sender, RoutedEventArgs e)
