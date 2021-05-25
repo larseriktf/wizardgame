@@ -33,7 +33,7 @@
                     <Grid Background="Purple">
 
                         <GridView x:Name="ConfigurationsGridView"
-                                  ItemsSource="{x:Bind ProfileViewModel.PlayerProfiles, Mode=OneWay}"
+                                  ItemsSource="{x:Bind ViewModel.PlayerProfiles, Mode=OneWay}"
                                   IsItemClickEnabled="True"
                                   ItemClick="OnClickProfileAsync">
 

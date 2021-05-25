@@ -20,7 +20,7 @@ namespace WizardGame.App.Views
 
         private void OnStartGame(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate<GamePage>();
+            NavigationService.Navigate<GamePage>(ViewModel.SelectedPlayer);
         }
 
         private void OnOpenSpellBook(object sender, RoutedEventArgs e)

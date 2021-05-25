@@ -17,6 +17,8 @@ using WizardGame.App.Classes.Entities;
 using Windows.Graphics.Display;
 using Windows.Foundation;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.Model;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -28,10 +30,23 @@ namespace WizardGame.App.Views
     public sealed partial class GamePage : Page
     {
         public ConfigurationViewModel ViewModel { get; } = new ConfigurationViewModel();
+        public PlayerProfile SelectedPlayer { get; set; } = null;
 
         public GamePage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is PlayerProfile)
+            {
+                SelectedPlayer = e.Parameter as PlayerProfile;
+
+                SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
+                SelectedPlayerStackPanel.Visibility = Visibility.Visible;
+                SelectedPlayerNameTextBlock.Text = SelectedPlayer.PlayerName;
+            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)

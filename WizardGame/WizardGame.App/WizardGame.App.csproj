@@ -180,8 +180,8 @@
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\PlayerProfileViewModel.cs" />
-    <Compile Include="ViewModels\LeaderboardsViewModel.cs" />
-    <Compile Include="ViewModels\GamePageViewModel.cs" />
+    <Compile Include="ViewModels\GameStatisticViewModel.cs" />
+    <Compile Include="ViewModels\ConfigurationViewModel.cs" />
     <Compile Include="Views\PlayerProfilePage.xaml.cs">
       <DependentUpon>PlayerProfilePage.xaml</DependentUpon>
     </Compile>
