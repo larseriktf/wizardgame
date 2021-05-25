@@ -21,14 +21,30 @@ namespace WizardGame.App.ViewModels
                 OnPropertyChanged("PlayerProfiles");
             }
         }
-        private HttpDataService dataService = new HttpDataService();
-        private string basePath = "http://localhost:34367/";
+        private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
+
+        // Constructor
+
+        public PlayerProfilePageViewModel()
+        {
+            PlayerProfiles = new ObservableCollection<PlayerProfile>();
+        }
 
         // CRUD Operations
 
         internal async Task LoadAllPlayerProfilesAsync()
         {
-            PlayerProfiles = await dataService.GetAsync<ObservableCollection<PlayerProfile>>($"{basePath}api/PlayerProfiles");
+            IEnumerable<PlayerProfile> playerProfiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>("api/PlayerProfiles");
+
+            if (playerProfiles != null)
+            {
+                PlayerProfiles.Clear();
+
+                foreach (PlayerProfile p in playerProfiles)
+                {
+                    PlayerProfiles.Add(p);
+                }
+            }
         }
 
         internal async Task AddNewPlayerProfileAsync(string playerName)
@@ -39,12 +55,12 @@ namespace WizardGame.App.ViewModels
                 GameStatistics = null
             };
 
-            await dataService.PostAsJsonAsync($"{basePath}api/PlayerProfiles", playerProfile);
+            await dataService.PostAsJsonAsync("api/PlayerProfiles", playerProfile);
         }
 
         internal async Task DeletePlayerProfileAsync(int id)
         {
-            await dataService.DeleteAsync($"{basePath}api/PlayerProfiles/{id}");
+            await dataService.DeleteAsync($"api/PlayerProfiles/{id}");
         }
 
         internal async Task UpdatePlayerProfileAsync(int id, string newName)
@@ -55,7 +71,7 @@ namespace WizardGame.App.ViewModels
                 PlayerName = newName
             };
 
-            await dataService.PutAsJsonAsync($"{basePath}api/PlayerProfiles/{id}", playerProfile);
+            await dataService.PutAsJsonAsync($"api/PlayerProfiles/{id}", playerProfile);
         }
     }
 }
