@@ -8,7 +8,7 @@ using WizardGame.Model;
 
 namespace WizardGame.App.ViewModels
 {
-    public class GamePageViewModel : Observable
+    public class ConfigurationViewModel : Observable
     {
         private HttpDataService dataService = new HttpDataService();
         public ObservableCollection<Configuration> Configurations { get; set; } = new ObservableCollection<Configuration>();

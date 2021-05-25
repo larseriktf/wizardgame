@@ -12,19 +12,13 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="384"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Image Stretch="UniformToFill" Grid.ColumnSpan="4" Source="/Assets/Images/fantasyLand.jpg"/>
+        <Image Stretch="UniformToFill" Grid.ColumnSpan="2" Source="/Assets/Images/fantasyLand.jpg"/>
 
-        <Grid Grid.Column="0"
-              Grid.Row="1"
-              Background="Indigo"
-              Grid.RowSpan="2">
-
+        <Grid Grid.Column="0" Background="Indigo">
             <Grid.RowDefinitions>
                 <RowDefinition Height="192"/>
                 <RowDefinition Height="192"/>
@@ -34,7 +28,6 @@
             <TextBlock Style="{StaticResource MainTitle}" Grid.Row="0" Text="Phantastic Wizard"/>
 
             <Grid Grid.Row="1">
-
                 <muxc:ProgressRing IsActive="True"
                                    x:Name="SelectedPlayerProgressRing"
                                    Height="128"
@@ -59,6 +52,6 @@
             </StackPanel>
         </Grid>
 
-        <Frame x:Name="TitleScreenFrame" Grid.Column="1" Grid.ColumnSpan="3" Margin="64, 128"/>
+        <Frame x:Name="TitleScreenFrame" Grid.Column="1" Margin="64, 128"/>
     </Grid>
 </Page>

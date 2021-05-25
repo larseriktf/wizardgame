@@ -27,7 +27,7 @@ namespace WizardGame.App.Views
     /// </summary>
     public sealed partial class GamePage : Page
     {
-        public GamePageViewModel ViewModel { get; } = new GamePageViewModel();
+        public ConfigurationViewModel ViewModel { get; } = new ConfigurationViewModel();
         public CanvasAnimatedControl Canvas
         {
             get

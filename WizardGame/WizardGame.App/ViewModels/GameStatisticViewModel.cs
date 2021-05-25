@@ -5,7 +5,7 @@ using WizardGame.Model;
 
 namespace WizardGame.App.ViewModels
 {
-    public class LeaderboardsViewModel : Observable
+    public class GameStatisticViewModel : Observable
     {
 
     }
