@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
@@ -51,6 +51,13 @@ namespace WizardGame.App.Views
         private async void OnLoadedAsync(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await ProfileViewModel.LoadSelectedPlayerAsync();
+
+            if (ProfileViewModel.SelectedPlayer != null)
+            {
+                SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
+                SelectedPlayerStackPanel.Visibility = Visibility.Visible;
+                SelectedPlayerNameTextBlock.Text = ProfileViewModel.SelectedPlayer.PlayerName;
+            }
         }
     }
 }

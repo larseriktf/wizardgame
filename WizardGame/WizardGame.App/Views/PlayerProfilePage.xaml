@@ -44,8 +44,6 @@
                                         <TextBlock x:Name="playerNameText"
                                                    Text="{x:Bind PlayerName, Mode=OneWay}"
                                                    HorizontalAlignment="Center"
-                                                   VerticalAlignment="Center"
-                                                   TextWrapping="Wrap"
                                                    FontFamily="{StaticResource CurseCasual}"
                                                    FontSize="20"/>
                                     </StackPanel>
