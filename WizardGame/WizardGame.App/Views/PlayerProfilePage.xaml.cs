@@ -20,7 +20,6 @@ namespace WizardGame.App.Views
             await PlayerProfileViewModel.LoadAllPlayerProfilesAsync();
         }
 
-
         private async void OnAddPlayerProfileAsync(object sender, RoutedEventArgs e)
         {
             // Get objects
@@ -34,13 +33,6 @@ namespace WizardGame.App.Views
             textBox.Text = string.Empty;
         }
 
-        //private void OnClickPlayerProfile(object sender, ItemClickEventArgs e)
-        //{
-            
-        //    PlayerNameTextBlock.Text = ;
-        //    WaveNumberTextBlock.Text = "20";
-        //}
-
         private void OnCLickPlayerProfile(object sender, RoutedEventArgs e)
         {
             PlayerProfile profile = (sender as Button).DataContext as PlayerProfile;
@@ -48,14 +40,9 @@ namespace WizardGame.App.Views
             PlayerIdTextBlock.Text = profile.Id.ToString();
             PlayerNameTextBlock.Text = profile.PlayerName;
             WaveNumberTextBlock.Text = "Infinite";
-        }
 
-        private async void OnEditProfileAsync(object sender, RoutedEventArgs e)
-        {
-            if (PlayerIdTextBlock.Text.Length == 0)
-            {
-                return;
-            }
+            EditProfileButton.IsEnabled = true;
+            DeleteProfileButton.IsEnabled = true;
         }
 
         private async void OnDeleteProfileAsync(object sender, RoutedEventArgs e)
@@ -77,6 +64,40 @@ namespace WizardGame.App.Views
             PlayerIdTextBlock.Text = string.Empty;
             PlayerNameTextBlock.Text = string.Empty;
             WaveNumberTextBlock.Text = string.Empty;
+        }
+
+        private async void OnApplyEditProfileAsync(object sender, RoutedEventArgs e)
+        {
+            string Id = PlayerIdTextBlock.Text;
+            string newName = UpdatedPlayerNameTextBox.Text;
+
+            if (Id.Length == 0)
+            {
+                return;
+            }
+
+            await PlayerProfileViewModel.UpdatePlayerProfileAsync(Int32.Parse(Id), newName);
+
+            UpdatedPlayerNameTextBox.Text = string.Empty;
+
+            OnToggleProfileEdit(sender, e);
+        }
+
+        private void OnToggleProfileEdit(object sender, RoutedEventArgs e)
+        {
+            if (PlayerInfoPanel.Visibility == Visibility.Visible)
+            {
+                PlayerInfoPanel.Visibility = Visibility.Collapsed;
+                EditPlayerPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                PlayerInfoPanel.Visibility = Visibility.Visible;
+                EditPlayerPanel.Visibility = Visibility.Collapsed;
+            }
+
+
+            
         }
     }
 }

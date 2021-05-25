@@ -79,20 +79,37 @@
                                 </PivotItem.Header>
                                 <!-- Pivot content here -->
                                 <StackPanel>
-                                    <TextBlock Text="Id"
+                                    <StackPanel x:Name="PlayerInfoPanel">
+                                        <TextBlock Text="Id"
                                            Foreground="Purple"
                                            Margin="0 16 0 0"/>
-                                    <TextBlock x:Name="PlayerIdTextBlock" />
-                                    <TextBlock Text="Name"
+                                        <TextBlock x:Name="PlayerIdTextBlock" />
+                                        <TextBlock Text="Name"
                                            Foreground="Purple"
                                            Margin="0 16 0 0"/>
-                                    <TextBlock x:Name="PlayerNameTextBlock" />
-                                    <TextBlock Text="Last Match"
+                                        <TextBlock x:Name="PlayerNameTextBlock" />
+                                        <TextBlock Text="Last Match"
                                         Foreground="Purple"
                                         Margin="0 16 0 0"/>
-                                    <TextBlock x:Name="WaveNumberTextBlock"/>
-                                    <Button Content="Edit Name" Click="OnEditProfileAsync"/>
-                                    <Button Content="Delete Profile" Click="OnDeleteProfileAsync"/>
+                                        <TextBlock x:Name="WaveNumberTextBlock"/>
+                                        <Button x:Name="EditProfileButton"
+                                                Content="Edit Name"
+                                                Click="OnToggleProfileEdit"
+                                                IsEnabled="False"/>
+                                        <Button x:Name="DeleteProfileButton"
+                                                Content="Delete Profile"
+                                                Click="OnDeleteProfileAsync"
+                                                IsEnabled="False"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="EditPlayerPanel" Visibility="Collapsed">
+                                        <TextBox x:Name="UpdatedPlayerNameTextBox"
+                                                Header="Enter New Player Name"
+                                                Width="256"
+                                                Height="64"
+                                                Margin="0 16"/>
+                                        <Button Content="Update Player Profile" Click="OnApplyEditProfileAsync"/>
+                                        <Button Content="Cancel" Click="OnToggleProfileEdit"/>
+                                    </StackPanel>
                                 </StackPanel>
                             </PivotItem>
                             <PivotItem>

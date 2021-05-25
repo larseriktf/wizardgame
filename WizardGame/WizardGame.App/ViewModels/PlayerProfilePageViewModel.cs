@@ -35,9 +35,20 @@ namespace WizardGame.App.ViewModels
             await dataService.PostAsJsonAsync($"{basePath}api/PlayerProfiles", playerProfile);
         }
 
-        internal async Task DeletePlayerProfileAsync(int Id)
+        internal async Task DeletePlayerProfileAsync(int id)
         {
-            await dataService.DeleteAsync($"{basePath}api/PlayerProfiles/{Id}");
+            await dataService.DeleteAsync($"{basePath}api/PlayerProfiles/{id}");
+        }
+
+        internal async Task UpdatePlayerProfileAsync(int id, string newName)
+        {
+            PlayerProfile playerProfile = new PlayerProfile()
+            {
+                Id = id,
+                PlayerName = newName
+            };
+
+            await dataService.PutAsJsonAsync($"{basePath}api/PlayerProfiles/{id}", playerProfile);
         }
     }
 }
