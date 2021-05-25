@@ -28,13 +28,6 @@ namespace WizardGame.App.Views
     public sealed partial class GamePage : Page
     {
         public ConfigurationViewModel ViewModel { get; } = new ConfigurationViewModel();
-        public CanvasAnimatedControl Canvas
-        {
-            get
-            {
-                return canvas;
-            }
-        }
 
         public GamePage()
         {
@@ -165,7 +158,7 @@ namespace WizardGame.App.Views
 
         private void OnSaveAndQuit(object sender, RoutedEventArgs e)
         {
-            Windows.UI.Xaml.Application.Current.Exit();
+            Application.Current.Exit();
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)

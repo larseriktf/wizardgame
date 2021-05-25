@@ -9,7 +9,7 @@ namespace WizardGame.App.Views
 {
     public sealed partial class TitleScreen : Page
     {
-        public PlayerProfileViewModel ProfileViewModel { get; } = new PlayerProfileViewModel();
+        public PlayerProfileViewModel ViewModel { get; } = new PlayerProfileViewModel();
 
         public TitleScreen()
         {
@@ -18,45 +18,45 @@ namespace WizardGame.App.Views
             InitializeComponent();
         }
 
-        private void OnStartGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnStartGame(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate<GamePage>();
         }
 
-        private void OnOpenSpellBook(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnOpenSpellBook(object sender, RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(SpellBookPage));
         }
 
-        private void OnOpenPlayerProfile(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnOpenPlayerProfile(object sender, RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(PlayerProfilePage));
         }
 
-        private void OnOpenLeaderboards(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnOpenLeaderboards(object sender, RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(LeaderboardsPage));
         }
 
-        private void OnOpenSettings(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnOpenSettings(object sender, RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(SettingsPage));
         }
 
-        private void OnQuitGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnQuitGame(object sender, RoutedEventArgs e)
         {
-            Windows.UI.Xaml.Application.Current.Exit();
+            Application.Current.Exit();
         }
 
-        private async void OnLoadedAsync(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
         {
-            await ProfileViewModel.LoadSelectedPlayerAsync();
+            await ViewModel.LoadSelectedPlayerAsync();
 
-            if (ProfileViewModel.SelectedPlayer != null)
+            if (ViewModel.SelectedPlayer != null)
             {
                 SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
                 SelectedPlayerStackPanel.Visibility = Visibility.Visible;
-                SelectedPlayerNameTextBlock.Text = ProfileViewModel.SelectedPlayer.PlayerName;
+                SelectedPlayerNameTextBlock.Text = ViewModel.SelectedPlayer.PlayerName;
             }
         }
     }
