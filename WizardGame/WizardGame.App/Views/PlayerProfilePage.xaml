@@ -30,34 +30,29 @@
                 </Grid.RowDefinitions>
 
                 <ScrollViewer Grid.Column="0" Grid.Row="0">
-                    <StackPanel Background="Purple">
-
+                    <Grid Background="Purple">
 
                         <GridView x:Name="ConfigurationsGridView"
-                                  ItemsSource="{x:Bind PlayerProfileViewModel.PlayerProfiles, Mode=TwoWay}"
-                                  SelectionMode="Single"
-                                  IsItemClickEnabled="True">
+                                  ItemsSource="{x:Bind PlayerProfileViewModel.PlayerProfiles, Mode=OneWay}"
+                                  IsItemClickEnabled="True"
+                                  ItemClick="OnCLickPlayerProfile">
 
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="model:PlayerProfile">
                                     <StackPanel Width="128">
-                                        <Button Click="OnCLickPlayerProfile">
-                                            <StackPanel>
-                                                <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
-                                                <TextBlock x:Name="playerNameText"
-                                                    Text="{x:Bind PlayerName, Mode=OneWay}"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    TextWrapping="Wrap"
-                                                    FontFamily="{StaticResource CurseCasual}"
-                                                    FontSize="20"/>
-                                            </StackPanel>
-                                        </Button>
+                                        <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
+                                        <TextBlock x:Name="playerNameText"
+                                                   Text="{x:Bind PlayerName, Mode=OneWay}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   TextWrapping="Wrap"
+                                                   FontFamily="{StaticResource CurseCasual}"
+                                                   FontSize="20"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
-                    </StackPanel>
+                    </Grid>
                 </ScrollViewer>
 
                 <ScrollViewer Grid.Column="1">

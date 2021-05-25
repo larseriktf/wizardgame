@@ -29,21 +29,24 @@ namespace WizardGame.App.Views
             // Adds
             await PlayerProfileViewModel.AddNewPlayerProfileAsync(textBox.Text);
 
+            // Updates the grid view
+            await PlayerProfileViewModel.LoadAllPlayerProfilesAsync();
+
             // Clear textBox
             textBox.Text = string.Empty;
         }
 
-        private void OnCLickPlayerProfile(object sender, RoutedEventArgs e)
-        {
-            PlayerProfile profile = (sender as Button).DataContext as PlayerProfile;
+        //private void OnCLickPlayerProfile(object sender, RoutedEventArgs e)
+        //{
+        //    PlayerProfile profile = (sender as Button).DataContext as PlayerProfile;
 
-            PlayerIdTextBlock.Text = profile.Id.ToString();
-            PlayerNameTextBlock.Text = profile.PlayerName;
-            WaveNumberTextBlock.Text = "Infinite";
+        //    PlayerIdTextBlock.Text = profile.Id.ToString();
+        //    PlayerNameTextBlock.Text = profile.PlayerName;
+        //    WaveNumberTextBlock.Text = "Infinite";
 
-            EditProfileButton.IsEnabled = true;
-            DeleteProfileButton.IsEnabled = true;
-        }
+        //    EditProfileButton.IsEnabled = true;
+        //    DeleteProfileButton.IsEnabled = true;
+        //}
 
         private async void OnDeleteProfileAsync(object sender, RoutedEventArgs e)
         {
@@ -55,6 +58,9 @@ namespace WizardGame.App.Views
             }
 
             await PlayerProfileViewModel.DeletePlayerProfileAsync(Int32.Parse(Id));
+
+            // Updates the grid view
+            await PlayerProfileViewModel.LoadAllPlayerProfilesAsync();
 
             ClearProfileTextBlocks();
         }
@@ -78,6 +84,9 @@ namespace WizardGame.App.Views
 
             await PlayerProfileViewModel.UpdatePlayerProfileAsync(Int32.Parse(Id), newName);
 
+            // Updates the grid view
+            await PlayerProfileViewModel.LoadAllPlayerProfilesAsync();
+
             UpdatedPlayerNameTextBox.Text = string.Empty;
 
             OnToggleProfileEdit(sender, e);
@@ -95,9 +104,18 @@ namespace WizardGame.App.Views
                 PlayerInfoPanel.Visibility = Visibility.Visible;
                 EditPlayerPanel.Visibility = Visibility.Collapsed;
             }
+        }
 
+        private void OnCLickPlayerProfile(object sender, ItemClickEventArgs e)
+        {
+            PlayerProfile profile = e.ClickedItem as PlayerProfile;
 
-            
+            PlayerIdTextBlock.Text = profile.Id.ToString();
+            PlayerNameTextBlock.Text = profile.PlayerName;
+            WaveNumberTextBlock.Text = "Infinite";
+
+            EditProfileButton.IsEnabled = true;
+            DeleteProfileButton.IsEnabled = true;
         }
     }
 }

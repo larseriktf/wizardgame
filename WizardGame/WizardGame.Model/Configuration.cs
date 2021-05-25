@@ -9,10 +9,6 @@ namespace WizardGame.Model
         [Required]
         public string ConfigurationName { get; set; }
 
-        // General Settings
-        public int Volume { get; set; } = 50;
-        public int DisplayMode { get; set; } = 0; // 0 = Winowed, 1 = Windowed Borderless, 2 = Fullscreen
-
         // Keybindings
         public string NavContinue { get; set; } = "ENTER";
         public string NavPause { get; set; } = "ESCAPE";

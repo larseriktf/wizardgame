@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using WizardGame.App.Core.Services;
 using WizardGame.App.Helpers;
@@ -10,18 +11,24 @@ namespace WizardGame.App.ViewModels
 {
     public class PlayerProfilePageViewModel : Observable
     {
-        public ObservableCollection<PlayerProfile> PlayerProfiles { get; set; } = new ObservableCollection<PlayerProfile>();
+        private ObservableCollection<PlayerProfile> playerProfiles;
+        public ObservableCollection<PlayerProfile> PlayerProfiles
+        {
+            get => playerProfiles;
+            set
+            {
+                playerProfiles = value;
+                OnPropertyChanged("PlayerProfiles");
+            }
+        }
         private HttpDataService dataService = new HttpDataService();
         private string basePath = "http://localhost:34367/";
 
+        // CRUD Operations
+
         internal async Task LoadAllPlayerProfilesAsync()
         {
-            IEnumerable<PlayerProfile> profiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>($"{basePath}api/PlayerProfiles");
-
-            foreach (PlayerProfile profile in profiles)
-            {
-                PlayerProfiles.Add(profile);
-            }
+            PlayerProfiles = await dataService.GetAsync<ObservableCollection<PlayerProfile>>($"{basePath}api/PlayerProfiles");
         }
 
         internal async Task AddNewPlayerProfileAsync(string playerName)

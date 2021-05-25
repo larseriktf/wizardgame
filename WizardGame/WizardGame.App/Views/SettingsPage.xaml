@@ -375,9 +375,7 @@
                                         <DataTemplate x:DataType="model:Configuration">
                                             <StackPanel>
                                                 <TextBlock Text="{x:Bind ConfigurationName}"/>
-                                                <TextBlock Text="{x:Bind Volume}"/>
-                                                <TextBlock Text="{x:Bind DisplayMode}"/>
-                                                
+
                                                 <TextBlock Text="{x:Bind NavContinue}"/>
                                                 <TextBlock Text="{x:Bind NavPause}"/>
                                                 <TextBlock Text="{x:Bind NavBack}"/>

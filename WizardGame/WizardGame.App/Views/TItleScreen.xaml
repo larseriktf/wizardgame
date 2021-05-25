@@ -15,9 +15,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Image Stretch="UniformToFill"
-               Grid.ColumnSpan="4"
-               Source="/Assets/Images/fantasyLand.jpg"/>
+        <Image Stretch="UniformToFill" Grid.ColumnSpan="4" Source="/Assets/Images/fantasyLand.jpg"/>
 
         <Grid Grid.Column="0"
               Grid.Row="1"
@@ -29,25 +27,15 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Style="{StaticResource MainTitle}"
-                       Grid.Row="0"
-                       Text="Phantastic Wizard"/>
+            <TextBlock Style="{StaticResource MainTitle}" Grid.Row="0" Text="Phantastic Wizard"/>
 
-            <StackPanel Style="{StaticResource MenuStackPanel}"
-                        Orientation="Vertical"
-                        Grid.Row="1">
-                <Button Content="START GAME"
-                        Click="OnStartGame"/>
-                <Button Content="SPELL BOOK"
-                        Click="OnOpenSpellBook"/>
-                <Button Content="PLAYER PROFILE"
-                        Click="OnOpenPlayerProfile"/>
-                <Button Content="LEADERBOARDS"
-                        Click="OnOpenLeaderboards"/>
-                <Button Content="SETTINGS"
-                        Click="OnOpenSettings"/>
-                <Button Content="QUIT GAME"
-                        Click="OnQuitGame"/>
+            <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical" Grid.Row="1">
+                <Button Content="START GAME" Click="OnStartGame"/>
+                <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
+                <Button Content="PLAYER PROFILE" Click="OnOpenPlayerProfile"/>
+                <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards"/>
+                <Button Content="SETTINGS" Click="OnOpenSettings"/>
+                <Button Content="QUIT GAME" Click="OnQuitGame"/>
             </StackPanel>
         </Grid>
 
