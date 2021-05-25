@@ -22,9 +22,10 @@ namespace WizardGame.App.ViewModels
             }
         }
         private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
+        public static PlayerProfile SelectedPlayer { get; set; }
+
 
         // CRUD Operations
-
         internal async Task LoadAllPlayerProfilesAsync()
         {
             IEnumerable<PlayerProfile> playerProfiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>("api/PlayerProfiles");

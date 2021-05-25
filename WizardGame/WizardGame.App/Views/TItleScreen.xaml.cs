@@ -3,13 +3,25 @@
 using Windows.UI.Xaml.Controls;
 using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
+using WizardGame.Model;
 
 namespace WizardGame.App.Views
 {
     public sealed partial class TitleScreen : Page
     {
+        public PlayerProfilePageViewModel PlayerProfileViewModel { get; } = new PlayerProfilePageViewModel();
+        public PlayerProfile SelectedProfile { get; set; }
+
         public TitleScreen()
         {
+            SelectedProfile = new PlayerProfile()
+            {
+                Id = 40,
+                PlayerName = "Heyoooo!"
+            };
+
+            DataContext = this;
+
             InitializeComponent();
         }
 
@@ -41,6 +53,11 @@ namespace WizardGame.App.Views
         private void OnQuitGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             Windows.UI.Xaml.Application.Current.Exit();
+        }
+
+        private void OnLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+
         }
     }
 }

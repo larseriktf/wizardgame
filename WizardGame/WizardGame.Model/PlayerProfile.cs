@@ -6,6 +6,8 @@ namespace WizardGame.Model
 {
     public class PlayerProfile : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [Key]
         public int Id { get; set; }
         private string playerName;
@@ -22,8 +24,10 @@ namespace WizardGame.Model
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PlayerName)));
             }
         }
-        public ICollection<GameStatistic> GameStatistics { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public bool IsSelected { get; set; } = false;
+
+        // Navigation Properties
+        public ICollection<GameStatistic> GameStatistics { get; set; }
     }
 }

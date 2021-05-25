@@ -163,47 +163,56 @@ namespace WizardGame.DataAccess
                 new GameStatistic()
                 {
                     Id = 1,
-                    WavesPlayed = 10
+                    WavesPlayed = 1,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 2,
-                    WavesPlayed = 10
+                    WavesPlayed = 14,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 3,
-                    WavesPlayed = 10
+                    WavesPlayed = 29,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 4,
-                    WavesPlayed = 10
+                    WavesPlayed = 5,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 5,
-                    WavesPlayed = 10
+                    WavesPlayed = 15,
+                    PlayerProfileId = 1
                 },
                 new GameStatistic()
                 {
                     Id = 6,
-                    WavesPlayed = 10
+                    WavesPlayed = 2,
+                    PlayerProfileId = 2
                 },
                 new GameStatistic()
                 {
                     Id = 7,
-                    WavesPlayed = 10
+                    WavesPlayed = 40,
+                    PlayerProfileId = 2
                 },
                 new GameStatistic()
                 {
                     Id = 8,
-                    WavesPlayed = 10
+                    WavesPlayed = 28,
+                    PlayerProfileId = 2
                 },
                 new GameStatistic()
                 {
                     Id = 9,
-                    WavesPlayed = 10
+                    WavesPlayed = 10,
+                    PlayerProfileId = 2
                 });
 
             modelBuilder.Entity<PlayerProfile>()
