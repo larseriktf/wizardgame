@@ -8,7 +8,7 @@ namespace WizardGame.App.Views
 {
     public sealed partial class PlayerProfilePage : Page
     {
-        public PlayerProfilePageViewModel PlayerProfileViewModel { get; } = new PlayerProfilePageViewModel();
+        public PlayerProfileViewModel ProfileViewModel { get; } = new PlayerProfileViewModel();
 
         public PlayerProfilePage()
         {
@@ -18,7 +18,7 @@ namespace WizardGame.App.Views
 
         private async void OnLoadedAsync(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            await PlayerProfileViewModel.LoadAllPlayerProfilesAsync();
+            await ProfileViewModel.LoadAllPlayerProfilesAsync();
         }
 
         private async void OnAddPlayerProfileAsync(object sender, RoutedEventArgs e)
@@ -28,7 +28,7 @@ namespace WizardGame.App.Views
             TextBox textBox = btn.Tag as TextBox;
 
             // Adds
-            await PlayerProfileViewModel.AddNewPlayerProfileAsync(textBox.Text);
+            await ProfileViewModel.AddNewPlayerProfileAsync(textBox.Text);
 
             // Clear textBox
             textBox.Text = string.Empty;
@@ -44,7 +44,7 @@ namespace WizardGame.App.Views
                 return;
             }
 
-            await PlayerProfileViewModel.DeletePlayerProfileAsync(Int32.Parse(Id));
+            await ProfileViewModel.DeletePlayerProfileAsync(Int32.Parse(Id));
 
 
             ClearProfileTextBlocks();
@@ -67,7 +67,7 @@ namespace WizardGame.App.Views
                 return;
             }
 
-            await PlayerProfileViewModel.UpdatePlayerProfileAsync(Int32.Parse(Id), newName);
+            await ProfileViewModel.UpdatePlayerProfileAsync(Int32.Parse(Id), newName);
 
 
             UpdatedPlayerNameTextBox.Text = string.Empty;
@@ -89,9 +89,11 @@ namespace WizardGame.App.Views
             }
         }
 
-        private void OnCLickPlayerProfile(object sender, ItemClickEventArgs e)
+        private async void OnClickProfileAsync(object sender, ItemClickEventArgs e)
         {
             PlayerProfile profile = e.ClickedItem as PlayerProfile;
+
+            await ProfileViewModel.SetSelectedPlayerAsync(profile.Id);
 
             PlayerIdTextBlock.Text = profile.Id.ToString();
             PlayerNameTextBlock.Text = profile.PlayerName;

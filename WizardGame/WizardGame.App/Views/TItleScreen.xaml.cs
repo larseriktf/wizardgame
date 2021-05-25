@@ -9,17 +9,10 @@ namespace WizardGame.App.Views
 {
     public sealed partial class TitleScreen : Page
     {
-        public PlayerProfilePageViewModel PlayerProfileViewModel { get; } = new PlayerProfilePageViewModel();
-        public PlayerProfile SelectedProfile { get; set; }
+        public PlayerProfileViewModel ProfileViewModel { get; } = new PlayerProfileViewModel();
 
         public TitleScreen()
         {
-            SelectedProfile = new PlayerProfile()
-            {
-                Id = 40,
-                PlayerName = "Heyoooo!"
-            };
-
             DataContext = this;
 
             InitializeComponent();
@@ -55,9 +48,9 @@ namespace WizardGame.App.Views
             Windows.UI.Xaml.Application.Current.Exit();
         }
 
-        private void OnLoaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OnLoadedAsync(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-
+            await ProfileViewModel.LoadSelectedPlayerAsync();
         }
     }
 }

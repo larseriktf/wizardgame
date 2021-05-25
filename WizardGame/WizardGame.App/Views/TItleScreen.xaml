@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:model="using:WizardGame.Model"
-    Loaded="OnLoaded"
+    Loaded="OnLoadedAsync"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
@@ -32,7 +32,7 @@
             <TextBlock Style="{StaticResource MainTitle}" Grid.Row="0" Text="Phantastic Wizard"/>
 
             <Grid Grid.Row="1" Background="Purple">
-                <ContentControl Content="{Binding SelectedProfile}">
+                <ContentControl Content="{x:Bind ProfileViewModel.SelectedPlayer}">
                     <ContentControl.ContentTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding PlayerName}"/>

@@ -179,7 +179,7 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="ViewModels\PlayerProfilePageViewModel.cs" />
+    <Compile Include="ViewModels\PlayerProfileViewModel.cs" />
     <Compile Include="ViewModels\LeaderboardsViewModel.cs" />
     <Compile Include="ViewModels\GamePageViewModel.cs" />
     <Compile Include="Views\PlayerProfilePage.xaml.cs">

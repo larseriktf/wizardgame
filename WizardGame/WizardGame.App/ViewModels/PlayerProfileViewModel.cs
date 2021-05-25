@@ -9,7 +9,7 @@ using WizardGame.Model;
 
 namespace WizardGame.App.ViewModels
 {
-    public class PlayerProfilePageViewModel : Observable
+    public class PlayerProfileViewModel : Observable
     {
         private ObservableCollection<PlayerProfile> playerProfiles = new ObservableCollection<PlayerProfile>();
         public ObservableCollection<PlayerProfile> PlayerProfiles
@@ -22,7 +22,16 @@ namespace WizardGame.App.ViewModels
             }
         }
         private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
-        public static PlayerProfile SelectedPlayer { get; set; }
+        private PlayerProfile selectedPlayer;
+        public PlayerProfile SelectedPlayer
+        {
+            get => selectedPlayer;
+            set
+            {
+                selectedPlayer = value;
+                OnPropertyChanged("SelectedPlayer");
+            }
+        }
 
 
         // CRUD Operations
@@ -90,6 +99,42 @@ namespace WizardGame.App.ViewModels
                 {
                     PlayerProfiles[i] = playerProfile;
                 }
+            }
+        }
+
+        internal async Task LoadSelectedPlayerAsync()
+        {
+            IEnumerable<PlayerProfile> playerProfiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>("api/PlayerProfiles");
+
+            foreach (PlayerProfile p in playerProfiles)
+            {
+                if (p.IsSelected == true)
+                {
+                    SelectedPlayer = p;
+                }
+            }
+        }
+
+        internal async Task SetSelectedPlayerAsync(int id)
+        {
+            PlayerProfile profile;
+
+            for (int i = 0; i < PlayerProfiles.Count; i++)
+            {
+                profile = PlayerProfiles[i];
+                profile.IsSelected = false;
+
+                if (profile.Id == id)
+                {
+                    profile.IsSelected = true;
+                    SelectedPlayer = profile;
+                }
+
+                // Update in ObservableCollection
+                PlayerProfiles[i] = profile;
+
+                // Update in database
+                await dataService.PutAsJsonAsync($"api/PlayerProfiles/{profile.Id}", profile);
             }
         }
     }

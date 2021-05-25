@@ -33,9 +33,9 @@
                     <Grid Background="Purple">
 
                         <GridView x:Name="ConfigurationsGridView"
-                                  ItemsSource="{x:Bind PlayerProfileViewModel.PlayerProfiles, Mode=OneWay}"
+                                  ItemsSource="{x:Bind ProfileViewModel.PlayerProfiles, Mode=OneWay}"
                                   IsItemClickEnabled="True"
-                                  ItemClick="OnCLickPlayerProfile">
+                                  ItemClick="OnClickProfileAsync">
 
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="model:PlayerProfile">
