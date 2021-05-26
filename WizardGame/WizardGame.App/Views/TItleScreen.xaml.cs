@@ -14,8 +14,14 @@ namespace WizardGame.App.Views
         public TitleScreen()
         {
             DataContext = this;
-
+            PlayerProfileViewModel.SelectedPlayerChangedEvent += OnSelectedPlayerChangedEventAsync;
             InitializeComponent();
+        }
+
+        public async void OnSelectedPlayerChangedEventAsync(object sender, EventArgs e)
+        {
+            await ViewModel.LoadSelectedPlayerAsync();
+            ViewModel.SelectedPlayer = (sender as PlayerProfilePage).ViewModel.SelectedPlayer;
         }
 
         private void OnStartGame(object sender, RoutedEventArgs e)
@@ -55,17 +61,9 @@ namespace WizardGame.App.Views
             }
         }
 
-        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
-        {
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e) =>
             await ViewModel.LoadSelectedPlayerAsync();
-
-            if (ViewModel.SelectedPlayer != null)
-            {
-                SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
-                SelectedPlayerStackPanel.Visibility = Visibility.Visible;
-                SelectedPlayerNameTextBlock.Text = ViewModel.SelectedPlayer.PlayerName;
-            }
-        }
+        
 
         private void OnComfirmExit(object sender, RoutedEventArgs e)
         {

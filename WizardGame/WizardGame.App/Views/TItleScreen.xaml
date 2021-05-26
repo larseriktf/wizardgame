@@ -7,6 +7,7 @@
     xmlns:model="using:WizardGame.Model"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Loaded="OnLoadedAsync"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
@@ -31,14 +32,16 @@
                 <muxc:ProgressRing IsActive="True"
                                    x:Name="SelectedPlayerProgressRing"
                                    Height="128"
-                                   Width="128"/>
-                <Grid x:Name="SelectedPlayerStackPanel" Visibility="Collapsed" Width="128">
+                                   Width="128"
+                                   Visibility="Collapsed"/>
+                <Grid x:Name="SelectedPlayerStackPanel" Visibility="Visible" Width="128">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="128"/>
                         <RowDefinition Height="32"/>
                     </Grid.RowDefinitions>
 
                     <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
+                    <!--
                     <Viewbox Margin="4"
                              VerticalAlignment="Stretch"
                              Height="Auto"
@@ -50,6 +53,29 @@
                                    FontFamily="{StaticResource CurseCasual}"
                                    FontSize="20"/>
                     </Viewbox>
+                    -->
+                    <ContentControl Content="{Binding ViewModel.SelectedPlayer, Mode=OneWay}">
+                        <ContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Viewbox Margin="4"
+                                         VerticalAlignment="Stretch"
+                                         Height="Auto"
+                                         MaxHeight="32"
+                                         Grid.Row="1">
+                                        <TextBlock Text="{Binding PlayerName, Mode=TwoWay}"
+                                               HorizontalAlignment="Center"
+                                               FontFamily="{StaticResource CurseCasual}"
+                                               FontSize="20"/>
+
+
+                                    </Viewbox>
+                                    <TextBlock Text="{Binding Id,Mode=TwoWay}"/>
+                                    <TextBlock Text="Hey"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ContentControl.ContentTemplate>
+                    </ContentControl>
                 </Grid>
             </Grid>
 

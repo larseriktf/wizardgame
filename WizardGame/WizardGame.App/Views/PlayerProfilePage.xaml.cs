@@ -8,6 +8,7 @@ namespace WizardGame.App.Views
 {
     public sealed partial class PlayerProfilePage : Page
     {
+        public delegate void SelectedPlayerChangedEventHandler(object sender, EventArgs e);
         public PlayerProfileViewModel ViewModel { get; } = new PlayerProfileViewModel();
 
         public PlayerProfilePage()
@@ -101,6 +102,8 @@ namespace WizardGame.App.Views
 
             EditProfileButton.IsEnabled = true;
             DeleteProfileButton.IsEnabled = true;
+
+            PlayerProfileViewModel.SelectedPlayerChangedEvent.Invoke(this, EventArgs.Empty);
         }
     }
 }
