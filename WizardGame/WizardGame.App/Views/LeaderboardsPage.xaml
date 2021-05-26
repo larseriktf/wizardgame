@@ -4,42 +4,90 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:WizardGame.Model"
+    Loaded="OnLoadedAsync"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
 
     <Grid Background="Indigo">
-        <StackPanel>
-            <TextBlock Style="{StaticResource MainTitle}"
-                   Grid.Column="0" Grid.ColumnSpan="3"
-                   Text="Leaderboards"/>
 
-            <Pivot>
-                <PivotItem>
-                    <PivotItem.Header >
-                        <PivotHeaderItem  Content="Highest Wave"
-                                          Foreground="MediumOrchid"/>
-                    </PivotItem.Header>
-                    <!-- Pivot content here -->
-                    
+        <Grid.RowDefinitions>
+            <RowDefinition Height="128"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                </PivotItem>
-                <PivotItem>
-                    <PivotItem.Header >
-                        <PivotHeaderItem  Content="Most Enemies Defeated"
-                                          Foreground="MediumOrchid"/>
-                    </PivotItem.Header>
-                    <!-- Pivot content here -->
-                    
-                </PivotItem>
-                <PivotItem>
-                    <PivotItem.Header >
-                        <PivotHeaderItem  Content="Longest Play Session"
-                                          Foreground="MediumOrchid"/>
-                    </PivotItem.Header>
-                    <!-- Pivot content here -->
+        <TextBlock Style="{StaticResource MainTitle}" Text="Leaderboards"/>
 
-                </PivotItem>
-            </Pivot>
-        </StackPanel>
+
+        <Pivot Grid.Row="1" Margin="0" Padding="0">
+            <Pivot.ItemContainerStyle>
+                <Style TargetType="PivotItem">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </Pivot.ItemContainerStyle>
+            <PivotItem>
+                <PivotItem.Header>
+                    <PivotHeaderItem Content="All Games" Foreground="MediumOrchid"/>
+                </PivotItem.Header>
+                <!-- Pivot content here -->
+
+            </PivotItem>
+            <PivotItem>
+                <PivotItem.Header >
+                    <PivotHeaderItem Content="Your Games" Foreground="MediumOrchid"/>
+                </PivotItem.Header>
+                <!-- Pivot content here -->
+                <Grid Padding="32" Background="Purple">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Background="Indigo" Padding="4" Margin="0 0 0 16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Profile" Grid.Column="0"/>
+                        <TextBlock Text="Waves Survived" Grid.Column="1"/>
+                        <TextBlock Text="Enemies Defeated" Grid.Column="2"/>
+                        <TextBlock Text="Time Elapsed" Grid.Column="3"/>
+                    </Grid>
+                    <ScrollViewer Grid.Row="1">
+                        <ListView x:Name="ConfigurationsGridView"
+                          ItemsSource="{x:Bind ViewModel.PlayerGames, Mode=OneWay}"
+                          IsItemClickEnabled="False">
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Padding" Value="0"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="model:GameStatistic">
+                                    <Grid Background="Indigo" Padding="16" Margin="0 0 0 16" Width="auto">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{x:Bind PlayerProfile.PlayerName}" Grid.Column="0"/>
+                                        <TextBlock Text="{x:Bind WavesPlayed}" Grid.Column="1"/>
+                                        <TextBlock Text="{x:Bind EnemiesDefeated}" Grid.Column="2"/>
+                                        <TextBlock Text="{x:Bind MinutesElapsed}" Grid.Column="3"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </ScrollViewer>
+                </Grid>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>

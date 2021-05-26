@@ -68,7 +68,6 @@
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
                 <Button Content="PLAYER PROFILE" Click="OnOpenPlayerProfile"/>
                 <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards"/>
-                <Button Content="PREVIOUS GAMES" Click="OnOpenGameViewer"/>
                 <Button Content="SETTINGS" Click="OnOpenSettings"/>
                 <Button Content="QUIT GAME" Click="OnToggleExitWindow"/>
             </StackPanel>

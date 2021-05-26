@@ -9,25 +9,36 @@ namespace WizardGame.App.ViewModels
 {
     public class GameStatisticViewModel : Observable
     {
-        private ObservableCollection<GameStatistic> gameStatistics = new ObservableCollection<GameStatistic>();
-        public ObservableCollection<GameStatistic> GameStatistics
+        private ObservableCollection<GameStatistic> allGames = new ObservableCollection<GameStatistic>();
+        public ObservableCollection<GameStatistic> AllGames
         {
-            get => gameStatistics;
+            get => allGames;
             set
             {
-                gameStatistics = value;
-                OnPropertyChanged("GameStatistics");
+                allGames = value;
+                OnPropertyChanged("AllGames");
             }
         }
 
-        private ObservableCollection<GameStatistic> playerSpecificgameStatistics = new ObservableCollection<GameStatistic>();
-        public ObservableCollection<GameStatistic> PlayerSpecificgameStatistics
+        private ObservableCollection<GameStatistic> playerGames = new ObservableCollection<GameStatistic>();
+        public ObservableCollection<GameStatistic> PlayerGames
         {
-            get => playerSpecificgameStatistics;
+            get => playerGames;
             set
             {
-                playerSpecificgameStatistics = value;
-                OnPropertyChanged("PlayerSpecificgameStatistics");
+                playerGames = value;
+                OnPropertyChanged("PlayerGames");
+            }
+        }
+
+        private ObservableCollection<GameStatistic> topGames = new ObservableCollection<GameStatistic>();
+        public ObservableCollection<GameStatistic> TopGames
+        {
+            get => topGames;
+            set
+            {
+                topGames = value;
+                OnPropertyChanged("TopGames");
             }
         }
 
@@ -35,8 +46,13 @@ namespace WizardGame.App.ViewModels
 
 
         // CRUD Operations
-        internal async Task LoadAllGameStatisticsAsync() =>
-            GameStatistics = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics");
+        internal async Task LoadAllGamesAsync() =>
+            AllGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics");
+
+        internal async Task LoadPlayerGamesAsync(int id)
+        {
+            PlayerGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>($"api/GameStatistics/Player/{id}");
+        }
 
         //internal async Task AddNewPlayerProfileAsync(string playerName)
         //{

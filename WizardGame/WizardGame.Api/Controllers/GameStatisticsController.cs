@@ -40,6 +40,11 @@ namespace WizardGame.Api.Controllers
             return gameStatistic;
         }
 
+        // GET: api/GameStatistics/Player/5
+        [HttpGet("Player/{id}")]
+        public async Task<ActionResult<IEnumerable<GameStatistic>>> GetGameStatisticsAsync(int id) =>
+            await _context.GameStatistics.Include(g => g.PlayerProfile).Where(g => g.PlayerProfileId == id).ToListAsync();
+
         // PUT: api/GameStatistics/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
