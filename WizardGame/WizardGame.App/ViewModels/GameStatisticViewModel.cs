@@ -19,14 +19,24 @@ namespace WizardGame.App.ViewModels
                 OnPropertyChanged("GameStatistics");
             }
         }
+
+        private ObservableCollection<GameStatistic> playerSpecificgameStatistics = new ObservableCollection<GameStatistic>();
+        public ObservableCollection<GameStatistic> PlayerSpecificgameStatistics
+        {
+            get => playerSpecificgameStatistics;
+            set
+            {
+                playerSpecificgameStatistics = value;
+                OnPropertyChanged("PlayerSpecificgameStatistics");
+            }
+        }
+
         private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
 
 
         // CRUD Operations
-        internal async Task LoadAllPlayerProfilesAsync()
-        {
-            GameStatistics = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistic");
-        }
+        internal async Task LoadAllGameStatisticsAsync() =>
+            GameStatistics = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics");
 
         //internal async Task AddNewPlayerProfileAsync(string playerName)
         //{

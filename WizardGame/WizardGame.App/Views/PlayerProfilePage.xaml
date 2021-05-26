@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:model="using:WizardGame.Model" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:model="using:WizardGame.Model"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Loaded="OnLoadedAsync"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
@@ -15,9 +16,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource MainTitle}"
-                   Text="Player Profiles"
-                   Grid.Row="0"/>
+        <TextBlock Style="{StaticResource MainTitle}" Text="Player Profiles"/>
 
         <StackPanel Grid.Row="1">
             <Grid Height="460">

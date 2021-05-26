@@ -62,5 +62,8 @@ namespace WizardGame.App.Views
         }
 
         private void OnComfirmExit(object sender, RoutedEventArgs e) => Application.Current.Exit();
+
+        private void OnOpenGameViewer(object sender, RoutedEventArgs e) =>
+            TitleScreenFrame.Navigate(typeof(GameViewerPage));
     }
 }

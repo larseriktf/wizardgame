@@ -52,7 +52,7 @@
                                          Height="Auto"
                                          MaxHeight="32"
                                          Grid.Row="1">
-                                    <TextBlock Text="{Binding PlayerName, Mode=TwoWay}"
+                                    <TextBlock Text="{Binding PlayerName, Mode=OneWay}"
                                                HorizontalAlignment="Center"
                                                FontFamily="{StaticResource CurseCasual}"
                                                FontSize="20"/>
@@ -68,6 +68,7 @@
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
                 <Button Content="PLAYER PROFILE" Click="OnOpenPlayerProfile"/>
                 <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards"/>
+                <Button Content="PREVIOUS GAMES" Click="OnOpenGameViewer"/>
                 <Button Content="SETTINGS" Click="OnOpenSettings"/>
                 <Button Content="QUIT GAME" Click="OnToggleExitWindow"/>
             </StackPanel>
