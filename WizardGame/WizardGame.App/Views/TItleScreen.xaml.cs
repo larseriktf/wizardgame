@@ -34,7 +34,7 @@ namespace WizardGame.App.Views
             TitleScreenFrame.Navigate(typeof(PlayerProfilePage));
 
         private void OnOpenLeaderboards(object sender, RoutedEventArgs e) =>
-            TitleScreenFrame.Navigate(typeof(LeaderboardsPage));
+            TitleScreenFrame.Navigate(typeof(LeaderboardsPage), ViewModel.SelectedPlayer);
 
         private void OnOpenSettings(object sender, RoutedEventArgs e) =>
             TitleScreenFrame.Navigate(typeof(SettingsPage));

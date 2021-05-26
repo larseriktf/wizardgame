@@ -36,8 +36,7 @@
                                            Height="128"
                                            Width="128"/>
 
-                        <GridView x:Name="ConfigurationsGridView"
-                                  ItemsSource="{x:Bind ViewModel.PlayerProfiles, Mode=OneWay}"
+                        <GridView ItemsSource="{x:Bind ViewModel.PlayerProfiles, Mode=OneWay}"
                                   IsItemClickEnabled="True"
                                   ItemClick="OnClickProfileAsync">
 
