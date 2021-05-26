@@ -17,7 +17,7 @@ namespace WizardGame.App.Views
             InitializeComponent();
         }
 
-        private async void OnLoadedAsync(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
         {
             await ViewModel.LoadAllPlayerProfilesAsync();
 
@@ -57,7 +57,6 @@ namespace WizardGame.App.Views
         {
             PlayerIdTextBlock.Text = string.Empty;
             PlayerNameTextBlock.Text = string.Empty;
-            WaveNumberTextBlock.Text = string.Empty;
         }
 
         private async void OnApplyEditProfileAsync(object sender, RoutedEventArgs e)
@@ -92,19 +91,23 @@ namespace WizardGame.App.Views
             }
         }
 
-        private async void OnClickProfileAsync(object sender, ItemClickEventArgs e)
-        {
-            PlayerProfile profile = e.ClickedItem as PlayerProfile;
+        private PlayerProfile profile;
 
-            await ViewModel.SetSelectedPlayerAsync(profile.Id);
+        private void OnClickProfile(object sender, ItemClickEventArgs e)
+        {
+            profile = e.ClickedItem as PlayerProfile;
 
             PlayerIdTextBlock.Text = profile.Id.ToString();
             PlayerNameTextBlock.Text = profile.PlayerName;
-            WaveNumberTextBlock.Text = "Infinite";
 
+            SelectProfileButton.IsEnabled = true;
             EditProfileButton.IsEnabled = true;
             DeleteProfileButton.IsEnabled = true;
+        }
 
+        private async void OnSelectProfileAsync(object sender, RoutedEventArgs e)
+        {
+            await ViewModel.SetSelectedPlayerAsync(profile.Id);
             PlayerProfileViewModel.SelectedPlayerChangedEvent.Invoke(this, EventArgs.Empty);
         }
     }

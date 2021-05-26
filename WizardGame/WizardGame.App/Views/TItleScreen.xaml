@@ -67,7 +67,7 @@
                 <Button Content="START GAME" Click="OnStartGame" x:Name="StartGameButton" IsEnabled="False"/>
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
                 <Button Content="PLAYER PROFILE" Click="OnOpenPlayerProfile"/>
-                <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards"/>
+                <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards" x:Name="LeaderboardsButton" IsEnabled="False"/>
                 <Button Content="SETTINGS" Click="OnOpenSettings"/>
                 <Button Content="QUIT GAME" Click="OnToggleExitWindow"/>
             </StackPanel>

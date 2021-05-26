@@ -54,6 +54,11 @@ namespace WizardGame.App.ViewModels
             PlayerGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>($"api/GameStatistics/Player/{id}");
         }
 
+        internal async Task LoadTopGamesAsync()
+        {
+            TopGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics/Top");
+        }
+
         //internal async Task AddNewPlayerProfileAsync(string playerName)
         //{
         //    PlayerProfile playerProfile = new PlayerProfile()

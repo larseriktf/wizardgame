@@ -59,6 +59,7 @@ namespace WizardGame.App.Views
             SelectedPlayerContentControl.Visibility = Visibility.Visible;
 
             StartGameButton.IsEnabled = true;
+            LeaderboardsButton.IsEnabled = true;
         }
 
         private void OnComfirmExit(object sender, RoutedEventArgs e) => Application.Current.Exit();

@@ -23,12 +23,12 @@ namespace WizardGame.Api.Controllers
 
         // GET: api/GameStatistics
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GameStatistic>>> GetGameStatisticsAsync() =>
+        public async Task<ActionResult<IEnumerable<GameStatistic>>> GetAllGamesAsync() =>
             await _context.GameStatistics.Include(g => g.PlayerProfile).ToListAsync();
 
         // GET: api/GameStatistics/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<GameStatistic>> GetGameStatisticAsync(int id)
+        public async Task<ActionResult<GameStatistic>> GetSpecificGameAsync(int id)
         {
             var gameStatistic = await _context.GameStatistics.FindAsync(id);
 
@@ -42,8 +42,25 @@ namespace WizardGame.Api.Controllers
 
         // GET: api/GameStatistics/Player/5
         [HttpGet("Player/{id}")]
-        public async Task<ActionResult<IEnumerable<GameStatistic>>> GetGameStatisticsAsync(int id) =>
-            await _context.GameStatistics.Include(g => g.PlayerProfile).Where(g => g.PlayerProfileId == id).ToListAsync();
+        public async Task<ActionResult<IEnumerable<GameStatistic>>> GetPlayerGamesAsync(int id) =>
+            await _context.GameStatistics
+            .Include(g => g.PlayerProfile)
+            .Where(g => g.PlayerProfileId == id)
+            .ToListAsync();
+
+        // GET: api/GameStatistics/Top
+        [HttpGet("Top")]
+        public async Task<ActionResult<IEnumerable<GameStatistic>>> GetTopGamesAsync()
+        {
+            var games = _context.GameStatistics.Include(g => g.PlayerProfile);
+            var maxWave = games.Max(g => g.WavesPlayed);
+            var result =  games
+                .Where(g => g.WavesPlayed == maxWave).ToListAsync();
+                //.GroupBy and .Select
+
+            return await result;
+        }
+            
 
         // PUT: api/GameStatistics/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

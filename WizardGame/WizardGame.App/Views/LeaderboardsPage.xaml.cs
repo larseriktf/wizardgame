@@ -47,7 +47,11 @@ namespace WizardGame.App.Views
             }
         }
 
-        private async void OnLoadedAsync(object sender, RoutedEventArgs e) =>
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
+        {
             await ViewModel.LoadPlayerGamesAsync(SelectedPlayer.Id);
+            await ViewModel.LoadTopGamesAsync();
+        }
+            
     }
 }

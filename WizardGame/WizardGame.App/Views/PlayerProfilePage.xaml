@@ -38,7 +38,7 @@
 
                         <GridView ItemsSource="{x:Bind ViewModel.PlayerProfiles, Mode=OneWay}"
                                   IsItemClickEnabled="True"
-                                  ItemClick="OnClickProfileAsync">
+                                  ItemClick="OnClickProfile">
 
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="model:PlayerProfile">
@@ -96,10 +96,11 @@
                                            Foreground="Purple"
                                            Margin="0 16 0 0"/>
                                         <TextBlock x:Name="PlayerNameTextBlock" />
-                                        <TextBlock Text="Last Match"
-                                        Foreground="Purple"
-                                        Margin="0 16 0 0"/>
-                                        <TextBlock x:Name="WaveNumberTextBlock"/>
+
+                                        <Button x:Name="SelectProfileButton"
+                                                Content="Select"
+                                                Click="OnSelectProfileAsync"
+                                                IsEnabled="False"/>
                                         <Button x:Name="EditProfileButton"
                                                 Content="Edit Name"
                                                 Click="OnToggleProfileEdit"
