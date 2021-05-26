@@ -57,11 +57,38 @@
                 <Button Content="RESUME" Click="OnTogglePauseMenu"/>
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
                 <Button Content="SETTINGS" Click="OnOpenSettings"/>
-                <Button Content="MAIN MENU" Click="OnOpenMainMenu"/>
-                <Button Content="SAVE AND QUIT" Click="OnSaveAndQuit"/>
+                <Button Content="MAIN MENU" Click="OnToggleExitWindow"/>
             </StackPanel>
         </Grid>
 
         <Frame x:Name="GameFrame" Grid.Column="1" Margin="64, 128"/>
+
+        <Grid x:Name="ComfirmExitGrid" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <Rectangle Fill="Black" Opacity="0.25"/>
+
+            <Grid Width="384" Height="192" Background="Indigo">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Are you sure you want to exit to main menu?"
+                           TextWrapping="Wrap"
+                           Grid.ColumnSpan="2"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <Button Content="Yes"
+                        Click="OnComfirmExit"
+                        Grid.Row="1"/>
+                <Button Content="No"
+                        Click="OnToggleExitWindow"
+                        Grid.Column="1"
+                        Grid.Row="1"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

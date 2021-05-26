@@ -43,9 +43,16 @@ namespace WizardGame.App.Views
             TitleScreenFrame.Navigate(typeof(SettingsPage));
         }
 
-        private void OnQuitGame(object sender, RoutedEventArgs e)
+        private void OnToggleExitWindow(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            if (ComfirmExitGrid.Visibility == Visibility.Visible)
+            {
+                ComfirmExitGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ComfirmExitGrid.Visibility = Visibility.Visible;
+            }
         }
 
         private async void OnLoadedAsync(object sender, RoutedEventArgs e)
@@ -58,6 +65,11 @@ namespace WizardGame.App.Views
                 SelectedPlayerStackPanel.Visibility = Visibility.Visible;
                 SelectedPlayerNameTextBlock.Text = ViewModel.SelectedPlayer.PlayerName;
             }
+        }
+
+        private void OnComfirmExit(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
         }
     }
 }

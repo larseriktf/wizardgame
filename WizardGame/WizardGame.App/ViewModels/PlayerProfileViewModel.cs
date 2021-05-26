@@ -37,17 +37,7 @@ namespace WizardGame.App.ViewModels
         // CRUD Operations
         internal async Task LoadAllPlayerProfilesAsync()
         {
-            IEnumerable<PlayerProfile> playerProfiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>("api/PlayerProfiles");
-
-            if (playerProfiles != null)
-            {
-                PlayerProfiles.Clear();
-
-                foreach (PlayerProfile p in playerProfiles)
-                {
-                    PlayerProfiles.Add(p);
-                }
-            }
+            PlayerProfiles = await dataService.GetAsync<ObservableCollection<PlayerProfile>>("api/PlayerProfiles");
         }
 
         internal async Task AddNewPlayerProfileAsync(string playerName)

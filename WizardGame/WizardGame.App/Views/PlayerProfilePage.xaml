@@ -39,14 +39,26 @@
 
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="model:PlayerProfile">
-                                    <StackPanel Width="128">
+                                    <Grid Width="128">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="128"/>
+                                            <RowDefinition Height="32"/>
+                                        </Grid.RowDefinitions>
+                                        
                                         <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
-                                        <TextBlock x:Name="playerNameText"
+                                        <Viewbox Margin="4"
+                                                 VerticalAlignment="Stretch"
+                                                 Height="Auto"
+                                                 MaxHeight="32"
+                                                 Grid.Row="1">
+                                            <!-- The textblock and its contents are stretched to fill its parent -->
+                                            <TextBlock x:Name="playerNameText"
                                                    Text="{x:Bind PlayerName, Mode=OneWay}"
                                                    HorizontalAlignment="Center"
                                                    FontFamily="{StaticResource CurseCasual}"
                                                    FontSize="20"/>
-                                    </StackPanel>
+                                        </Viewbox>
+                                    </Grid>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>

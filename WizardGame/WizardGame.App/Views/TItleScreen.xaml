@@ -32,14 +32,25 @@
                                    x:Name="SelectedPlayerProgressRing"
                                    Height="128"
                                    Width="128"/>
-                <StackPanel x:Name="SelectedPlayerStackPanel" Visibility="Collapsed" Width="128">
+                <Grid x:Name="SelectedPlayerStackPanel" Visibility="Collapsed" Width="128">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="128"/>
+                        <RowDefinition Height="32"/>
+                    </Grid.RowDefinitions>
+
                     <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
-                    <TextBlock x:Name="SelectedPlayerNameTextBlock"
-                               Text="Not Selected"
-                               HorizontalAlignment="Center"
-                               FontFamily="{StaticResource CurseCasual}"
-                               FontSize="20"/>
-                </StackPanel>
+                    <Viewbox Margin="4"
+                             VerticalAlignment="Stretch"
+                             Height="Auto"
+                             MaxHeight="32"
+                             Grid.Row="1">
+                        <TextBlock x:Name="SelectedPlayerNameTextBlock"
+                                   Text="Not Selected"
+                                   HorizontalAlignment="Center"
+                                   FontFamily="{StaticResource CurseCasual}"
+                                   FontSize="20"/>
+                    </Viewbox>
+                </Grid>
             </Grid>
 
             <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical" Grid.Row="2">
@@ -48,10 +59,38 @@
                 <Button Content="PLAYER PROFILE" Click="OnOpenPlayerProfile"/>
                 <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards"/>
                 <Button Content="SETTINGS" Click="OnOpenSettings"/>
-                <Button Content="QUIT GAME" Click="OnQuitGame"/>
+                <Button Content="QUIT GAME" Click="OnToggleExitWindow"/>
             </StackPanel>
         </Grid>
 
         <Frame x:Name="TitleScreenFrame" Grid.Column="1" Margin="64, 128"/>
+
+        <Grid x:Name="ComfirmExitGrid" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <Rectangle Fill="Black" Opacity="0.25"/>
+
+            <Grid Width="384" Height="192" Background="Indigo">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Are you sure you want to quit?"
+                           TextWrapping="Wrap"
+                           Grid.ColumnSpan="2"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <Button Content="Yes"
+                        Click="OnComfirmExit"
+                        Grid.Row="1"/>
+                <Button Content="No"
+                        Click="OnToggleExitWindow"
+                        Grid.Column="1"
+                        Grid.Row="1"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

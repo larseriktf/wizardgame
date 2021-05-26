@@ -97,7 +97,6 @@ namespace WizardGame.App.Views
             // Pre-load image resources
             await ImageLoader.LoadImageResourceAsync(sender.Device);
 
-
             Player.Spawner(400, 400);
             //EntityManager.AddEntity("layer1", new Cactus()
             //{
@@ -166,19 +165,26 @@ namespace WizardGame.App.Views
             GameFrame.Navigate(typeof(SettingsPage));
         }
 
-        private void OnOpenMainMenu(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate<TitleScreen>();
-        }
-
-        private void OnSaveAndQuit(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
-
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             Screen.Width = e.NewSize.Width;
+        }
+
+        private void OnToggleExitWindow(object sender, RoutedEventArgs e)
+        {
+            if (ComfirmExitGrid.Visibility == Visibility.Visible)
+            {
+                ComfirmExitGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ComfirmExitGrid.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void OnComfirmExit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate<TitleScreen>();
         }
     }
 }
