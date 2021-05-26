@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using WizardGame.App.Core.Services;
 using WizardGame.App.Helpers;
 using WizardGame.Model;
@@ -22,20 +23,10 @@ namespace WizardGame.App.ViewModels
 
 
         // CRUD Operations
-        //internal async Task LoadAllPlayerProfilesAsync()
-        //{
-        //    IEnumerable<PlayerProfile> playerProfiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>("api/PlayerProfiles");
-
-        //    if (playerProfiles != null)
-        //    {
-        //        PlayerProfiles.Clear();
-
-        //        foreach (PlayerProfile p in playerProfiles)
-        //        {
-        //            PlayerProfiles.Add(p);
-        //        }
-        //    }
-        //}
+        internal async Task LoadAllPlayerProfilesAsync()
+        {
+            GameStatistics = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistic");
+        }
 
         //internal async Task AddNewPlayerProfileAsync(string playerName)
         //{
