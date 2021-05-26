@@ -78,6 +78,12 @@ namespace WizardGame.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<GameStatistic>> PostGameStatisticAsync(GameStatistic gameStatistic)
         {
+            PlayerProfile player = _context.PlayerProfiles
+                .Include(p => p.GameStatistics)
+                .Single(p => p.Id == gameStatistic.PlayerProfileId);
+
+            gameStatistic.PlayerProfile = player;
+
             _context.GameStatistics.Add(gameStatistic);
             await _context.SaveChangesAsync();
 
