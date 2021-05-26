@@ -17,6 +17,8 @@ using WizardGame.App.Classes.Entities;
 using Windows.Graphics.Display;
 using Windows.Foundation;
 using WizardGame.App.Classes.Entities.Dev;
+using WizardGame.Model;
+using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -27,18 +29,24 @@ namespace WizardGame.App.Views
     /// </summary>
     public sealed partial class GamePage : Page
     {
-        public GamePageViewModel ViewModel { get; } = new GamePageViewModel();
-        public CanvasAnimatedControl Canvas
-        {
-            get
-            {
-                return canvas;
-            }
-        }
+        public ConfigurationViewModel ViewModel { get; } = new ConfigurationViewModel();
+        public PlayerProfile SelectedPlayer { get; set; } = null;
 
         public GamePage()
         {
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter is PlayerProfile)
+            {
+                SelectedPlayer = e.Parameter as PlayerProfile;
+
+                SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
+                SelectedPlayerStackPanel.Visibility = Visibility.Visible;
+                SelectedPlayerNameTextBlock.Text = SelectedPlayer.PlayerName;
+            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -88,7 +96,6 @@ namespace WizardGame.App.Views
         {   // Loads images and spritesheets
             // Pre-load image resources
             await ImageLoader.LoadImageResourceAsync(sender.Device);
-
 
             Player.Spawner(400, 400);
             //EntityManager.AddEntity("layer1", new Cactus()
@@ -158,19 +165,26 @@ namespace WizardGame.App.Views
             GameFrame.Navigate(typeof(SettingsPage));
         }
 
-        private void OnOpenMainMenu(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate<TitleScreen>();
-        }
-
-        private void OnSaveAndQuit(object sender, RoutedEventArgs e)
-        {
-            Windows.UI.Xaml.Application.Current.Exit();
-        }
-
         private void OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             Screen.Width = e.NewSize.Width;
+        }
+
+        private void OnToggleExitWindow(object sender, RoutedEventArgs e)
+        {
+            if (ComfirmExitGrid.Visibility == Visibility.Visible)
+            {
+                ComfirmExitGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ComfirmExitGrid.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void OnComfirmExit(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate<TitleScreen>();
         }
     }
 }

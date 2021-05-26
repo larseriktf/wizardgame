@@ -8,7 +8,7 @@ namespace WizardGame.App.Views
 {
     public sealed partial class PlayerProfilePage : Page
     {
-        public PlayerProfileViewModel ProfileViewModel { get; } = new PlayerProfileViewModel();
+        public PlayerProfileViewModel ViewModel { get; } = new PlayerProfileViewModel();
 
         public PlayerProfilePage()
         {
@@ -18,7 +18,7 @@ namespace WizardGame.App.Views
 
         private async void OnLoadedAsync(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            await ProfileViewModel.LoadAllPlayerProfilesAsync();
+            await ViewModel.LoadAllPlayerProfilesAsync();
         }
 
         private async void OnAddPlayerProfileAsync(object sender, RoutedEventArgs e)
@@ -28,7 +28,7 @@ namespace WizardGame.App.Views
             TextBox textBox = btn.Tag as TextBox;
 
             // Adds
-            await ProfileViewModel.AddNewPlayerProfileAsync(textBox.Text);
+            await ViewModel.AddNewPlayerProfileAsync(textBox.Text);
 
             // Clear textBox
             textBox.Text = string.Empty;
@@ -44,7 +44,7 @@ namespace WizardGame.App.Views
                 return;
             }
 
-            await ProfileViewModel.DeletePlayerProfileAsync(Int32.Parse(Id));
+            await ViewModel.DeletePlayerProfileAsync(Int32.Parse(Id));
 
 
             ClearProfileTextBlocks();
@@ -67,7 +67,7 @@ namespace WizardGame.App.Views
                 return;
             }
 
-            await ProfileViewModel.UpdatePlayerProfileAsync(Int32.Parse(Id), newName);
+            await ViewModel.UpdatePlayerProfileAsync(Int32.Parse(Id), newName);
 
 
             UpdatedPlayerNameTextBox.Text = string.Empty;
@@ -93,7 +93,7 @@ namespace WizardGame.App.Views
         {
             PlayerProfile profile = e.ClickedItem as PlayerProfile;
 
-            await ProfileViewModel.SetSelectedPlayerAsync(profile.Id);
+            await ViewModel.SetSelectedPlayerAsync(profile.Id);
 
             PlayerIdTextBlock.Text = profile.Id.ToString();
             PlayerNameTextBlock.Text = profile.PlayerName;

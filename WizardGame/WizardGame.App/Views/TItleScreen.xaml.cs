@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
@@ -9,7 +9,7 @@ namespace WizardGame.App.Views
 {
     public sealed partial class TitleScreen : Page
     {
-        public PlayerProfileViewModel ProfileViewModel { get; } = new PlayerProfileViewModel();
+        public PlayerProfileViewModel ViewModel { get; } = new PlayerProfileViewModel();
 
         public TitleScreen()
         {
@@ -18,39 +18,58 @@ namespace WizardGame.App.Views
             InitializeComponent();
         }
 
-        private void OnStartGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnStartGame(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate<GamePage>();
+            NavigationService.Navigate<GamePage>(ViewModel.SelectedPlayer);
         }
 
-        private void OnOpenSpellBook(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnOpenSpellBook(object sender, RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(SpellBookPage));
         }
 
-        private void OnOpenPlayerProfile(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnOpenPlayerProfile(object sender, RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(PlayerProfilePage));
         }
 
-        private void OnOpenLeaderboards(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnOpenLeaderboards(object sender, RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(LeaderboardsPage));
         }
 
-        private void OnOpenSettings(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnOpenSettings(object sender, RoutedEventArgs e)
         {
             TitleScreenFrame.Navigate(typeof(SettingsPage));
         }
 
-        private void OnQuitGame(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnToggleExitWindow(object sender, RoutedEventArgs e)
         {
-            Windows.UI.Xaml.Application.Current.Exit();
+            if (ComfirmExitGrid.Visibility == Visibility.Visible)
+            {
+                ComfirmExitGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ComfirmExitGrid.Visibility = Visibility.Visible;
+            }
         }
 
-        private async void OnLoadedAsync(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
         {
-            await ProfileViewModel.LoadSelectedPlayerAsync();
+            await ViewModel.LoadSelectedPlayerAsync();
+
+            if (ViewModel.SelectedPlayer != null)
+            {
+                SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
+                SelectedPlayerStackPanel.Visibility = Visibility.Visible;
+                SelectedPlayerNameTextBlock.Text = ViewModel.SelectedPlayer.PlayerName;
+            }
+        }
+
+        private void OnComfirmExit(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Exit();
         }
     }
 }

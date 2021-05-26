@@ -6,7 +6,7 @@ namespace WizardGame.DataAccess
 {
     public class GameContext : DbContext
     {
-        public DbSet<Configuration> Configurations { get; set; }
+        public DbSet<Configuration> Configurations { get; set; } // Should be stored at in a different DbContext
         public DbSet<GameStatistic> GameStatistics { get; set; }
         public DbSet<PlayerProfile> PlayerProfiles { get; set; }
 

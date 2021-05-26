@@ -25,10 +25,14 @@ namespace WizardGame.Api.Controllers
 
         // GET: api/PlayerProfiles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PlayerProfile>>> GetPlayerProfilesAsync()
-        {
-            return await _context.PlayerProfiles.ToListAsync();
-        }
+        public async Task<ActionResult<IEnumerable<PlayerProfile>>> GetPlayerProfilesAsync() =>
+            await _context.PlayerProfiles.Include(p => p.GameStatistics).ToListAsync();
+
+        // GET: api/PlayerProfiles/Selected
+        [HttpGet]
+        [Route("Selected")]
+        public async Task<ActionResult<PlayerProfile>> GetSelectedPlayerProfilesAsync() =>
+            await _context.PlayerProfiles.Include(p => p.GameStatistics).SingleAsync(p => p.IsSelected);
 
         // GET: api/PlayerProfiles/5
         [HttpGet("{id}")]

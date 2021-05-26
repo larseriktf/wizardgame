@@ -8,7 +8,7 @@ namespace WizardGame.App.Views
 {
     public sealed partial class LeaderboardsPage : Page
     {
-        public LeaderboardsViewModel ViewModel { get; } = new LeaderboardsViewModel();
+        public GameStatisticViewModel ViewModel { get; } = new GameStatisticViewModel();
 
         public LeaderboardsPage()
         {

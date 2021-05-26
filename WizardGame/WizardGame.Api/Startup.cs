@@ -22,11 +22,15 @@ namespace WizardGame.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
-
             // For local database
             var connection = @"Server=(localdb)\MSSQLLocalDB;Database=Game.Database;Trusted_Connection=True;ConnectRetryCount=0";
-            services.AddDbContext<GameContext>(options => options.UseSqlServer(connection));
+
+            services.AddMvc(options =>
+                options.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddDbContext<GameContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             // For Donau
             //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder

@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
@@ -13,9 +13,7 @@
 
     <Grid Width="auto">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="384"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -27,27 +25,70 @@
                                       Margin="0,0,0,0"
                                       IsFixedTimeStep="True"
                                       Width="auto"
-                                      Grid.ColumnSpan="4"/>
+                                      Grid.ColumnSpan="2"/>
 
         <Button Grid.Column="0" Click="OnTogglePauseMenu" Content="Pause"/>
 
         <Grid x:Name="PausedMenu" Visibility="Collapsed" Background="Indigo">
             <Grid.RowDefinitions>
-                <RowDefinition/>
+                <RowDefinition Height="192"/>
+                <RowDefinition Height="192"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             
-            <TextBlock Text="Pause" Style="{StaticResource MainTitle}" />
+            <TextBlock Style="{StaticResource MainTitle}" Grid.Row="0" Text="Pause"/>
+
+            <Grid Grid.Row="1">
+                <muxc:ProgressRing IsActive="True"
+                                   x:Name="SelectedPlayerProgressRing"
+                                   Height="128"
+                                   Width="128"/>
+                <StackPanel x:Name="SelectedPlayerStackPanel" Visibility="Collapsed" Width="128">
+                    <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
+                    <TextBlock x:Name="SelectedPlayerNameTextBlock"
+                               Text="Not Selected"
+                               HorizontalAlignment="Center"
+                               FontFamily="{StaticResource CurseCasual}"
+                               FontSize="20"/>
+                </StackPanel>
+            </Grid>
             
-            <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical" Grid.Row="1">
+            <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical" Grid.Row="2">
                 <Button Content="RESUME" Click="OnTogglePauseMenu"/>
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
                 <Button Content="SETTINGS" Click="OnOpenSettings"/>
-                <Button Content="MAIN MENU" Click="OnOpenMainMenu"/>
-                <Button Content="SAVE AND QUIT" Click="OnSaveAndQuit"/>
+                <Button Content="MAIN MENU" Click="OnToggleExitWindow"/>
             </StackPanel>
         </Grid>
 
-        <Frame x:Name="GameFrame" Grid.Column="1" Grid.ColumnSpan="3" Margin="64, 128"/>
+        <Frame x:Name="GameFrame" Grid.Column="1" Margin="64, 128"/>
+
+        <Grid x:Name="ComfirmExitGrid" Grid.ColumnSpan="2" Visibility="Collapsed">
+            <Rectangle Fill="Black" Opacity="0.25"/>
+
+            <Grid Width="384" Height="192" Background="Indigo">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Are you sure you want to exit to main menu?"
+                           TextWrapping="Wrap"
+                           Grid.ColumnSpan="2"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <Button Content="Yes"
+                        Click="OnComfirmExit"
+                        Grid.Row="1"/>
+                <Button Content="No"
+                        Click="OnToggleExitWindow"
+                        Grid.Column="1"
+                        Grid.Row="1"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
