@@ -37,10 +37,8 @@ namespace WizardGame.App.ViewModels
         // Testing static properties
 
         // CRUD Operations
-        internal async Task LoadAllPlayerProfilesAsync()
-        {
+        internal async Task LoadAllPlayerProfilesAsync() =>
             PlayerProfiles = await dataService.GetAsync<ObservableCollection<PlayerProfile>>("api/PlayerProfiles");
-        }
 
         internal async Task AddNewPlayerProfileAsync(string playerName)
         {
@@ -94,18 +92,8 @@ namespace WizardGame.App.ViewModels
             }
         }
 
-        internal async Task LoadSelectedPlayerAsync()
-        {
-            IEnumerable<PlayerProfile> playerProfiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>("api/PlayerProfiles");
-
-            foreach (PlayerProfile p in playerProfiles)
-            {
-                if (p.IsSelected == true)
-                {
-                    SelectedPlayer = p;
-                }
-            }
-        }
+        internal async Task LoadSelectedPlayerAsync() =>
+            SelectedPlayer = await dataService.GetAsync<PlayerProfile>("api/PlayerProfiles/Selected");
 
         internal async Task SetSelectedPlayerAsync(int id)
         {
