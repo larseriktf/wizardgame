@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:model="using:WizardGame.Model"
+    xmlns:model="using:WizardGame.Model" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Loaded="OnLoadedAsync"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
@@ -31,6 +31,11 @@
 
                 <ScrollViewer Grid.Column="0" Grid.Row="0">
                     <Grid Background="Purple">
+
+                        <muxc:ProgressRing IsActive="True"
+                                           x:Name="PlayerProfilesProgressRing"
+                                           Height="128"
+                                           Width="128"/>
 
                         <GridView x:Name="ConfigurationsGridView"
                                   ItemsSource="{x:Bind ViewModel.PlayerProfiles, Mode=OneWay}"

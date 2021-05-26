@@ -19,6 +19,7 @@ using Windows.Foundation;
 using WizardGame.App.Classes.Entities.Dev;
 using WizardGame.Model;
 using Windows.UI.Xaml.Navigation;
+using Microsoft.Graphics.Canvas.UI;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -29,7 +30,6 @@ namespace WizardGame.App.Views
     /// </summary>
     public sealed partial class GamePage : Page
     {
-        public ConfigurationViewModel ViewModel { get; } = new ConfigurationViewModel();
         public PlayerProfile SelectedPlayer { get; set; } = null;
 
         public GamePage()
@@ -86,11 +86,8 @@ namespace WizardGame.App.Views
             var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, false));
         }
 
-        private void OnCreateResources(CanvasAnimatedControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
-        {   // Creates Resources once
-            // Load Images
+        private void OnCreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args) =>
             args.TrackAsyncAction(LoadResourcesAsync(sender).AsAsyncAction());
-        }
 
         async Task LoadResourcesAsync(CanvasAnimatedControl sender)
         {   // Loads images and spritesheets
@@ -155,20 +152,14 @@ namespace WizardGame.App.Views
             }
         }
 
-        private void OnOpenSpellBook(object sender, RoutedEventArgs e)
-        {
+        private void OnOpenSpellBook(object sender, RoutedEventArgs e) =>
             GameFrame.Navigate(typeof(SpellBookPage));
-        }
 
-        private void OnOpenSettings(object sender, RoutedEventArgs e)
-        {
+        private void OnOpenSettings(object sender, RoutedEventArgs e) =>
             GameFrame.Navigate(typeof(SettingsPage));
-        }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e) =>
             Screen.Width = e.NewSize.Width;
-        }
 
         private void OnToggleExitWindow(object sender, RoutedEventArgs e)
         {
@@ -182,9 +173,7 @@ namespace WizardGame.App.Views
             }
         }
 
-        private void OnComfirmExit(object sender, RoutedEventArgs e)
-        {
+        private void OnComfirmExit(object sender, RoutedEventArgs e) =>
             NavigationService.Navigate<TitleScreen>();
-        }
     }
 }

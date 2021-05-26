@@ -28,59 +28,43 @@
 
             <TextBlock Style="{StaticResource MainTitle}" Grid.Row="0" Text="Phantastic Wizard"/>
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" Width="128">
                 <muxc:ProgressRing IsActive="True"
                                    x:Name="SelectedPlayerProgressRing"
                                    Height="128"
-                                   Width="128"
-                                   Visibility="Collapsed"/>
-                <Grid x:Name="SelectedPlayerStackPanel" Visibility="Visible" Width="128">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="128"/>
-                        <RowDefinition Height="32"/>
-                    </Grid.RowDefinitions>
+                                   Width="128"/>
+                
+                <ContentControl Content="{Binding ViewModel.SelectedPlayer, Mode=OneWay}"
+                                x:Name="SelectedPlayerContentControl"
+                                Visibility="Collapsed">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="128"/>
+                                    <RowDefinition Height="32"/>
+                                </Grid.RowDefinitions>
 
-                    <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
-                    <!--
-                    <Viewbox Margin="4"
-                             VerticalAlignment="Stretch"
-                             Height="Auto"
-                             MaxHeight="32"
-                             Grid.Row="1">
-                        <TextBlock x:Name="SelectedPlayerNameTextBlock"
-                                   Text="Not Selected"
-                                   HorizontalAlignment="Center"
-                                   FontFamily="{StaticResource CurseCasual}"
-                                   FontSize="20"/>
-                    </Viewbox>
-                    -->
-                    <ContentControl Content="{Binding ViewModel.SelectedPlayer, Mode=OneWay}">
-                        <ContentControl.ContentTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <Viewbox Margin="4"
+                                <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
+
+                                <Viewbox Margin="4"
                                          VerticalAlignment="Stretch"
                                          Height="Auto"
                                          MaxHeight="32"
                                          Grid.Row="1">
-                                        <TextBlock Text="{Binding PlayerName, Mode=TwoWay}"
+                                    <TextBlock Text="{Binding PlayerName, Mode=TwoWay}"
                                                HorizontalAlignment="Center"
                                                FontFamily="{StaticResource CurseCasual}"
                                                FontSize="20"/>
-
-
-                                    </Viewbox>
-                                    <TextBlock Text="{Binding Id,Mode=TwoWay}"/>
-                                    <TextBlock Text="Hey"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ContentControl.ContentTemplate>
-                    </ContentControl>
-                </Grid>
-            </Grid>
+                                </Viewbox>
+                            </Grid>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </Grid>    
 
             <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical" Grid.Row="2">
-                <Button Content="START GAME" Click="OnStartGame"/>
+                <Button Content="START GAME" Click="OnStartGame" x:Name="StartGameButton" IsEnabled="False"/>
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
                 <Button Content="PLAYER PROFILE" Click="OnOpenPlayerProfile"/>
                 <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards"/>

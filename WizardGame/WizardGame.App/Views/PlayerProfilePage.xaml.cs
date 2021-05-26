@@ -20,6 +20,8 @@ namespace WizardGame.App.Views
         private async void OnLoadedAsync(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await ViewModel.LoadAllPlayerProfilesAsync();
+
+            PlayerProfilesProgressRing.Visibility = Visibility.Collapsed;
         }
 
         private async void OnAddPlayerProfileAsync(object sender, RoutedEventArgs e)

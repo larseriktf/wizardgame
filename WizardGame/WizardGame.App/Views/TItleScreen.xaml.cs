@@ -24,30 +24,20 @@ namespace WizardGame.App.Views
             ViewModel.SelectedPlayer = (sender as PlayerProfilePage).ViewModel.SelectedPlayer;
         }
 
-        private void OnStartGame(object sender, RoutedEventArgs e)
-        {
+        private void OnStartGame(object sender, RoutedEventArgs e) =>
             NavigationService.Navigate<GamePage>(ViewModel.SelectedPlayer);
-        }
 
-        private void OnOpenSpellBook(object sender, RoutedEventArgs e)
-        {
+        private void OnOpenSpellBook(object sender, RoutedEventArgs e) =>
             TitleScreenFrame.Navigate(typeof(SpellBookPage));
-        }
 
-        private void OnOpenPlayerProfile(object sender, RoutedEventArgs e)
-        {
+        private void OnOpenPlayerProfile(object sender, RoutedEventArgs e) =>
             TitleScreenFrame.Navigate(typeof(PlayerProfilePage));
-        }
 
-        private void OnOpenLeaderboards(object sender, RoutedEventArgs e)
-        {
+        private void OnOpenLeaderboards(object sender, RoutedEventArgs e) =>
             TitleScreenFrame.Navigate(typeof(LeaderboardsPage));
-        }
 
-        private void OnOpenSettings(object sender, RoutedEventArgs e)
-        {
+        private void OnOpenSettings(object sender, RoutedEventArgs e) =>
             TitleScreenFrame.Navigate(typeof(SettingsPage));
-        }
 
         private void OnToggleExitWindow(object sender, RoutedEventArgs e)
         {
@@ -61,13 +51,16 @@ namespace WizardGame.App.Views
             }
         }
 
-        private async void OnLoadedAsync(object sender, RoutedEventArgs e) =>
-            await ViewModel.LoadSelectedPlayerAsync();
-        
-
-        private void OnComfirmExit(object sender, RoutedEventArgs e)
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit();
+            await ViewModel.LoadSelectedPlayerAsync();
+
+            SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
+            SelectedPlayerContentControl.Visibility = Visibility.Visible;
+
+            StartGameButton.IsEnabled = true;
         }
+
+        private void OnComfirmExit(object sender, RoutedEventArgs e) => Application.Current.Exit();
     }
 }
