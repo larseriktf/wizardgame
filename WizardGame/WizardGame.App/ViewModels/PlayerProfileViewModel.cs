@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using WizardGame.App.Core.Services;
+using WizardGame.App.Core.Helpers;
 using WizardGame.App.Helpers;
 using WizardGame.Model;
 
@@ -33,6 +34,7 @@ namespace WizardGame.App.ViewModels
             }
         }
 
+        // Testing static properties
 
         // CRUD Operations
         internal async Task LoadAllPlayerProfilesAsync()
