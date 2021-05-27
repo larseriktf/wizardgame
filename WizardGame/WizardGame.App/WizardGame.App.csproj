@@ -188,9 +188,6 @@
     <Compile Include="Views\LeaderboardsPage.xaml.cs">
       <DependentUpon>LeaderboardsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PausePage.xaml.cs">
-      <DependentUpon>PausePage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\SpellBookPage.xaml.cs">
       <DependentUpon>SpellBookPage.xaml</DependentUpon>
     </Compile>
@@ -240,10 +237,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LeaderboardsPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\PausePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

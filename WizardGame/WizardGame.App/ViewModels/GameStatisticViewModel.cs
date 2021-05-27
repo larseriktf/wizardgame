@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using WizardGame.App.Core.Services;
 using WizardGame.App.Helpers;
@@ -54,11 +56,6 @@ namespace WizardGame.App.ViewModels
             PlayerGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>($"api/GameStatistics/Player/{playerId}");
         }
 
-        internal async Task LoadTopGamesAsync()
-        {
-            TopGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics/Top");
-        }
-
         internal async Task AddPlayerGameAsync(int playerId, int wavesPlayed, int enemiesDefeated, TimeSpan elapsedTime)
         {
             GameStatistic currentGame = new GameStatistic()
@@ -72,69 +69,41 @@ namespace WizardGame.App.ViewModels
             await dataService.PostAsJsonAsync("api/GameStatistics", currentGame);
         }
 
-        //internal async Task AddNewPlayerProfileAsync(string playerName)
-        //{
-        //    PlayerProfile playerProfile = new PlayerProfile()
-        //    {
-        //        PlayerName = playerName,
-        //        GameStatistics = null
-        //    };
+        internal async Task LoadTopGamesAsync()
+        {
+            IEnumerable<PlayerProfile> allPlayers = await dataService.GetAsync<ObservableCollection<PlayerProfile>>("api/PlayerProfiles");
 
-        //    // Add to database
-        //    await dataService.PostAsJsonAsync("api/PlayerProfiles", playerProfile);
+            List<GameStatistic> topGames = new List<GameStatistic>();
 
-        //    // Add to ObservableCollection
-        //    PlayerProfiles.Add(playerProfile);
-        //}
+            // Find the best game for each player and add them to temporary list
+            foreach (PlayerProfile player in allPlayers)
+            {
+                GameStatistic currentBestGame = null;
 
-        //internal async Task DeletePlayerProfileAsync(int id)
-        //{
-        //    // Remove from database
-        //    await dataService.DeleteAsync($"api/PlayerProfiles/{id}");
+                // Find the new best game
+                foreach (GameStatistic game in player.GameStatistics)
+                {
+                    if (currentBestGame == null)
+                    {
+                        currentBestGame = game;
+                        break;
+                    }
 
-        //    // Remove from ObservableCollection
-        //    foreach (PlayerProfile p in PlayerProfiles)
-        //    {
-        //        if (p.Id == id)
-        //        {
-        //            PlayerProfiles.Remove(p);
-        //            return;
-        //        }
-        //    }
-        //}
+                    if (game.WavesPlayed >= currentBestGame.WavesPlayed)
+                    {
+                        currentBestGame = game;
+                    }
+                }
+                topGames.Add(currentBestGame);
+            }
+            topGames.OrderBy(g => g.WavesPlayed);
 
-        //internal async Task UpdatePlayerProfileAsync(int id, string newName)
-        //{
-        //    PlayerProfile playerProfile = new PlayerProfile()
-        //    {
-        //        Id = id,
-        //        PlayerName = newName
-        //    };
-
-        //    // Update in database
-        //    await dataService.PutAsJsonAsync($"api/PlayerProfiles/{id}", playerProfile);
-
-        //    // Update in ObservableCollection
-        //    for (int i = 0; i < PlayerProfiles.Count; i++)
-        //    {
-        //        if (PlayerProfiles[i].Id == id)
-        //        {
-        //            PlayerProfiles[i] = playerProfile;
-        //        }
-        //    }
-        //}
-
-        //internal async Task LoadSelectedPlayerAsync()
-        //{
-        //    IEnumerable<PlayerProfile> playerProfiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>("api/PlayerProfiles");
-
-        //    foreach (PlayerProfile p in playerProfiles)
-        //    {
-        //        if (p.IsSelected == true)
-        //        {
-        //            SelectedPlayer = p;
-        //        }
-        //    }
-        //}
+            // Add games to list
+            foreach (GameStatistic game in topGames)
+            {
+                TopGames.Add(game);
+            }
+            
+        }
     }
 }

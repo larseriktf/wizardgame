@@ -48,19 +48,14 @@ namespace WizardGame.Api.Controllers
             .Where(g => g.PlayerProfileId == id)
             .ToListAsync();
 
+        // @Todo: Make this work
         // GET: api/GameStatistics/Top
-        [HttpGet("Top")]
-        public async Task<ActionResult<IEnumerable<GameStatistic>>> GetTopGamesAsync()
-        {
-            var games = _context.GameStatistics.Include(g => g.PlayerProfile);
-            var maxWave = games.Max(g => g.WavesPlayed);
-            var result =  games
-                .Where(g => g.WavesPlayed == maxWave).ToListAsync();
-                //.GroupBy and .Select
+        //[HttpGet("Top")]
+        //public async Task<ActionResult<IEnumerable<GameStatistic>>> GetTopGamesAsync()
+        //{
+        //    IEnumerable<GameStatistic> list = _context.GameStatistics.Include(g => g.PlayerProfile).ToListAsync().Result;
+        //}
 
-            return await result;
-        }
-            
 
         // PUT: api/GameStatistics/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

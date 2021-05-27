@@ -69,10 +69,10 @@
                                             <ColumnDefinition/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{x:Bind PlayerProfile.PlayerName}" Grid.Column="0"/>
+                                        <TextBlock Text="{x:Bind PlayerProfileId}" Grid.Column="0"/>
                                         <TextBlock Text="{x:Bind WavesPlayed}" Grid.Column="1"/>
                                         <TextBlock Text="{x:Bind EnemiesDefeated}" Grid.Column="2"/>
-                                        <TextBlock Text="Time" Grid.Column="3"/>
+                                        <TextBlock Text="{x:Bind ElapsedTime.ToString()}" Grid.Column="3"/>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -99,9 +99,9 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Profile" Grid.Column="0"/>
-                        <TextBlock Text="Waves Survived" Grid.Column="1"/>
-                        <TextBlock Text="Enemies Defeated" Grid.Column="2"/>
-                        <TextBlock Text="Time Elapsed" Grid.Column="3"/>
+                        <TextBlock Text="Waves" Grid.Column="1"/>
+                        <TextBlock Text="Enemies" Grid.Column="2"/>
+                        <TextBlock Text="Play Time" Grid.Column="3"/>
                     </Grid>
                     <ScrollViewer Grid.Row="1">
                         <ListView ItemsSource="{x:Bind ViewModel.PlayerGames, Mode=OneWay}"
@@ -125,7 +125,7 @@
                                         <TextBlock Text="{x:Bind PlayerProfile.PlayerName}" Grid.Column="0"/>
                                         <TextBlock Text="{x:Bind WavesPlayed}" Grid.Column="1"/>
                                         <TextBlock Text="{x:Bind EnemiesDefeated}" Grid.Column="2"/>
-                                        <TextBlock Text="Time" Grid.Column="3"/>
+                                        <TextBlock Text="{x:Bind ElapsedTime.ToString()}" Grid.Column="3"/>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

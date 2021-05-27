@@ -32,6 +32,8 @@ namespace WizardGame.App.Views
         {
             DataContext = this;
             InitializeComponent();
+
+            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -55,6 +57,7 @@ namespace WizardGame.App.Views
             SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
             SelectedPlayerStackPanel.Visibility = Visibility.Visible;
             SelectedPlayerNameTextBlock.Text = SelectedPlayer.PlayerName;
+            base.OnNavigatedTo(e);
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
@@ -69,8 +72,7 @@ namespace WizardGame.App.Views
 
         void OnUnloaded(object sender, RoutedEventArgs e)
         {   // Best practice: Prevent simple memory leak
-            canvas.RemoveFromVisualTree();
-            canvas = null;
+            
 
             // Unsubscribe keyboard input
             Window.Current.CoreWindow.KeyDown -= OnKeyDownUIThread;
@@ -82,6 +84,9 @@ namespace WizardGame.App.Views
 
             // Save game
             SaveGameAsync();
+
+            canvas.RemoveFromVisualTree();
+            canvas = null;
         }
 
         private void OnKeyDownUIThread(CoreWindow sender, KeyEventArgs args)

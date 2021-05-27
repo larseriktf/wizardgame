@@ -7,11 +7,15 @@ using WizardGame.App.Core.Services;
 using WizardGame.App.Core.Helpers;
 using WizardGame.App.Helpers;
 using WizardGame.Model;
+using System.Linq;
 
 namespace WizardGame.App.ViewModels
 {
     public class PlayerProfileViewModel : Observable
     {
+        private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
+        public static EventHandler SelectedPlayerChangedEvent;
+
         private ObservableCollection<PlayerProfile> playerProfiles = new ObservableCollection<PlayerProfile>();
         public ObservableCollection<PlayerProfile> PlayerProfiles
         {
@@ -22,7 +26,16 @@ namespace WizardGame.App.ViewModels
                 OnPropertyChanged("PlayerProfiles");
             }
         }
-        private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
+        private ObservableCollection<PlayerProfile> topPlayers = new ObservableCollection<PlayerProfile>();
+        public ObservableCollection<PlayerProfile> TopPlayers
+        {
+            get => topPlayers;
+            set
+            {
+                topPlayers = value;
+                OnPropertyChanged("TopPlayers");
+            }
+        }
         private PlayerProfile selectedPlayer;
         public PlayerProfile SelectedPlayer
         {
@@ -33,7 +46,8 @@ namespace WizardGame.App.ViewModels
                 OnPropertyChanged("SelectedPlayer");
             }
         }
-        public static EventHandler SelectedPlayerChangedEvent;
+
+        
 
         // CRUD Operations
         internal async Task LoadAllPlayerProfilesAsync()
