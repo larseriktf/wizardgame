@@ -11,6 +11,8 @@ namespace WizardGame.App.ViewModels
 {
     public class GameStatisticViewModel : Observable
     {
+        private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
+
         private ObservableCollection<GameStatistic> allGames = new ObservableCollection<GameStatistic>();
         public ObservableCollection<GameStatistic> AllGames
         {
@@ -44,10 +46,7 @@ namespace WizardGame.App.ViewModels
             }
         }
 
-        private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
-
-
-        // CRUD Operations
+        // API interactions
         internal async Task LoadAllGamesAsync() =>
             AllGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics");
 

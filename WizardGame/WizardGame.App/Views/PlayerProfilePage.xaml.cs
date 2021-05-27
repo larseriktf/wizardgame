@@ -19,7 +19,7 @@ namespace WizardGame.App.Views
 
         private async void OnLoadedAsync(object sender, RoutedEventArgs e)
         {
-            await ViewModel.LoadAllPlayerProfilesAsync();
+            await ViewModel.LoadAllPlayersAsync();
 
             PlayerProfilesProgressRing.Visibility = Visibility.Collapsed;
         }
@@ -31,7 +31,7 @@ namespace WizardGame.App.Views
             TextBox textBox = btn.Tag as TextBox;
 
             // Adds
-            await ViewModel.AddNewPlayerProfileAsync(textBox.Text);
+            await ViewModel.AddNewPlayerAsync(textBox.Text);
 
             // Clear textBox
             textBox.Text = string.Empty;
@@ -47,7 +47,7 @@ namespace WizardGame.App.Views
                 return;
             }
 
-            await ViewModel.DeletePlayerProfileAsync(Int32.Parse(Id));
+            await ViewModel.DeletePlayerAsync(Int32.Parse(Id));
 
 
             ClearProfileTextBlocks();
@@ -69,7 +69,7 @@ namespace WizardGame.App.Views
                 return;
             }
 
-            await ViewModel.UpdatePlayerProfileAsync(Int32.Parse(Id), newName);
+            await ViewModel.UpdatePlayerAsync(Int32.Parse(Id), newName);
 
 
             UpdatedPlayerNameTextBox.Text = string.Empty;

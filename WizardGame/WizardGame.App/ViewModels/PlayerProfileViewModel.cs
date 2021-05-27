@@ -16,24 +16,14 @@ namespace WizardGame.App.ViewModels
         private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
         public static EventHandler SelectedPlayerChangedEvent;
 
-        private ObservableCollection<PlayerProfile> playerProfiles = new ObservableCollection<PlayerProfile>();
-        public ObservableCollection<PlayerProfile> PlayerProfiles
+        private ObservableCollection<PlayerProfile> player = new ObservableCollection<PlayerProfile>();
+        public ObservableCollection<PlayerProfile> Players
         {
-            get => playerProfiles;
+            get => player;
             set
             {
-                playerProfiles = value;
-                OnPropertyChanged("PlayerProfiles");
-            }
-        }
-        private ObservableCollection<PlayerProfile> topPlayers = new ObservableCollection<PlayerProfile>();
-        public ObservableCollection<PlayerProfile> TopPlayers
-        {
-            get => topPlayers;
-            set
-            {
-                topPlayers = value;
-                OnPropertyChanged("TopPlayers");
+                player = value;
+                OnPropertyChanged("Players");
             }
         }
         private PlayerProfile selectedPlayer;
@@ -47,56 +37,53 @@ namespace WizardGame.App.ViewModels
             }
         }
 
-        
-
-        // CRUD Operations
-        internal async Task LoadAllPlayerProfilesAsync()
+        // API Operations
+        internal async Task LoadAllPlayersAsync()
         {
             try
             {
-                PlayerProfiles = await dataService.GetAsync<ObservableCollection<PlayerProfile>>("api/PlayerProfiles");
+                Players = await dataService.GetAsync<ObservableCollection<PlayerProfile>>("api/PlayerProfiles");
             }
             catch (Exception e)
             {
-                PlayerProfiles = new ObservableCollection<PlayerProfile>();
+                Players = new ObservableCollection<PlayerProfile>();
                 Console.WriteLine(e.StackTrace);
             }
             
         }
-            
 
-        internal async Task AddNewPlayerProfileAsync(string playerName)
+        internal async Task AddNewPlayerAsync(string name)
         {
-            PlayerProfile playerProfile = new PlayerProfile()
+            PlayerProfile profile = new PlayerProfile()
             {
-                PlayerName = playerName,
+                PlayerName = name,
                 GameStatistics = null
             };
 
             // Add to database
-            await dataService.PostAsJsonAsync("api/PlayerProfiles", playerProfile);
+            await dataService.PostAsJsonAsync("api/PlayerProfiles", profile);
 
             // Add to ObservableCollection
-            PlayerProfiles.Add(playerProfile);
+            Players.Add(profile);
         }
 
-        internal async Task DeletePlayerProfileAsync(int id)
+        internal async Task DeletePlayerAsync(int id)
         {
             // Remove from database
             await dataService.DeleteAsync($"api/PlayerProfiles/{id}");
 
             // Remove from ObservableCollection
-            foreach (PlayerProfile p in PlayerProfiles)
+            foreach (PlayerProfile p in Players)
             {
                 if (p.Id == id)
                 {
-                    PlayerProfiles.Remove(p);
+                    Players.Remove(p);
                     return;
                 }
             }
         }
 
-        internal async Task UpdatePlayerProfileAsync(int id, string newName)
+        internal async Task UpdatePlayerAsync(int id, string newName)
         {
             PlayerProfile playerProfile = new PlayerProfile()
             {
@@ -108,11 +95,11 @@ namespace WizardGame.App.ViewModels
             await dataService.PutAsJsonAsync($"api/PlayerProfiles/{id}", playerProfile);
 
             // Update in ObservableCollection
-            for (int i = 0; i < PlayerProfiles.Count; i++)
+            for (int i = 0; i < Players.Count; i++)
             {
-                if (PlayerProfiles[i].Id == id)
+                if (Players[i].Id == id)
                 {
-                    PlayerProfiles[i] = playerProfile;
+                    Players[i] = playerProfile;
                 }
             }
         }
@@ -141,9 +128,9 @@ namespace WizardGame.App.ViewModels
         {
             PlayerProfile profile;
 
-            for (int i = 0; i < PlayerProfiles.Count; i++)
+            for (int i = 0; i < Players.Count; i++)
             {
-                profile = PlayerProfiles[i];
+                profile = Players[i];
                 profile.IsSelected = false;
 
                 if (profile.Id == id)
@@ -153,7 +140,7 @@ namespace WizardGame.App.ViewModels
                 }
 
                 // Update in ObservableCollection
-                PlayerProfiles[i] = profile;
+                Players[i] = profile;
 
                 // Update in database
                 await dataService.PutAsJsonAsync($"api/PlayerProfiles/{profile.Id}", profile);

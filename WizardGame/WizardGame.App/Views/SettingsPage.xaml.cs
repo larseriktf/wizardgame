@@ -14,10 +14,8 @@ namespace WizardGame.App.Views
 
         public SettingsPage() => InitializeComponent();
 
-        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
-        {
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e) =>
             await ViewModel.LoadAllConfigurationsAsync();
-        }
 
         private async void OnInspectConfigurationAsync(object sender, RoutedEventArgs e)
         {
