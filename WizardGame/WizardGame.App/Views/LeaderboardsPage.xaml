@@ -44,7 +44,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Profile" Grid.Column="0"/>
+                        <TextBlock Text="Player" Grid.Column="0"/>
                         <TextBlock Text="Waves Survived" Grid.Column="1"/>
                         <TextBlock Text="Enemies Defeated" Grid.Column="2"/>
                         <TextBlock Text="Time Elapsed" Grid.Column="3"/>
@@ -99,7 +99,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Profile" Grid.Column="0"/>
+                        <TextBlock Text="Player" Grid.Column="0"/>
                         <TextBlock Text="Waves" Grid.Column="1"/>
                         <TextBlock Text="Enemies" Grid.Column="2"/>
                         <TextBlock Text="Play Time" Grid.Column="3"/>

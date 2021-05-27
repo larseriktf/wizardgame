@@ -1,17 +1,18 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using WizardGame.App.Helpers;
 using WizardGame.App.ViewModels;
 using WizardGame.Model;
 
 namespace WizardGame.App.Views
 {
-    public sealed partial class PlayerProfilePage : Page
+    public sealed partial class PlayerPage : Page
     {
         public delegate void SelectedPlayerChangedEventHandler(object sender, EventArgs e);
         public PlayerViewModel ViewModel { get; } = new PlayerViewModel();
 
-        public PlayerProfilePage()
+        public PlayerPage()
         {
             DataContext = this;
             InitializeComponent();
@@ -20,11 +21,10 @@ namespace WizardGame.App.Views
         private async void OnLoadedAsync(object sender, RoutedEventArgs e)
         {
             await ViewModel.LoadAllPlayersAsync();
-
-            PlayerProfilesProgressRing.Visibility = Visibility.Collapsed;
+            ControlHandler.ToggleVisibility(PlayerProgressRIng);
         }
 
-        private async void OnAddPlayerProfileAsync(object sender, RoutedEventArgs e)
+        private async void OnAddPlayerAsync(object sender, RoutedEventArgs e)
         {
             // Get objects
             Button btn = sender as Button;
@@ -38,7 +38,7 @@ namespace WizardGame.App.Views
         }
 
 
-        private async void OnDeleteProfileAsync(object sender, RoutedEventArgs e)
+        private async void OnDeletePlayerAsync(object sender, RoutedEventArgs e)
         {
             string Id = PlayerIdTextBlock.Text;
 
@@ -49,17 +49,13 @@ namespace WizardGame.App.Views
 
             await ViewModel.DeletePlayerAsync(Int32.Parse(Id));
 
-
-            ClearProfileTextBlocks();
+            ClearPlayerTextBoxes();
         }
 
-        private void ClearProfileTextBlocks()
-        {
-            PlayerIdTextBlock.Text = string.Empty;
-            PlayerNameTextBlock.Text = string.Empty;
-        }
+        private void ClearPlayerTextBoxes() =>
+            PlayerIdTextBlock.Text = PlayerNameTextBlock.Text = string.Empty;
 
-        private async void OnApplyEditProfileAsync(object sender, RoutedEventArgs e)
+        private async void OnApplyEditPlayerAsync(object sender, RoutedEventArgs e)
         {
             string Id = PlayerIdTextBlock.Text;
             string newName = UpdatedPlayerNameTextBox.Text;
@@ -74,36 +70,28 @@ namespace WizardGame.App.Views
 
             UpdatedPlayerNameTextBox.Text = string.Empty;
 
-            OnToggleProfileEdit(sender, e);
+            OnTogglePlayerAsync(sender, e);
         }
 
-        private void OnToggleProfileEdit(object sender, RoutedEventArgs e)
+        private void OnTogglePlayerAsync(object sender, RoutedEventArgs e)
         {
-            if (PlayerInfoPanel.Visibility == Visibility.Visible)
-            {
-                PlayerInfoPanel.Visibility = Visibility.Collapsed;
-                EditPlayerPanel.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                PlayerInfoPanel.Visibility = Visibility.Visible;
-                EditPlayerPanel.Visibility = Visibility.Collapsed;
-            }
+            ControlHandler.ToggleVisibility(PlayerInfoPanel);
+            ControlHandler.ToggleVisibility(EditPlayerPanel);
         }
 
-        private void OnClickProfile(object sender, ItemClickEventArgs e)
+        private void OnClickPlayer(object sender, ItemClickEventArgs e)
         {
-            Player profile = e.ClickedItem as Player;
+            Player player = e.ClickedItem as Player;
 
-            PlayerIdTextBlock.Text = profile.Id.ToString();
-            PlayerNameTextBlock.Text = profile.PlayerName;
+            PlayerIdTextBlock.Text = player.Id.ToString();
+            PlayerNameTextBlock.Text = player.PlayerName;
 
-            SelectProfileButton.IsEnabled = true;
-            EditProfileButton.IsEnabled = true;
-            DeleteProfileButton.IsEnabled = true;
+            SelectPlayerButton.IsEnabled = true;
+            EditPlayerButton.IsEnabled = true;
+            DeletePlayerButton.IsEnabled = true;
         }
 
-        private async void OnSelectProfileAsync(object sender, RoutedEventArgs e)
+        private async void OnSelectPlayerAsync(object sender, RoutedEventArgs e)
         {
             string Id = PlayerIdTextBlock.Text;
 

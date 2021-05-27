@@ -11,6 +11,7 @@ using WizardGame.App.GameFiles.Entities.Dev;
 using WizardGame.App.GameFiles.Entities.Player;
 using WizardGame.App.GameFiles.Graphics;
 using WizardGame.App.GameFiles.Input;
+using WizardGame.App.Helpers;
 using WizardGame.App.Interfaces;
 using WizardGame.App.ViewModels;
 
@@ -141,19 +142,9 @@ namespace WizardGame.App.Views
             }
         }
 
-        private void OnToggleExitWindow(object sender, RoutedEventArgs e) => ToggleVisibility(ComfirmExitGrid);
-
-        private void ToggleVisibility(UIElement control)
-        {
-            if (control.Visibility == Visibility.Visible)
-            {
-                control.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                control.Visibility = Visibility.Visible;
-            }
-        }
+        private void OnToggleExitWindow(object sender, RoutedEventArgs e) =>
+            ControlHandler.ToggleVisibility(ComfirmExitGrid);
+        
 
         private async void SaveGameAsync() =>
             await GameViewModel.AddPlayerGameAsync(
@@ -165,7 +156,7 @@ namespace WizardGame.App.Views
         public async void OnSelectedPlayerChangedEventAsync(object sender, EventArgs e)
         {
             await PlayerViewModel.LoadSelectedPlayerAsync();
-            PlayerViewModel.SelectedPlayer = (sender as PlayerProfilePage).ViewModel.SelectedPlayer;
+            PlayerViewModel.SelectedPlayer = (sender as PlayerPage).ViewModel.SelectedPlayer;
         }
 
         private void OnSizeChanged(object sender, SizeChangedEventArgs e) => Screen.Width = e.NewSize.Width;
@@ -175,7 +166,7 @@ namespace WizardGame.App.Views
             MenuFrame.Navigate(typeof(SpellBookPage));
 
         private void OnOpenPlayerProfile(object sender, RoutedEventArgs e) =>
-            MenuFrame.Navigate(typeof(PlayerProfilePage));
+            MenuFrame.Navigate(typeof(PlayerPage));
 
         private void OnOpenLeaderboards(object sender, RoutedEventArgs e) =>
             MenuFrame.Navigate(typeof(LeaderboardsPage), PlayerViewModel.SelectedPlayer);

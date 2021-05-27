@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="WizardGame.App.Views.PlayerProfilePage"
+    x:Class="WizardGame.App.Views.PlayerPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -32,13 +32,13 @@
                     <Grid Background="Purple">
 
                         <muxc:ProgressRing IsActive="True"
-                                           x:Name="PlayerProfilesProgressRing"
+                                           x:Name="PlayerProgressRIng"
                                            Height="128"
                                            Width="128"/>
 
                         <GridView ItemsSource="{x:Bind ViewModel.Players, Mode=OneWay}"
                                   IsItemClickEnabled="True"
-                                  ItemClick="OnClickProfile"
+                                  ItemClick="OnClickPlayer"
                                   IncrementalLoadingTrigger="Edge">
 
                             <GridView.ItemTemplate>
@@ -97,17 +97,17 @@
                                            Margin="0 16 0 0"/>
                                         <TextBlock x:Name="PlayerNameTextBlock" />
 
-                                        <Button x:Name="SelectProfileButton"
+                                        <Button x:Name="SelectPlayerButton"
                                                 Content="Select"
-                                                Click="OnSelectProfileAsync"
+                                                Click="OnSelectPlayerAsync"
                                                 IsEnabled="False"/>
-                                        <Button x:Name="EditProfileButton"
+                                        <Button x:Name="EditPlayerButton"
                                                 Content="Edit Name"
-                                                Click="OnToggleProfileEdit"
+                                                Click="OnTogglePlayerAsync"
                                                 IsEnabled="False"/>
-                                        <Button x:Name="DeleteProfileButton"
+                                        <Button x:Name="DeletePlayerButton"
                                                 Content="Delete Profile"
-                                                Click="OnDeleteProfileAsync"
+                                                Click="OnDeletePlayerAsync"
                                                 IsEnabled="False"/>
                                     </StackPanel>
                                     <StackPanel x:Name="EditPlayerPanel" Visibility="Collapsed">
@@ -116,8 +116,8 @@
                                                 Width="256"
                                                 Height="64"
                                                 Margin="0 16"/>
-                                        <Button Content="Update Player Profile" Click="OnApplyEditProfileAsync"/>
-                                        <Button Content="Cancel" Click="OnToggleProfileEdit"/>
+                                        <Button Content="Update Player Profile" Click="OnApplyEditPlayerAsync"/>
+                                        <Button Content="Cancel" Click="OnTogglePlayerAsync"/>
                                     </StackPanel>
                                 </StackPanel>
                             </PivotItem>
@@ -133,7 +133,7 @@
                                                 Height="64"
                                                 Margin="0 16"/>
                                     <Button Content="Create Player Profile"
-                                            Click="OnAddPlayerProfileAsync"
+                                            Click="OnAddPlayerAsync"
                                             Tag="{x:Bind playerNameTextBox}"/>
                                 </StackPanel>
                             </PivotItem>
