@@ -6,9 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:WizardGame.Model"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    Loaded="OnLoadedAsync"
+    mc:Ignorable="d"
     Style="{StaticResource PageStyle}"
-    mc:Ignorable="d">
+    Loaded="OnLoadedAsync">
 
     <Grid Background="Indigo">
         <Grid.RowDefinitions>

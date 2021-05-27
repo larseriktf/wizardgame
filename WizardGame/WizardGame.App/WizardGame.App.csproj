@@ -301,7 +301,7 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="App.config" />
-    <Content Include="Fonts\Curse Casual.ttf" />
+    <Content Include="Assets\Fonts\Curse-Casual.ttf" />
     <None Include="WizardGame.App_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
