@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace WizardGame.App.Classes
 
         private static int enemyCount = 2;
         private static double damageMultiplier = 1;
+        public static Stopwatch GameTimer = new Stopwatch();
 
 
         public static void NextWave()

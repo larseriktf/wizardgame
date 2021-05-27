@@ -27,7 +27,7 @@
                                       Width="auto"
                                       Grid.ColumnSpan="2"/>
 
-        <Button Grid.Column="0" Click="OnTogglePauseMenu" Content="Pause"/>
+        <Button Grid.Column="0" Click="OnTogglePause" Content="Pause"/>
 
         <Grid x:Name="PausedMenu" Visibility="Collapsed" Background="Indigo">
             <Grid.RowDefinitions>
@@ -54,7 +54,7 @@
             </Grid>
             
             <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical" Grid.Row="2">
-                <Button Content="RESUME" Click="OnTogglePauseMenu"/>
+                <Button Content="RESUME" Click="OnTogglePause"/>
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
                 <Button Content="SETTINGS" Click="OnOpenSettings"/>
                 <Button Content="MAIN MENU" Click="OnToggleExitWindow"/>

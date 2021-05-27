@@ -21,17 +21,12 @@ using WizardGame.Model;
 using Windows.UI.Xaml.Navigation;
 using Microsoft.Graphics.Canvas.UI;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace WizardGame.App.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class GamePage : Page
     {
         public GameStatisticViewModel ViewModel = new GameStatisticViewModel();
-        public PlayerProfile SelectedPlayer { get; set; } = null;
+        public PlayerProfile SelectedPlayer { get; set; }
 
         public GamePage()
         {
@@ -41,21 +36,35 @@ namespace WizardGame.App.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter is PlayerProfile)
+            try
             {
                 SelectedPlayer = e.Parameter as PlayerProfile;
-
-                SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
-                SelectedPlayerStackPanel.Visibility = Visibility.Visible;
-                SelectedPlayerNameTextBlock.Text = SelectedPlayer.PlayerName;
             }
+            catch (Exception exception)
+            {
+                SelectedPlayer = new PlayerProfile()
+                {
+                    Id = 0,
+                    PlayerName = "Undefined",
+                    IsSelected = true,
+                    GameStatistics = null
+                };
+                Console.WriteLine(exception.StackTrace);
+            }
+
+            SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
+            SelectedPlayerStackPanel.Visibility = Visibility.Visible;
+            SelectedPlayerNameTextBlock.Text = SelectedPlayer.PlayerName;
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
             // Subscribe keyboard input
-            Window.Current.CoreWindow.KeyDown += KeyDown_UIThread;
-            Window.Current.CoreWindow.KeyUp += KeyUp_UIThread;
+            Window.Current.CoreWindow.KeyDown += OnKeyDownUIThread;
+            Window.Current.CoreWindow.KeyUp += OnKeyUpUIThread;
+
+            // Start game timer
+            GameManager.GameTimer.Start();
         }
 
         void OnUnloaded(object sender, RoutedEventArgs e)
@@ -64,24 +73,24 @@ namespace WizardGame.App.Views
             canvas = null;
 
             // Unsubscribe keyboard input
-            Window.Current.CoreWindow.KeyDown -= KeyDown_UIThread;
-            Window.Current.CoreWindow.KeyDown -= KeyUp_UIThread;
+            Window.Current.CoreWindow.KeyDown -= OnKeyDownUIThread;
+            Window.Current.CoreWindow.KeyDown -= OnKeyUpUIThread;
+
+            // Stop game timer
+            GameManager.GameTimer.Stop();
+
+            // Save game
+            SaveGameAsync();
         }
 
-        private void KeyDown_UIThread(CoreWindow sender, KeyEventArgs args)
+        private void OnKeyDownUIThread(CoreWindow sender, KeyEventArgs args)
         {
             args.Handled = true;
-
-            // @TODO: Move this out of this event handler
-            if (args.VirtualKey == Windows.System.VirtualKey.Escape)
-            {
-                PausedMenu.Visibility = Visibility.Collapsed;
-            }
 
             var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, true));
         }
 
-        private void KeyUp_UIThread(CoreWindow sender, KeyEventArgs args)
+        private void OnKeyUpUIThread(CoreWindow sender, KeyEventArgs args)
         {
             args.Handled = true;
 
@@ -139,18 +148,20 @@ namespace WizardGame.App.Views
             CanvasDebugger.TestDrawing(ds);
         }
 
-        private void OnTogglePauseMenu(object sender, RoutedEventArgs e)
+        private void OnTogglePause(object sender, RoutedEventArgs e)
         {
             if (PausedMenu.Visibility == Visibility.Visible)
             {
                 PausedMenu.Visibility = Visibility.Collapsed;
                 GameFrame.Content = null;
                 canvas.Paused = false;
+                GameManager.GameTimer.Start();
             }
             else
             {
                 PausedMenu.Visibility = Visibility.Visible;
                 canvas.Paused = true;
+                GameManager.GameTimer.Stop();
             }
         }
 
@@ -175,11 +186,8 @@ namespace WizardGame.App.Views
             }
         }
 
-        private void OnComfirmExit(object sender, RoutedEventArgs e)
-        {
-            SaveGameAsync();
+        private void OnComfirmExit(object sender, RoutedEventArgs e) =>
             NavigationService.Navigate<TitleScreen>();
-        }
 
         private async void SaveGameAsync()
         {

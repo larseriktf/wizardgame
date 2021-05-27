@@ -34,7 +34,7 @@
                                    Height="128"
                                    Width="128"/>
                 
-                <ContentControl Content="{Binding ViewModel.SelectedPlayer, Mode=OneWay}"
+                <ContentControl Content="{x:Bind ViewModel.SelectedPlayer, Mode=OneWay}"
                                 x:Name="SelectedPlayerContentControl"
                                 Visibility="Collapsed">
                     <ContentControl.ContentTemplate>
