@@ -59,7 +59,6 @@
                                             <TextBlock x:Name="playerNameText"
                                                    Text="{x:Bind PlayerName, Mode=OneWay}"
                                                    HorizontalAlignment="Center"
-                                                   FontFamily="{StaticResource CurseCasual}"
                                                    FontSize="20"/>
                                         </Viewbox>
                                     </Grid>

@@ -15,7 +15,6 @@
 
         <TextBlock Style="{StaticResource MainTitle}" Text="Spell Book"/>
 
-
         <Pivot Grid.Row="1" Margin="0" Padding="0">
             <Pivot.ItemContainerStyle>
                 <Style TargetType="PivotItem">

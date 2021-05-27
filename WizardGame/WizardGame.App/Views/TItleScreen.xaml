@@ -10,7 +10,7 @@
     <Grid>
         <Image Stretch="UniformToFill" Grid.ColumnSpan="2" Source="/Assets/Images/fantasyLand.jpg"/>
 
-        <StackPanel Height="128">
+        <StackPanel Height="200">
             <TextBlock Style="{StaticResource MainTitle}"
                        Text="Phantastic Wizard"
                        Foreground="Purple"/>
