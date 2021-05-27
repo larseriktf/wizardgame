@@ -78,6 +78,7 @@ namespace WizardGame.App.Views
 
             // Stop game timer
             GameManager.GameTimer.Stop();
+            GameManager.ElapsedTime = TimeSpan.FromMilliseconds(GameManager.GameTimer.ElapsedMilliseconds);
 
             // Save game
             SaveGameAsync();
@@ -195,7 +196,7 @@ namespace WizardGame.App.Views
                 SelectedPlayer.Id,
                 GameManager.Wave,
                 GameManager.EnemiesDefeated,
-                GameManager.MinutesElapsed);
+                GameManager.ElapsedTime);
         }
     }
 }

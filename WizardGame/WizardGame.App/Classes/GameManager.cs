@@ -14,7 +14,7 @@ namespace WizardGame.App.Classes
         public static int Wave { get; set; } = 0;
         public static int EnemyCounter { get; set; } = 0;
         public static int EnemiesDefeated { get; set; } = 0;
-        public static int MinutesElapsed { get; set; } = 0;
+        public static TimeSpan ElapsedTime { get; set; } = new TimeSpan(0, 0, 0);
 
         private static int enemyCount = 2;
         private static double damageMultiplier = 1;

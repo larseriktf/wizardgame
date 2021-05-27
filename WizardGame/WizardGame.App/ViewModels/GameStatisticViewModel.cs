@@ -59,14 +59,14 @@ namespace WizardGame.App.ViewModels
             TopGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics/Top");
         }
 
-        internal async Task AddPlayerGameAsync(int playerId, int wavesPlayed, int enemiesDefeated, int minutesElapsed)
+        internal async Task AddPlayerGameAsync(int playerId, int wavesPlayed, int enemiesDefeated, TimeSpan elapsedTime)
         {
             GameStatistic currentGame = new GameStatistic()
             {
                 PlayerProfileId = playerId,
                 WavesPlayed = wavesPlayed,
                 EnemiesDefeated = enemiesDefeated,
-                MinutesElapsed = minutesElapsed
+                ElapsedTime = elapsedTime
             };
 
             await dataService.PostAsJsonAsync("api/GameStatistics", currentGame);
