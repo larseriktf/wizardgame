@@ -1,25 +1,18 @@
-﻿using Microsoft.Graphics.Canvas.UI.Xaml;
+﻿using Microsoft.Graphics.Canvas.UI;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WizardGame.App.Classes;
-using WizardGame.App.Classes.Graphics;
-using WizardGame.App.Classes.Input;
+using WizardGame.App.GameFiles;
+using WizardGame.App.GameFiles.Entities.Dev;
+using WizardGame.App.GameFiles.Entities.Player;
+using WizardGame.App.GameFiles.Graphics;
+using WizardGame.App.GameFiles.Input;
 using WizardGame.App.Interfaces;
-using Windows.UI.Core;
-using System.Diagnostics;
-using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
-using WizardGame.App.Classes.Entities.Enemies;
-using WizardGame.App.Classes.Entities;
-using Windows.Graphics.Display;
-using Windows.Foundation;
-using WizardGame.App.Classes.Entities.Dev;
-using WizardGame.Model;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Graphics.Canvas.UI;
 
 namespace WizardGame.App.Views
 {
@@ -84,7 +77,7 @@ namespace WizardGame.App.Views
             // Pre-load image resources
             await ImageLoader.LoadImageResourceAsync(sender.Device);
 
-            Player.Spawner(10 * 128 + 64, 6 * 128 + 64);
+            Ghost.Spawner(10 * 128 + 64, 6 * 128 + 64);
 
             // Add enemy spawners
             EnemySpawner.Spawner(2 * 128 + 64, 5 * 128 + 64);

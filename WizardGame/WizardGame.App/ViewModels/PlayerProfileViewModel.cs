@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Threading.Tasks;
 using WizardGame.App.Core.Services;
-using WizardGame.App.Core.Helpers;
 using WizardGame.App.Helpers;
 using WizardGame.Model;
-using System.Linq;
 
 namespace WizardGame.App.ViewModels
 {
@@ -49,7 +45,7 @@ namespace WizardGame.App.ViewModels
                 Players = new ObservableCollection<PlayerProfile>();
                 Console.WriteLine(e.StackTrace);
             }
-            
+
         }
 
         internal async Task AddNewPlayerAsync(string name)
@@ -122,7 +118,7 @@ namespace WizardGame.App.ViewModels
                 Console.WriteLine(e.StackTrace);
             }
         }
-            
+
 
         internal async Task SetSelectedPlayerAsync(int id)
         {

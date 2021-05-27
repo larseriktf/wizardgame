@@ -1,10 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
-using WizardGame.Model;
 
 namespace WizardGame.App.Views
 {

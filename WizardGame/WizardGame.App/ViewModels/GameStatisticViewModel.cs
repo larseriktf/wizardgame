@@ -102,7 +102,7 @@ namespace WizardGame.App.ViewModels
             {
                 TopGames.Add(game);
             }
-            
+
         }
     }
 }

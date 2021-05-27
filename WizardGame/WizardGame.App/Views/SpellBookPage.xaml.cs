@@ -1,8 +1,6 @@
-﻿using System;
-
+﻿
 using Windows.UI.Xaml.Controls;
 using WizardGame.App.Services;
-using WizardGame.App.ViewModels;
 
 namespace WizardGame.App.Views
 {

@@ -36,7 +36,7 @@
                                            Height="128"
                                            Width="128"/>
 
-                        <GridView ItemsSource="{x:Bind ViewModel.PlayerProfiles, Mode=OneWay}"
+                        <GridView ItemsSource="{x:Bind ViewModel.Players, Mode=OneWay}"
                                   IsItemClickEnabled="True"
                                   ItemClick="OnClickProfile"
                                   IncrementalLoadingTrigger="Edge">
