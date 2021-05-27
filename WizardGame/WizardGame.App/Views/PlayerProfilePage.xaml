@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:WizardGame.Model"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Loaded="OnLoadedAsync"
     Style="{StaticResource PageStyle}"
     mc:Ignorable="d">
@@ -15,9 +16,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource MainTitle}"
-                   Text="Player Profiles"
-                   Grid.Row="0"/>
+        <TextBlock Style="{StaticResource MainTitle}" Text="Player Profiles"/>
 
         <StackPanel Grid.Row="1">
             <Grid Height="460">
@@ -32,10 +31,14 @@
                 <ScrollViewer Grid.Column="0" Grid.Row="0">
                     <Grid Background="Purple">
 
-                        <GridView x:Name="ConfigurationsGridView"
-                                  ItemsSource="{x:Bind ViewModel.PlayerProfiles, Mode=OneWay}"
+                        <muxc:ProgressRing IsActive="True"
+                                           x:Name="PlayerProfilesProgressRing"
+                                           Height="128"
+                                           Width="128"/>
+
+                        <GridView ItemsSource="{x:Bind ViewModel.PlayerProfiles, Mode=OneWay}"
                                   IsItemClickEnabled="True"
-                                  ItemClick="OnClickProfileAsync">
+                                  ItemClick="OnClickProfile">
 
                             <GridView.ItemTemplate>
                                 <DataTemplate x:DataType="model:PlayerProfile">
@@ -93,10 +96,11 @@
                                            Foreground="Purple"
                                            Margin="0 16 0 0"/>
                                         <TextBlock x:Name="PlayerNameTextBlock" />
-                                        <TextBlock Text="Last Match"
-                                        Foreground="Purple"
-                                        Margin="0 16 0 0"/>
-                                        <TextBlock x:Name="WaveNumberTextBlock"/>
+
+                                        <Button x:Name="SelectProfileButton"
+                                                Content="Select"
+                                                Click="OnSelectProfileAsync"
+                                                IsEnabled="False"/>
                                         <Button x:Name="EditProfileButton"
                                                 Content="Edit Name"
                                                 Click="OnToggleProfileEdit"

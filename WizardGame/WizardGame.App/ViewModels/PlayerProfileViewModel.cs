@@ -33,14 +33,23 @@ namespace WizardGame.App.ViewModels
                 OnPropertyChanged("SelectedPlayer");
             }
         }
-
-        // Testing static properties
+        public static EventHandler SelectedPlayerChangedEvent;
 
         // CRUD Operations
         internal async Task LoadAllPlayerProfilesAsync()
         {
-            PlayerProfiles = await dataService.GetAsync<ObservableCollection<PlayerProfile>>("api/PlayerProfiles");
+            try
+            {
+                PlayerProfiles = await dataService.GetAsync<ObservableCollection<PlayerProfile>>("api/PlayerProfiles");
+            }
+            catch (Exception e)
+            {
+                PlayerProfiles = new ObservableCollection<PlayerProfile>();
+                Console.WriteLine(e.StackTrace);
+            }
+            
         }
+            
 
         internal async Task AddNewPlayerProfileAsync(string playerName)
         {
@@ -96,16 +105,23 @@ namespace WizardGame.App.ViewModels
 
         internal async Task LoadSelectedPlayerAsync()
         {
-            IEnumerable<PlayerProfile> playerProfiles = await dataService.GetAsync<IEnumerable<PlayerProfile>>("api/PlayerProfiles");
-
-            foreach (PlayerProfile p in playerProfiles)
+            try
             {
-                if (p.IsSelected == true)
+                SelectedPlayer = await dataService.GetAsync<PlayerProfile>("api/PlayerProfiles/Selected");
+            }
+            catch (Exception e)
+            {
+                SelectedPlayer = new PlayerProfile()
                 {
-                    SelectedPlayer = p;
-                }
+                    Id = 0,
+                    PlayerName = "Deleted",
+                    IsSelected = true,
+                    GameStatistics = null
+                };
+                Console.WriteLine(e.StackTrace);
             }
         }
+            
 
         internal async Task SetSelectedPlayerAsync(int id)
         {

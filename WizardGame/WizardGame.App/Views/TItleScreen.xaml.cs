@@ -14,34 +14,30 @@ namespace WizardGame.App.Views
         public TitleScreen()
         {
             DataContext = this;
-
+            PlayerProfileViewModel.SelectedPlayerChangedEvent += OnSelectedPlayerChangedEventAsync;
             InitializeComponent();
         }
 
-        private void OnStartGame(object sender, RoutedEventArgs e)
+        public async void OnSelectedPlayerChangedEventAsync(object sender, EventArgs e)
         {
+            await ViewModel.LoadSelectedPlayerAsync();
+            ViewModel.SelectedPlayer = (sender as PlayerProfilePage).ViewModel.SelectedPlayer;
+        }
+
+        private void OnStartGame(object sender, RoutedEventArgs e) =>
             NavigationService.Navigate<GamePage>(ViewModel.SelectedPlayer);
-        }
 
-        private void OnOpenSpellBook(object sender, RoutedEventArgs e)
-        {
+        private void OnOpenSpellBook(object sender, RoutedEventArgs e) =>
             TitleScreenFrame.Navigate(typeof(SpellBookPage));
-        }
 
-        private void OnOpenPlayerProfile(object sender, RoutedEventArgs e)
-        {
+        private void OnOpenPlayerProfile(object sender, RoutedEventArgs e) =>
             TitleScreenFrame.Navigate(typeof(PlayerProfilePage));
-        }
 
-        private void OnOpenLeaderboards(object sender, RoutedEventArgs e)
-        {
-            TitleScreenFrame.Navigate(typeof(LeaderboardsPage));
-        }
+        private void OnOpenLeaderboards(object sender, RoutedEventArgs e) =>
+            TitleScreenFrame.Navigate(typeof(LeaderboardsPage), ViewModel.SelectedPlayer);
 
-        private void OnOpenSettings(object sender, RoutedEventArgs e)
-        {
+        private void OnOpenSettings(object sender, RoutedEventArgs e) =>
             TitleScreenFrame.Navigate(typeof(SettingsPage));
-        }
 
         private void OnToggleExitWindow(object sender, RoutedEventArgs e)
         {
@@ -59,17 +55,13 @@ namespace WizardGame.App.Views
         {
             await ViewModel.LoadSelectedPlayerAsync();
 
-            if (ViewModel.SelectedPlayer != null)
-            {
-                SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
-                SelectedPlayerStackPanel.Visibility = Visibility.Visible;
-                SelectedPlayerNameTextBlock.Text = ViewModel.SelectedPlayer.PlayerName;
-            }
+            SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
+            SelectedPlayerContentControl.Visibility = Visibility.Visible;
+
+            StartGameButton.IsEnabled = true;
+            LeaderboardsButton.IsEnabled = true;
         }
 
-        private void OnComfirmExit(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
+        private void OnComfirmExit(object sender, RoutedEventArgs e) => Application.Current.Exit();
     }
 }

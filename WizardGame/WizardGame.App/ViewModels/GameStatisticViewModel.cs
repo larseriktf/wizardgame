@@ -9,23 +9,67 @@ namespace WizardGame.App.ViewModels
 {
     public class GameStatisticViewModel : Observable
     {
-        private ObservableCollection<GameStatistic> gameStatistics = new ObservableCollection<GameStatistic>();
-        public ObservableCollection<GameStatistic> GameStatistics
+        private ObservableCollection<GameStatistic> allGames = new ObservableCollection<GameStatistic>();
+        public ObservableCollection<GameStatistic> AllGames
         {
-            get => gameStatistics;
+            get => allGames;
             set
             {
-                gameStatistics = value;
-                OnPropertyChanged("GameStatistics");
+                allGames = value;
+                OnPropertyChanged("AllGames");
             }
         }
+
+        private ObservableCollection<GameStatistic> playerGames = new ObservableCollection<GameStatistic>();
+        public ObservableCollection<GameStatistic> PlayerGames
+        {
+            get => playerGames;
+            set
+            {
+                playerGames = value;
+                OnPropertyChanged("PlayerGames");
+            }
+        }
+
+        private ObservableCollection<GameStatistic> topGames = new ObservableCollection<GameStatistic>();
+        public ObservableCollection<GameStatistic> TopGames
+        {
+            get => topGames;
+            set
+            {
+                topGames = value;
+                OnPropertyChanged("TopGames");
+            }
+        }
+
         private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
 
 
         // CRUD Operations
-        internal async Task LoadAllPlayerProfilesAsync()
+        internal async Task LoadAllGamesAsync() =>
+            AllGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics");
+
+        internal async Task LoadPlayerGamesAsync(int playerId)
         {
-            GameStatistics = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistic");
+            PlayerGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>($"api/GameStatistics/Player/{playerId}");
+        }
+
+        internal async Task LoadTopGamesAsync()
+        {
+            TopGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics/Top");
+        }
+
+        internal async Task AddPlayerGameAsync(int playerId, int wavesPlayed, int enemiesDefeated, int minutesElapsed)
+        {
+            GameStatistic currentGame = new GameStatistic()
+            {
+                PlayerProfileId = playerId,
+                WavesPlayed = wavesPlayed,
+                EnemiesDefeated = enemiesDefeated,
+                MinutesElapsed = minutesElapsed
+            };
+
+            await dataService.PostAsJsonAsync("api/GameStatistics", currentGame);
         }
 
         //internal async Task AddNewPlayerProfileAsync(string playerName)

@@ -8,6 +8,7 @@ namespace WizardGame.App.Views
 {
     public sealed partial class PlayerProfilePage : Page
     {
+        public delegate void SelectedPlayerChangedEventHandler(object sender, EventArgs e);
         public PlayerProfileViewModel ViewModel { get; } = new PlayerProfileViewModel();
 
         public PlayerProfilePage()
@@ -16,9 +17,11 @@ namespace WizardGame.App.Views
             InitializeComponent();
         }
 
-        private async void OnLoadedAsync(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
         {
             await ViewModel.LoadAllPlayerProfilesAsync();
+
+            PlayerProfilesProgressRing.Visibility = Visibility.Collapsed;
         }
 
         private async void OnAddPlayerProfileAsync(object sender, RoutedEventArgs e)
@@ -54,7 +57,6 @@ namespace WizardGame.App.Views
         {
             PlayerIdTextBlock.Text = string.Empty;
             PlayerNameTextBlock.Text = string.Empty;
-            WaveNumberTextBlock.Text = string.Empty;
         }
 
         private async void OnApplyEditProfileAsync(object sender, RoutedEventArgs e)
@@ -89,18 +91,29 @@ namespace WizardGame.App.Views
             }
         }
 
-        private async void OnClickProfileAsync(object sender, ItemClickEventArgs e)
+        private void OnClickProfile(object sender, ItemClickEventArgs e)
         {
             PlayerProfile profile = e.ClickedItem as PlayerProfile;
 
-            await ViewModel.SetSelectedPlayerAsync(profile.Id);
-
             PlayerIdTextBlock.Text = profile.Id.ToString();
             PlayerNameTextBlock.Text = profile.PlayerName;
-            WaveNumberTextBlock.Text = "Infinite";
 
+            SelectProfileButton.IsEnabled = true;
             EditProfileButton.IsEnabled = true;
             DeleteProfileButton.IsEnabled = true;
+        }
+
+        private async void OnSelectProfileAsync(object sender, RoutedEventArgs e)
+        {
+            string Id = PlayerIdTextBlock.Text;
+
+            if (Id.Equals(string.Empty))
+            {
+                return;
+            }
+
+            await ViewModel.SetSelectedPlayerAsync(Int32.Parse(Id));
+            PlayerProfileViewModel.SelectedPlayerChangedEvent.Invoke(this, EventArgs.Empty);
         }
     }
 }

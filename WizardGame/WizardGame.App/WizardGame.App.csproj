@@ -160,7 +160,7 @@
     <Compile Include="Classes\Entities\Spells\Spell.cs" />
     <Compile Include="Classes\Entities\Spells\TeleportationSpell.cs" />
     <Compile Include="Classes\EntityManager.cs" />
-    <Compile Include="Classes\GameStateManager.cs" />
+    <Compile Include="Classes\GameManager.cs" />
     <Compile Include="Classes\Graphics\ImageLoader.cs" />
     <Compile Include="Classes\Input\InputKey.cs" />
     <Compile Include="Classes\Input\KeyBoard.cs" />

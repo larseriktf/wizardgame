@@ -17,7 +17,7 @@ namespace WizardGame.App.Classes.Entities.Dev
         private int spawnDelay = 1000;
         private Timer spawnTimer = new Timer();
         private bool canSpawn = true;
-        private int previousWave = GameStateManager.Wave;
+        private int previousWave = GameManager.Wave;
         
 
         public EnemySpawner(float x, float y) : base(x, y, 32, 32)
@@ -31,10 +31,10 @@ namespace WizardGame.App.Classes.Entities.Dev
 
         public void Update()
         {
-            if (GameStateManager.Wave != previousWave)
+            if (GameManager.Wave != previousWave)
             {   // New wave started
-                EnemiesToSpawn = GameStateManager.EnemyCounter / 2;
-                previousWave = GameStateManager.Wave;
+                EnemiesToSpawn = GameManager.EnemyCounter / 2;
+                previousWave = GameManager.Wave;
             }
 
             if (EnemiesToSpawn > 0 && canSpawn == true)
