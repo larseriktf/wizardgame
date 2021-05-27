@@ -24,8 +24,12 @@ namespace WizardGame.App.Views
             ViewModel.SelectedPlayer = (sender as PlayerProfilePage).ViewModel.SelectedPlayer;
         }
 
-        private void OnStartGame(object sender, RoutedEventArgs e) =>
-            NavigationService.Navigate<GamePage>(ViewModel.SelectedPlayer);
+        private void OnStartGame(object sender, RoutedEventArgs e)
+        {
+            //NavigationService.Navigate<GamePage>(ViewModel.SelectedPlayer);
+            NavigationService.Navigate<BruhPage>();
+        }
+            
 
         private void OnOpenSpellBook(object sender, RoutedEventArgs e) =>
             TitleScreenFrame.Navigate(typeof(SpellBookPage));
