@@ -51,7 +51,8 @@
                     </Grid>
                     <ScrollViewer Grid.Row="1">
                         <ListView ItemsSource="{x:Bind ViewModel.TopGames, Mode=OneWay}"
-                                  IsItemClickEnabled="False">
+                                  IsItemClickEnabled="False"
+                                  IncrementalLoadingTrigger="Edge">
 
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
@@ -105,7 +106,8 @@
                     </Grid>
                     <ScrollViewer Grid.Row="1">
                         <ListView ItemsSource="{x:Bind ViewModel.PlayerGames, Mode=OneWay}"
-                                  IsItemClickEnabled="False">
+                                  IsItemClickEnabled="False"
+                                  IncrementalLoadingTrigger="Edge">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

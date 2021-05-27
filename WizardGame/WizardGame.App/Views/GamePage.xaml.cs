@@ -27,7 +27,6 @@ namespace WizardGame.App.Views
     {
         public GameStatisticViewModel GameViewModel = new GameStatisticViewModel();
         public PlayerProfileViewModel PlayerViewModel = new PlayerProfileViewModel();
-        public PlayerProfile SelectedPlayer { get; set; }
 
         public GamePage()
         {
@@ -36,30 +35,9 @@ namespace WizardGame.App.Views
             InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            try
-            {
-                SelectedPlayer = e.Parameter as PlayerProfile;
-            }
-            catch (Exception exception)
-            {
-                SelectedPlayer = new PlayerProfile()
-                {
-                    Id = 0,
-                    PlayerName = "Undefined",
-                    IsSelected = true,
-                    GameStatistics = null
-                };
-                Console.WriteLine(exception.StackTrace);
-            }
-            base.OnNavigatedTo(e);
-        }
-
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            LoadDatabaseAsync();
-
+            LoadPageBasicsAsync();
 
             // Subscribe keyboard input
             Window.Current.CoreWindow.KeyDown += OnKeyDownUIThread;
@@ -68,10 +46,22 @@ namespace WizardGame.App.Views
             // Start game timer
             GameManager.GameTimer.Start();
         }
+        private async void LoadPageBasicsAsync()
+        {
+            await PlayerViewModel.LoadSelectedPlayerAsync();
+
+            SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
+            SelectedPlayerContentControl.Visibility = Visibility.Visible;
+
+            StartGameButton.IsEnabled = true;
+            LeaderboardsButton.IsEnabled = true;
+        }
 
         void OnUnloaded(object sender, RoutedEventArgs e)
-        {   // Best practice: Prevent simple memory leak
-            
+        {
+            // Best practice: Prevent simple memory leak
+            canvas.RemoveFromVisualTree();
+            canvas = null;
 
             // Unsubscribe keyboard input
             Window.Current.CoreWindow.KeyDown -= OnKeyDownUIThread;
@@ -83,24 +73,8 @@ namespace WizardGame.App.Views
 
             // Save game
             SaveGameAsync();
-
-            canvas.RemoveFromVisualTree();
-            canvas = null;
         }
 
-        private void OnKeyDownUIThread(CoreWindow sender, KeyEventArgs args)
-        {
-            args.Handled = true;
-
-            var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, true));
-        }
-
-        private void OnKeyUpUIThread(CoreWindow sender, KeyEventArgs args)
-        {
-            args.Handled = true;
-
-            var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, false));
-        }
 
         private void OnCreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args) =>
             args.TrackAsyncAction(LoadResourcesAsync(sender).AsAsyncAction());
@@ -110,21 +84,17 @@ namespace WizardGame.App.Views
             // Pre-load image resources
             await ImageLoader.LoadImageResourceAsync(sender.Device);
 
-            Player.Spawner(400, 400);
-            //EntityManager.AddEntity("layer1", new Cactus()
-            //{
-            //    X = (8 * 128) + 64,
-            //    Y = (4 * 128) + 96
-            //});
+            Player.Spawner(10 * 128 + 64, 6 * 128 + 64);
 
             // Add enemy spawners
-            EnemySpawner.Spawner((2 * 128) + 64, (5 * 128) + 64);
-            EnemySpawner.Spawner((12 * 128) + 64, (5 * 128) + 64);
+            EnemySpawner.Spawner(2 * 128 + 64, 5 * 128 + 64);
+            EnemySpawner.Spawner(12 * 128 + 64, 5 * 128 + 64);
 
             // Generate and load maps
             MapEditor.MakeMaps();
             MapEditor.LoadMap(0, sender.Device);
         }
+
 
         private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
@@ -141,7 +111,6 @@ namespace WizardGame.App.Views
 
         private void OnDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-
             var ds = args.DrawingSession;
 
             foreach (IDrawable entity in EntityManager.Entities.ToList())
@@ -153,32 +122,52 @@ namespace WizardGame.App.Views
             CanvasDebugger.TestDrawing(ds);
         }
 
+        private void OnKeyDownUIThread(CoreWindow sender, KeyEventArgs args) => ConfigureKeyboardInput(args, true);
+
+        private void OnKeyUpUIThread(CoreWindow sender, KeyEventArgs args) => ConfigureKeyboardInput(args, false);
+
+        private void ConfigureKeyboardInput(KeyEventArgs args, bool state)
+        {
+            args.Handled = true;
+            var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, state));
+        }
+
         private void OnToggleMenu(object sender, RoutedEventArgs e)
         {
-            if (MainMenu.Visibility == Visibility.Visible)
+            ToggleVisibility(MainMenu);
+
+            if (MainMenu.Visibility == Visibility.Collapsed)
             {
-                MainMenu.Visibility = Visibility.Collapsed;
                 canvas.Paused = false;
                 GameManager.GameTimer.Start();
             }
             else
             {
-                MainMenu.Visibility = Visibility.Visible;
                 canvas.Paused = true;
                 GameManager.GameTimer.Stop();
             }
         }
 
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e) => Screen.Width = e.NewSize.Width;
+        private void OnToggleExitWindow(object sender, RoutedEventArgs e) => ToggleVisibility(ComfirmExitGrid);
 
-        private async void SaveGameAsync()
+        private void ToggleVisibility(UIElement control)
         {
+            if (control.Visibility == Visibility.Visible)
+            {
+                control.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                control.Visibility = Visibility.Visible;
+            }
+        }
+
+        private async void SaveGameAsync() =>
             await GameViewModel.AddPlayerGameAsync(
-                SelectedPlayer.Id,
+                PlayerViewModel.SelectedPlayer.Id,
                 GameManager.Wave,
                 GameManager.EnemiesDefeated,
                 GameManager.ElapsedTime);
-        }
 
         public async void OnSelectedPlayerChangedEventAsync(object sender, EventArgs e)
         {
@@ -186,36 +175,20 @@ namespace WizardGame.App.Views
             PlayerViewModel.SelectedPlayer = (sender as PlayerProfilePage).ViewModel.SelectedPlayer;
         }
 
-        private void OnOpenSpellBook(object sender, RoutedEventArgs e) => MenuFrame.Navigate(typeof(SpellBookPage));
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e) => Screen.Width = e.NewSize.Width;
 
-        private void OnOpenPlayerProfile(object sender, RoutedEventArgs e) => MenuFrame.Navigate(typeof(PlayerProfilePage));
+        // Menu navigation methods
+        private void OnOpenSpellBook(object sender, RoutedEventArgs e) =>
+            MenuFrame.Navigate(typeof(SpellBookPage));
 
-        private void OnOpenLeaderboards(object sender, RoutedEventArgs e) => MenuFrame.Navigate(typeof(LeaderboardsPage), PlayerViewModel.SelectedPlayer);
+        private void OnOpenPlayerProfile(object sender, RoutedEventArgs e) =>
+            MenuFrame.Navigate(typeof(PlayerProfilePage));
 
-        private void OnOpenSettings(object sender, RoutedEventArgs e) => MenuFrame.Navigate(typeof(SettingsPage));
+        private void OnOpenLeaderboards(object sender, RoutedEventArgs e) =>
+            MenuFrame.Navigate(typeof(LeaderboardsPage), PlayerViewModel.SelectedPlayer);
 
-        private void OnToggleExitWindow(object sender, RoutedEventArgs e)
-        {
-            if (ComfirmExitGrid.Visibility == Visibility.Visible)
-            {
-                ComfirmExitGrid.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                ComfirmExitGrid.Visibility = Visibility.Visible;
-            }
-        }
-
-        private async void LoadDatabaseAsync()
-        {
-            await PlayerViewModel.LoadSelectedPlayerAsync();
-
-            SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
-            SelectedPlayerContentControl.Visibility = Visibility.Visible;
-
-            StartGameButton.IsEnabled = true;
-            LeaderboardsButton.IsEnabled = true;
-        }
+        private void OnOpenSettings(object sender, RoutedEventArgs e) =>
+            MenuFrame.Navigate(typeof(SettingsPage));
 
         private void OnComfirmExit(object sender, RoutedEventArgs e) => Application.Current.Exit();
     }

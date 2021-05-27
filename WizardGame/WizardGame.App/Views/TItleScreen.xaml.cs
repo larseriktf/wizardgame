@@ -23,10 +23,7 @@ namespace WizardGame.App.Views
     /// </summary>
     public sealed partial class TitleScreen : Page
     {
-        public TitleScreen()
-        {
-            this.InitializeComponent();
-        }
+        public TitleScreen() => InitializeComponent();
 
         private void OnStartGame(object sender, RoutedEventArgs e) => NavigationService.Navigate<GamePage>();
     }

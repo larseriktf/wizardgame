@@ -10,10 +10,19 @@
     <Grid>
         <Image Stretch="UniformToFill" Grid.ColumnSpan="2" Source="/Assets/Images/fantasyLand.jpg"/>
 
-        <StackPanel>
-            <TextBlock Style="{StaticResource MainTitle}" Text="Phantastic Wizard" Foreground="Purple"/>
-            <TextBlock Style="{StaticResource MainTitle}" Text="By Lars Erik" Foreground="Purple" FontSize="16"/>
-            <TextBlock Style="{StaticResource MainTitle}" Text="Click to begin" Foreground="Purple" FontSize="16" Margin="64 0 0 0"/>
+        <StackPanel Height="128">
+            <TextBlock Style="{StaticResource MainTitle}"
+                       Text="Phantastic Wizard"
+                       Foreground="Purple"/>
+            <TextBlock Text="By Lars Erik"
+                       Foreground="Purple"
+                       FontSize="32"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="Click to begin"
+                       Foreground="Purple"
+                       FontSize="32"
+                       Margin="64 0 0 0"
+                       HorizontalAlignment="Center"/>
         </StackPanel>
         <Button Click="OnStartGame"/>
     </Grid>

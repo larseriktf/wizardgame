@@ -23,9 +23,7 @@
                                       Update="OnUpdate"
                                       Draw="OnDraw" 
                                       ClearColor="Black"
-                                      Margin="0,0,0,0"
                                       IsFixedTimeStep="True"
-                                      Width="auto"
                                       Grid.ColumnSpan="2"/>
 
         <Button Grid.Column="0" Click="OnToggleMenu"/>
@@ -74,8 +72,8 @@
                 </ContentControl>
             </Grid>
 
-            <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical" Grid.Row="2">
-                <Button Content="START GAME" Click="OnToggleMenu" x:Name="StartGameButton" IsEnabled="False"/>
+            <StackPanel Padding="32" Orientation="Vertical" Grid.Row="2">
+                <Button Content="PLAY GAME" Click="OnToggleMenu" x:Name="StartGameButton" IsEnabled="False"/>
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
                 <Button Content="PLAYER PROFILE" Click="OnOpenPlayerProfile"/>
                 <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards" x:Name="LeaderboardsButton" IsEnabled="False"/>

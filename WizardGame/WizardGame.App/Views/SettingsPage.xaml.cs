@@ -12,10 +12,7 @@ namespace WizardGame.App.Views
     {
         public ConfigurationViewModel ViewModel { get; } = new ConfigurationViewModel();
 
-        public SettingsPage()
-        {
-            InitializeComponent();
-        }
+        public SettingsPage() => InitializeComponent();
 
         private async void OnLoadedAsync(object sender, RoutedEventArgs e)
         {

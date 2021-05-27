@@ -24,8 +24,7 @@
         <Setter Property="VerticalAlignment" Value="Stretch"/>
     </Style>
 
-    <Style TargetType="Button"
-           x:Key="MenuButton">
+    <Style TargetType="Button" x:Key="MenuButton">
         <Setter Property="FontFamily" Value="{StaticResource CurseCasual}"/>
         <Setter Property="FontSize" Value="24"/>
         <Setter Property="Background" Value="Purple"/>
@@ -33,13 +32,7 @@
         <Setter Property="Padding" Value="32 16"/>
     </Style>
 
-    <Style TargetType="StackPanel"
-           x:Key="MenuStackPanel">
-        <Setter Property="Padding" Value="32"/>
-    </Style>
-
-    <Style TargetType="TextBlock"
-           x:Key="MainTitle">
+    <Style TargetType="TextBlock" x:Key="MainTitle">
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="FontSize" Value="64"/>
@@ -48,17 +41,5 @@
         <Setter Property="Foreground" Value="AntiqueWhite"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="{StaticResource CurseCasual}"/>
-    </Style>
-
-    <Style TargetType="Rectangle"
-           x:Key="MenuBoxBG">
-        <Setter Property="Opacity" Value=".25"/>
-    </Style>
-
-    <Style TargetType="Grid"
-           x:Key="SettingsRow">
-        <Setter Property="Background" Value="Purple" />
-        <Setter Property="Margin" Value="0 5 0 0" />
-        <Setter Property="Padding" Value="10"/>
     </Style>
 </ResourceDictionary>
