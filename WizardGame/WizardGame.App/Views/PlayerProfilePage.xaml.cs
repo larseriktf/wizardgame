@@ -91,11 +91,9 @@ namespace WizardGame.App.Views
             }
         }
 
-        private PlayerProfile profile;
-
         private void OnClickProfile(object sender, ItemClickEventArgs e)
         {
-            profile = e.ClickedItem as PlayerProfile;
+            PlayerProfile profile = e.ClickedItem as PlayerProfile;
 
             PlayerIdTextBlock.Text = profile.Id.ToString();
             PlayerNameTextBlock.Text = profile.PlayerName;
@@ -107,7 +105,14 @@ namespace WizardGame.App.Views
 
         private async void OnSelectProfileAsync(object sender, RoutedEventArgs e)
         {
-            await ViewModel.SetSelectedPlayerAsync(profile.Id);
+            string Id = PlayerIdTextBlock.Text;
+
+            if (Id.Equals(string.Empty))
+            {
+                return;
+            }
+
+            await ViewModel.SetSelectedPlayerAsync(Int32.Parse(Id));
             PlayerProfileViewModel.SelectedPlayerChangedEvent.Invoke(this, EventArgs.Empty);
         }
     }

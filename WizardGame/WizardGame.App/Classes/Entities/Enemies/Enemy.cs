@@ -28,7 +28,8 @@ namespace WizardGame.App.Classes.Entities.Enemies
         {
             DustCloud.Spawner(X, Y, Rnd.Next(4, 7));
             RemoveEntity(this);
-            GameStateManager.EnemyCounter--;
+            GameManager.EnemiesDefeated++;
+            GameManager.EnemyCounter--;
         }
 
         public void TakeDamage(int dmg)

@@ -39,7 +39,7 @@ namespace WizardGame.App.Classes.Entities.HudElements
             }
 
 
-            ds.DrawText("" + GameStateManager.Wave,
+            ds.DrawText("" + GameManager.Wave,
                 OffsetX, OffsetY,
                 Colors.Magenta, ApplicationSettings.standardFormat);
         }

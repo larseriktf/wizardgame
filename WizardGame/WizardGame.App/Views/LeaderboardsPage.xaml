@@ -106,7 +106,6 @@
                     <ScrollViewer Grid.Row="1">
                         <ListView ItemsSource="{x:Bind ViewModel.PlayerGames, Mode=OneWay}"
                                   IsItemClickEnabled="False">
-
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

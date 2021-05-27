@@ -30,10 +30,12 @@ namespace WizardGame.App.Views
     /// </summary>
     public sealed partial class GamePage : Page
     {
+        public GameStatisticViewModel ViewModel = new GameStatisticViewModel();
         public PlayerProfile SelectedPlayer { get; set; } = null;
 
         public GamePage()
         {
+            DataContext = this;
             InitializeComponent();
         }
 
@@ -112,9 +114,9 @@ namespace WizardGame.App.Views
 
         private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            if (GameStateManager.EnemyCounter <= 0)
+            if (GameManager.EnemyCounter <= 0)
             {
-                GameStateManager.NextWave();
+                GameManager.NextWave();
             }
 
             foreach (IDrawable entity in EntityManager.Entities.ToList())
@@ -173,7 +175,19 @@ namespace WizardGame.App.Views
             }
         }
 
-        private void OnComfirmExit(object sender, RoutedEventArgs e) =>
+        private void OnComfirmExit(object sender, RoutedEventArgs e)
+        {
+            SaveGameAsync();
             NavigationService.Navigate<TitleScreen>();
+        }
+
+        private async void SaveGameAsync()
+        {
+            await ViewModel.AddPlayerGameAsync(
+                SelectedPlayer.Id,
+                GameManager.Wave,
+                GameManager.EnemiesDefeated,
+                GameManager.MinutesElapsed);
+        }
     }
 }
