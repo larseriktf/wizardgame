@@ -42,7 +42,7 @@
                                   IncrementalLoadingTrigger="Edge">
 
                             <GridView.ItemTemplate>
-                                <DataTemplate x:DataType="model:PlayerProfile">
+                                <DataTemplate x:DataType="model:Player">
                                     <Grid Width="128">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="128"/>

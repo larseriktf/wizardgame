@@ -9,7 +9,7 @@ namespace WizardGame.App.Views
     public sealed partial class PlayerProfilePage : Page
     {
         public delegate void SelectedPlayerChangedEventHandler(object sender, EventArgs e);
-        public PlayerProfileViewModel ViewModel { get; } = new PlayerProfileViewModel();
+        public PlayerViewModel ViewModel { get; } = new PlayerViewModel();
 
         public PlayerProfilePage()
         {
@@ -93,7 +93,7 @@ namespace WizardGame.App.Views
 
         private void OnClickProfile(object sender, ItemClickEventArgs e)
         {
-            PlayerProfile profile = e.ClickedItem as PlayerProfile;
+            Player profile = e.ClickedItem as Player;
 
             PlayerIdTextBlock.Text = profile.Id.ToString();
             PlayerNameTextBlock.Text = profile.PlayerName;
@@ -113,7 +113,7 @@ namespace WizardGame.App.Views
             }
 
             await ViewModel.SetSelectedPlayerAsync(Int32.Parse(Id));
-            PlayerProfileViewModel.SelectedPlayerChangedEvent.Invoke(this, EventArgs.Empty);
+            PlayerViewModel.SelectedPlayerChangedEvent.Invoke(this, EventArgs.Empty);
         }
     }
 }

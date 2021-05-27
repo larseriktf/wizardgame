@@ -193,7 +193,7 @@ namespace WizardGame.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WizardGame.Model.GameStatistic", b =>
+            modelBuilder.Entity("WizardGame.Model.GameData", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -206,7 +206,7 @@ namespace WizardGame.DataAccess.Migrations
                     b.Property<int>("EnemiesDefeated")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerProfileId")
+                    b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
                     b.Property<int>("WavesPlayed")
@@ -214,7 +214,7 @@ namespace WizardGame.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlayerProfileId");
+                    b.HasIndex("PlayerId");
 
                     b.ToTable("GameStatistics");
 
@@ -224,7 +224,7 @@ namespace WizardGame.DataAccess.Migrations
                             Id = 1,
                             ElapsedTime = new TimeSpan(0, 0, 0, 0, 0),
                             EnemiesDefeated = 0,
-                            PlayerProfileId = 1,
+                            PlayerId = 1,
                             WavesPlayed = 1
                         },
                         new
@@ -232,7 +232,7 @@ namespace WizardGame.DataAccess.Migrations
                             Id = 2,
                             ElapsedTime = new TimeSpan(0, 0, 0, 0, 0),
                             EnemiesDefeated = 0,
-                            PlayerProfileId = 1,
+                            PlayerId = 1,
                             WavesPlayed = 14
                         },
                         new
@@ -240,7 +240,7 @@ namespace WizardGame.DataAccess.Migrations
                             Id = 3,
                             ElapsedTime = new TimeSpan(0, 0, 0, 0, 0),
                             EnemiesDefeated = 0,
-                            PlayerProfileId = 1,
+                            PlayerId = 1,
                             WavesPlayed = 29
                         },
                         new
@@ -248,7 +248,7 @@ namespace WizardGame.DataAccess.Migrations
                             Id = 4,
                             ElapsedTime = new TimeSpan(0, 0, 0, 0, 0),
                             EnemiesDefeated = 0,
-                            PlayerProfileId = 1,
+                            PlayerId = 1,
                             WavesPlayed = 5
                         },
                         new
@@ -256,7 +256,7 @@ namespace WizardGame.DataAccess.Migrations
                             Id = 5,
                             ElapsedTime = new TimeSpan(0, 0, 0, 0, 0),
                             EnemiesDefeated = 0,
-                            PlayerProfileId = 1,
+                            PlayerId = 1,
                             WavesPlayed = 15
                         },
                         new
@@ -264,7 +264,7 @@ namespace WizardGame.DataAccess.Migrations
                             Id = 6,
                             ElapsedTime = new TimeSpan(0, 0, 0, 0, 0),
                             EnemiesDefeated = 0,
-                            PlayerProfileId = 2,
+                            PlayerId = 2,
                             WavesPlayed = 2
                         },
                         new
@@ -272,7 +272,7 @@ namespace WizardGame.DataAccess.Migrations
                             Id = 7,
                             ElapsedTime = new TimeSpan(0, 0, 0, 0, 0),
                             EnemiesDefeated = 0,
-                            PlayerProfileId = 2,
+                            PlayerId = 2,
                             WavesPlayed = 40
                         },
                         new
@@ -280,7 +280,7 @@ namespace WizardGame.DataAccess.Migrations
                             Id = 8,
                             ElapsedTime = new TimeSpan(0, 0, 0, 0, 0),
                             EnemiesDefeated = 0,
-                            PlayerProfileId = 2,
+                            PlayerId = 2,
                             WavesPlayed = 28
                         },
                         new
@@ -288,12 +288,12 @@ namespace WizardGame.DataAccess.Migrations
                             Id = 9,
                             ElapsedTime = new TimeSpan(0, 0, 0, 0, 0),
                             EnemiesDefeated = 0,
-                            PlayerProfileId = 2,
+                            PlayerId = 2,
                             WavesPlayed = 10
                         });
                 });
 
-            modelBuilder.Entity("WizardGame.Model.PlayerProfile", b =>
+            modelBuilder.Entity("WizardGame.Model.Player", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -332,11 +332,11 @@ namespace WizardGame.DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("WizardGame.Model.GameStatistic", b =>
+            modelBuilder.Entity("WizardGame.Model.GameData", b =>
                 {
-                    b.HasOne("WizardGame.Model.PlayerProfile", "PlayerProfile")
-                        .WithMany("GameStatistics")
-                        .HasForeignKey("PlayerProfileId")
+                    b.HasOne("WizardGame.Model.Player", "Player")
+                        .WithMany("GameData")
+                        .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WizardGame.Model
 {
-    public class PlayerProfile : INotifyPropertyChanged
+    public class Player : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -14,10 +14,7 @@ namespace WizardGame.Model
         [Required]
         public string PlayerName
         {
-            get
-            {
-                return playerName;
-            }
+            get => playerName;
             set
             {
                 playerName = value;
@@ -28,6 +25,6 @@ namespace WizardGame.Model
         public bool IsSelected { get; set; } = false;
 
         // Navigation Properties
-        public ICollection<GameStatistic> GameStatistics { get; set; }
+        public ICollection<GameData> GameData { get; set; }
     }
 }

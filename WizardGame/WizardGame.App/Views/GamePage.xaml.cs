@@ -18,13 +18,13 @@ namespace WizardGame.App.Views
 {
     public sealed partial class GamePage : Page
     {
-        public GameStatisticViewModel GameViewModel = new GameStatisticViewModel();
-        public PlayerProfileViewModel PlayerViewModel = new PlayerProfileViewModel();
+        public GameDataViewModel GameViewModel = new GameDataViewModel();
+        public PlayerViewModel PlayerViewModel = new PlayerViewModel();
 
         public GamePage()
         {
             DataContext = this;
-            PlayerProfileViewModel.SelectedPlayerChangedEvent += OnSelectedPlayerChangedEventAsync;
+            PlayerViewModel.SelectedPlayerChangedEvent += OnSelectedPlayerChangedEventAsync;
             InitializeComponent();
         }
 

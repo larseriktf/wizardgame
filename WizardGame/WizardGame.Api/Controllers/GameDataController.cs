@@ -10,23 +10,23 @@ namespace WizardGame.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GameStatisticsController : ControllerBase
+    public class GameDataController : ControllerBase
     {
         private readonly GameContext _context;
 
-        public GameStatisticsController(GameContext context)
+        public GameDataController(GameContext context)
         {
             _context = context;
         }
 
-        // GET: api/GameStatistics
+        // GET: api/GameData
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GameStatistic>>> GetAllGamesAsync() =>
-            await _context.GameStatistics.Include(g => g.PlayerProfile).ToListAsync();
+        public async Task<ActionResult<IEnumerable<GameData>>> GetAllGamesAsync() =>
+            await _context.GameStatistics.Include(g => g.Player).ToListAsync();
 
-        // GET: api/GameStatistics/5
+        // GET: api/GameData/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<GameStatistic>> GetSpecificGameAsync(int id)
+        public async Task<ActionResult<GameData>> GetSpecificGameAsync(int id)
         {
             var gameStatistic = await _context.GameStatistics.FindAsync(id);
 
@@ -38,12 +38,12 @@ namespace WizardGame.Api.Controllers
             return gameStatistic;
         }
 
-        // GET: api/GameStatistics/Player/5
+        // GET: api/GameData/Player/5
         [HttpGet("Player/{id}")]
-        public async Task<ActionResult<IEnumerable<GameStatistic>>> GetPlayerGamesAsync(int id) =>
+        public async Task<ActionResult<IEnumerable<GameData>>> GetPlayerGamesAsync(int id) =>
             await _context.GameStatistics
-            .Include(g => g.PlayerProfile)
-            .Where(g => g.PlayerProfileId == id)
+            .Include(g => g.Player)
+            .Where(g => g.PlayerId == id)
             .ToListAsync();
 
         // @Todo: Make this work
@@ -55,11 +55,11 @@ namespace WizardGame.Api.Controllers
         //}
 
 
-        // PUT: api/GameStatistics/5
+        // PUT: api/GameData/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGameStatisticAsync(int id, GameStatistic gameStatistic)
+        public async Task<IActionResult> PutGameStatisticAsync(int id, GameData gameStatistic)
         {
             if (id != gameStatistic.Id)
             {
@@ -87,17 +87,17 @@ namespace WizardGame.Api.Controllers
             return NoContent();
         }
 
-        // POST: api/GameStatistics
+        // POST: api/GameData
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<GameStatistic>> PostGameStatisticAsync(GameStatistic gameStatistic)
+        public async Task<ActionResult<GameData>> PostGameStatisticAsync(GameData gameStatistic)
         {
-            PlayerProfile player = _context.PlayerProfiles
-                .Include(p => p.GameStatistics)
-                .Single(p => p.Id == gameStatistic.PlayerProfileId);
+            Player player = _context.PlayerProfiles
+                .Include(p => p.GameData)
+                .Single(p => p.Id == gameStatistic.PlayerId);
 
-            gameStatistic.PlayerProfile = player;
+            gameStatistic.Player = player;
 
             _context.GameStatistics.Add(gameStatistic);
             await _context.SaveChangesAsync();
@@ -105,9 +105,9 @@ namespace WizardGame.Api.Controllers
             return CreatedAtAction("GetGameStatistic", new { id = gameStatistic.Id }, gameStatistic);
         }
 
-        // DELETE: api/GameStatistics/5
+        // DELETE: api/GameData/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<GameStatistic>> DeleteGameStatisticAsync(int id)
+        public async Task<ActionResult<GameData>> DeleteGameStatisticAsync(int id)
         {
             var gameStatistic = await _context.GameStatistics.FindAsync(id);
             if (gameStatistic == null)

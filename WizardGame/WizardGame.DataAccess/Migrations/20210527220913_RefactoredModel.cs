@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WizardGame.DataAccess.Migrations
 {
-    public partial class Initial : Migration
+    public partial class RefactoredModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +40,8 @@ namespace WizardGame.DataAccess.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlayerName = table.Column<string>(nullable: false)
+                    PlayerName = table.Column<string>(nullable: false),
+                    IsSelected = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,15 +56,15 @@ namespace WizardGame.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WavesPlayed = table.Column<int>(nullable: false),
                     EnemiesDefeated = table.Column<int>(nullable: false),
-                    MinutesElapsed = table.Column<int>(nullable: false),
-                    PlayerProfileId = table.Column<int>(nullable: false)
+                    ElapsedTime = table.Column<TimeSpan>(nullable: false),
+                    PlayerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GameStatistics", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_GameStatistics_PlayerProfiles_PlayerProfileId",
-                        column: x => x.PlayerProfileId,
+                        name: "FK_GameStatistics_PlayerProfiles_PlayerId",
+                        column: x => x.PlayerId,
                         principalTable: "PlayerProfiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -83,34 +85,34 @@ namespace WizardGame.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "PlayerProfiles",
-                columns: new[] { "Id", "PlayerName" },
+                columns: new[] { "Id", "IsSelected", "PlayerName" },
                 values: new object[,]
                 {
-                    { 1, "Åge" },
-                    { 2, "Patrenko Escobar" },
-                    { 3, "Player3" }
+                    { 1, false, "Åge" },
+                    { 2, false, "Patrenko Escobar" },
+                    { 3, false, "Player3" }
                 });
 
             migrationBuilder.InsertData(
                 table: "GameStatistics",
-                columns: new[] { "Id", "EnemiesDefeated", "MinutesElapsed", "PlayerProfileId", "WavesPlayed" },
+                columns: new[] { "Id", "ElapsedTime", "EnemiesDefeated", "PlayerId", "WavesPlayed" },
                 values: new object[,]
                 {
-                    { 1, 0, 0, 1, 1 },
-                    { 2, 0, 0, 1, 14 },
-                    { 3, 0, 0, 1, 29 },
-                    { 4, 0, 0, 1, 5 },
-                    { 5, 0, 0, 1, 15 },
-                    { 6, 0, 0, 2, 2 },
-                    { 7, 0, 0, 2, 40 },
-                    { 8, 0, 0, 2, 28 },
-                    { 9, 0, 0, 2, 10 }
+                    { 1, new TimeSpan(0, 0, 0, 0, 0), 0, 1, 1 },
+                    { 2, new TimeSpan(0, 0, 0, 0, 0), 0, 1, 14 },
+                    { 3, new TimeSpan(0, 0, 0, 0, 0), 0, 1, 29 },
+                    { 4, new TimeSpan(0, 0, 0, 0, 0), 0, 1, 5 },
+                    { 5, new TimeSpan(0, 0, 0, 0, 0), 0, 1, 15 },
+                    { 6, new TimeSpan(0, 0, 0, 0, 0), 0, 2, 2 },
+                    { 7, new TimeSpan(0, 0, 0, 0, 0), 0, 2, 40 },
+                    { 8, new TimeSpan(0, 0, 0, 0, 0), 0, 2, 28 },
+                    { 9, new TimeSpan(0, 0, 0, 0, 0), 0, 2, 10 }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_GameStatistics_PlayerProfileId",
+                name: "IX_GameStatistics_PlayerId",
                 table: "GameStatistics",
-                column: "PlayerProfileId");
+                column: "PlayerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -9,12 +9,12 @@ using WizardGame.Model;
 
 namespace WizardGame.App.ViewModels
 {
-    public class GameStatisticViewModel : Observable
+    public class GameDataViewModel : Observable
     {
         private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
 
-        private ObservableCollection<GameStatistic> allGames = new ObservableCollection<GameStatistic>();
-        public ObservableCollection<GameStatistic> AllGames
+        private ObservableCollection<GameData> allGames = new ObservableCollection<GameData>();
+        public ObservableCollection<GameData> AllGames
         {
             get => allGames;
             set
@@ -24,8 +24,8 @@ namespace WizardGame.App.ViewModels
             }
         }
 
-        private ObservableCollection<GameStatistic> playerGames = new ObservableCollection<GameStatistic>();
-        public ObservableCollection<GameStatistic> PlayerGames
+        private ObservableCollection<GameData> playerGames = new ObservableCollection<GameData>();
+        public ObservableCollection<GameData> PlayerGames
         {
             get => playerGames;
             set
@@ -35,8 +35,8 @@ namespace WizardGame.App.ViewModels
             }
         }
 
-        private ObservableCollection<GameStatistic> topGames = new ObservableCollection<GameStatistic>();
-        public ObservableCollection<GameStatistic> TopGames
+        private ObservableCollection<GameData> topGames = new ObservableCollection<GameData>();
+        public ObservableCollection<GameData> TopGames
         {
             get => topGames;
             set
@@ -48,39 +48,39 @@ namespace WizardGame.App.ViewModels
 
         // API interactions
         internal async Task LoadAllGamesAsync() =>
-            AllGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>("api/GameStatistics");
+            AllGames = await dataService.GetAsync<ObservableCollection<GameData>>("api/GameData");
 
         internal async Task LoadPlayerGamesAsync(int playerId)
         {
-            PlayerGames = await dataService.GetAsync<ObservableCollection<GameStatistic>>($"api/GameStatistics/Player/{playerId}");
+            PlayerGames = await dataService.GetAsync<ObservableCollection<GameData>>($"api/GameData/Player/{playerId}");
         }
 
         internal async Task AddPlayerGameAsync(int playerId, int wavesPlayed, int enemiesDefeated, TimeSpan elapsedTime)
         {
-            GameStatistic currentGame = new GameStatistic()
+            GameData currentGame = new GameData()
             {
-                PlayerProfileId = playerId,
+                PlayerId = playerId,
                 WavesPlayed = wavesPlayed,
                 EnemiesDefeated = enemiesDefeated,
                 ElapsedTime = elapsedTime
             };
 
-            await dataService.PostAsJsonAsync("api/GameStatistics", currentGame);
+            await dataService.PostAsJsonAsync("api/GameData", currentGame);
         }
 
         internal async Task LoadTopGamesAsync()
         {
-            IEnumerable<PlayerProfile> allPlayers = await dataService.GetAsync<ObservableCollection<PlayerProfile>>("api/PlayerProfiles");
+            IEnumerable<Player> allPlayers = await dataService.GetAsync<ObservableCollection<Player>>("api/Players");
 
-            List<GameStatistic> topGames = new List<GameStatistic>();
+            List<GameData> topGames = new List<GameData>();
 
             // Find the best game for each player and add them to temporary list
-            foreach (PlayerProfile player in allPlayers)
+            foreach (Player player in allPlayers)
             {
-                GameStatistic currentBestGame = null;
+                GameData currentBestGame = null;
 
                 // Find the new best game
-                foreach (GameStatistic game in player.GameStatistics)
+                foreach (GameData game in player.GameData)
                 {
                     if (currentBestGame == null)
                     {
@@ -98,7 +98,7 @@ namespace WizardGame.App.ViewModels
             topGames.OrderBy(g => g.WavesPlayed);
 
             // Add games to list
-            foreach (GameStatistic game in topGames)
+            foreach (GameData game in topGames)
             {
                 TopGames.Add(game);
             }

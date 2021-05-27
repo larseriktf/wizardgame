@@ -7,13 +7,13 @@ using WizardGame.Model;
 
 namespace WizardGame.App.ViewModels
 {
-    public class PlayerProfileViewModel : Observable
+    public class PlayerViewModel : Observable
     {
         private readonly HttpDataService dataService = new HttpDataService("http://localhost:34367");
         public static EventHandler SelectedPlayerChangedEvent;
 
-        private ObservableCollection<PlayerProfile> player = new ObservableCollection<PlayerProfile>();
-        public ObservableCollection<PlayerProfile> Players
+        private ObservableCollection<Player> player = new ObservableCollection<Player>();
+        public ObservableCollection<Player> Players
         {
             get => player;
             set
@@ -22,8 +22,8 @@ namespace WizardGame.App.ViewModels
                 OnPropertyChanged("Players");
             }
         }
-        private PlayerProfile selectedPlayer;
-        public PlayerProfile SelectedPlayer
+        private Player selectedPlayer;
+        public Player SelectedPlayer
         {
             get => selectedPlayer;
             set
@@ -38,11 +38,11 @@ namespace WizardGame.App.ViewModels
         {
             try
             {
-                Players = await dataService.GetAsync<ObservableCollection<PlayerProfile>>("api/PlayerProfiles");
+                Players = await dataService.GetAsync<ObservableCollection<Player>>("api/Players");
             }
             catch (Exception e)
             {
-                Players = new ObservableCollection<PlayerProfile>();
+                Players = new ObservableCollection<Player>();
                 Console.WriteLine(e.StackTrace);
             }
 
@@ -50,14 +50,14 @@ namespace WizardGame.App.ViewModels
 
         internal async Task AddNewPlayerAsync(string name)
         {
-            PlayerProfile profile = new PlayerProfile()
+            Player profile = new Player()
             {
                 PlayerName = name,
-                GameStatistics = null
+                GameData = null
             };
 
             // Add to database
-            await dataService.PostAsJsonAsync("api/PlayerProfiles", profile);
+            await dataService.PostAsJsonAsync("api/Players", profile);
 
             // Add to ObservableCollection
             Players.Add(profile);
@@ -66,10 +66,10 @@ namespace WizardGame.App.ViewModels
         internal async Task DeletePlayerAsync(int id)
         {
             // Remove from database
-            await dataService.DeleteAsync($"api/PlayerProfiles/{id}");
+            await dataService.DeleteAsync($"api/Players/{id}");
 
             // Remove from ObservableCollection
-            foreach (PlayerProfile p in Players)
+            foreach (Player p in Players)
             {
                 if (p.Id == id)
                 {
@@ -81,14 +81,14 @@ namespace WizardGame.App.ViewModels
 
         internal async Task UpdatePlayerAsync(int id, string newName)
         {
-            PlayerProfile playerProfile = new PlayerProfile()
+            Player playerProfile = new Player()
             {
                 Id = id,
                 PlayerName = newName
             };
 
             // Update in database
-            await dataService.PutAsJsonAsync($"api/PlayerProfiles/{id}", playerProfile);
+            await dataService.PutAsJsonAsync($"api/Players/{id}", playerProfile);
 
             // Update in ObservableCollection
             for (int i = 0; i < Players.Count; i++)
@@ -104,16 +104,16 @@ namespace WizardGame.App.ViewModels
         {
             try
             {
-                SelectedPlayer = await dataService.GetAsync<PlayerProfile>("api/PlayerProfiles/Selected");
+                SelectedPlayer = await dataService.GetAsync<Player>("api/Players/Selected");
             }
             catch (Exception e)
             {
-                SelectedPlayer = new PlayerProfile()
+                SelectedPlayer = new Player()
                 {
                     Id = 0,
                     PlayerName = "Deleted",
                     IsSelected = true,
-                    GameStatistics = null
+                    GameData = null
                 };
                 Console.WriteLine(e.StackTrace);
             }
@@ -122,7 +122,7 @@ namespace WizardGame.App.ViewModels
 
         internal async Task SetSelectedPlayerAsync(int id)
         {
-            PlayerProfile profile;
+            Player profile;
 
             for (int i = 0; i < Players.Count; i++)
             {
@@ -139,7 +139,7 @@ namespace WizardGame.App.ViewModels
                 Players[i] = profile;
 
                 // Update in database
-                await dataService.PutAsJsonAsync($"api/PlayerProfiles/{profile.Id}", profile);
+                await dataService.PutAsJsonAsync($"api/Players/{profile.Id}", profile);
             }
         }
     }

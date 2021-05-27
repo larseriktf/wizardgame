@@ -179,8 +179,8 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="ViewModels\PlayerProfileViewModel.cs" />
-    <Compile Include="ViewModels\GameStatisticViewModel.cs" />
+    <Compile Include="ViewModels\PlayerViewModel.cs" />
+    <Compile Include="ViewModels\GameDataViewModel.cs" />
     <Compile Include="ViewModels\ConfigurationViewModel.cs" />
     <Compile Include="Views\PlayerProfilePage.xaml.cs">
       <DependentUpon>PlayerProfilePage.xaml</DependentUpon>
