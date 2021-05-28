@@ -78,9 +78,6 @@ namespace WizardGame.App.GameFiles.Entities.Player
                     new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
-
-            //ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
-            //ds.DrawText("HP: " + hp, OffsetX, OffsetY, Colors.Blue);
         }
 
 

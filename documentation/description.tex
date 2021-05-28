@@ -105,12 +105,14 @@ The only requirements to run the application is to open the solution folder and 
     \begin{itemize}
         \item When creating a new player profile, the xaml will display wrong id in the seleced tab to the right.
         \item After reaching wave 10 in the game, the EnemySpawner classes get confused, and increments the wave incorrectly.
+        \item The teleportation spell is buggy, and can teleport the player outside the map.
     \end{itemize}
 
     \subsection{Major Issues}
 
     \begin{itemize}
         \item There is a bug where sometimes the game saves multiple games to a player at once.
+        \item The player is not able to restart a game, and must die in order for the current game to save. If the player wants to play another match, they have to restart the application.
     \end{itemize}
 
 \section{App Description}

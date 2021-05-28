@@ -7,6 +7,7 @@ using static WizardGame.App.Helpers.RandomProvider;
 
 namespace WizardGame.App.GameFiles.Entities.ParticleEffects
 {
+    /// <summary>Debris for the cactus enemy</summary>
     class CactusDebris : Particle, IDrawable
     {
         private readonly float grv = 0.3f;

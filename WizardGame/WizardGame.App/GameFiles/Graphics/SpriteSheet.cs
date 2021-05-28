@@ -6,6 +6,7 @@ using Windows.Foundation;
 
 namespace WizardGame.App.GameFiles.Graphics
 {
+    /// <summary>Class that handles SpriteSheet images and includes methods for extracting and modifying sprites</summary>
     public class SpriteSheet
     {
         private readonly CanvasBitmap bitmap;
@@ -16,8 +17,6 @@ namespace WizardGame.App.GameFiles.Graphics
         {
             this.bitmap = bitmap;
             SpriteSize = spriteSize;
-
-            // spritesPerRow = (int)(bitmap.Size.Width / spriteSize.X);
         }
 
 

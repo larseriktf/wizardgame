@@ -1,9 +1,9 @@
-PWD c:/Users/47917/Documents/wizardgame/documentation
+PWD c:/Users/lars erik/Documents/wizardgame/documentation
 INPUT c:/texlive/2020/texmf.cnf
 INPUT c:/texlive/2020/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.tex
-OUTPUT c:/Users/47917/Documents/wizardgame/documentation/description.log
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.tex
+OUTPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.log
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2020/texmf-dist/tex/latex/base/size12.clo
@@ -134,9 +134,9 @@ INPUT c:/texlive/2020/texmf-dist/tex/latex/float/float.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/float/float.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
 INPUT c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.aux
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.aux
-OUTPUT c:/Users/47917/Documents/wizardgame/documentation/description.aux
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.aux
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.aux
+OUTPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.aux
 INPUT c:/texlive/2020/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 INPUT c:/texlive/2020/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
@@ -152,14 +152,14 @@ INPUT c:/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
 INPUT c:/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
 INPUT c:/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT c:/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.out
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.out
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.out
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.out
-OUTPUT c:/Users/47917/Documents/wizardgame/documentation/description.pdf
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.out
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.out
-OUTPUT c:/Users/47917/Documents/wizardgame/documentation/description.out
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.out
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.out
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.out
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.out
+OUTPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.pdf
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.out
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.out
+OUTPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.out
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
@@ -177,9 +177,9 @@ INPUT c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/logo.png
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/logo.png
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/logo.png
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/logo.png
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/logo.png
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/logo.png
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map
@@ -189,8 +189,8 @@ INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/times/ptmr7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.toc
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.toc
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.toc
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.toc
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
@@ -209,36 +209,36 @@ INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
-OUTPUT c:/Users/47917/Documents/wizardgame/documentation/description.toc
+OUTPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.toc
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/eksempel.jpg
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/eksempel.jpg
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/eksempel.jpg
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/eksempel.jpg
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/eksempel.jpg
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/eksempel.jpg
 INPUT c:/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT c:/texlive/2020/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmr8c.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/times/ptmb7t.vf
 INPUT c:/texlive/2020/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm
 INPUT c:/texlive/2020/texmf-dist/fonts/vf/adobe/times/ptmr8c.vf
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/002.JPG
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/002.JPG
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/002.JPG
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/019.JPG
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/019.JPG
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/019.JPG
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/menu_structure.jpg
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/menu_structure.jpg
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/menu_structure.jpg
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/013.JPG
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/013.JPG
-INPUT c:/Users/47917/Documents/wizardgame/documentation/images/013.JPG
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.aux
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.out
-INPUT c:/Users/47917/Documents/wizardgame/documentation/description.out
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/002.JPG
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/002.JPG
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/002.JPG
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/019.JPG
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/019.JPG
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/019.JPG
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/menu_structure.jpg
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/menu_structure.jpg
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/menu_structure.jpg
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/013.JPG
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/013.JPG
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/images/013.JPG
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.aux
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.out
+INPUT c:/Users/lars erik/Documents/wizardgame/documentation/description.out
 INPUT c:/texlive/2020/texmf-dist/fonts/enc/dvips/base/8r.enc
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
 INPUT c:/texlive/2020/texmf-dist/fonts/type1/urw/times/utmr8a.pfb

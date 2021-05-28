@@ -50,8 +50,6 @@ namespace WizardGame.App.GameFiles.Entities.Spells
                     new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
-
-            ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Yellow);
         }
 
         private void HandleState()

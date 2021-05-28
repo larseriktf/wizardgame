@@ -3,6 +3,7 @@ using WizardGame.App.GameFiles.Graphics;
 
 namespace WizardGame.App.GameFiles.Entities
 {
+    /// <summary>Base class for all game entities. Includes essential properties and scale and offset methods to contain the game within the window</summary>
     public abstract class Entity
     {
         protected SpriteSheet spriteSheet;

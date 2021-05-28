@@ -4,6 +4,7 @@ using static WizardGame.App.GameFiles.EntityManager;
 
 namespace WizardGame.App.GameFiles.Entities
 {
+    /// <summary>Represents a physics object in the game. E.G anything that is affected by gravity and can move around and collide with other entities</summary>
     public abstract class PhysicsObject : Entity
     {
         public static float Gravity { get; set; } = 0.5f;

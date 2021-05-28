@@ -7,6 +7,7 @@ using static WizardGame.App.GameFiles.Graphics.SpriteSheet;
 
 namespace WizardGame.App.GameFiles.Graphics
 {
+    /// <summary>Global imageloader that pre-loads image resources and assigns them to their respective dictionary for other entities to retrieve</summary>
     public static class ImageLoader
     {
         public static Dictionary<string, SpriteSheet> SpriteSheets { get; set; } = new Dictionary<string, SpriteSheet>();
