@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using WizardGame.App.ViewModels;
 using WizardGame.Model;
@@ -19,8 +9,8 @@ namespace WizardGame.App.Views
 {
     public sealed partial class LeaderboardsPage : Page
     {
-        public GameStatisticViewModel ViewModel { get; } = new GameStatisticViewModel();
-        public PlayerProfile SelectedPlayer { get; set; }
+        public GameDataViewModel ViewModel { get; } = new GameDataViewModel();
+        public Player SelectedPlayer { get; set; }
 
         public LeaderboardsPage()
         {
@@ -32,16 +22,16 @@ namespace WizardGame.App.Views
         {
             try
             {
-                SelectedPlayer = e.Parameter as PlayerProfile;
+                SelectedPlayer = e.Parameter as Player;
             }
             catch (Exception exception)
             {
-                SelectedPlayer = new PlayerProfile()
+                SelectedPlayer = new Player()
                 {
                     Id = 0,
                     PlayerName = "Undefined",
                     IsSelected = true,
-                    GameStatistics = null
+                    GameData = null
                 };
                 Console.WriteLine(exception.StackTrace);
             }
@@ -52,6 +42,6 @@ namespace WizardGame.App.Views
             await ViewModel.LoadPlayerGamesAsync(SelectedPlayer.Id);
             await ViewModel.LoadTopGamesAsync();
         }
-            
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using WizardGame.Model;
 
 namespace WizardGame.DataAccess
@@ -7,8 +6,8 @@ namespace WizardGame.DataAccess
     public class GameContext : DbContext
     {
         public DbSet<Configuration> Configurations { get; set; } // Should be stored at in a different DbContext
-        public DbSet<GameStatistic> GameStatistics { get; set; }
-        public DbSet<PlayerProfile> PlayerProfiles { get; set; }
+        public DbSet<GameData> GameStatistics { get; set; }
+        public DbSet<Player> PlayerProfiles { get; set; }
 
         public GameContext(DbContextOptions<GameContext> options) : base(options)
         {
@@ -158,76 +157,76 @@ namespace WizardGame.DataAccess
                     Interact3 = "C"
                 });
 
-            modelBuilder.Entity<GameStatistic>()
+            modelBuilder.Entity<GameData>()
                 .HasData(
-                new GameStatistic()
+                new GameData()
                 {
                     Id = 1,
                     WavesPlayed = 1,
-                    PlayerProfileId = 1
+                    PlayerId = 1
                 },
-                new GameStatistic()
+                new GameData()
                 {
                     Id = 2,
                     WavesPlayed = 14,
-                    PlayerProfileId = 1
+                    PlayerId = 1
                 },
-                new GameStatistic()
+                new GameData()
                 {
                     Id = 3,
                     WavesPlayed = 29,
-                    PlayerProfileId = 1
+                    PlayerId = 1
                 },
-                new GameStatistic()
+                new GameData()
                 {
                     Id = 4,
                     WavesPlayed = 5,
-                    PlayerProfileId = 1
+                    PlayerId = 1
                 },
-                new GameStatistic()
+                new GameData()
                 {
                     Id = 5,
                     WavesPlayed = 15,
-                    PlayerProfileId = 1
+                    PlayerId = 1
                 },
-                new GameStatistic()
+                new GameData()
                 {
                     Id = 6,
                     WavesPlayed = 2,
-                    PlayerProfileId = 2
+                    PlayerId = 2
                 },
-                new GameStatistic()
+                new GameData()
                 {
                     Id = 7,
                     WavesPlayed = 40,
-                    PlayerProfileId = 2
+                    PlayerId = 2
                 },
-                new GameStatistic()
+                new GameData()
                 {
                     Id = 8,
                     WavesPlayed = 28,
-                    PlayerProfileId = 2
+                    PlayerId = 2
                 },
-                new GameStatistic()
+                new GameData()
                 {
                     Id = 9,
                     WavesPlayed = 10,
-                    PlayerProfileId = 2
+                    PlayerId = 2
                 });
 
-            modelBuilder.Entity<PlayerProfile>()
+            modelBuilder.Entity<Player>()
                 .HasData(
-                new PlayerProfile()
+                new Player()
                 {
                     Id = 1,
                     PlayerName = "Åge",
                 },
-                new PlayerProfile()
+                new Player()
                 {
                     Id = 2,
                     PlayerName = "Patrenko Escobar",
                 },
-                new PlayerProfile()
+                new Player()
                 {
                     Id = 3,
                     PlayerName = "Player3",

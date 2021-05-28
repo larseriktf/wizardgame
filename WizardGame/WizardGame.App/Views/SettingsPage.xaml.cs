@@ -1,10 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
-using WizardGame.Model;
 
 namespace WizardGame.App.Views
 {
@@ -12,15 +9,10 @@ namespace WizardGame.App.Views
     {
         public ConfigurationViewModel ViewModel { get; } = new ConfigurationViewModel();
 
-        public SettingsPage()
-        {
-            InitializeComponent();
-        }
+        public SettingsPage() => InitializeComponent();
 
-        private async void OnLoadedAsync(object sender, RoutedEventArgs e)
-        {
+        private async void OnLoadedAsync(object sender, RoutedEventArgs e) =>
             await ViewModel.LoadAllConfigurationsAsync();
-        }
 
         private async void OnInspectConfigurationAsync(object sender, RoutedEventArgs e)
         {

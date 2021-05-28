@@ -6,12 +6,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
+    Style="{StaticResource PageStyle}"
     Loaded="OnLoaded"
     Unloaded="OnUnloaded"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     SizeChanged="OnSizeChanged">
 
-    <Grid Width="auto">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="384"/>
             <ColumnDefinition/>
@@ -22,46 +22,65 @@
                                       Update="OnUpdate"
                                       Draw="OnDraw" 
                                       ClearColor="Black"
-                                      Margin="0,0,0,0"
                                       IsFixedTimeStep="True"
-                                      Width="auto"
                                       Grid.ColumnSpan="2"/>
 
-        <Button Grid.Column="0" Click="OnTogglePauseMenu" Content="Pause"/>
+        <Button Grid.Column="0" Click="OnToggleGame"/>
 
-        <Grid x:Name="PausedMenu" Visibility="Collapsed" Background="Indigo">
+        <Grid Grid.Column="0" Background="Indigo" x:Name="MainMenu">
             <Grid.RowDefinitions>
                 <RowDefinition Height="192"/>
                 <RowDefinition Height="192"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
-            <TextBlock Style="{StaticResource MainTitle}" Grid.Row="0" Text="Pause"/>
 
-            <Grid Grid.Row="1">
+            <TextBlock Style="{StaticResource MainTitle}" Grid.Row="0" Text="Phantastic Wizard"/>
+
+            <Grid Grid.Row="1" Width="128">
                 <muxc:ProgressRing IsActive="True"
                                    x:Name="SelectedPlayerProgressRing"
                                    Height="128"
                                    Width="128"/>
-                <StackPanel x:Name="SelectedPlayerStackPanel" Visibility="Collapsed" Width="128">
-                    <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
-                    <TextBlock x:Name="SelectedPlayerNameTextBlock"
-                               Text="Not Selected"
-                               HorizontalAlignment="Center"
-                               FontFamily="{StaticResource CurseCasual}"
-                               FontSize="20"/>
-                </StackPanel>
+
+                <ContentControl Content="{x:Bind PlayerViewModel.SelectedPlayer, Mode=OneWay}"
+                                x:Name="SelectedPlayerContentControl"
+                                Visibility="Collapsed">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="128"/>
+                                    <RowDefinition Height="32"/>
+                                </Grid.RowDefinitions>
+
+                                <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
+
+                                <Viewbox Margin="4"
+                                         VerticalAlignment="Stretch"
+                                         Height="Auto"
+                                         MaxHeight="32"
+                                         Grid.Row="1">
+                                    <TextBlock Text="{Binding PlayerName, Mode=OneWay}"
+                                               HorizontalAlignment="Center"
+                                               FontSize="20"/>
+                                </Viewbox>
+                            </Grid>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
             </Grid>
-            
-            <StackPanel Style="{StaticResource MenuStackPanel}" Orientation="Vertical" Grid.Row="2">
-                <Button Content="RESUME" Click="OnTogglePauseMenu"/>
+
+            <StackPanel Padding="32" Orientation="Vertical" Grid.Row="2">
+                <Button Content="PLAY GAME" Click="OnToggleGame" x:Name="StartGameButton" IsEnabled="False"/>
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
+                <Button Content="PLAYER PROFILE" Click="OnOpenPlayerProfile"/>
+                <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards" x:Name="LeaderboardsButton" IsEnabled="False"/>
                 <Button Content="SETTINGS" Click="OnOpenSettings"/>
-                <Button Content="MAIN MENU" Click="OnToggleExitWindow"/>
+                <Button Content="QUIT GAME" Click="OnToggleExitWindow"/>
             </StackPanel>
         </Grid>
 
-        <Frame x:Name="GameFrame" Grid.Column="1" Margin="64, 128"/>
+        <Frame x:Name="MenuFrame" Grid.Column="1" Margin="64, 128"/>
 
         <Grid x:Name="ComfirmExitGrid" Grid.ColumnSpan="2" Visibility="Collapsed">
             <Rectangle Fill="Black" Opacity="0.25"/>
@@ -76,7 +95,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Are you sure you want to exit to main menu?"
+                <TextBlock Text="Are you sure you want to quit?"
                            TextWrapping="Wrap"
                            Grid.ColumnSpan="2"
                            HorizontalAlignment="Center"

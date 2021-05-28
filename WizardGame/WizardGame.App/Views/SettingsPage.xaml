@@ -5,17 +5,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:model="using:WizardGame.Model"
-    Loaded="OnLoadedAsync"
+    mc:Ignorable="d"
     Style="{StaticResource PageStyle}"
-    mc:Ignorable="d">
+    Loaded="OnLoadedAsync">
 
 
     <Grid Background="Indigo">
         <StackPanel>
-            <TextBlock Style="{StaticResource MainTitle}"
-                   Grid.Column="0" Grid.ColumnSpan="3"
-                   Text="Settings"/>
-
+            <TextBlock Style="{StaticResource MainTitle}" Grid.Column="0" Grid.ColumnSpan="3" Text="Settings"/>
             <Pivot>
                 <PivotItem>
                     <PivotItem.Header >
@@ -24,283 +21,21 @@
                     </PivotItem.Header>
                     <!-- Pivot content here -->
                     <StackPanel>
-                        <Grid Style="{StaticResource SettingsRow}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Text="Setting 1"/>
-                            <TextBlock Grid.Column="1" Text="Option / Option"/>
-                        </Grid>
-                        <Grid Style="{StaticResource SettingsRow}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0" Text="Setting 2"/>
-                            <TextBlock Grid.Column="1" Text="Option / Option"/>
-                        </Grid>
-                        <Grid Style="{StaticResource SettingsRow}">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Grid.Column="0" Text="Setting 3"/>
-                            <TextBlock Grid.Column="1" Text="Option / Option"/>
-                        </Grid>
                     </StackPanel>
-
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header >
-                        <PivotHeaderItem  Content="Keybindings"
-                                          Foreground="MediumOrchid"/>
+                        <PivotHeaderItem Content="Keybindings" Foreground="MediumOrchid"/>
                     </PivotItem.Header>
                     <!-- Pivot content here -->
-                    <ScrollViewer Height="520"
-                                  VerticalScrollMode="Enabled">
-                        <StackPanel>
-                            <TextBlock Text="Navigation"/>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Continue"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="ENTER"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Pause"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="ESCAPE"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Back"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="BACKSPACE"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-
-                            <TextBlock Text="Movement"/>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Move Left"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="A"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Move Up"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="W"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Move Right"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="D"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Move Down"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="S"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-
-                            <TextBlock Text="Actions"/>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Action1"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="LEFTARROW"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Action2"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="UPARROW"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Action3"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="RIGHTARROW"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Action4"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="DOWNARROW"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-
-                            <TextBlock Text="Interaction"/>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Interact1"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="R"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Interact2"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="F"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                            <Grid Style="{StaticResource SettingsRow}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0"
-                                           Text="Interact3"/>
-                                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <TextBlock Text="C"/>
-                                    <TextBlock Text="Change"
-                                               Margin="10 0 0 0"
-                                               Foreground="MediumOrchid">
-                                    </TextBlock>
-                                </StackPanel>
-                            </Grid>
-                        </StackPanel>
+                    <ScrollViewer Height="520" VerticalScrollMode="Enabled">
+                        
                     </ScrollViewer>
                 </PivotItem>
                 <PivotItem>
                     <PivotItem.Header >
-                        <PivotHeaderItem  Content="Configurations"
-                                          Foreground="MediumOrchid"/>
+                        <PivotHeaderItem Content="Configurations" Foreground="MediumOrchid"/>
                     </PivotItem.Header>
                     <!-- Pivot content here -->
                     <Grid Height="512">
@@ -308,7 +43,6 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        
                         <ScrollViewer Grid.Column="0">
                             <StackPanel>
                                 <GridView x:Name="ConfigurationsGridView"
@@ -327,7 +61,6 @@
                                                        HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
                                                        TextWrapping="Wrap"
-                                                       FontFamily="{StaticResource CurseCasual}"
                                                        FontSize="20"/>
                                                 </Grid>
                                             </Button>
@@ -336,14 +69,12 @@
                                 </GridView>
                             </StackPanel>
                         </ScrollViewer>
-
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            
                             <Rectangle Fill="Black"
                                        Opacity=".5"
                                        Grid.Row="0"
@@ -367,10 +98,8 @@
                                         Padding="8"
                                         Foreground="MediumOrchid"/>
                             </StackPanel>
-
                             <ScrollViewer Grid.Column="1">
                                 <ListView DataContext="{x:Bind ViewModel.Configuration}">
-
                                     <ListView.ItemTemplate>
                                         <DataTemplate x:DataType="model:Configuration">
                                             <StackPanel>
@@ -379,29 +108,25 @@
                                                 <TextBlock Text="{x:Bind NavContinue}"/>
                                                 <TextBlock Text="{x:Bind NavPause}"/>
                                                 <TextBlock Text="{x:Bind NavBack}"/>
-                                                
+
                                                 <TextBlock Text="{x:Bind MoveLeft}"/>
                                                 <TextBlock Text="{x:Bind MoveUp}"/>
                                                 <TextBlock Text="{x:Bind MoveRight}"/>
                                                 <TextBlock Text="{x:Bind MoveDown}"/>
-                                                
+
                                                 <TextBlock Text="{x:Bind Action1}"/>
                                                 <TextBlock Text="{x:Bind Action2}"/>
                                                 <TextBlock Text="{x:Bind Action3}"/>
                                                 <TextBlock Text="{x:Bind Action4}"/>
-                                                
+
                                                 <TextBlock Text="{x:Bind Interact1}"/>
                                                 <TextBlock Text="{x:Bind Interact2}"/>
                                                 <TextBlock Text="{x:Bind Interact3}"/>
-                                                
                                             </StackPanel>
-                                            
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
-                                    
                                 </ListView>
                             </ScrollViewer>
-
                         </Grid>
                     </Grid>
                 </PivotItem>

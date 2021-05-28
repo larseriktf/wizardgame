@@ -1,92 +1,80 @@
-﻿using Microsoft.Graphics.Canvas.UI.Xaml;
+﻿using Microsoft.Graphics.Canvas.UI;
+using Microsoft.Graphics.Canvas.UI.Xaml;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using WizardGame.App.Classes;
-using WizardGame.App.Classes.Graphics;
-using WizardGame.App.Classes.Input;
+using WizardGame.App.GameFiles;
+using WizardGame.App.GameFiles.Entities.Dev;
+using WizardGame.App.GameFiles.Entities.Player;
+using WizardGame.App.GameFiles.Graphics;
+using WizardGame.App.GameFiles.Input;
+using WizardGame.App.Helpers;
 using WizardGame.App.Interfaces;
-using Windows.UI.Core;
-using System.Diagnostics;
-using WizardGame.App.Services;
 using WizardGame.App.ViewModels;
-using WizardGame.App.Classes.Entities.Enemies;
-using WizardGame.App.Classes.Entities;
-using Windows.Graphics.Display;
-using Windows.Foundation;
-using WizardGame.App.Classes.Entities.Dev;
-using WizardGame.Model;
-using Windows.UI.Xaml.Navigation;
-using Microsoft.Graphics.Canvas.UI;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+using Windows.System;
+using WizardGame.App.GameFiles.Entities.Enemies;
+using static WizardGame.App.GameFiles.EntityManager;
+using WizardGame.App.GameFiles.Entities.HudElements;
+using WizardGame.App.GameFiles.Entities;
 
 namespace WizardGame.App.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class GamePage : Page
     {
-        public GameStatisticViewModel ViewModel = new GameStatisticViewModel();
-        public PlayerProfile SelectedPlayer { get; set; } = null;
+        public GameDataViewModel GameViewModel = new GameDataViewModel();
+        public PlayerViewModel PlayerViewModel = new PlayerViewModel();
+        private bool RunGamePlayLoop = false;
 
         public GamePage()
         {
             DataContext = this;
+            PlayerViewModel.SelectedPlayerChangedEvent += OnSelectedPlayerChangedEventAsync;
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if (e.Parameter is PlayerProfile)
-            {
-                SelectedPlayer = e.Parameter as PlayerProfile;
-
-                SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
-                SelectedPlayerStackPanel.Visibility = Visibility.Visible;
-                SelectedPlayerNameTextBlock.Text = SelectedPlayer.PlayerName;
-            }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            LoadPageBasicsAsync();
+
             // Subscribe keyboard input
-            Window.Current.CoreWindow.KeyDown += KeyDown_UIThread;
-            Window.Current.CoreWindow.KeyUp += KeyUp_UIThread;
+            Window.Current.CoreWindow.KeyDown += OnKeyDownUIThread;
+            Window.Current.CoreWindow.KeyUp += OnKeyUpUIThread;
+
+            // Start game timer
+            GameManager.GameTimer.Start();
+        }
+        private async void LoadPageBasicsAsync()
+        {
+            await PlayerViewModel.LoadSelectedPlayerAsync();
+
+            SelectedPlayerProgressRing.Visibility = Visibility.Collapsed;
+            SelectedPlayerContentControl.Visibility = Visibility.Visible;
+
+            StartGameButton.IsEnabled = true;
+            LeaderboardsButton.IsEnabled = true;
         }
 
         void OnUnloaded(object sender, RoutedEventArgs e)
-        {   // Best practice: Prevent simple memory leak
+        {
+            // Best practice: Prevent simple memory leak
             canvas.RemoveFromVisualTree();
             canvas = null;
 
             // Unsubscribe keyboard input
-            Window.Current.CoreWindow.KeyDown -= KeyDown_UIThread;
-            Window.Current.CoreWindow.KeyDown -= KeyUp_UIThread;
+            Window.Current.CoreWindow.KeyDown -= OnKeyDownUIThread;
+            Window.Current.CoreWindow.KeyDown -= OnKeyUpUIThread;
+
+            // Stop game timer
+            GameManager.GameTimer.Stop();
+            GameManager.ElapsedTime = TimeSpan.FromMilliseconds(GameManager.GameTimer.ElapsedMilliseconds);
+
+            // Save game
+            SaveGameAsync();
         }
 
-        private void KeyDown_UIThread(CoreWindow sender, KeyEventArgs args)
-        {
-            args.Handled = true;
-
-            // @TODO: Move this out of this event handler
-            if (args.VirtualKey == Windows.System.VirtualKey.Escape)
-            {
-                PausedMenu.Visibility = Visibility.Collapsed;
-            }
-
-            var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, true));
-        }
-
-        private void KeyUp_UIThread(CoreWindow sender, KeyEventArgs args)
-        {
-            args.Handled = true;
-
-            var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, false));
-        }
 
         private void OnCreateResources(CanvasAnimatedControl sender, CanvasCreateResourcesEventArgs args) =>
             args.TrackAsyncAction(LoadResourcesAsync(sender).AsAsyncAction());
@@ -96,30 +84,36 @@ namespace WizardGame.App.Views
             // Pre-load image resources
             await ImageLoader.LoadImageResourceAsync(sender.Device);
 
-            Player.Spawner(400, 400);
-            //EntityManager.AddEntity("layer1", new Cactus()
-            //{
-            //    X = (8 * 128) + 64,
-            //    Y = (4 * 128) + 96
-            //});
+
+            AddEntity("layer0", new Target(7 * 128 + 64, 3 * 128 + 64));
+            AddEntity("layer1", new Ghost(8 * 128 + 64, 5 * 128 + 64));
+            AddEntity("layer_hud", new HealthBar());
+            AddEntity("layer_hud", new CrystalOrb());
 
             // Add enemy spawners
-            EnemySpawner.Spawner((2 * 128) + 64, (5 * 128) + 64);
-            EnemySpawner.Spawner((12 * 128) + 64, (5 * 128) + 64);
+            EnemySpawner.Spawner(2 * 128 + 64, 5 * 128 + 64);
+            EnemySpawner.Spawner(12 * 128 + 64, 5 * 128 + 64);
+            MagicCard.Spawner(12 * 128 + 64, 5 * 128 + 64, 10);
 
             // Generate and load maps
             MapEditor.MakeMaps();
             MapEditor.LoadMap(0, sender.Device);
         }
 
+
         private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            if (GameManager.EnemyCounter <= 0)
+            if (Ghost.HP <= 0)
+            {   // End current game
+                GameOver();
+            }
+
+            if (GameManager.EnemyCounter <= 0 && RunGamePlayLoop == true)
             {
                 GameManager.NextWave();
             }
 
-            foreach (IDrawable entity in EntityManager.Entities.ToList())
+            foreach (IDrawable entity in Entities.ToList())
             {
                 entity.Update();
             }
@@ -127,10 +121,9 @@ namespace WizardGame.App.Views
 
         private void OnDraw(ICanvasAnimatedControl sender, CanvasAnimatedDrawEventArgs args)
         {
-
             var ds = args.DrawingSession;
 
-            foreach (IDrawable entity in EntityManager.Entities.ToList())
+            foreach (IDrawable entity in Entities.ToList())
             {
                 entity.Draw(ds);
             }
@@ -139,55 +132,107 @@ namespace WizardGame.App.Views
             CanvasDebugger.TestDrawing(ds);
         }
 
-        private void OnTogglePauseMenu(object sender, RoutedEventArgs e)
-        {
-            if (PausedMenu.Visibility == Visibility.Visible)
-            {
-                PausedMenu.Visibility = Visibility.Collapsed;
-                GameFrame.Content = null;
-                canvas.Paused = false;
-            }
-            else
-            {
-                PausedMenu.Visibility = Visibility.Visible;
-                canvas.Paused = true;
-            }
-        }
-
-        private void OnOpenSpellBook(object sender, RoutedEventArgs e) =>
-            GameFrame.Navigate(typeof(SpellBookPage));
-
-        private void OnOpenSettings(object sender, RoutedEventArgs e) =>
-            GameFrame.Navigate(typeof(SettingsPage));
-
-        private void OnSizeChanged(object sender, SizeChangedEventArgs e) =>
-            Screen.Width = e.NewSize.Width;
-
-        private void OnToggleExitWindow(object sender, RoutedEventArgs e)
-        {
-            if (ComfirmExitGrid.Visibility == Visibility.Visible)
-            {
-                ComfirmExitGrid.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                ComfirmExitGrid.Visibility = Visibility.Visible;
-            }
-        }
-
-        private void OnComfirmExit(object sender, RoutedEventArgs e)
+        private void GameOver()
         {
             SaveGameAsync();
-            NavigationService.Navigate<TitleScreen>();
+            GameManager.GameTimer.Restart();
+            RestartGamePlayLoop();
         }
 
-        private async void SaveGameAsync()
+        private void RestartGamePlayLoop()
         {
-            await ViewModel.AddPlayerGameAsync(
-                SelectedPlayer.Id,
+            foreach (Entity entity in Entities.ToList())
+            {
+                if (entity is Enemy)
+                {
+                    RemoveEntity(entity);
+                }
+            }
+
+            GameManager.Wave = 0;
+            GameManager.EnemyCounter = 0;
+            GameManager.EnemiesDefeated = 0;
+            GameManager.ElapsedTime = new TimeSpan(0, 0, 0);
+
+            canvas.Paused = true;
+        }
+
+        private void OnKeyDownUIThread(CoreWindow sender, KeyEventArgs args) => ConfigureKeyboardInput(args, true);
+
+        private void OnKeyUpUIThread(CoreWindow sender, KeyEventArgs args) => ConfigureKeyboardInput(args, false);
+
+        private void ConfigureKeyboardInput(KeyEventArgs args, bool state)
+        {
+            // Toggle pause
+            if (args.VirtualKey == VirtualKey.Escape && state == true && RunGamePlayLoop == true)
+            {
+                ToggleMenu();
+            }
+
+            // Detect key presses
+            args.Handled = true;
+            var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, state));
+        }
+
+        private void OnToggleGame(object sender, RoutedEventArgs e)
+        {
+            if (RunGamePlayLoop == false)
+            {
+                StartGameButton.Content = "RESUME";
+                RunGamePlayLoop = true;
+            }
+
+            ToggleMenu();
+        }
+
+        private void ToggleMenu()
+        {
+            ControlHandler.ToggleVisibility(MainMenu);
+
+            if (MainMenu.Visibility == Visibility.Collapsed)
+            {
+                canvas.Paused = false;
+                GameManager.GameTimer.Start();
+            }
+            else
+            {
+                canvas.Paused = true;
+                GameManager.GameTimer.Stop();
+            }
+        }
+
+        private void OnToggleExitWindow(object sender, RoutedEventArgs e) =>
+            ControlHandler.ToggleVisibility(ComfirmExitGrid);
+
+
+        private async void SaveGameAsync() =>
+            await GameViewModel.AddPlayerGameAsync(
+                PlayerViewModel.SelectedPlayer.Id,
                 GameManager.Wave,
                 GameManager.EnemiesDefeated,
-                GameManager.MinutesElapsed);
+                GameManager.ElapsedTime);
+
+        public async void OnSelectedPlayerChangedEventAsync(object sender, EventArgs e)
+        {
+            await PlayerViewModel.LoadSelectedPlayerAsync();
+            PlayerViewModel.SelectedPlayer = (sender as PlayerPage).ViewModel.SelectedPlayer;
         }
+
+        private void OnSizeChanged(object sender, SizeChangedEventArgs e) => Screen.Width = e.NewSize.Width;
+
+        // Menu navigation methods
+        private void OnOpenSpellBook(object sender, RoutedEventArgs e) =>
+            MenuFrame.Navigate(typeof(SpellBookPage));
+
+        private void OnOpenPlayerProfile(object sender, RoutedEventArgs e) =>
+            MenuFrame.Navigate(typeof(PlayerPage));
+
+        private void OnOpenLeaderboards(object sender, RoutedEventArgs e) =>
+            MenuFrame.Navigate(typeof(LeaderboardsPage), PlayerViewModel.SelectedPlayer);
+
+        private void OnOpenSettings(object sender, RoutedEventArgs e) =>
+            MenuFrame.Navigate(typeof(SettingsPage));
+
+        private void OnComfirmExit(object sender, RoutedEventArgs e) => Application.Current.Exit();
     }
 }

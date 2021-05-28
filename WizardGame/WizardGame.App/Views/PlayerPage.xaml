@@ -1,0 +1,147 @@
+﻿<Page
+    x:Class="WizardGame.App.Views.PlayerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:WizardGame.Model"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Style="{StaticResource PageStyle}"
+    Loaded="OnLoadedAsync">
+
+    <Grid Background="Indigo">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="128"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Style="{StaticResource MainTitle}" Text="Player Profiles"/>
+
+        <StackPanel Grid.Row="1">
+            <Grid Height="460">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ScrollViewer Grid.Column="0" Grid.Row="0">
+                    <Grid Background="Purple">
+
+                        <muxc:ProgressRing IsActive="True"
+                                           x:Name="PlayerProgressRIng"
+                                           Height="128"
+                                           Width="128"/>
+
+                        <GridView ItemsSource="{x:Bind ViewModel.Players, Mode=OneWay}"
+                                  IsItemClickEnabled="True"
+                                  ItemClick="OnClickPlayer"
+                                  IncrementalLoadingTrigger="Edge">
+
+                            <GridView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Player">
+                                    <Grid Width="128">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="128"/>
+                                            <RowDefinition Height="32"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
+                                        <Viewbox Margin="4"
+                                                 VerticalAlignment="Stretch"
+                                                 Height="Auto"
+                                                 MaxHeight="32"
+                                                 Grid.Row="1">
+                                            <!-- The textblock and its contents are stretched to fill its parent -->
+                                            <TextBlock x:Name="playerNameText"
+                                                   Text="{x:Bind PlayerName, Mode=OneWay}"
+                                                   HorizontalAlignment="Center"
+                                                   FontSize="20"/>
+                                        </Viewbox>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                        </GridView>
+                    </Grid>
+                </ScrollViewer>
+
+                <ScrollViewer Grid.Column="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Pivot Grid.Column="1" Grid.ColumnSpan="5">
+                            <PivotItem>
+                                <PivotItem.Header >
+                                    <PivotHeaderItem  Content="Selected" Foreground="MediumOrchid"/>
+                                </PivotItem.Header>
+                                <!-- Pivot content here -->
+                                <StackPanel>
+                                    <StackPanel x:Name="PlayerInfoPanel">
+                                        <TextBlock Text="Id"
+                                           Foreground="Purple"
+                                           Margin="0 16 0 0"/>
+                                        <TextBlock x:Name="PlayerIdTextBlock" />
+                                        <TextBlock Text="Name"
+                                           Foreground="Purple"
+                                           Margin="0 16 0 0"/>
+                                        <TextBlock x:Name="PlayerNameTextBlock" />
+
+                                        <Button x:Name="SelectPlayerButton"
+                                                Content="Select"
+                                                Click="OnSelectPlayerAsync"
+                                                IsEnabled="False"/>
+                                        <Button x:Name="EditPlayerButton"
+                                                Content="Edit Name"
+                                                Click="OnTogglePlayerAsync"
+                                                IsEnabled="False"/>
+                                        <Button x:Name="DeletePlayerButton"
+                                                Content="Delete Profile"
+                                                Click="OnDeletePlayerAsync"
+                                                IsEnabled="False"/>
+                                    </StackPanel>
+                                    <StackPanel x:Name="EditPlayerPanel" Visibility="Collapsed">
+                                        <TextBox x:Name="UpdatedPlayerNameTextBox"
+                                                Header="Enter New Player Name"
+                                                Width="256"
+                                                Height="64"
+                                                Margin="0 16"/>
+                                        <Button Content="Update Player Profile" Click="OnApplyEditPlayerAsync"/>
+                                        <Button Content="Cancel" Click="OnTogglePlayerAsync"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </PivotItem>
+                            <PivotItem>
+                                <PivotItem.Header >
+                                    <PivotHeaderItem  Content="New Profile" Foreground="MediumOrchid"/>
+                                </PivotItem.Header>
+                                <!-- Pivot content here -->
+                                <StackPanel >
+                                    <TextBox x:Name="playerNameTextBox"
+                                                Header="Enter Player Name"
+                                                Width="256"
+                                                Height="64"
+                                                Margin="0 16"/>
+                                    <Button Content="Create Player Profile"
+                                            Click="OnAddPlayerAsync"
+                                            Tag="{x:Bind playerNameTextBox}"/>
+                                </StackPanel>
+                            </PivotItem>
+                        </Pivot>
+                    </Grid>
+
+                </ScrollViewer>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>
