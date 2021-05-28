@@ -74,6 +74,28 @@
 
 \section{Unfinished Parts}
 
+    \subsection{Game Files}
+
+        \subsubsection{The cactus enemy}
+
+        For a while I had been working on another enemy type to mix up the gameplay. The idea for this enemy is that it is a purple cactus that will target a point in the arena room and grow outwards in four directions, separating the room into four areas. The player would then be able to destroy each of the four stems by damagin it with spells. The code is still left in the final product, but I only got around to drawing the spritsheet for it and coding basic behavior.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.4]{images/eksempel.jpg}
+            \caption{Concept for the purple cactus enemy}
+        \end{figure}
+
+    \subsection{Application pages}
+
+        \subsubsection{The settings page}
+
+        Originally, the plan was to let players adjust application settings and store them as settings configurations on the database. However, it seemd to overwhelming and unecessary to connect all the settings details to the game, such as adjusting display mode, audio and keyboard button mapping. The configuration model class is still in the model and the database, along with the settings page, but they are not fully implemented. I also realized I could have utilized the settings page from Windows Template Studio, but at that point I had moved on.
+
+        \subsubsection{The spell book}
+
+        Originally, the intent was that the player would have to memories combinations of button presses to fire spells. For example, the ice-spell would have a combo of up-up-down-down-up using the arrow keys, but I did not get to code it. This xaml page would give a listing of all the different button combinations required to initiate each spell. However, now it just rests in the main menu and serves no purpose.
+
 \section{Known Issues}
 
 \section{App Description}
@@ -109,5 +131,37 @@
         The leaderboards page will list all players and their best game (highest wave) in descending order. This is also the page that lists a user specific games history, and can be found by using the pivot headers. The page only serves as a monitoring tool to track ones individual progress.
         
         The settings page and spell book page are not fully implemented.
+
+\subsection{Screenshots / Concepts}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[max width=\textwidth]{images/002.JPG}
+    \caption{Early draft on the level background}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[max width=\textwidth]{images/019.JPG}
+    \caption{Late development, displaying collision bounding-boxes}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[max width=\textwidth]{images/menu_structure.jpg}
+    \caption{Menu structure sketch}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[max width=\textwidth]{images/013.JPG}
+    \caption{First iteration of main menu}
+\end{figure}
+
+
+
+
+
+
 
 \end{document}
