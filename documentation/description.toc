@@ -3,4 +3,7 @@
 \contentsline {section}{\numberline {3}Known Issues}{3}{section.3}%
 \contentsline {section}{\numberline {4}App Description}{3}{section.4}%
 \contentsline {subsection}{\numberline {4.1}General Information}{3}{subsection.4.1}%
+\contentsline {subsubsection}{Assets and cosmetic}{3}{subsubsection*.1}%
 \contentsline {subsection}{\numberline {4.2}Functionality}{3}{subsection.4.2}%
+\contentsline {subsubsection}{Gameplay}{3}{subsubsection*.2}%
+\contentsline {subsubsection}{Navigation}{3}{subsubsection*.3}%
