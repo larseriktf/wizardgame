@@ -11,10 +11,10 @@
 \contentsline {section}{\numberline {4}App Description}{4}{section.4}%
 \contentsline {subsection}{\numberline {4.1}General Information}{4}{subsection.4.1}%
 \contentsline {subsubsection}{About the game}{4}{subsubsection*.4}%
-\contentsline {subsubsection}{Assets and cosmetic}{4}{subsubsection*.5}%
+\contentsline {subsubsection}{Assets And Graphics}{4}{subsubsection*.5}%
 \contentsline {subsection}{\numberline {4.2}Functionality}{4}{subsection.4.2}%
 \contentsline {subsubsection}{Gameplay}{4}{subsubsection*.6}%
-\contentsline {subsubsection}{Application Pages}{4}{subsubsection*.7}%
+\contentsline {subsubsection}{Application Pages}{5}{subsubsection*.7}%
 \contentsline {subsubsection}{API communication}{5}{subsubsection*.8}%
 \contentsline {subsubsection}{Game Logic}{5}{subsubsection*.9}%
 \contentsline {subsection}{\numberline {4.3}Screenshots / Concepts}{6}{subsection.4.3}%
