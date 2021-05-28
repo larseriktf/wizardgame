@@ -70,39 +70,21 @@ namespace WizardGame.App.ViewModels
 
         internal async Task LoadTopGamesAsync()
         {
-            IEnumerable<Player> allPlayers = await dataService.GetAsync<ObservableCollection<Player>>("api/Players");
+            IEnumerable<GameData> games = await dataService.GetAsync<ObservableCollection<GameData>>("api/GameData");
 
-            List<GameData> topGames = new List<GameData>();
-
-            // Find the best game for each player and add them to temporary list
-            foreach (Player player in allPlayers)
-            {
-                GameData currentBestGame = null;
-
-                // Find the new best game
-                foreach (GameData game in player.GameData)
+            IEnumerable<GameData> sortedList =
+                from g in games
+                group g by g.PlayerId into GamesPerPlayer
+                let maxWave = GamesPerPlayer.Max(x => x.WavesPlayed)
+                select new
                 {
-                    if (currentBestGame == null)
-                    {
-                        currentBestGame = game;
-                        break;
-                    }
+                    TopGame = GamesPerPlayer.First(y => y.WavesPlayed == maxWave)
+                }.TopGame;
 
-                    if (game.WavesPlayed >= currentBestGame.WavesPlayed)
-                    {
-                        currentBestGame = game;
-                    }
-                }
-                topGames.Add(currentBestGame);
-            }
-            topGames.OrderBy(g => g.WavesPlayed);
-
-            // Add games to list
-            foreach (GameData game in topGames)
+            foreach (GameData currentGame in sortedList)
             {
-                TopGames.Add(game);
+                TopGames.Add(currentGame);
             }
-
         }
     }
 }
