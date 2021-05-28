@@ -170,6 +170,7 @@
     <Compile Include="GameFiles\MapMaker\MapEditor.cs" />
     <Compile Include="GameFiles\MapMaker\MapLayout.cs" />
     <Compile Include="GameFiles\Graphics\SpriteSheet.cs" />
+    <Compile Include="Helpers\ControlHandler.cs" />
     <Compile Include="Helpers\RandomProvider.cs" />
     <Compile Include="GameFiles\Screen.cs" />
     <Compile Include="Helpers\Observable.cs" />
@@ -182,8 +183,8 @@
     <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\GameDataViewModel.cs" />
     <Compile Include="ViewModels\ConfigurationViewModel.cs" />
-    <Compile Include="Views\PlayerProfilePage.xaml.cs">
-      <DependentUpon>PlayerProfilePage.xaml</DependentUpon>
+    <Compile Include="Views\PlayerPage.xaml.cs">
+      <DependentUpon>PlayerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LeaderboardsPage.xaml.cs">
       <DependentUpon>LeaderboardsPage.xaml</DependentUpon>
@@ -232,9 +233,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PlayerProfilePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\PlayerPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LeaderboardsPage.xaml">
       <Generator>MSBuild:Compile</Generator>

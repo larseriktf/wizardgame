@@ -48,7 +48,7 @@
                                             <RowDefinition Height="128"/>
                                             <RowDefinition Height="32"/>
                                         </Grid.RowDefinitions>
-                                        
+
                                         <Image Source="/Assets/Images/playerProfile.png" Stretch="UniformToFill"/>
                                         <Viewbox Margin="4"
                                                  VerticalAlignment="Stretch"

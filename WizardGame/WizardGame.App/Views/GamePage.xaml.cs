@@ -128,7 +128,7 @@ namespace WizardGame.App.Views
 
         private void OnToggleMenu(object sender, RoutedEventArgs e)
         {
-            ToggleVisibility(MainMenu);
+            ControlHandler.ToggleVisibility(MainMenu);
 
             if (MainMenu.Visibility == Visibility.Collapsed)
             {
