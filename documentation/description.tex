@@ -154,7 +154,9 @@ The only requirements to run the application is to open the solution folder and 
 
         The GameStateManager keeps track of the current wave, enemies defeated and time elapsed. It also manages the next wave and determines its outcome. The codebehind for the game page interacts with this class to retrieve the correct data when saving a new game statistic to the player.
 
-        Lastly, the AnimatedCanvasControl provides three essential events that provide the basis for the whole game. 
+        Lastly, the AnimatedCanvasControl provides three essential events that provide the basis for the whole game. These events are the ResourceCreate-, Update- and Draw-events. All resources such as loading images and instantiating basic game setup is done here. Next, the update event makes sure to update the state for each entity, such as movement and current actions. Finally, the draw event calls the draw method in each entity to draw them on screen. Most entities also implement the IDrawable interface, that provide the Update and Draw methods.
+
+        Other useful classes are the StyleSheet, and ImageLoader classes, that help load images and draw specific parts of the bitmaps to the screen, and the KeyBoard and InputKey classes that handle the keyboard inputs. I have also create some classes and moved them to the Helpers folder (CanvasDebugger, ControlHandler and RandomProvider). The rest of the game related files are located inside the GameFiles folder.
 
 \subsection{Screenshots / Concepts}
 
