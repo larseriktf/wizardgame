@@ -72,6 +72,8 @@
 
 \section{Requirements To Run Application}
 
+The only requirements to run the application is to open the solution folder and run in debug mode by hitting run project or F5. 
+
 \section{Unfinished Parts}
 
     \subsection{Game Files}
@@ -97,6 +99,14 @@
         Originally, the intent was that the player would have to memories combinations of button presses to fire spells. For example, the ice-spell would have a combo of up-up-down-down-up using the arrow keys, but I did not get to code it. This xaml page would give a listing of all the different button combinations required to initiate each spell. However, now it just rests in the main menu and serves no purpose.
 
 \section{Known Issues}
+
+    \subsection{Minor Issues}
+
+    When creating a new player profile, the xaml will display wrong id in the seleced tab to the right.
+
+    \subsection{Major Issues}
+
+    Currently, the leaderboards is not fetching the data correctly, resulting in a strange listview result.
 
 \section{App Description}
 
@@ -131,6 +141,20 @@
         The leaderboards page will list all players and their best game (highest wave) in descending order. This is also the page that lists a user specific games history, and can be found by using the pivot headers. The page only serves as a monitoring tool to track ones individual progress.
         
         The settings page and spell book page are not fully implemented.
+
+        \subsubsection{API communication}
+
+        Fetching data from the database begins in each of the ViewModels. These provide a range of useful methods that fetches and manipulates data in certain ways. For example, the LoadSelectedPlayerAsync method in PlayerViewModel makes a call to api/Players/Selected, which is a custom API route, to fetch the newly selected player. It implements a simple form of error handling to make sure the SelectedPlayer property will a Player object.
+
+        When making calls through the Restful API, the application uses the HttpDataService provided by Windows Template Studio. It can be found in the WizardGame.App.Core.Services namespace.
+
+        \subsubsection{Game Logic}
+
+        The actual game files occupy a large portion of the UWP, and includes some useful manager classes. The EntityManager class is solely responsible for handling all game entities in the world. That is, anything that can be drawn on screen. It encorparates a layer system that sorts the list of game entities based on its desired layer. This way ensures that the entities are drawn in correct order. It also includes many helper methods to manipulate entities and their properties. They are used everywhere in the code to provide the math and simulate the game world.
+
+        The GameStateManager keeps track of the current wave, enemies defeated and time elapsed. It also manages the next wave and determines its outcome. The codebehind for the game page interacts with this class to retrieve the correct data when saving a new game statistic to the player.
+
+        Lastly, the AnimatedCanvasControl provides three essential events that provide the basis for the whole game. 
 
 \subsection{Screenshots / Concepts}
 
