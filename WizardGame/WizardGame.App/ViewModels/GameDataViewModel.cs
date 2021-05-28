@@ -81,6 +81,8 @@ namespace WizardGame.App.ViewModels
                     TopGame = GamesPerPlayer.First(y => y.WavesPlayed == maxWave)
                 }.TopGame;
 
+            sortedList = sortedList.OrderByDescending(s => s.WavesPlayed).ToList();
+
             foreach (GameData currentGame in sortedList)
             {
                 TopGames.Add(currentGame);
