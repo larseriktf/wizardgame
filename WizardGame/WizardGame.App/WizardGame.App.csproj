@@ -189,14 +189,14 @@
     <Compile Include="Views\LeaderboardsPage.xaml.cs">
       <DependentUpon>LeaderboardsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SpellBookPage.xaml.cs">
-      <DependentUpon>SpellBookPage.xaml</DependentUpon>
+    <Compile Include="Views\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GamePage.xaml.cs">
-      <DependentUpon>GamePage.xaml</DependentUpon>
+    <Compile Include="Views\SpellBookPage.xaml.cs">
+      <DependentUpon>SpellBookPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TitleScreen.xaml.cs">
       <DependentUpon>TitleScreen.xaml</DependentUpon>
@@ -241,7 +241,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SpellBookPage.xaml">
+    <Page Include="Views\GamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -249,7 +249,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\GamePage.xaml">
+    <Page Include="Views\SpellBookPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

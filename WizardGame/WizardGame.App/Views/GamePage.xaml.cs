@@ -18,6 +18,7 @@ using Windows.System;
 using WizardGame.App.GameFiles.Entities.Enemies;
 using static WizardGame.App.GameFiles.EntityManager;
 using WizardGame.App.GameFiles.Entities.HudElements;
+using WizardGame.App.GameFiles.Entities;
 
 namespace WizardGame.App.Views
 {
@@ -103,7 +104,7 @@ namespace WizardGame.App.Views
         {
             if (Ghost.HP <= 0)
             {   // End current game
-                
+                GameOver();
             }
 
             if (GameManager.EnemyCounter <= 0 && RunGamePlayLoop == true)
@@ -111,7 +112,7 @@ namespace WizardGame.App.Views
                 GameManager.NextWave();
             }
 
-            foreach (IDrawable entity in EntityManager.Entities.ToList())
+            foreach (IDrawable entity in Entities.ToList())
             {
                 entity.Update();
             }
@@ -121,13 +122,38 @@ namespace WizardGame.App.Views
         {
             var ds = args.DrawingSession;
 
-            foreach (IDrawable entity in EntityManager.Entities.ToList())
+            foreach (IDrawable entity in Entities.ToList())
             {
                 entity.Draw(ds);
             }
 
             CanvasDebugger.DrawMessages(ds);
             CanvasDebugger.TestDrawing(ds);
+        }
+
+        private void GameOver()
+        {
+            SaveGameAsync();
+            GameManager.GameTimer.Restart();
+            RestartGamePlayLoop();
+        }
+
+        private void RestartGamePlayLoop()
+        {
+            foreach (Entity entity in Entities.ToList())
+            {
+                if (entity is Enemy)
+                {
+                    RemoveEntity(entity);
+                }
+            }
+
+            GameManager.Wave = 0;
+            GameManager.EnemyCounter = 0;
+            GameManager.EnemiesDefeated = 0;
+            GameManager.ElapsedTime = new TimeSpan(0, 0, 0);
+
+            canvas.Paused = true;
         }
 
         private void OnKeyDownUIThread(CoreWindow sender, KeyEventArgs args) => ConfigureKeyboardInput(args, true);
