@@ -3,6 +3,7 @@ using System;
 using System.Numerics;
 using System.Timers;
 using WizardGame.App.GameFiles.Entities.Dev;
+using WizardGame.App.GameFiles.Entities.ParticleEffects;
 using WizardGame.App.GameFiles.Entities.Player;
 using WizardGame.App.GameFiles.Graphics;
 using WizardGame.App.Interfaces;
@@ -47,7 +48,7 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
             int min = -16;
             int max = 16;
 
-            EntityManager.Entities.Add(new Target(x, y));
+            DustCloud.Spawner(x, y, Rnd.Next(4, 7));
 
             for (int i = 0; i < amount; i++)
             {

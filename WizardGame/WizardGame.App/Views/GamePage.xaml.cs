@@ -85,9 +85,10 @@ namespace WizardGame.App.Views
             await ImageLoader.LoadImageResourceAsync(sender.Device);
 
 
+            AddEntity("layer0", new Target(7 * 128 + 64, 3 * 128 + 64));
+            AddEntity("layer1", new Ghost(8 * 128 + 64, 5 * 128 + 64));
             AddEntity("layer_hud", new HealthBar());
             AddEntity("layer_hud", new CrystalOrb());
-            AddEntity("layer1", new Ghost(8 * 128 + 64, 5 * 128 + 64));
 
             // Add enemy spawners
             EnemySpawner.Spawner(2 * 128 + 64, 5 * 128 + 64);
