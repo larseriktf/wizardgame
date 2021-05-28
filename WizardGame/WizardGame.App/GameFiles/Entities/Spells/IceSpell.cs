@@ -117,7 +117,6 @@ namespace WizardGame.App.GameFiles.Entities.Spells
                 if (enemy.Invincible == false)
                 {
                     enemy.TakeDamage(damage);
-                    IceShard.Spawner(X, Y, Rnd.Next(4, 7));
                     state++;
                 }
             }
