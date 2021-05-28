@@ -16,10 +16,7 @@ namespace WizardGame.Api.Controllers
     {
         private readonly GameContext _context;
 
-        public PlayersController(GameContext context)
-        {
-            _context = context;
-        }
+        public PlayersController(GameContext context) => _context = context;
 
         // GET: api/Players
         [HttpGet]
@@ -106,9 +103,6 @@ namespace WizardGame.Api.Controllers
             return playerProfile;
         }
 
-        private bool PlayerProfileExists(int id)
-        {
-            return _context.PlayerProfiles.Any(e => e.Id == id);
-        }
+        private bool PlayerProfileExists(int id) => _context.PlayerProfiles.Any(e => e.Id == id);
     }
 }

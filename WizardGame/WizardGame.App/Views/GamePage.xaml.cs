@@ -84,20 +84,24 @@ namespace WizardGame.App.Views
             // Pre-load image resources
             await ImageLoader.LoadImageResourceAsync(sender.Device);
 
+            InitialSetup();
+        }
 
+        private void InitialSetup()
+        {
+            // Add starting entities
             AddEntity("layer0", new Target(7 * 128 + 64, 3 * 128 + 64));
             AddEntity("layer1", new Ghost(8 * 128 + 64, 5 * 128 + 64));
             AddEntity("layer_hud", new HealthBar());
             AddEntity("layer_hud", new CrystalOrb());
 
             // Add enemy spawners
-            EnemySpawner.Spawner(2 * 128 + 64, 5 * 128 + 64);
-            EnemySpawner.Spawner(12 * 128 + 64, 5 * 128 + 64);
-            MagicCard.Spawner(12 * 128 + 64, 5 * 128 + 64, 10);
+            AddEntity("layer1", new EnemySpawner(2 * 128 + 64, 5 * 128 + 64));
+            AddEntity("layer1", new EnemySpawner(12 * 128 + 64, 5 * 128 + 64));
 
             // Generate and load maps
             MapEditor.MakeMaps();
-            MapEditor.LoadMap(0, sender.Device);
+            MapEditor.LoadMap(0);
         }
 
 
@@ -182,6 +186,7 @@ namespace WizardGame.App.Views
                 RunGamePlayLoop = true;
             }
 
+            MenuFrame.Content = null;
             ToggleMenu();
         }
 

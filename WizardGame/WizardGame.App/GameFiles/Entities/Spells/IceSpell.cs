@@ -27,11 +27,7 @@ namespace WizardGame.App.GameFiles.Entities.Spells
             //MakeTrail();
             UpdateMovement();
             HandleState();
-            OffsetAndScale();
-        }
 
-        public void Draw(CanvasDrawingSession ds)
-        {
             if (direction < 3 * PI / 2 && direction >= PI / 2)
             {
                 YScale = -1;
@@ -45,6 +41,13 @@ namespace WizardGame.App.GameFiles.Entities.Spells
 
             ImageX = state;
 
+            OffsetAndScale();
+        }
+
+        public void Draw(CanvasDrawingSession ds)
+        {
+            
+
             using (var spriteBatch = ds.CreateSpriteBatch())
             {
                 spriteSheet.DrawSpriteExt(
@@ -56,8 +59,6 @@ namespace WizardGame.App.GameFiles.Entities.Spells
                     new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
-
-            ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Yellow);
         }
 
         private void MakeTrail()
@@ -72,7 +73,10 @@ namespace WizardGame.App.GameFiles.Entities.Spells
                 case 0: damage = 6; break;
                 case 1: damage = 4; break;
                 case 2: damage = 2; break;
-                default: RemoveEntity(this); break;
+                default:
+                    IceShard.Spawner(X, Y, Rnd.Next(3, 5));
+                    RemoveEntity(this);
+                    break;
             }
         }
 
@@ -113,14 +117,11 @@ namespace WizardGame.App.GameFiles.Entities.Spells
                 if (enemy.Invincible == false)
                 {
                     enemy.TakeDamage(damage);
-                    IceShard.Spawner(X, Y, Rnd.Next(4, 7));
                     state++;
                 }
             }
             else if (IsColliding(X, Y, Width, Height, typeof(Solid)))
             {
-                // If collided with wall
-                IceShard.Spawner(X, Y, Rnd.Next(3, 5));
                 state = 3;
             }
         }

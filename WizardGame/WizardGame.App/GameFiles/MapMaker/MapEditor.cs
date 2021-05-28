@@ -32,7 +32,7 @@ namespace WizardGame.App.GameFiles
             });
         }
 
-        public static void LoadMap(int mapIndex, CanvasDevice device)
+        public static void LoadMap(int mapIndex)
         {
             Map map = Maps[mapIndex];
 
