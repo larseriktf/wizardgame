@@ -18,6 +18,7 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
         public Bunny(float x, float y) : base(x, y, 96, 96)
         {
             hp = 20;
+            damage = 5;
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_bunny");
 
             animTimer = new Timer(40);
@@ -39,7 +40,7 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
 
             ImageY = 1;
             OffsetAndScale();
-            HandleCollisions();
+            DamagePlayerOnCollision();
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -89,21 +90,6 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
             vsp += Gravity;
 
             UpdateCollisions();
-        }
-
-        private void HandleCollisions()
-        {
-            if (IsColliding(X, Y, Width, Height, typeof(Ghost)))
-            {
-                // If collided with ghost, Do damage to ghost
-                Ghost ghost = (Ghost)GetCollisionObject(X, Y, Width, Height, typeof(Ghost));
-
-                if (ghost.Invincible == false)
-                {
-                    ghost.TakeDamage(damage);
-                    state++;
-                }
-            }
         }
     }
 }

@@ -63,8 +63,6 @@ namespace WizardGame.App.GameFiles.Entities.Player
                 ImageX = 0;
             }
             OffsetAndScale();
-
-            CanvasDebugger.Debug(this, "HP: " + hp);
         }
 
         public void Draw(CanvasDrawingSession ds)

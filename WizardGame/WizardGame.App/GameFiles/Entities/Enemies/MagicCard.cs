@@ -61,11 +61,7 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
         {
             DetectStateChange();
             UpdateMovement();
-            OffsetAndScale();
-        }
 
-        public void Draw(CanvasDrawingSession ds)
-        {
             if (animTimer == null)
             {
                 ImageX = Rnd.Next(0, 3);
@@ -96,6 +92,13 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
             {
                 ImageY = 3;
             }
+
+            OffsetAndScale();
+            DamagePlayerOnCollision();
+        }
+
+        public void Draw(CanvasDrawingSession ds)
+        {
 
             using (var spriteBatch = ds.CreateSpriteBatch())
             {

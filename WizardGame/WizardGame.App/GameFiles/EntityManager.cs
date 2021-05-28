@@ -139,6 +139,11 @@ namespace WizardGame.App.GameFiles
 
         public static double AngleBetweenEntitiesInRadians(Entity objA, Entity objB)
         {
+            if (objA == null || objB == null)
+            {
+                return 0;
+            }
+
             // Vector between objA and objB
             Vector2 a = new Vector2(objB.X - objA.X, objB.Y - objA.Y);
 
@@ -165,6 +170,11 @@ namespace WizardGame.App.GameFiles
 
         public static double DistanceBetweenEntities(Entity objA, Entity objB)
         {
+            if (objA == null || objB == null)
+            {   // If objects don't exist, return 0
+                return 0;
+            }
+
             double x = objB.X - objA.X;
             double y = objB.Y - objA.Y;
 
