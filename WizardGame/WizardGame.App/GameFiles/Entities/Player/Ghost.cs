@@ -5,6 +5,7 @@ using System.Timers;
 using Windows.UI;
 using WizardGame.App.GameFiles.Entities.Enemies;
 using WizardGame.App.GameFiles.Entities.HudElements;
+using WizardGame.App.GameFiles.Entities.ParticleEffects;
 using WizardGame.App.GameFiles.Entities.Spells;
 using WizardGame.App.GameFiles.Graphics;
 using WizardGame.App.Helpers;
@@ -12,6 +13,7 @@ using WizardGame.App.Interfaces;
 using static System.Math;
 using static WizardGame.App.GameFiles.EntityManager;
 using static WizardGame.App.GameFiles.Input.KeyBoard;
+using static WizardGame.App.Helpers.RandomProvider;
 
 namespace WizardGame.App.GameFiles.Entities.Player
 {
@@ -51,6 +53,15 @@ namespace WizardGame.App.GameFiles.Entities.Player
             {
                 XScale = Sign(hsp);
             }
+
+            if (Invincible == true)
+            {
+                ImageX = 2;
+            }
+            else
+            {
+                ImageX = 0;
+            }
             OffsetAndScale();
 
             CanvasDebugger.Debug(this, "HP: " + hp);
@@ -70,8 +81,8 @@ namespace WizardGame.App.GameFiles.Entities.Player
                     0);
             }
 
-            ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
-            ds.DrawText("HP: " + hp, OffsetX, OffsetY, Colors.Blue);
+            //ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
+            //ds.DrawText("HP: " + hp, OffsetX, OffsetY, Colors.Blue);
         }
 
 
@@ -90,28 +101,21 @@ namespace WizardGame.App.GameFiles.Entities.Player
 
         private void RegisterSpells()
         {
-            Action1.EnsureTapped(() =>
-            {
-                AddEntity("layer1", new Bunny(X, Y));
-            });
+            Action1.EnsureTapped(() => AddEntity("layer1", new Bunny(X, Y)));
+
             Action2.EnsureTapped(() =>
-            {
                 AddEntity("layer2", new IceSpell(X, Y)
                 {
                     Direction = (XScale == 1) ? 0 : PI
-                });
-            });
+                }));
+
             Action3.EnsureTapped(() =>
-            {
                 AddEntity("layer2", new PlantSpell(X, Y)
                 {
                     Direction = Sign(XScale)
-                });
-            });
-            Action4.EnsureTapped(() =>
-            {
-                TeleportationSpell.Teleport();
-            });
+                }));
+
+            Action4.EnsureTapped(() => TeleportationSpell.Teleport());
         }
 
         public void TakeDamage(int dmg)
@@ -120,7 +124,9 @@ namespace WizardGame.App.GameFiles.Entities.Player
             {
                 if ((hp -= dmg) <= 0)
                 {
-                    // Do something
+                    // Die
+                    DustCloud.Spawner(X, Y, Rnd.Next(4, 7));
+                    RemoveEntity(this);
                 }
                 invincibilityTimer.Interval = invincibleTime;
                 Invincible = true;

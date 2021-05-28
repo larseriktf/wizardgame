@@ -101,6 +101,11 @@ namespace WizardGame.App.Views
 
         private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
+            if (Ghost.HP <= 0)
+            {   // End current game
+                
+            }
+
             if (GameManager.EnemyCounter <= 0 && RunGamePlayLoop == true)
             {
                 GameManager.NextWave();
