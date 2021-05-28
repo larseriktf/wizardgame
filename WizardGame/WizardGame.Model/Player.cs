@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WizardGame.Model
 {
+    /// <summary>Player profiles represents a player that can hold multiple game datas</summary>
     public class Player : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

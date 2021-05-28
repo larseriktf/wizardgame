@@ -3,6 +3,7 @@ using System.Timers;
 
 namespace WizardGame.App.GameFiles.Input
 {
+    /// <summary>Class that represents a single input key with different press states</summary>
     public class InputKey
     {
         private bool pressed = false;

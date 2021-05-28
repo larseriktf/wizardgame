@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WizardGame.Model
 {
+    /// <summary>GameData represents a recent game and stores values such as how many waves the player has survived, and more</summary>
     public class GameData
     {
         [Key]

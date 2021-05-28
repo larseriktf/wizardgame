@@ -2,6 +2,7 @@
 
 namespace WizardGame.Model
 {
+    /// <summary>Configuration represents a settings configuration that stores multiple keybinding options</summary>
     public class Configuration
     {
         [Key]
