@@ -1,6 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System.Numerics;
 using Windows.UI;
+using WizardGame.App.GameFiles.Entities.Dev;
 using WizardGame.App.GameFiles.Entities.Enemies;
 using WizardGame.App.GameFiles.Graphics;
 using WizardGame.App.Interfaces;
@@ -57,8 +58,7 @@ namespace WizardGame.App.GameFiles.Entities.Spells
         {
             switch (state)
             {
-                case 0:
-                    break;
+                case 0: break;
                 default:
                     RemoveEntity(this);
                     break;
@@ -89,7 +89,6 @@ namespace WizardGame.App.GameFiles.Entities.Spells
             HandleCollisions();
         }
 
-
         private void HandleCollisions()
         {
             if (IsColliding(X, Y, Width, Height, typeof(Enemy)))
@@ -102,6 +101,10 @@ namespace WizardGame.App.GameFiles.Entities.Spells
                     enemy.TakeDamage(damage);
                     state++;
                 }
+            }
+            else if (IsColliding(X, Y, Width, Height, typeof(Solid)))
+            {
+                state = 1;
             }
         }
     }

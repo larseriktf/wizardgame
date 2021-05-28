@@ -34,7 +34,7 @@ namespace WizardGame.App.GameFiles.Entities.Dev
 
         public void Draw(CanvasDrawingSession ds)
         {
-            ds.DrawImage(bitmap, OffsetX - 4, OffsetY - 4);
+            //ds.DrawImage(bitmap, OffsetX - 4, OffsetY - 4);
         }
 
         private void Shake(float threshold, float incrementX, float incrementY)
