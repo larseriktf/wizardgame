@@ -9,7 +9,7 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
     public abstract class Enemy : PhysicsObject
     {
         public bool Invincible { get; set; } = false;
-        private readonly int invincibleTime = 250;
+        private readonly int invincibleTime = 150;
         protected readonly Timer invincibilityTimer = new Timer();
         protected int hp = 1;
         protected int damage = 1;
@@ -31,7 +31,7 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
             DustCloud.Spawner(X, Y, Rnd.Next(4, 7));
             RemoveEntity(this);
             GameManager.EnemiesDefeated++;
-            GameManager.EnemyCounter--;
+            GameManager.NormalEnemies--;
         }
 
         public void TakeDamage(int dmg)

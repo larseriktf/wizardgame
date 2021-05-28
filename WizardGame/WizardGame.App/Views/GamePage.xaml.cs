@@ -67,10 +67,6 @@ namespace WizardGame.App.Views
             Window.Current.CoreWindow.KeyDown -= OnKeyDownUIThread;
             Window.Current.CoreWindow.KeyDown -= OnKeyUpUIThread;
 
-            // Stop game timer
-            GameManager.GameTimer.Stop();
-            GameManager.ElapsedTime = TimeSpan.FromMilliseconds(GameManager.GameTimer.ElapsedMilliseconds);
-
             // Save game
             SaveGameAsync();
         }
@@ -112,7 +108,9 @@ namespace WizardGame.App.Views
                 GameOver();
             }
 
-            if (GameManager.EnemyCounter <= 0 && RunGamePlayLoop == true)
+            GameManager.TotalEnemies = GameManager.NormalEnemies + GameManager.SpecialEnemies;
+
+            if (GameManager.TotalEnemies <= 0 && RunGamePlayLoop == true)
             {
                 GameManager.NextWave();
             }
@@ -154,7 +152,7 @@ namespace WizardGame.App.Views
             }
 
             GameManager.Wave = 0;
-            GameManager.EnemyCounter = 0;
+            GameManager.NormalEnemies = 0;
             GameManager.EnemiesDefeated = 0;
             GameManager.ElapsedTime = new TimeSpan(0, 0, 0);
 
@@ -186,13 +184,13 @@ namespace WizardGame.App.Views
                 RunGamePlayLoop = true;
             }
 
-            MenuFrame.Content = null;
             ToggleMenu();
         }
 
         private void ToggleMenu()
         {
             ControlHandler.ToggleVisibility(MainMenu);
+            MenuFrame.Content = null;
 
             if (MainMenu.Visibility == Visibility.Collapsed)
             {
@@ -210,12 +208,20 @@ namespace WizardGame.App.Views
             ControlHandler.ToggleVisibility(ComfirmExitGrid);
 
 
-        private async void SaveGameAsync() =>
+        private async void SaveGameAsync()
+        {
+            // Stop game timer
+            GameManager.GameTimer.Stop();
+            GameManager.ElapsedTime = TimeSpan.FromMilliseconds(GameManager.GameTimer.ElapsedMilliseconds);
+
+            // Save game data
             await GameViewModel.AddPlayerGameAsync(
                 PlayerViewModel.SelectedPlayer.Id,
                 GameManager.Wave,
                 GameManager.EnemiesDefeated,
                 GameManager.ElapsedTime);
+        }
+            
 
         public async void OnSelectedPlayerChangedEventAsync(object sender, EventArgs e)
         {

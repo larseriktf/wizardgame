@@ -111,7 +111,7 @@ namespace WizardGame.App.ViewModels
                 SelectedPlayer = new Player()
                 {
                     Id = 0,
-                    PlayerName = "Deleted",
+                    PlayerName = "Unselected",
                     IsSelected = true,
                     GameData = null
                 };

@@ -49,7 +49,7 @@ namespace WizardGame.App.GameFiles.Entities.HudElements
                     new Vector2(OffsetX, OffsetY),
                     new Vector2(ImageX, 1),
                     new Vector4(
-                        Red + ((Ghost.HP - 100) * 100) / (0 - 100),
+                        Red + (Ghost.HP - 100) / (0 - 100),
                         Green, Blue, Alpha),
                     0,
                     new Vector2(OffsetXScale, OffsetYScale),

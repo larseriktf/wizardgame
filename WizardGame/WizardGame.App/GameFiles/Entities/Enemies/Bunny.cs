@@ -33,9 +33,23 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
         {
             UpdateMovement();
 
+            if (damage != GameManager.BunnyDamage)
+            {
+                damage = GameManager.BunnyDamage;
+            }
+
             if (Sign(hsp) != 0)
             {
                 XScale = Sign(hsp);
+            }
+
+            if (Invincible == true)
+            {
+                Red = 2;
+            }
+            else
+            {
+                Red = 1;
             }
 
             ImageY = 1;
@@ -56,12 +70,6 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
                     new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
-
-            //ds.DrawRectangle(
-            //    OffsetX - OffsetWidth / 2,
-            //    OffsetY - OffsetHeight / 2,
-            //    OffsetWidth, OffsetHeight,
-            //    Colors.Green);
         }
 
         private void PlayAnimation()
