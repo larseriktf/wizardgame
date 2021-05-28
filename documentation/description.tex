@@ -1,0 +1,89 @@
+% preamble %
+\documentclass[12pt]{article}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage[a4paper, top=1cm, bottom=1.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{enumitem}
+\usepackage{times}
+\usepackage{changepage}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{changepage}
+\usepackage[parfill]{parskip}
+\usepackage{wrapfig}
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage{longtable,booktabs}
+\usepackage{float}
+
+% settings %
+\setcounter{secnumdepth}{2} % enumerate
+\setcounter{tocdepth}{2}    % TOC entries
+%\renewcommand{\contentsname}{Innholdsfortegnelse}
+\newcounter{frcounter}
+\newcounter{frsubcounter}[frcounter]
+\newcounter{nfrcounter}
+\newcounter{nfrsubcounter}[nfrcounter]
+\titlespacing*{\paragraph}{\parindent}{1ex}{1em}
+
+% commands %
+    % counters %
+\newcommand*{\FR}{\stepcounter{frcounter}\textbf{[FR-\arabic{frcounter}] \quad}}
+\newcommand*{\FRsub}{\stepcounter{frsubcounter}\textbf{[FR-\arabic{frcounter}.\arabic{frsubcounter}] \quad}}
+\newcommand*{\NFR}{\stepcounter{nfrcounter}\textbf{[NFR-\arabic{nfrcounter}] \quad}}
+\newcommand*{\NFRsub}{\stepcounter{nfrsubcounter}\textbf{[NFR-\arabic{nfrcounter}.\arabic{nfrsubcounter}] \quad}}
+\newcommand{\invis}{\phantom{a}}
+
+    % requirement commands %
+\newcommand*{\freq}[1]{\FR\textbf{#1}\\}
+\newcommand*{\fsubreq}[1]{\FRsub{#1}\\}
+\newcommand*{\nfreq}[1]{\NFR\textbf{#1}\\}
+\newcommand*{\nfsubeq}[1]{\NFRsub{#1}\\}
+
+
+% environments %
+\newenvironment{subreq}{\begin{adjustwidth}{1cm}{}}{\end{adjustwidth}}
+
+% document %
+\begin{document}
+\title{%
+    "Phantastic Wizard"\\
+    \large Project Description}
+\author{Lars Erik Faber, Studentnr. 193173}
+\date{}
+\maketitle
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=5.0]{images/logo.png}
+\end{figure}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Requirements To Run Application}
+
+\section{Unfinished Parts}
+
+\section{Known Issues}
+
+\section{App Description}
+
+    \subsection{General Information}
+
+    \subsection{Functionality}
+
+    
+
+
+
+\end{document}
