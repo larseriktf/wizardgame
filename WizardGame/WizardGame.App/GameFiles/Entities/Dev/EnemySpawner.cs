@@ -8,6 +8,7 @@ using static WizardGame.App.Helpers.RandomProvider;
 
 namespace WizardGame.App.GameFiles.Entities.Dev
 {
+    /// <summary>I used to spawn the desired enemies requested by the GameManager class</summary>
     public class EnemySpawner : Entity, IDrawable
     {
         public int NormalEnemySpawnCount { get; set; } = 0;
