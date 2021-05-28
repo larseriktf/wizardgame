@@ -9,9 +9,10 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
     {
         public bool Invincible { get; set; } = false;
         private readonly int invincibleTime = 250;
-        protected int hp = 1;
         protected readonly Timer invincibilityTimer = new Timer();
+        protected int hp = 1;
         protected int state = 0;
+        protected int damage = 5;
 
         public Enemy(float x, float y, int width, int height)
             : base(x, y, width, height)

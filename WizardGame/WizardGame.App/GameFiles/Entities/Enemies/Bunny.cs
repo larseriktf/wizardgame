@@ -3,6 +3,7 @@ using System.Numerics;
 using System.Timers;
 using Windows.UI;
 using WizardGame.App.GameFiles.Entities.Dev;
+using WizardGame.App.GameFiles.Entities.Player;
 using WizardGame.App.GameFiles.Graphics;
 using WizardGame.App.Interfaces;
 using static System.Math;
@@ -38,6 +39,7 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
 
             ImageY = 1;
             OffsetAndScale();
+            HandleCollisions();
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -92,9 +94,19 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
             UpdateCollisions();
         }
 
-        public static void Spawner(float x, float y)
+        private void HandleCollisions()
         {
-            
+            if (IsColliding(X, Y, Width, Height, typeof(Ghost)))
+            {
+                // If collided with ghost, Do damage to ghost
+                Ghost ghost = (Ghost)GetCollisionObject(X, Y, Width, Height, typeof(Ghost));
+
+                if (ghost.Invincible == false)
+                {
+                    ghost.TakeDamage(damage);
+                    state++;
+                }
+            }
         }
     }
 }

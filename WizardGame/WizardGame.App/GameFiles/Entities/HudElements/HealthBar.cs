@@ -1,5 +1,7 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System.Numerics;
+using Windows.UI;
+using WizardGame.App.GameFiles.Entities.Player;
 using WizardGame.App.GameFiles.Graphics;
 using WizardGame.App.Interfaces;
 
@@ -61,6 +63,16 @@ namespace WizardGame.App.GameFiles.Entities.HudElements
                     new Vector2(OffsetXScale, OffsetYScale),
                     0);
             }
+
+            ds.FillCircle(
+                OffsetX - OffsetWidth / 2 - 165,
+                OffsetY - OffsetHeight / 2,
+                20,
+                Colors.Black);
+
+            ds.DrawText("" + Ghost.HP,
+            OffsetX - 165, OffsetY,
+            Colors.Magenta, ApplicationSettings.standardFormat);
         }
     }
 }

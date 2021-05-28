@@ -1,4 +1,5 @@
 ﻿using Microsoft.Graphics.Canvas.Text;
+using Windows.UI.Text;
 
 namespace WizardGame.App.GameFiles
 {

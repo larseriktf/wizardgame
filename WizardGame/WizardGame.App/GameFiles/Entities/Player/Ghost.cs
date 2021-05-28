@@ -1,11 +1,13 @@
 ﻿using Microsoft.Graphics.Canvas;
 using System;
 using System.Numerics;
+using System.Timers;
 using Windows.UI;
 using WizardGame.App.GameFiles.Entities.Enemies;
 using WizardGame.App.GameFiles.Entities.HudElements;
 using WizardGame.App.GameFiles.Entities.Spells;
 using WizardGame.App.GameFiles.Graphics;
+using WizardGame.App.Helpers;
 using WizardGame.App.Interfaces;
 using static System.Math;
 using static WizardGame.App.GameFiles.EntityManager;
@@ -15,15 +17,29 @@ namespace WizardGame.App.GameFiles.Entities.Player
 {
     public class Ghost : PhysicsObject, IDrawable
     {
+        public bool Invincible { get; set; } = false;
+        private readonly int invincibleTime = 250;
+        protected readonly Timer invincibilityTimer = new Timer();
+
         public readonly int spriteWidth = 96;
         public readonly int spriteHeight = 96;
+        private static int hp = 100;
+        public static int HP
+        {
+            get => hp;
+        }
 
         public Ghost(float x, float y) : base(x, y, 50, 50)
         {
             moveSpeed = 10;
             spriteSheet = ImageLoader.GetSpriteSheet("sheet_player");
-            AddEntity("layer_hud", new HealthBar());
-            AddEntity("layer_hud", new CrystalOrb());
+
+            invincibilityTimer.Elapsed +=
+                delegate (object source, ElapsedEventArgs e)
+                {
+                    Invincible = false;
+                };
+            invincibilityTimer.Start();
         }
 
         public void Update()
@@ -36,6 +52,8 @@ namespace WizardGame.App.GameFiles.Entities.Player
                 XScale = Sign(hsp);
             }
             OffsetAndScale();
+
+            CanvasDebugger.Debug(this, "HP: " + hp);
         }
 
         public void Draw(CanvasDrawingSession ds)
@@ -53,7 +71,7 @@ namespace WizardGame.App.GameFiles.Entities.Player
             }
 
             ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
-            ds.DrawText("Screen Width: " + Screen.Width, OffsetX, OffsetY, Colors.Blue);
+            ds.DrawText("HP: " + hp, OffsetX, OffsetY, Colors.Blue);
         }
 
 
@@ -96,9 +114,17 @@ namespace WizardGame.App.GameFiles.Entities.Player
             });
         }
 
-        public static void Spawner(float x, float y)
+        public void TakeDamage(int dmg)
         {
-            AddEntity("layer1", new Ghost(x, y));
+            if (Invincible == false)
+            {
+                if ((hp -= dmg) <= 0)
+                {
+                    // Do something
+                }
+                invincibilityTimer.Interval = invincibleTime;
+                Invincible = true;
+            }
         }
     }
 }

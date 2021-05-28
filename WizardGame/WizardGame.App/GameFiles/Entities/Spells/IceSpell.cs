@@ -69,18 +69,10 @@ namespace WizardGame.App.GameFiles.Entities.Spells
         {
             switch (state)
             {
-                case 0:
-                    damage = 6;
-                    break;
-                case 1:
-                    damage = 4;
-                    break;
-                case 2:
-                    damage = 2;
-                    break;
-                default:
-                    RemoveEntity(this);
-                    break;
+                case 0: damage = 6; break;
+                case 1: damage = 4; break;
+                case 2: damage = 2; break;
+                default: RemoveEntity(this); break;
             }
         }
 
