@@ -15,7 +15,7 @@ namespace WizardGame.App.GameFiles.Entities.Dev
 
         public void Draw(CanvasDrawingSession ds)
         {
-            ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
+            //ds.DrawRectangle(OffsetX - OffsetWidth / 2, OffsetY - OffsetHeight / 2, OffsetWidth, OffsetHeight, Colors.Green);
         }
     }
 }

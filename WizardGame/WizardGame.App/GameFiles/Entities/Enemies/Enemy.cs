@@ -7,13 +7,14 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
 {
     public abstract class Enemy : PhysicsObject
     {
-        protected int hp = 1;
         public bool Invincible { get; set; } = false;
-        protected readonly Timer invincibilityTimer = new Timer();
         private readonly int invincibleTime = 250;
+        protected int hp = 1;
+        protected readonly Timer invincibilityTimer = new Timer();
         protected int state = 0;
 
-        public Enemy(float x, float y, int width, int height) : base(x, y, width, height)
+        public Enemy(float x, float y, int width, int height)
+            : base(x, y, width, height)
         {
             invincibilityTimer.Elapsed +=
                 delegate (object source, ElapsedEventArgs e)

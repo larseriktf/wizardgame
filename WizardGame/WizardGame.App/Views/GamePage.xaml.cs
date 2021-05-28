@@ -15,6 +15,7 @@ using WizardGame.App.Helpers;
 using WizardGame.App.Interfaces;
 using WizardGame.App.ViewModels;
 using Windows.System;
+using WizardGame.App.GameFiles.Entities.Enemies;
 
 namespace WizardGame.App.Views
 {
@@ -22,7 +23,7 @@ namespace WizardGame.App.Views
     {
         public GameDataViewModel GameViewModel = new GameDataViewModel();
         public PlayerViewModel PlayerViewModel = new PlayerViewModel();
-        private bool BeginGamePlay = false;
+        private bool RunGamePlayLoop = false;
 
         public GamePage()
         {
@@ -80,11 +81,12 @@ namespace WizardGame.App.Views
             // Pre-load image resources
             await ImageLoader.LoadImageResourceAsync(sender.Device);
 
-            Ghost.Spawner(10 * 128 + 64, 6 * 128 + 64);
+            Ghost.Spawner(8 * 128 + 64, 5 * 128 + 64);
 
             // Add enemy spawners
             EnemySpawner.Spawner(2 * 128 + 64, 5 * 128 + 64);
             EnemySpawner.Spawner(12 * 128 + 64, 5 * 128 + 64);
+            MagicCard.Spawner(12 * 128 + 64, 5 * 128 + 64, 10);
 
             // Generate and load maps
             MapEditor.MakeMaps();
@@ -94,7 +96,7 @@ namespace WizardGame.App.Views
 
         private void OnUpdate(ICanvasAnimatedControl sender, CanvasAnimatedUpdateEventArgs args)
         {
-            if (GameManager.EnemyCounter <= 0)
+            if (GameManager.EnemyCounter <= 0 && RunGamePlayLoop == true)
             {
                 GameManager.NextWave();
             }
@@ -125,7 +127,7 @@ namespace WizardGame.App.Views
         private void ConfigureKeyboardInput(KeyEventArgs args, bool state)
         {
             // Toggle pause
-            if (args.VirtualKey == VirtualKey.Escape && state == true && BeginGamePlay == true)
+            if (args.VirtualKey == VirtualKey.Escape && state == true && RunGamePlayLoop == true)
             {
                 ToggleMenu();
             }
@@ -137,10 +139,10 @@ namespace WizardGame.App.Views
 
         private void OnToggleGame(object sender, RoutedEventArgs e)
         {
-            if (BeginGamePlay == false)
+            if (RunGamePlayLoop == false)
             {
                 StartGameButton.Content = "RESUME";
-                BeginGamePlay = true;
+                RunGamePlayLoop = true;
             }
 
             ToggleMenu();

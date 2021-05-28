@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Windows.UI;
 
-namespace WizardGame.App.GameFiles
+namespace WizardGame.App.Helpers
 {
     public static class CanvasDebugger
     {

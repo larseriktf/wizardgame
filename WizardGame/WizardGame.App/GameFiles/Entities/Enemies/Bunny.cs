@@ -94,7 +94,7 @@ namespace WizardGame.App.GameFiles.Entities.Enemies
 
         public static void Spawner(float x, float y)
         {
-            AddEntity("layer1", new Bunny(x, y));
+            
         }
     }
 }

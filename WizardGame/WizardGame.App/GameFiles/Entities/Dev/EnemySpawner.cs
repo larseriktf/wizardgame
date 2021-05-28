@@ -3,6 +3,7 @@ using System.Timers;
 using Windows.UI;
 using WizardGame.App.GameFiles.Entities.Enemies;
 using WizardGame.App.Interfaces;
+using static WizardGame.App.GameFiles.EntityManager;
 
 namespace WizardGame.App.GameFiles.Entities.Dev
 {
@@ -34,7 +35,7 @@ namespace WizardGame.App.GameFiles.Entities.Dev
 
             if (EnemiesToSpawn > 0 && canSpawn == true)
             {
-                Bunny.Spawner(X, Y);
+                AddEntity("layer1", new Bunny(X, Y));
                 EnemiesToSpawn--;
                 canSpawn = false;
 
@@ -53,7 +54,7 @@ namespace WizardGame.App.GameFiles.Entities.Dev
 
         public static void Spawner(float x, float y)
         {
-            EntityManager.AddEntity("layer1", new EnemySpawner(x, y));
+            AddEntity("layer1", new EnemySpawner(x, y));
         }
     }
 }

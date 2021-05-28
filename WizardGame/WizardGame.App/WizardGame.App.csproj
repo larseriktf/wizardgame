@@ -135,7 +135,7 @@
   <ItemGroup>
     <Compile Include="Activation\ActivationHandler.cs" />
     <Compile Include="GameFiles\ApplicationSettings.cs" />
-    <Compile Include="GameFiles\CanvasDebugger.cs" />
+    <Compile Include="Helpers\CanvasDebugger.cs" />
     <Compile Include="GameFiles\Entities\Dev\EnemySpawner.cs" />
     <Compile Include="GameFiles\Entities\Enemies\Bunny.cs" />
     <Compile Include="GameFiles\Entities\Enemies\Cactus.cs" />

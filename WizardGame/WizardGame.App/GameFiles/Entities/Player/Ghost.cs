@@ -74,7 +74,7 @@ namespace WizardGame.App.GameFiles.Entities.Player
         {
             Action1.EnsureTapped(() =>
             {
-                Bunny.Spawner(X, Y);
+                AddEntity("layer1", new Bunny(X, Y));
             });
             Action2.EnsureTapped(() =>
             {
