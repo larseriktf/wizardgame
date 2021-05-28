@@ -32,31 +32,33 @@ namespace WizardGame.App.GameFiles.Input
         {
             switch (virtualKey)
             {
-                case VirtualKey.Enter: NavContinue.Pressed = state; break;
-                case VirtualKey.Escape: NavPause.Pressed = state; break;
-                case VirtualKey.Back: NavBack.Pressed = state; break;
+                case VirtualKey.Enter               : NavContinue.Pressed = state; break;
+                case VirtualKey.Escape              : NavPause.Pressed = state; break;
+                case VirtualKey.Back                : NavBack.Pressed = state; break;
 
-                case VirtualKey.A: MoveLeft.Pressed = state; break;
-                case VirtualKey.GamepadDPadLeft: MoveLeft.Pressed = state; break;
-                case VirtualKey.W: MoveUp.Pressed = state; break;
-                case VirtualKey.GamepadDPadUp: MoveUp.Pressed = state; break;
-                case VirtualKey.D: MoveRight.Pressed = state; break;
-                case VirtualKey.GamepadDPadRight: MoveRight.Pressed = state; break;
-                case VirtualKey.S: MoveDown.Pressed = state; break;
-                case VirtualKey.GamepadDPadDown: MoveDown.Pressed = state; break;
+                case VirtualKey.A                   : MoveLeft.Pressed = state; break;
+                case VirtualKey.W                   : MoveUp.Pressed = state; break;
+                case VirtualKey.D                   : MoveRight.Pressed = state; break;
+                case VirtualKey.S                   : MoveDown.Pressed = state; break;
 
-                case VirtualKey.Left: Action1.Pressed = state; break;
-                case VirtualKey.GamepadX: Action1.Pressed = state; break;
-                case VirtualKey.Up: Action2.Pressed = state; break;
-                case VirtualKey.GamepadY: Action2.Pressed = state; break;
-                case VirtualKey.Right: Action3.Pressed = state; break;
-                case VirtualKey.GamepadA: Action3.Pressed = state; break;
-                case VirtualKey.Down: Action4.Pressed = state; break;
-                case VirtualKey.GamepadB: Action4.Pressed = state; break;
+                case VirtualKey.GamepadDPadLeft     : MoveLeft.Pressed = state; break;
+                case VirtualKey.GamepadDPadUp       : MoveUp.Pressed = state; break;
+                case VirtualKey.GamepadDPadRight    : MoveRight.Pressed = state; break;
+                case VirtualKey.GamepadDPadDown     : MoveDown.Pressed = state; break;
 
-                case VirtualKey.F: Interact1.Pressed = state; break;
-                case VirtualKey.G: Interact2.Pressed = state; break;
-                case VirtualKey.H: Interact3.Pressed = state; break;
+                case VirtualKey.Left                : Action1.Pressed = state; break;
+                case VirtualKey.Up                  : Action2.Pressed = state; break;
+                case VirtualKey.Right               : Action3.Pressed = state; break;
+                case VirtualKey.Down                : Action4.Pressed = state; break;
+
+                case VirtualKey.GamepadX            : Action1.Pressed = state; break;
+                case VirtualKey.GamepadY            : Action2.Pressed = state; break;
+                case VirtualKey.GamepadA            : Action3.Pressed = state; break;
+                case VirtualKey.GamepadB            : Action4.Pressed = state; break;
+
+                case VirtualKey.F                   : Interact1.Pressed = state; break;
+                case VirtualKey.G                   : Interact2.Pressed = state; break;
+                case VirtualKey.H                   : Interact3.Pressed = state; break;
             }
         }
     }

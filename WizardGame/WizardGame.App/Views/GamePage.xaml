@@ -25,7 +25,7 @@
                                       IsFixedTimeStep="True"
                                       Grid.ColumnSpan="2"/>
 
-        <Button Grid.Column="0" Click="OnToggleMenu"/>
+        <Button Grid.Column="0" Click="OnToggleGame"/>
 
         <Grid Grid.Column="0" Background="Indigo" x:Name="MainMenu">
             <Grid.RowDefinitions>
@@ -71,7 +71,7 @@
             </Grid>
 
             <StackPanel Padding="32" Orientation="Vertical" Grid.Row="2">
-                <Button Content="PLAY GAME" Click="OnToggleMenu" x:Name="StartGameButton" IsEnabled="False"/>
+                <Button Content="PLAY GAME" Click="OnToggleGame" x:Name="StartGameButton" IsEnabled="False"/>
                 <Button Content="SPELL BOOK" Click="OnOpenSpellBook"/>
                 <Button Content="PLAYER PROFILE" Click="OnOpenPlayerProfile"/>
                 <Button Content="LEADERBOARDS" Click="OnOpenLeaderboards" x:Name="LeaderboardsButton" IsEnabled="False"/>

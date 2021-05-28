@@ -14,6 +14,7 @@ using WizardGame.App.GameFiles.Input;
 using WizardGame.App.Helpers;
 using WizardGame.App.Interfaces;
 using WizardGame.App.ViewModels;
+using Windows.System;
 
 namespace WizardGame.App.Views
 {
@@ -21,6 +22,7 @@ namespace WizardGame.App.Views
     {
         public GameDataViewModel GameViewModel = new GameDataViewModel();
         public PlayerViewModel PlayerViewModel = new PlayerViewModel();
+        private bool BeginGamePlay = false;
 
         public GamePage()
         {
@@ -122,11 +124,29 @@ namespace WizardGame.App.Views
 
         private void ConfigureKeyboardInput(KeyEventArgs args, bool state)
         {
+            // Toggle pause
+            if (args.VirtualKey == VirtualKey.Escape && state == true && BeginGamePlay == true)
+            {
+                ToggleMenu();
+            }
+
+            // Detect key presses
             args.Handled = true;
             var action = canvas.RunOnGameLoopThreadAsync(() => KeyBoard.ConfigureInputKey(args.VirtualKey, state));
         }
 
-        private void OnToggleMenu(object sender, RoutedEventArgs e)
+        private void OnToggleGame(object sender, RoutedEventArgs e)
+        {
+            if (BeginGamePlay == false)
+            {
+                StartGameButton.Content = "RESUME";
+                BeginGamePlay = true;
+            }
+
+            ToggleMenu();
+        }
+
+        private void ToggleMenu()
         {
             ControlHandler.ToggleVisibility(MainMenu);
 
@@ -144,7 +164,7 @@ namespace WizardGame.App.Views
 
         private void OnToggleExitWindow(object sender, RoutedEventArgs e) =>
             ControlHandler.ToggleVisibility(ComfirmExitGrid);
-        
+
 
         private async void SaveGameAsync() =>
             await GameViewModel.AddPlayerGameAsync(
